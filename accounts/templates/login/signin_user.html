@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static widget_tweaks %}
+
+{% block content %}
+<h1>Ingresa</h1>
+{{error}}
+<form action="{% url 'signin' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Ingresar
+    </button>
+</form>
+{% endblock %}

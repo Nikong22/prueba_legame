@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  .card-custom {
+    border-color: #050a30;
+  }
+  .card-header-custom {
+    background-color: #050a30;
+    color: white;
+  }
+  .card-body-custom {
+    background-color: white;
+  }
+  .btn-custom {
+    background-color: #050a30;
+    color: white;
+  }
+  .btn-custom:hover {
+    background-color: #03081f;
+    color: white;
+  }
+  .filter-form {
+    margin-bottom: 1rem;
+  }
+  
+</style>
+
+<div class="container mt-3">
+  <h2 class="mb-4">Gestión de Empresas</h2>
+  
+  <!-- Formulario de filtro -->
+  <form class="filter-form" method="get">
+    <div class="form-row">
+      <div class="col">
+        <input type="text" name="name" class="form-control" placeholder="Nombre de empresa" value="{{ request.GET.name }}">
+      </div>
+      <div class="col">
+        <select name="status" class="form-control">
+          <option value="">Estado</option>
+          <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Activa</option>
+          <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>Inactiva</option>
+        </select>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-custom">Buscar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Cards de empresas con Bootstrap -->
+  <div class="row">
+    {% for company in companies %}
+    <!-- Después de cambiar -->
+    <div class="col-12 mb-4">
+      <div class="card card-custom">
+        <div class="card-header card-header-custom">
+          {{ company.company_name }}
+        </div>
+        <div class="card-body card-body-custom">
+          <h5 class="card-title">Estado: {{ company.status }}</h5>
+          <p class="card-text">
+            <!-- Información adicional de la empresa si la hay -->
+          </p>
+          <a href="{% url 'change_company_status' company.id %}" class="btn btn-custom">Cambiar Estado</a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col">
+      <p>No se encontraron empresas.</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+

@@ -9,8 +9,18 @@
       flex: 1 0 auto;
     }
     #sticky-footer {
-      flex-shrink: none;
-    }
+    flex-shrink: none;
+    background-color: #050a30;
+    color: #ffffff;
+    position: fixed; /* Posiciona fijamente el footer en la parte inferior */
+    bottom: 0; /* Asegúrate de que siempre esté en la parte inferior de la pantalla */
+    width: 100%; /* Que ocupe el ancho completo de la pantalla */
+    z-index: 1030; /* Que quede por encima de otros elementos si es necesario */
+  }
+    /* Esta clase se aplica al contenido principal para evitar que se superponga con el footer fijo */
+    .body-content {
+    padding-bottom: 60px; /* Ajusta esto al alto de tu footer */
+  }
   </style>
 <head>
   <title>Legame</title>
@@ -22,18 +32,32 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
    <style>
-    body, html {
-      height: 100%;
-      background-color: #ffffff; /* Fondo blanco para el contenido */
-    }
-    #page-content {
-      flex: 1 0 auto;
-    }
-    #sticky-footer {
-      flex-shrink: none;
-      background-color: #050a30; /* Azul oscuro especificado */
-      color: #050a30;;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%; /* Usa min-height en lugar de height */
+  position: relative;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#page-content {
+  flex: 1; /* Asegura que el contenido se expanda para llenar el espacio */
+  padding-bottom: 100px; /* Ajusta esto a la altura de tu footer */
+}
+
+#sticky-footer {
+  /* El footer ya tiene position: fixed y bottom: 0, lo cual es correcto */
+  height: auto; /* Asegúrate de que la altura se ajuste al contenido del footer */
+}
+
+/* Asegúrate de que el padding-bottom de .body-content es suficiente para la altura del footer */
+.body-content {
+  padding-bottom: 100px; /* Ajusta este valor al alto de tu footer */
+}
     .navbar {
       background-color: #050a30; /* Azul oscuro especificado para la barra de navegación */
     }
@@ -57,7 +81,9 @@
       background-color: #050a30; /* Fondo azul para la sección principal */
       color: white;
     }
+
   </style>
+  
 </head>
 
 
@@ -77,20 +103,21 @@
           
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Ingresar
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="nav-link" href="{% url 'signin' %}">Empresa</a></li>
-
                 {% if user.is_authenticated %}
                 <li>
-                  <a href="{% url 'logout' %}">Logout</a>
+                  <a class="nav-link"  href="{% url 'logout' %}">Cerrar sesión</a>
                 </li>
                 {% else %}
+                <li><a class="nav-link" href="{% url 'signin_comp' %}">Empresa</a></li>
+
+                
                 <li><a class="nav-link" href="{% url 'signin' %}">Usuario</a></li>
                 {% endif %}
                 
@@ -101,56 +128,57 @@
                 Regístrese
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                {% if user.is_authenticated %}
+                <li>
+                  <a class="nav-link"  href="{% url 'logout' %}">Cerrar sesión</a>
+                </li>
+                {% else %}
                 <li><a class="nav-link" href="{% url 'signup_comp' %}">Empresa</a></li>
                 <li><a class="nav-link" href="{% url 'signup_user' %}">Usuario</a></li>
+                {% endif %}
+                
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <div class="container">
 
+
+    </div>
   </header>
-  <div class="container my-4 text-center py-5" >
-    <h1>Bienvenido a Legame</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae exercitationem voluptas fugiat voluptatum, mollitia eum, deleniti aliquam et consectetur quidem harum dicta dolore magni necessitatibus ipsa voluptatibus inventore odio adipisci.</p>
-  </div>
-  <main id="page-content" >
+  <main id="page-content" class="body-content">
     {% block content %}
 
     {% endblock content %}
   </main>
-    
     <!-- En base.html o en un archivo de inclusión de footer si prefieres -->
 {% load static %}
 
 <footer id="sticky-footer" class="py-4 bg-light text-dark-50">
   <div class="container text-center">
-    <div class="row">
-      <!-- Añade las columnas de Bootstrap para alinear los logos -->
-      <!-- Usa la clase 'align-items-center' para centrar las imágenes verticalmente -->
-      <div class="row align-items-center">
-        <p>Información footer</p>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-          <img src="{% static 'accounts/images/ACLICagliari.png' %}" alt="Logo 1" class="img-fluid" style="max-height: 100px;">
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-          <img src="{% static 'accounts/images/ACLISardegna.png' %}" alt="Logo 2" class="img-fluid" style="max-height: 100px;">
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-          <img src="{% static 'accounts/images/CasaSardegna_Logo_sfondobianco.jpg' %}" alt="Logo 3" class="img-fluid" style="max-height: 100px;">
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-          <img src="{% static 'accounts/images/LOGOCREI-ACLI-300x217.jpg' %}" alt="Logo 4" class="img-fluid" style="max-height: 100px;">
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-          <img src="{% static 'accounts/images/LogoRegioneSardegnaAssessoratoLavoro_definitivo.png' %}" alt="Logo 5" class="img-fluid" style="max-height: 100px;">
-        </div>
+    <div class="row justify-content-center">
+      <!-- Logos alineados con flexbox de Bootstrap -->
+      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
+        <img src="{% static 'accounts/images/ACLICagliari.png' %}" alt="Logo 1" class="img-fluid" style="max-height: 100px;">
       </div>
+      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
+        <img src="{% static 'accounts/images/ACLISardegna.png' %}" alt="Logo 2" class="img-fluid" style="max-height: 100px;">
+      </div>
+      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
+        <img src="{% static 'accounts/images/CasaSardegna_Logo_sfondobianco.jpg' %}" alt="Logo 3" class="img-fluid" style="max-height: 100px;">
+      </div>
+      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
+        <img src="{% static 'accounts/images/LOGOCREI-ACLI-300x217.jpg' %}" alt="Logo 4" class="img-fluid" style="max-height: 100px;">
+      </div>
+      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
+        <img src="{% static 'accounts/images/LogoRegioneSardegnaAssessoratoLavoro_definitivo.png' %}" alt="Logo 5" class="img-fluid" style="max-height: 100px;">
+      </div>
+      <!-- ... -->
     </div>
   </div>
 </footer>
-
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -160,7 +188,22 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-</body>
+<!-- Al final de tu cuerpo justo antes de cerrar la etiqueta </body> -->
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var footerHeight = document.getElementById('sticky-footer').offsetHeight;
+    var content = document.getElementById('page-content');
+    content.style.paddingBottom = footerHeight + 'px';
+  });
+  
+  // Si también quieres ajustar el padding cuando la ventana cambia de tamaño
+  window.onresize = function(event) {
+    var footerHeight = document.getElementById('sticky-footer').offsetHeight;
+    var content = document.getElementById('page-content');
+    content.style.paddingBottom = footerHeight + 'px';
+  };
+  </script>
 
+</body>
 </html>
 

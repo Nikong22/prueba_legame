@@ -12,10 +12,15 @@ class UserProfile(models.Model):
 
 
 class Company(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     company_name = models.CharField(max_length=100)
-    address = models.CharField(max_length=255, blank=True)
+    address = models.CharField(max_length=255)
     contact_email = models.EmailField()
+    STATUS_CHOICES = (
+        ('active', 'Activa'),
+        ('inactive', 'Inactiva'),
+    )
+    status = models.CharField(max_length=8, choices=STATUS_CHOICES, default='inactive')
 
     def __str__(self):
         return self.company_name
@@ -28,3 +33,4 @@ class AdminUser(models.Model):
 
     def __str__(self):
         return self.user.username
+

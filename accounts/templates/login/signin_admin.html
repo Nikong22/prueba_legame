@@ -7,11 +7,11 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center">Ingresa Usuario</h3>
+                    <h3 class="card-title text-center">Ingresa Administrador</h3>
                     {% if error %}
                         <div class="alert alert-danger">{{ error }}</div>
                     {% endif %}
-                    <form action="{% url 'signin' %}" method="POST" class="mt-4">
+                    <form action="{% url 'signin_admin' %}" method="POST" class="mt-4">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="{{ form.username.id_for_label }}">Nombre de usuario:</label>

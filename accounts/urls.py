@@ -8,9 +8,15 @@ urlpatterns = [
     path('signup_admin/', views.signup_admin, name='signup_admin'),
     path('signout/', views.signout, name='logout'),
     path('signin/', views.signin, name='signin'),
-    path('signin_comp/', views.signin_comp, name='signin_comp'),
     path('signin_admin/', views.signin_admin, name='signin_admin'),
     path('manage_companies/', views.manage_companies, name='manage_companies'),
-    path('change_company_status/<int:company_id>/', views.change_company_status, name='change_company_status'),
+    path('company_details/<int:company_id>/', views.company_details, name='company_details'),
+    path('activate_company/<int:company_id>/', views.activate_company, name='activate_company'),
+    path('inactivate_company/<int:company_id>/', views.inactivate_company, name='inactivate_company'),
+    path('create_job_post/', views.create_job_post, name='create_job_post'),
+    path('my_job_list/', views.my_job_list, name='my_job_list'),
+    path('delete_job_post/<int:job_id>/', views.delete_job_post, name='delete_job_post'),
+    path('toggle_job_post_status/<int:job_id>/', views.toggle_job_post_status, name='toggle_job_post_status'),
+    path('my_profile/', views.my_profile, name='my_profile'),
 
-    ]
+]

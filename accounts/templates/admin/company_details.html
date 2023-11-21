@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- Botón para regresar a la gestión de empresas -->
+      <a href="{% url 'manage_companies' %}" class="btn btn-outline-primary mb-3">Volver a Gestión de Empresas</a>
+
+      <!-- Tarjeta de detalles de la empresa -->
+      <div class="card">
+        <div class="card-header">
+          Detalles de la Empresa
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ company.company_name }}</h5>
+          <p class="card-text">Dirección: {{ company.address }}</p>
+          <p class="card-text">Email de Contacto: {{ company.contact_email }}</p>
+          <p class="card-text">Estado: {{ company.get_status_display }}</p>
+
+          <!-- Botones de acción según el estado de la empresa -->
+          {% if company.status == 'inactive' %}
+          <a href="{% url 'activate_company' company.id %}" class="btn btn-success">Activar Empresa</a>
+          {% endif %}
+          {% if company.status == 'active' %}
+          <a href="{% url 'inactivate_company' company.id %}" class="btn btn-danger">Inactivar Empresa</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

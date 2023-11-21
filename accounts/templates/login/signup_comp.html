@@ -4,62 +4,128 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="card-title text-center">Registro de Empresas</h1>  
-            {% if error %}
-                <div class="alert alert-danger">{{ error }}</div>
-            {% endif %}
-            <form method="POST" class="mt-3">  
-                {% csrf_token %}
-      <!-- Campos del modelo User -->
-      <div class="form-group">
-          <label for="{{ form.username.id_for_label }}">Username:</label>
-          {{ form.username|add_class:"form-control" }}
-          {% if form.username.errors %}
-          <div class="invalid-feedback">
-            {{ form.username.errors.as_text }}
-          </div>
-          {% endif %}
-      </div>
-      <div class="form-group">
-          <label for="{{ form.password1.id_for_label }}">Password:</label>
-          {{ form.password1|add_class:"form-control" }}
-          {% if form.password1.errors %}
-                    <div class="invalid-feedback">
-                      {{ form.password1.errors.as_text }}
-                    </div>
-                  {% endif %}
-              </div>
-      <div class="form-group">
-          <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
-          {{ form.password2|add_class:"form-control" }}
-          {% if form.password2.errors %}
-          <div class="invalid-feedback">
-            {{ form.password2.errors.as_text }}
-          </div>
-        {% endif %}
-    </div>
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center">Registro de Empresas</h1>
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ form.non_field_errors }}
+                        </div>
+                    {% endif %}
+                    <form method="POST" class="mt-3">
+                        {% csrf_token %}
+                        <!-- Mostrar errores no asociados a un campo específico -->
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <strong>¡Error!</strong> Por favor corrige los errores debajo.
+                            </div>
+                        {% endif %}
+                        <!-- Campos del modelo User -->
+                        <div class="form-group">
+                            <label for="{{ form.username.id_for_label }}">Username:</label>
+                            {{ form.username|add_class:"form-control" }}
+                            {{ form.username.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email:</label>
+                            {{ form.email|add_class:"form-control" }}
+                            {{ form.email.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password1.id_for_label }}">Password:</label>
+                            {{ form.password1|add_class:"form-control" }}
+                            {{ form.password1.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
+                            {{ form.password2|add_class:"form-control" }}
+                            {{ form.password2.errors }}
+                        </div>
 
-      <!-- Campos adicionales para Company -->
-      <div class="form-group">
-          <label for="company_name">Company Name:</label>
-          <input type="text" name="company_name" class="form-control" id="company_name">
-      </div>
-      <div class="form-group">
-          <label for="address">Address:</label>
-          <input type="text" name="address" class="form-control" id="address">
-      </div>
-      <div class="form-group">
-          <label for="contact_email">Contact Email:</label>
-          <input type="email" name="contact_email" class="form-control" id="contact_email">
-      </div>
-      <div class="text-center">
-      <button type="submit" class="btn btn-primary">
-          Registrarse
-      </button>
-      </div>
-  </form>
+                        <!-- Campos adicionales para Company -->
+                        <div class="form-group">
+                            <label for="company_name">Nombre de la Empresa:</label>
+                            {{ form.company_name|add_class:"form-control" }}
+                            {{ form.company_name.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Teléfono:</label>
+                            {{ form.phone_number|add_class:"form-control" }}
+                            {{ form.phone_number.errors }}
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Dirección:</label>
+                            {{ form.address|add_class:"form-control" }}
+                            {{ form.address.errors }}
+                        </div>
+                        <!-- Agregar aquí los nuevos campos de acuerdo al modelo actualizado -->
+                        <div class="form-group">
+                            <label for="country">País:</label>
+                            <select name="country" class="form-control" id="country">
+                                <option value="AR">Argentina</option>
+                                <option value="IT">Italia</option>
+                            </select>
+                        </div>
+                        <!-- Agrega un campo select para las provincias -->
+                        <select name="province" id="province" class="form-control" onchange="updateCities()">
+                          <option value="">Selecciona una provincia</option>
+                          {% for province in provinces %}
+                          <option value="{{ province.nombre }}">{{ province.nombre }}</option>
+                          {% endfor %}
+                        </select>
+
+                        <!-- Este campo select se llenará dinámicamente con las ciudades basado en la provincia seleccionada -->
+                        <div class="form-group">
+                          <label for="city">Ciudad:</label>
+                          <select name="city" class="form-control" id="city">
+                              <option value="">Primero selecciona una provincia</option>
+                              <!-- Las opciones se añadirán dinámicamente con JS -->
+                          </select>
+                      </div>
+                        <!-- Repetir para otros campos como provincia, ciudad, etc. -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Registrarse</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+<script>
+// Imagina que tienes un objeto JavaScript que mapea provincias a ciudades
+var provinceToCities = {
+  // ... tu mapeo aquí ...
+};
+
+function updateCities() {
+  var provinceSelect = document.getElementById('province');
+  var citySelect = document.getElementById('city');
+  var selectedProvince = provinceSelect.value;
+
+  // Limpiar las opciones de ciudad existentes
+  citySelect.innerHTML = '';
+
+  // Obtener las ciudades para la provincia seleccionada
+  var cities = provinceToCities[selectedProvince];
+
+  // Llenar el select de ciudades con nuevas opciones
+  cities.forEach(function(city) {
+      var option = document.createElement('option');
+      option.value = city;
+      option.textContent = city;
+      citySelect.appendChild(option);
+  });
+}
+
+
+
+
+</script>
+
+
 {% endblock %}

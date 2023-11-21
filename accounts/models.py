@@ -16,6 +16,9 @@ class Company(models.Model):
     company_name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     contact_email = models.EmailField()
+    phone_number = models.CharField(max_length=15)
+    province = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
     STATUS_CHOICES = (
         ('active', 'Activa'),
         ('inactive', 'Inactiva'),
@@ -34,3 +37,19 @@ class AdminUser(models.Model):
     def __str__(self):
         return self.user.username
 
+#Pantalla para publicaciones de empresas
+
+class JobPost(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    location = models.CharField(max_length=100)
+    type = models.CharField(max_length=50)
+    category = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    STATUS_CHOICES = (
+        ('active', 'Activa'),
+        ('inactive', 'Inactiva'),
+    )
+    status = models.CharField(max_length=8, choices=STATUS_CHOICES, default='active')
+    def __str__(self):
+        return self.title

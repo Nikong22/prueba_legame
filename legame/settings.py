@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'widget_tweaks',
     'crispy_forms',
+    'django_countries',
+
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n', #Util para internacionalizacion
+                
             ],
         },
     },

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Perfil de {{ user_type }}</h2>
+  <p>Nombre de usuario: {{ user.username }}</p>
+  <p>Email: {{ user.email }}</p>
+  {% if user_type == 'Empresa' %}
+  <p>Nombre de la empresa: {{ user_info.company_name }}</p>
+  <p>Dirección: {{ user_info.address }}</p>
+  <p>Contacto: {{ user_info.contact_email }}</p>
+  {% elif user_type == 'Usuario' %}
+  <p>Teléfono: {{ user_info.phone_number }}</p>
+  <p>Biografía: {{ user_info.bio }}</p>
+  {% endif %}
+</div>
+{% endblock %}

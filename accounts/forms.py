@@ -4,7 +4,13 @@ from .models import Company
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfile
+from django.forms import ModelForm
+from .models import BlogEntry
 
+class BlogEntryForm(ModelForm):
+    class Meta:
+        model = BlogEntry
+        fields = ['title', 'content']
 
 class JobPostForm(forms.ModelForm):
     country = forms.ChoiceField(choices=[('AR', 'Argentina'), ('IT', 'Italia')], required=True)

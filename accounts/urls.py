@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import admin_blog
 
 # Tus otras URLs...
 
@@ -25,6 +26,7 @@ urlpatterns = [
     path('toggle_job_post_status/<int:job_id>/', views.toggle_job_post_status, name='toggle_job_post_status'),
     path('my_profile/', views.my_profile, name='my_profile'),
     path('upload-cv/', views.upload_cv, name='upload_cv'),
+    path('admin_blog/', views.admin_blog, name='admin_blog'),
 
 ]
 

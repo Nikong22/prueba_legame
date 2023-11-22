@@ -64,19 +64,17 @@
                 <p>No hay trabajos activos en este momento.</p>
             {% endfor %}
         </div>
-        <!-- Columna para el texto existente -->
+        <!-- BLOG INFORMATIVO -->
         <div class="col-md-4">
-            <h2>Información Adicional</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat nostrum cum ipsam sunt sint dignissimos magni, aliquid nam nisi iusto eveniet nulla error! Iste tenetur expedita perspiciatis culpa, optio animi.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta neque maiores quidem beatae laborum id voluptate, cumque repudiandae? Et provident iste dolor similique unde! Cumque inventore sapiente voluptate animi! Quo?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla numquam architecto iste quos non dignissimos quae aut minima facilis veniam dicta nesciunt, adipisci nobis inventore quis, eum quia blanditiis ab?
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore, unde? Vero, facere corporis? Eius vitae nulla minima enim eum, facere voluptatum, obcaecati est dolore, dolorum eveniet! Ex modi perferendis aspernatur.
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus earum rem quae dicta veritatis voluptates quo cum dolor, perspiciatis minima quia ratione voluptas cumque reprehenderit esse sed totam assumenda similique?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum harum similique quam vero mollitia voluptatum amet dolor impedit alias deserunt. Vel rem nulla dignissimos magni minima iure et, dolore debitis.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus veritatis quidem minima dicta sit. Quae ab suscipit esse perspiciatis eligendi deserunt tempora exercitationem necessitatibus quidem? Cumque beatae excepturi numquam exercitationem?
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium autem amet corporis perferendis asperiores, ea eligendi quibusdam fugiat rerum, vero dolorum. Facere, tenetur laudantium! Placeat dignissimos dolores necessitatibus libero soluta.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, atque necessitatibus id ratione sint at officiis officia obcaecati vitae est eveniet beatae sed magnam sapiente non ab eaque quaerat velit?
-            </p>
+          {% if latest_entry %}
+          <div class="blog-informativo">
+              <h2>{{ latest_entry.title }}</h2>
+              <p>{{ latest_entry.content|linebreaks }}</p>
+          </div>
+          {% else %}
+          <p>No hay entradas de blog para mostrar.</p>
+          {% endif %}
+      </div>
             <!-- Aquí continúa el texto existente -->
         </div>
     </div>

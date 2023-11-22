@@ -148,6 +148,7 @@ body {
         {% endif %}
         {% if user.is_superuser or user.is_staff %}
         <li><a class="dropdown-item" href="{% url 'manage_companies' %}"><i class="bi bi-card-checklist"> Ver listado de empresas</i></a></li>
+        <li><a class="dropdown-item" href="{% url 'admin_blog' %}">Blog informativo</a></li>
         {% endif %}
         <hr>
         <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>

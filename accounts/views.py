@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 from .models import UserProfile, Company, AdminUser
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages  # Importa la librería de mensajes
 from .models import Company
 from django.http import HttpResponseForbidden
@@ -15,7 +15,8 @@ from .forms import JobPostForm, CompanySignUpForm
 from .models import JobPost
 from django.contrib.staticfiles import finders
 from .forms import UserProfileForm
-
+from .models import BlogEntry
+from .forms import BlogEntryForm
 
 # ... el resto de tu código ...
 
@@ -34,8 +35,10 @@ def get_user_type(user):
 
 def login_view(request):
     active_jobs = JobPost.objects.filter(status='active')
+    latest_entry = BlogEntry.objects.order_by('-updated_at').first()  # Obtén la última entrada del blog
     context = {
-        'jobs': active_jobs
+        'jobs': active_jobs,
+        'latest_entry': latest_entry  # Asegúrate de pasar 'latest_entry' al contexto
     }
     if request.user.is_authenticated:
         context['username'] = request.user.username
@@ -278,26 +281,31 @@ def create_job_post(request):
     form = JobPostForm(request.POST or None)
 
     # Encuentra la ubicación del archivo JSON en tus archivos estáticos
-    provinces_json_path = finders.find('accounts/argentina/provincias.json')
-    cities_json_path = finders.find('accounts/argentina/localidades.json')
+    json_path = finders.find('accounts/argentina/provincias.json')
     provinces = []
-    cities = []
-    province_to_cities_map = {}
+    if json_path:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            provinces_json = json.load(f)
+            provinces = provinces_json.get('provincias', [])
+    else:
+        print("Archivo JSON de provincias no encontrado.")
 
-    # Carga las provincias y ciudades de los archivos JSON
-    if provinces_json_path and cities_json_path:
-        with open(provinces_json_path, 'r', encoding='utf-8') as f:
-            provinces = json.load(f).get('provincias', [])
-        
+    # Cargar localidades
+    cities_json_path = finders.find('accounts/argentina/localidades.json')
+    if cities_json_path:
         with open(cities_json_path, 'r', encoding='utf-8') as f:
-            cities = json.load(f).get('localidades', [])
+            cities_json = json.load(f)
+        cities = cities_json['localidades']
+    else:
+        cities = []
         
-        # Crea un mapeo de provincias a localidades
-        for localidad in cities:
-            provincia_id = localidad['provincia']['id']
-            if provincia_id not in province_to_cities_map:
-                province_to_cities_map[provincia_id] = []
-            province_to_cities_map[provincia_id].append(localidad['nombre'])
+        # Mapeo de provincias a localidades
+    province_to_cities_map = {}
+    for localidad in cities_json['localidades']:
+        provincia_id = localidad['provincia']['id']
+        if provincia_id not in province_to_cities_map:
+            province_to_cities_map[provincia_id] = []
+        province_to_cities_map[provincia_id].append(localidad['nombre'])
 
     if request.method == 'POST' and form.is_valid():
         job_post = form.save(commit=False)
@@ -370,3 +378,21 @@ def upload_cv(request):
     else:
         form = UserProfileForm(instance=request.user.userprofile)
     return render(request, 'some_template.html', {'form': form})  # Asegúrate de usar la plantilla correcta
+
+
+# Helper function to check if user is admin
+def is_admin(user):
+    return user.is_authenticated and user.is_superuser  # Cambia is_admin por is_superuser
+
+@login_required
+@user_passes_test(is_admin)
+def admin_blog(request):
+    if request.method == 'POST':
+        form = BlogEntryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Asegúrate de redirigir a la URL que muestra la página de inicio
+            return redirect('login_view')  # Asumiendo que 'login_view' es tu vista de inicio
+    else:
+        form = BlogEntryForm()
+    return render(request, 'admin/admin_blog.html', {'form': form})

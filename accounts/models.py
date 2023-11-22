@@ -6,6 +6,7 @@ class UserProfile(models.Model):
     # Agrega aquí campos adicionales, como:
     phone_number = models.CharField(max_length=15, blank=True)
     bio = models.TextField(blank=True)
+    cv = models.FileField(upload_to='cvs/', null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -42,9 +43,11 @@ class AdminUser(models.Model):
 class JobPost(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    location = models.CharField(max_length=100)
     type = models.CharField(max_length=50)
     category = models.CharField(max_length=50)
+    country = models.CharField(max_length=2, choices=[('AR', 'Argentina'), ('IT', 'Italia')])
+    province = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     STATUS_CHOICES = (
         ('active', 'Activa'),

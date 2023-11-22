@@ -5,9 +5,48 @@
 <div class="container my-4">
     <!-- Fila para el layout de dos columnas -->
     <div class="row">
-        <!-- Columna para trabajos activos -->
+        <!-- Columna para el filtro y trabajos activos -->
         <div class="col-md-8">
             <h2>Trabajos Activos</h2>
+             <!-- Formulario de filtro -->
+             <form class="row g-3 align-items-center mb-4" method="get">
+                <div class="col-auto">
+                  <input type="text" name="name" class="form-control" placeholder="Buscar vacante" value="{{ request.GET.name }}">
+                </div>
+                <div class="col-auto">
+                  <select name="country" class="form-select">
+                    <option value="">País</option>
+                    <!-- Opciones de países -->
+                    <option value="argentina">Argentina</option>
+                    <option value="italia">Italia</option>
+                    <!-- Más países -->
+                  </select>
+                </div>
+                <div class="col-auto">
+                  <input type="text" name="location" class="form-control" placeholder="Ubicación" value="{{ request.GET.location }}">
+                </div>
+                <div class="col-auto">
+                  <select name="category" class="form-select">
+                    <option value="">Área</option>
+                    <!-- Opciones de categorías -->
+                    <option value="tecnologia">Tecnología</option>
+                    <option value="marketing">Marketing</option>
+                    <!-- Más categorías -->
+                  </select>
+                </div>
+                <div class="col-auto">
+                  <select name="type" class="form-select">
+                    <option value="">Tipo</option>
+                    <!-- Opciones de tipos -->
+                    <option value="full_time">Full-time</option>
+                    <option value="part_time">Part-time</option>
+                    <!-- Más tipos -->
+                  </select>
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-outline-secondary">Buscar</button>
+                </div>
+              </form>
             <!-- Aquí iría el loop para mostrar los trabajos -->
             {% for job in jobs %}
                 {% if job.status == 'active' %}

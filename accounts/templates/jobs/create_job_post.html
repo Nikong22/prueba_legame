@@ -1,46 +1,94 @@
 {% extends "base.html" %}
+{% load static widget_tweaks %}
 
 {% block content %}
 <div class="container mt-4">
-  {% if messages %}
-    <div class="row">
-      <div class="col-md-8 mx-auto">
-        {% for message in messages %}
-          <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
-            {{ message }}
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">
-          <h2>Crear Publicación de Trabajo</h2>
-        </div>
-        <div class="card-body">
-          <form method="post" class="needs-validation" novalidate>
-            {% csrf_token %}
-            {% for field in form %}
-              <div class="mb-3">
-                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                {{ field }}
-                {% if field.help_text %}
-                  <div class="form-text">{{ field.help_text }}</div>
-                {% endif %}
-                {% for error in field.errors %}
-                  <div class="invalid-feedback">
-                    {{ error }}
-                  </div>
-                {% endfor %}
+      <div class="col-md-8">
+          <div class="card">
+              <div class="card-header">
+                  <h2>Crear Publicación de Trabajo</h2>
               </div>
-            {% endfor %}
-            <button type="submit" class="btn btn-primary">Publicar Trabajo</button>
-          </form>
-        </div>
+              <div class="card-body">
+                  <form method="post" class="needs-validation" novalidate>
+                      {% csrf_token %}
+                      <div class="form-group">
+                          <label for="id_country">País:</label>
+                          <select name="country" class="form-control" id="id_country">
+                              <option value="AR">Argentina</option>
+                              <option value="IT">Italia</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="id_province">Provincia/Estado:</label>
+                          <select name="province" id="id_province" class="form-control" onchange="updateCities()">
+                              <option value="">Selecciona una provincia</option>
+                              {% for province in provinces %}
+                                  <option value="{{ province.id }}">{{ province.nombre }}</option>
+                              {% endfor %}
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label for="id_city">Ciudad/Localidad:</label>
+                          <select name="city" id="id_city" class="form-control">
+                              <option value="">Primero selecciona una provincia</option>
+                          </select>
+                      </div>
+                      {% for field in form %}
+                          <div class="mb-3">
+                              {% if field.name != 'country' and field.name != 'province' and field.name != 'city' %}
+                                  <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                  {{ field|add_class:"form-control" }}
+                                  {% if field.help_text %}
+                                      <div class="form-text">{{ field.help_text }}</div>
+                                  {% endif %}
+                                  {% for error in field.errors %}
+                                      <div class="invalid-feedback">
+                                          {{ error }}
+                                      </div>
+                                  {% endfor %}
+                              {% endif %}
+                          </div>
+                      {% endfor %}
+                      <button type="submit" class="btn btn-primary">Publicar Trabajo</button>
+                  </form>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
 </div>
+<script>
+  var provinceToCities = {{ province_to_cities_map|safe }};
+
+  function updateCities() {
+      console.log("Actualizando ciudades...");
+
+      var provinceSelect = document.getElementById('province');
+      var citySelect = document.getElementById('city');
+      var selectedProvinceId = provinceSelect.value;
+
+      console.log("Provincia seleccionada: " + selectedProvinceId);
+
+      citySelect.innerHTML = '';
+
+      // Comprobar que el mapeo contiene la provincia seleccionada
+      console.log(provinceToCities);
+      if (!provinceToCities[selectedProvinceId]) {
+          console.log("No se encontraron ciudades para la provincia con ID: " + selectedProvinceId);
+      }
+
+      var cities = provinceToCities[selectedProvinceId] || [];
+
+      console.log("Ciudades encontradas: ", cities);
+
+      cities.forEach(function(cityName) {
+          console.log("Añadiendo ciudad: " + cityName);
+          var option = document.createElement('option');
+          option.value = cityName;
+          option.textContent = cityName;
+          citySelect.appendChild(option);
+      });
+  }
+
+</script>
 {% endblock %}

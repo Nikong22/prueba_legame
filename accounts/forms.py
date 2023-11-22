@@ -3,11 +3,21 @@ from .models import JobPost
 from .models import Company
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import UserProfile
+
 
 class JobPostForm(forms.ModelForm):
+    country = forms.ChoiceField(choices=[('AR', 'Argentina'), ('IT', 'Italia')], required=True)
+    # Asumiendo que tienes campos province y city en tu modelo JobPost
+    # Deberías tener una lógica para poblar estos campos basados en la elección de country
+
     class Meta:
         model = JobPost
-        fields = ['title', 'location', 'type', 'category']
+        fields = ['title', 'country', 'province', 'city', 'type', 'category']
+        widgets = {
+            'province': forms.Select(attrs={'onchange': 'updateCities()'}),
+            'city': forms.Select(),
+        }
 
 class CompanySignUpForm(UserCreationForm):
     company_name = forms.CharField(required=True)
@@ -36,3 +46,8 @@ class CompanySignUpForm(UserCreationForm):
             )
             company.save()
         return user
+    
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['cv']

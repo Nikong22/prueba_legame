@@ -71,9 +71,9 @@
                         <select name="province" id="province" class="form-control" onchange="updateCities()">
                           <option value="">Selecciona una provincia</option>
                           {% for province in provinces %}
-                          <option value="{{ province.nombre }}">{{ province.nombre }}</option>
+                          <option value="{{ province.id }}">{{ province.nombre }}</option>
                           {% endfor %}
-                        </select>
+                      </select>
 
                         <!-- Este campo select se llenará dinámicamente con las ciudades basado en la provincia seleccionada -->
                         <div class="form-group">
@@ -94,36 +94,38 @@
     </div>
 </div>
 
-
-
 <script>
-// Imagina que tienes un objeto JavaScript que mapea provincias a ciudades
-var provinceToCities = {
-  // ... tu mapeo aquí ...
-};
+  var provinceToCities = {{ province_to_cities_map|safe }};
 
-function updateCities() {
-  var provinceSelect = document.getElementById('province');
-  var citySelect = document.getElementById('city');
-  var selectedProvince = provinceSelect.value;
+  function updateCities() {
+      console.log("Actualizando ciudades...");
 
-  // Limpiar las opciones de ciudad existentes
-  citySelect.innerHTML = '';
+      var provinceSelect = document.getElementById('province');
+      var citySelect = document.getElementById('city');
+      var selectedProvinceId = provinceSelect.value;
 
-  // Obtener las ciudades para la provincia seleccionada
-  var cities = provinceToCities[selectedProvince];
+      console.log("Provincia seleccionada: " + selectedProvinceId);
 
-  // Llenar el select de ciudades con nuevas opciones
-  cities.forEach(function(city) {
-      var option = document.createElement('option');
-      option.value = city;
-      option.textContent = city;
-      citySelect.appendChild(option);
-  });
-}
+      citySelect.innerHTML = '';
 
+      // Comprobar que el mapeo contiene la provincia seleccionada
+      console.log(provinceToCities);
+      if (!provinceToCities[selectedProvinceId]) {
+          console.log("No se encontraron ciudades para la provincia con ID: " + selectedProvinceId);
+      }
 
+      var cities = provinceToCities[selectedProvinceId] || [];
 
+      console.log("Ciudades encontradas: ", cities);
+
+      cities.forEach(function(cityName) {
+          console.log("Añadiendo ciudad: " + cityName);
+          var option = document.createElement('option');
+          option.value = cityName;
+          option.textContent = cityName;
+          citySelect.appendChild(option);
+      });
+  }
 
 </script>
 

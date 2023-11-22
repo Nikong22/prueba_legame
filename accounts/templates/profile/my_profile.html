@@ -2,16 +2,28 @@
 
 {% block content %}
 <div class="container mt-4">
-  <h2>Perfil de {{ user_type }}</h2>
-  <p>Nombre de usuario: {{ user.username }}</p>
-  <p>Email: {{ user.email }}</p>
-  {% if user_type == 'Empresa' %}
-  <p>Nombre de la empresa: {{ user_info.company_name }}</p>
-  <p>Dirección: {{ user_info.address }}</p>
-  <p>Contacto: {{ user_info.contact_email }}</p>
-  {% elif user_type == 'Usuario' %}
-  <p>Teléfono: {{ user_info.phone_number }}</p>
-  <p>Biografía: {{ user_info.bio }}</p>
-  {% endif %}
+  <div class="card">
+    <div class="card-body">
+      <h2 class="card-title">Perfil de {{ user_type }}</h2>
+      <p class="card-text"><strong>Nombre de usuario:</strong> {{ user.username }}</p>
+      <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+      {% if user_type == 'Empresa' %}
+      <p class="card-text"><strong>Nombre de la empresa:</strong> {{ user_info.company_name }}</p>
+      <p class="card-text"><strong>Dirección:</strong> {{ user_info.address }}</p>
+      {% elif user_type == 'Usuario' %}
+      <p class="card-text"><strong>Teléfono:</strong> {{ user_info.phone_number }}</p>
+      <p class="card-text"><strong>Biografía:</strong> {{ user_info.bio }}</p>
+      <!-- Formulario para subir CV -->
+      <form action="{% url 'upload_cv' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Subir CV</label>
+          <input class="form-control" type="file" id="formFile" name="cv" accept=".pdf,.doc,.docx">
+        </div>
+        <button type="submit" class="btn btn-primary">Subir</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
 </div>
 {% endblock %}

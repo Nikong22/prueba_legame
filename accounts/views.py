@@ -14,7 +14,7 @@ from django.http import HttpResponseForbidden
 from .forms import JobPostForm, CompanySignUpForm
 from .models import JobPost
 from django.contrib.staticfiles import finders
-
+from .forms import UserProfileForm
 
 
 # ... el resto de tu código ...
@@ -104,7 +104,24 @@ def signup_comp(request):
     else:
         print("Archivo JSON de provincias no encontrado.")
 
-    return render(request, 'login/signup_comp.html', {'form': form, 'provinces': provinces})
+    # Cargar localidades
+    cities_json_path = finders.find('accounts/argentina/localidades.json')
+    if cities_json_path:
+        with open(cities_json_path, 'r', encoding='utf-8') as f:
+            cities_json = json.load(f)
+        cities = cities_json['localidades']
+    else:
+        cities = []
+
+    # Mapeo de provincias a localidades
+    province_to_cities_map = {}
+    for localidad in cities_json['localidades']:
+        provincia_id = localidad['provincia']['id']
+        if provincia_id not in province_to_cities_map:
+            province_to_cities_map[provincia_id] = []
+        province_to_cities_map[provincia_id].append(localidad['nombre'])
+
+    return render(request, 'login/signup_comp.html', {'form': form, 'provinces': provinces, 'cities': cities, 'province_to_cities_map': province_to_cities_map})
    
 
 def signup_admin(request):
@@ -257,22 +274,45 @@ def create_job_post(request):
     if not hasattr(request.user, 'company'):
         return HttpResponseForbidden("No tienes permiso para crear una publicación de trabajo.")
 
-    user_type = get_user_type(request.user)  # Obtienes el tipo de usuario
+    user_type = get_user_type(request.user)
     form = JobPostForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            if request.user.company.status != 'active':
-                messages.error(request, "La empresa no está activa aún.", extra_tags='danger')
-                return render(request, 'jobs/create_job_post.html', {'form': form, 'user_type': user_type})
-            job_post = form.save(commit=False)
-            job_post.company = request.user.company
-            job_post.save()
-            messages.success(request, "El trabajo ha sido publicado con éxito.")
-            return redirect('my_job_list')  # Redirige a la lista de trabajos de la empresa
-        else:
-            return render(request, 'jobs/create_job_post.html', {'form': form, 'user_type': user_type})
 
-    return render(request, 'jobs/create_job_post.html', {'form': form, 'user_type': user_type})
+    # Encuentra la ubicación del archivo JSON en tus archivos estáticos
+    provinces_json_path = finders.find('accounts/argentina/provincias.json')
+    cities_json_path = finders.find('accounts/argentina/localidades.json')
+    provinces = []
+    cities = []
+    province_to_cities_map = {}
+
+    # Carga las provincias y ciudades de los archivos JSON
+    if provinces_json_path and cities_json_path:
+        with open(provinces_json_path, 'r', encoding='utf-8') as f:
+            provinces = json.load(f).get('provincias', [])
+        
+        with open(cities_json_path, 'r', encoding='utf-8') as f:
+            cities = json.load(f).get('localidades', [])
+        
+        # Crea un mapeo de provincias a localidades
+        for localidad in cities:
+            provincia_id = localidad['provincia']['id']
+            if provincia_id not in province_to_cities_map:
+                province_to_cities_map[provincia_id] = []
+            province_to_cities_map[provincia_id].append(localidad['nombre'])
+
+    if request.method == 'POST' and form.is_valid():
+        job_post = form.save(commit=False)
+        job_post.company = request.user.company
+        # Asegúrate de capturar y asignar los campos de país, provincia y ciudad aquí
+        job_post.save()
+        messages.success(request, "El trabajo ha sido publicado con éxito.")
+        return redirect('my_job_list')
+    
+    return render(request, 'jobs/create_job_post.html', {
+        'form': form,
+        'user_type': user_type,
+        'provinces': provinces,
+        'province_to_cities_map': province_to_cities_map
+    })
 
 @login_required
 def my_job_list(request):
@@ -319,3 +359,14 @@ def my_profile(request):
         'user_type': user_type,
     }
     return render(request, 'profile/my_profile.html', context)
+
+def upload_cv(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'CV subido con éxito.')
+            return redirect('some_view_name')  # Reemplaza con el nombre de la vista a la que deseas redirigir después de la carga
+    else:
+        form = UserProfileForm(instance=request.user.userprofile)
+    return render(request, 'some_template.html', {'form': form})  # Asegúrate de usar la plantilla correcta

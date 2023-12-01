@@ -1,29 +1,320 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-4">
-  <div class="card">
-    <div class="card-body">
-      <h2 class="card-title">Perfil de {{ user_type }}</h2>
-      <p class="card-text"><strong>Nombre de usuario:</strong> {{ user.username }}</p>
-      <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
-      {% if user_type == 'Empresa' %}
-      <p class="card-text"><strong>Nombre de la empresa:</strong> {{ user_info.company_name }}</p>
-      <p class="card-text"><strong>Dirección:</strong> {{ user_info.address }}</p>
-      {% elif user_type == 'Usuario' %}
-      <p class="card-text"><strong>Teléfono:</strong> {{ user_info.phone_number }}</p>
-      <p class="card-text"><strong>Biografía:</strong> {{ user_info.bio }}</p>
-      <!-- Formulario para subir CV -->
-      <form action="{% url 'upload_cv' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="mb-3">
-          <label for="formFile" class="form-label">Subir CV</label>
-          <input class="form-control" type="file" id="formFile" name="cv" accept=".pdf,.doc,.docx">
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+          <ol class="breadcrumb mb-0 d-flex justify-content-between">
+            <li class="breadcrumb-item active" aria-current="page">Perfil de {{user_type}}</li>
+              <div>
+                <div>
+                  <button type="button" class="btn btn-outline-link pe-0" id="editButton">Editar
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+          <button type="button" class="btn btn-outline-link ms-1" id="saveButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
+            fill="currentColor" class="bi bi-floppy" viewBox="0 0 16 16">
+             <path d="M11 2H9v3h2z"></path>
+              <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"></path>
+             </svg> 
+            Guardar 
+          </button>
         </div>
-        <button type="submit" class="btn btn-primary">Subir</button>
-      </form>
-      {% endif %}
+          </ol>
+        </nav>
+      </div>
     </div>
-  </div>
-</div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="{% if user_info.profile_picture %}{{ user_info.profile_picture.url }}{% else %}https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp{% endif %}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <form id="profilePictureForm" action="{% url 'upload_profile_picture' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="file" id="profilePictureInput" name="profile_picture" accept="image/*" style="display: none;">
+        </form>
+            <h5 class="my-3">{{ user.username }}</h5>
+            <p class="text-muted mb-1">{{ user_info.sector }}</p>
+            <p class="text-muted mb-4">{{ user_info.address }}</p>
+            <div class="d-flex justify-content-center mb-2">
+             
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fas fa-globe fa-lg text-warning"></i>
+                <p class="mb-0">https://mdbootstrap.com</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                <p class="mb-0">@mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                <p class="mb-0">mdbootstrap</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nombre de usuario</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="usernameText">{{ user.username }}</p>
+                <input type="text" id="usernameInput" style="display: none;" value="{{ user.username }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.email }}</p>
+              </div>
+            </div>
+            {% if user_type == 'Empresa' %}
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Teléfono</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="phoneNumberText">{{ user_info.phone_number }}</p>
+                <input type="text" id="phoneNumberInput" style="display: none;" value="{{ user_info.phone_number }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Dirección</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="addressText">{{ user_info.address }}</p>
+              <input type="text" id="addressInput" style="display: none;" value="{{ user_info.address }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nombre de empresa</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="companyNameText">{{ user_info.company_name }}</p>
+                <input type="text" id="companyNameInput" style="display: none;" value="{{ user_info.company_name }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Cantidad de empleados</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="cantidadEmpleadosText">{{ user_info.cantidad_empleados }}</p>
+                <select id="cantidadEmpleadosInput" class="form-select" style="display: none;">
+                  <!-- Las opciones se agregan con JavaScript -->
+                </select>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Razón social</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="razónSocialText">{{ user_info.razón_social }}</p>
+                <input type="text" id="razónSocialInput" style="display: none;" value="{{ user_info.razón_social }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Sector</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="sectorText">{{ user_info.sector }}</p>
+                <select id="sectorInput" class="form-select" style="display: none;">
+              </div>
+            </div>
+           
+            {% elif user_type == 'Usuario' %}
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Nombre</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user_info.name }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Apellido</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user_info.lastname }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Teléfono</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="phoneNumberText">{{ user_info.phone_number }}</p>
+                <input type="text" id="phoneNumberInput" style="display: none;" value="{{ user_info.phone_number }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">CV</p>
+              </div>
+              <div class="col-sm-9">
+                <form action="{% url 'upload_cv' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ cv_form.cv }}
+                  
+                  <input class="form-control" type="file" id="formFile" name="cv" accept=".pdf,.doc,.docx">
+                  <button for="formFile" type="submit"  class="btn btn-primary mt-2">Subir CV</button>
+              </form>
+                {% if user_info.cv %}
+                <a href="{{ user_info.cv.url }}" target="_blank">Ver CV</a>
+            {% else %}
+                <p class="text-muted mb-0">No hay CV cargado.</p>
+            {% endif %}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Biografía</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="bioText">{{ user_info.bio }}</p>
+                <textarea id="bioInput" style="display: none;">{{ user_info.bio }}</textarea>
+                <!-- Formulario para subir CV -->
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Función para cargar los sectores desde un archivo JSON
+    function loadSectors() {
+      $.ajax({
+        url: '/ruta-para-obtener-sectores/',
+        type: 'GET',
+        success: function(response) {
+          var sectores = response.sectores;
+          $.each(sectores, function(i, sector) {
+            $('#sectorInput').append($('<option>', {
+              value: sector.nombre,
+              text: sector.nombre
+            }));
+          });
+        },
+        error: function() {
+          alert('Error al cargar los sectores');
+        }
+      });
+    }
+
+    // Poblar el select de cantidad de empleados
+    function loadEmployeeCounts() {
+      var cantidadEmpleadosChoices = [
+        '1-10', '11-50', '51-150', '151-300', '301-500', '501-1000', '1001-más'
+      ];
+      $.each(cantidadEmpleadosChoices, function(index, value) {
+        $('#cantidadEmpleadosInput').append(new Option(value, value));
+      });
+    }
+
+    // Cargar los sectores cuando la página se carga
+    loadSectors();
+    loadEmployeeCounts();
+
+    // Manejador para el botón 'Editar'
+    $('#editButton').click(function() {
+      $('#usernameText').toggle();
+      $('#usernameInput').toggle();
+      $('#phoneNumberText').toggle();
+      $('#phoneNumberInput').toggle();
+      $('#addressText').toggle();
+      $('#addressInput').toggle();
+      $('#companyNameText').toggle();
+      $('#companyNameInput').toggle();
+      $('#bioText').toggle();
+      $('#bioInput').toggle();
+      $('#sectorText').toggle();
+      $('#sectorInput').toggle();
+      $('#cantidadEmpleadosText').toggle();
+      $('#cantidadEmpleadosInput').toggle();
+      $('#razónSocialText').toggle();
+      $('#razónSocialInput').toggle();
+    });
+
+    // Manejador para el botón 'Guardar'
+    $('#saveButton').click(function() {
+      var updatedData = {
+        'username': $('#usernameInput').val(),
+        'phone_number': $('#phoneNumberInput').val(),
+        'address': $('#addressInput').val(),
+        'company_name': $('#companyNameInput').val(),
+        'bio': $('#bioInput').val(),
+        'sector': $('#sectorInput').val(),
+        'cantidad_empleados': $('#cantidadEmpleadosInput').val(),
+        'razón_social': $('#razónSocialInput').val()
+      };
+
+      $.ajax({
+        url: '/ruta-para-actualizar-datos/',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(updatedData),
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+        },
+        success: function(response) {
+          if(response.status === 'success') {
+            alert('Datos actualizados con éxito');
+            location.reload();
+          } else {
+            alert(response.message);
+          }
+        },
+        error: function() {
+          alert('Error al actualizar los datos');
+        }
+      });
+    });
+  });
+</script>
+
+        
+        
+</section>
+
 {% endblock %}

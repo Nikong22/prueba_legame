@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Administrar FAQs</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar FAQ</button>
+    </form>
+
+    <h2>FAQs Existentes</h2>
+    {% for faq in faqs %}
+        <div>
+            <strong>Pregunta:</strong> {{ faq.question }}<br>
+            <strong>Respuesta:</strong> {{ faq.answer }}
+            <!-- Aquí puedes agregar botones o enlaces para editar/borrar -->
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

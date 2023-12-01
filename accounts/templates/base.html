@@ -8,15 +8,7 @@
     #page-content {
       flex: 1 0 auto;
     }
-    #sticky-footer {
-    flex-shrink: none;
-    background-color: #050a30;
-    color: #ffffff;
-    position: fixed; /* Posiciona fijamente el footer en la parte inferior */
-    bottom: 0; /* Asegúrate de que siempre esté en la parte inferior de la pantalla */
-    width: 100%; /* Que ocupe el ancho completo de la pantalla */
-    z-index: 1030; /* Que quede por encima de otros elementos si es necesario */
-  }
+    
     /* Esta clase se aplica al contenido principal para evitar que se superponga con el footer fijo */
     .body-content {
     padding-bottom: 60px; /* Ajusta esto al alto de tu footer */
@@ -61,11 +53,6 @@ body {
 #page-content {
   flex: 1; /* Asegura que el contenido se expanda para llenar el espacio */
   padding-bottom: 100px; /* Ajusta esto a la altura de tu footer */
-}
-
-#sticky-footer {
-  /* El footer ya tiene position: fixed y bottom: 0, lo cual es correcto */
-  height: auto; /* Asegúrate de que la altura se ajuste al contenido del footer */
 }
 
 /* Asegúrate de que el padding-bottom de .body-content es suficiente para la altura del footer */
@@ -134,6 +121,10 @@ body {
       </div>
       <div class="navbar-nav ml-auto">
     </div>
+    <div class="navbar-nav">
+      <!-- Asegúrate de agregar el enlace dentro de la estructura de la barra de navegación -->
+      <a class="nav-link" href="{% url 'faqs' %}">Preguntas frecuentes</a>
+    </div>
       <div class="dropdown" style="margin-right: 1rem;">
       <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-person-circle" style="font-size: 2.5rem;"></i>
@@ -142,6 +133,9 @@ body {
         {% if user.is_authenticated %}
         <li><h6 class="dropdown-header">{{ user.username }}-{{user_type}}</h6></li>
         <li><a class="dropdown-item" href="{% url 'my_profile' %}"><i class="bi bi-person"> Perfil</i></a></li>
+        {% if user_type == 'Usuario' %}
+        <li><a class="dropdown-item" href="#"> Mis postulaciones</a></li>
+        {% endif %}
         {% if user_type == 'Empresa' %}
         <li><a class="dropdown-item" href="{% url 'my_job_list' %}"><i class="bi bi-card-list"> Mis publicaciones</i></a></li>
         <li><a class="dropdown-item" href="{% url 'create_job_post' %}"><i class="bi bi-plus"> Crear publicacion</i></a></li>
@@ -172,28 +166,90 @@ body {
     <!-- En base.html o en un archivo de inclusión de footer si prefieres -->
 {% load static %}
 <br>
-<footer id="sticky-footer" class="py-4 bg-light text-dark-50">
-  <div class="container text-center">
-    <div class="row justify-content-center">
-      <!-- Logos alineados con flexbox de Bootstrap -->
-      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-        <img src="{% static 'accounts/images/ACLICagliari.png' %}" alt="Logo 1" class="img-fluid" style="max-height: 100px;">
+<footer class="bg-body-tertiary text-center">
+  <!-- Grid container -->
+  <div class="container p-4">
+    <!-- Section: Images -->
+    <section class="">
+      <div class="row">
+        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+          <div data-mdb-ripple-init
+            class="bg-image hover-overlay shadow-1-strong rounded"
+            data-ripple-color="light"
+          >
+            <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="w-100" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+          <div data-mdb-ripple-init
+            class="bg-image hover-overlay shadow-1-strong rounded"
+            data-ripple-color="light"
+          >
+            <img src="{% static 'accounts/images/ACLICagliari.png' %}" class="w-100" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+          <div data-mdb-ripple-init
+            class="bg-image hover-overlay shadow-1-strong rounded"
+            data-ripple-color="light"
+          >
+            <img src="{% static 'accounts/images/ACLISardegna.png' %}" class="w-100" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+          <div data-mdb-ripple-init
+            class="bg-image hover-overlay shadow-1-strong rounded"
+            data-ripple-color="light"
+          >
+            <img src="{% static 'accounts/images/CasaSardegna_Logo_sfondobianco.jpg' %}"  class="w-100" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+          <div data-mdb-ripple-init
+            class="bg-image hover-overlay shadow-1-strong rounded"
+            data-ripple-color="light"
+          >
+            <img src="{% static 'accounts/images/LOGOCREI-ACLI-300x217.jpg' %}" class="w-100" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
+          <div data-mdb-ripple-init
+            class="bg-image hover-overlay shadow-1-strong rounded"
+            data-ripple-color="light"
+          >
+            <img src="{% static 'accounts/images/LogoRegioneSardegnaAssessoratoLavoro_definitivo.png' %}" class="w-100" />
+            <a href="#!">
+              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-        <img src="{% static 'accounts/images/ACLISardegna.png' %}" alt="Logo 2" class="img-fluid" style="max-height: 100px;">
-      </div>
-      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-        <img src="{% static 'accounts/images/CasaSardegna_Logo_sfondobianco.jpg' %}" alt="Logo 3" class="img-fluid" style="max-height: 100px;">
-      </div>
-      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-        <img src="{% static 'accounts/images/LOGOCREI-ACLI-300x217.jpg' %}" alt="Logo 4" class="img-fluid" style="max-height: 100px;">
-      </div>
-      <div class="col-lg-2 col-md-12 mb-4 mb-md-0 d-flex justify-content-center">
-        <img src="{% static 'accounts/images/LogoRegioneSardegnaAssessoratoLavoro_definitivo.png' %}" alt="Logo 5" class="img-fluid" style="max-height: 100px;">
-      </div>
-      <!-- ... -->
-    </div>
+    </section>
+    <!-- Section: Images -->
   </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2020 Copyright:
+    <a class="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
 </footer>
 
   <!-- Bootstrap JavaScript Libraries -->

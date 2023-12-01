@@ -53,9 +53,9 @@
                     <div class="card mb-3">
                         <div class="card-body">
                             <h5 class="card-title">{{ job.title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">{{ job.location }}</h6>
-                            <p class="card-text">{{ job.type }}</p>
+                            <p class="card-text">{{ job.sector }}</p>
                             <p class="card-text"><small class="text-muted">{{ job.category }}</small></p>
+                            <a href="{% url 'job_details' job.id %}" class="btn btn-primary float-end">Ver Detalles</a>
                             <!-- Agrega más detalles del trabajo aquí -->
                         </div>
                     </div>

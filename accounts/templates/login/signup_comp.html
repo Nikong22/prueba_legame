@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-8 offset-md-2">
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title text-center">Registro de Empresas</h1>
@@ -22,112 +22,151 @@
                             </div>
                         {% endif %}
                         <!-- Campos del modelo User -->
-                        <div class="form-group">
+                        <div class="row">
+                        <div class="col-md-6">
                             <label for="{{ form.username.id_for_label }}">Username:</label>
                             {{ form.username|add_class:"form-control" }}
                             {{ form.username.errors }}
                         </div>
-                        <div class="form-group">
+                        <div class="col-md-6">
                             <label for="{{ form.email.id_for_label }}">Email:</label>
                             {{ form.email|add_class:"form-control" }}
                             {{ form.email.errors }}
                         </div>
-                        <div class="form-group">
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6">
                             <label for="{{ form.password1.id_for_label }}">Password:</label>
                             {{ form.password1|add_class:"form-control" }}
                             {{ form.password1.errors }}
                         </div>
-                        <div class="form-group">
+                        <div class="col-md-6">
                             <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
                             {{ form.password2|add_class:"form-control" }}
                             {{ form.password2.errors }}
                         </div>
-
+                        </div>
                         <!-- Campos adicionales para Company -->
-                        <div class="form-group">
+                        <div class="row">
+                        <div class="col-md-6">
                             <label for="company_name">Nombre de la Empresa:</label>
                             {{ form.company_name|add_class:"form-control" }}
                             {{ form.company_name.errors }}
                         </div>
-                        <div class="form-group">
+                        <div class="col-md-6">
                             <label for="phone_number">Teléfono:</label>
                             {{ form.phone_number|add_class:"form-control" }}
                             {{ form.phone_number.errors }}
                         </div>
-                        <div class="form-group">
+                        </div>
+                        <div class="row">
+                        <div class="col-md-6">
                             <label for="address">Dirección:</label>
                             {{ form.address|add_class:"form-control" }}
                             {{ form.address.errors }}
                         </div>
                         <!-- Agregar aquí los nuevos campos de acuerdo al modelo actualizado -->
-                        <div class="form-group">
+                        <div class="col-md-6">
                             <label for="country">País:</label>
                             <select name="country" class="form-control" id="country">
                                 <option value="AR">Argentina</option>
                                 <option value="IT">Italia</option>
                             </select>
                         </div>
+                        </div>
                         <!-- Agrega un campo select para las provincias -->
+                        <div class="row">
+                        <div class="col-md-6">
+                        <label for="province">Provincia:</label>
                         <select name="province" id="province" class="form-control" onchange="updateCities()">
-                          <option value="">Selecciona una provincia</option>
+                            <option value="">Selecciona una provincia</option>
                           {% for province in provinces %}
                           <option value="{{ province.id }}">{{ province.nombre }}</option>
                           {% endfor %}
-                      </select>
-
+                        </select>
+                        </div>
                         <!-- Este campo select se llenará dinámicamente con las ciudades basado en la provincia seleccionada -->
-                        <div class="form-group">
+                        <div class="col-md-6">
                           <label for="city">Ciudad:</label>
                           <select name="city" class="form-control" id="city">
                               <option value="">Primero selecciona una provincia</option>
                               <!-- Las opciones se añadirán dinámicamente con JS -->
                           </select>
-                      </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <label for="{{ form.sector.id_for_label }}">Sector:</label>
+                            {{ form.sector|add_class:"form-control" }}
+                            {% if form.sector.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.sector.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                            <div class="col-md-6">
+                                <label for="razón_social">Razón Social:</label>
+                                {{ form.razón_social|add_class:"form-control" }}
+                                {{ form.razón_social.errors }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="cantidad_empleados">Cantidad de Empleados:</label>
+                                <select name="cantidad_empleados" class="form-control" id="cantidad_empleados">
+                                    {% for code, name in form.cantidad_empleados.field.choices %}
+                                        <option value="{{ code }}">{{ name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        </div>
                         <!-- Repetir para otros campos como provincia, ciudad, etc. -->
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Registrarse</button>
                         </div>
                     </form>
+                    <br>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<br>
 <script>
-  var provinceToCities = {{ province_to_cities_map|safe }};
-
-  function updateCities() {
-      console.log("Actualizando ciudades...");
-
-      var provinceSelect = document.getElementById('province');
-      var citySelect = document.getElementById('city');
-      var selectedProvinceId = provinceSelect.value;
-
-      console.log("Provincia seleccionada: " + selectedProvinceId);
-
-      citySelect.innerHTML = '';
-
-      // Comprobar que el mapeo contiene la provincia seleccionada
-      console.log(provinceToCities);
-      if (!provinceToCities[selectedProvinceId]) {
-          console.log("No se encontraron ciudades para la provincia con ID: " + selectedProvinceId);
-      }
-
-      var cities = provinceToCities[selectedProvinceId] || [];
-
-      console.log("Ciudades encontradas: ", cities);
-
-      cities.forEach(function(cityName) {
-          console.log("Añadiendo ciudad: " + cityName);
-          var option = document.createElement('option');
-          option.value = cityName;
-          option.textContent = cityName;
-          citySelect.appendChild(option);
-      });
-  }
-
-</script>
+    var provinceToCities = {{ province_to_cities_map|safe }};
+  
+    function updateCities() {
+        console.log("Actualizando ciudades...");
+  
+        var provinceSelect = document.getElementById('province');
+        var citySelect = document.getElementById('city');
+        var selectedProvinceId = provinceSelect.value;
+  
+        console.log("Provincia seleccionada: " + selectedProvinceId);
+  
+        citySelect.innerHTML = '';
+  
+        // Comprobar que el mapeo contiene la provincia seleccionada
+        console.log(provinceToCities);
+        if (!provinceToCities[selectedProvinceId]) {
+            console.log("No se encontraron ciudades para la provincia con ID: " + selectedProvinceId);
+        }
+  
+        var cities = provinceToCities[selectedProvinceId] || [];
+  
+        console.log("Ciudades encontradas: ", cities);
+  
+        cities.forEach(function(cityName) {
+            console.log("Añadiendo ciudad: " + cityName);
+            var option = document.createElement('option');
+            option.value = cityName;
+            option.textContent = cityName;
+            citySelect.appendChild(option);
+        });
+    }
+  
+  </script>
 
 
 {% endblock %}

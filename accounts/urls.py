@@ -27,6 +27,13 @@ urlpatterns = [
     path('my_profile/', views.my_profile, name='my_profile'),
     path('upload-cv/', views.upload_cv, name='upload_cv'),
     path('admin_blog/', views.admin_blog, name='admin_blog'),
+    path('faqs/', views.faqs, name='faqs'),
+    path('ruta-para-actualizar-datos/', views.update_user_data, name='update_user_data'),
+    path('upload-profile-picture/', views.upload_profile_picture, name='upload_profile_picture'),
+    path('ruta-para-obtener-sectores/', views.load_sectors, name='load_sectors'),
+    path('job_details/<int:job_id>/', views.job_details, name='job_details'),
+    path('edit-job/<int:job_id>/', views.edit_job_post, name='edit_job_post'),
+    path('apply_for_job/<int:job_id>/', views.apply_for_job, name='apply_for_job'),
 
 ]
 

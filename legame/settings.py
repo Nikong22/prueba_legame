@@ -71,6 +71,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n', #Util para internacionalizacion
+                'accounts.context_processors.user_context',  # Añade la ruta a tu procesador de contexto
+
                 
             ],
         },

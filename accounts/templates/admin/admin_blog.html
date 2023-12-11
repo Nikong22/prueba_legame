@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="{% static 'stylesadmin.css' %}" rel="stylesheet">
+
 <div class="container py-5">
   <!-- Título de la página -->
   <h2 class="text-center mb-5">Panel de Administración</h2>
@@ -15,72 +19,82 @@
         {% csrf_token %}
         <div class="mb-3">
           <label for="titleField" class="form-label">Title:</label>
-          <input type="text" name="title" class="form-control" id="titleField" placeholder="Enter title" value="{{ form.title.value|default_if_none:'' }}" required>
+          <input type="text" name="title" class="form-control" id="titleField" placeholder="Enter title" value="{{ blog_form.instance.title }}" required>
         </div>
         <div class="mb-3">
           <label for="contentField" class="form-label">Content:</label>
-          <textarea name="content" class="form-control" id="contentField" rows="3" placeholder="Ingrese el contenido" required>{{ form.content.value|default_if_none:'' }}</textarea>        </div>
+        <textarea name="content" class="form-control" id="contentField" rows="3" required>{{ blog_form.instance.content }}</textarea>        </div>
         <div class="text-center">
-          <button type="submit" class="btn btn-lg btn-block btn-primary">Guardar</button>
+          <button type="submit" name="action" value="save_blog" class="btn btn-lg btn-block btn-primary">Guardar Blog</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- Aquí puedes agregar más cards para secciones futuras -->
+<!-- ... código existente ... -->
 
-  <div class="card mb-4 shadow-lg">
-    <div class="card-header bg-secondary text-white">
-      <h3 class="my-0 font-weight-normal">Sección Futura 1</h3>
-    </div>
-    <div class="card-body">
-      <p class="card-text">Contenido de la futura sección 1.</p>
-      <!-- Agrega aquí más campos de formulario si es necesario -->
-    </div>
+<!-- Formulario para las preguntas de FAQ -->
+
+
+<!-- Script para agregar una nueva pregunta -->
+
+
+<div class="card mb-4 shadow-lg">
+  <div class="card-header bg-success text-white">
+    <h3 class="my-0 font-weight-normal">Sección FAQ</h3>
   </div>
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
 
-  <div class="card mb-4 shadow-lg">
-    <div class="card-header bg-secondary text-white">
-      <h3 class="my-0 font-weight-normal">Sección Futura 2</h3>
+      <div class="mb-3">
+        <label for="faqTitle" class="form-label">Título:</label>
+        <input type="text" name="title" class="form-control" id="faqTitle" placeholder="Ingrese el título" value="{{ faq_form.instance.title }}" required>
+      </div>
+      <div class="mb-3">
+        <label for="faqContent" class="form-label">Contenido:</label>
+        <textarea name="content" class="form-control" id="faqContent" rows="3" required>{{ faq_form.instance.content }}</textarea>
+      </div>
+        <div class="text-center">
+          <button type="submit" name="action" value="save_faq" class="btn btn-primary">Guardar FAQ</button>
+        </div>
+    </form>
+  </div>
+</div>
+
+<div class="card mb-4 shadow-lg">
+    <div class="card-header bg-danger text-white">
+      <h3 class="my-0 font-weight-normal">Sección Questions</h3>
     </div>
     <div class="card-body">
-      <p class="card-text">Contenido de la futura sección 2.</p>
-      <!-- Agrega aquí más campos de formulario si es necesario -->
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="questionTitle" class="form-label">Título:</label>
+          <input type="text" name="title" class="form-control" id="questionTitle" placeholder="Ingrese el título"  required>
+        </div>
+        <div class="mb-3">
+          <label for="questionContent" class="form-label">Respuesta corta:</label>
+          <input name="short_answer" class="form-control" id="questionContent" rows="3" maxlength="140" placeholder="Ingrese una respuesta corta" required>
+        </div>
+        <div class="mb-3">
+          <label for="questionsContent" class="form-label">Respuesta Completa:</label>
+          <textarea name="complete_answer" class="form-control" id="questionsContent" rows="3" placeholder="Ingrese respuesta completa" required></textarea>
+        </div>
+        <div class="text-center">
+          <button type="submit" name="action" value="save_question" class="btn btn-lg btn-block btn-primary">Guardar Questions</button>
+        </div>
+      </form>
     </div>
   </div>
 
   <!-- Puedes continuar agregando más cards según sea necesario -->
+  
 </div>
 
-<style>
-  /* Estilos para animación de enfoque en los campos del formulario */
-  .form-control:focus {
-    border-color: #66afe9;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(102, 175, 233, 0.5);
-    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
-  }
-
-  /* Estilo para animación en el botón */
-  .btn-primary {
-    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
-
-  .btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-  }
-
-  /* Estilos adicionales para las cards */
-  .card {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  }
-</style>
-
+<script>
+   </script>
 {% endblock content %}
 

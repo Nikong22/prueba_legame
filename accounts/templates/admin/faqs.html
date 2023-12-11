@@ -1,132 +1,72 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+
   <!--Section: FAQ-->
 <section class="container mt-4">
-    <h3 class="text-center mb-4 pb-2 text-primary fw-bold">FAQ</h3>
+    <h3 class="text-center mb-4 pb-2 text-primary fw-bold">Preguntas más frecuentes
+    </h3>
     <p class="text-center mb-5">
-      Find the answers for the most frequently asked questions below
+      Encuentre las respuestas a las preguntas más frecuentes a continuación
     </p>
   
+    {% for faq in faqs %}
     <div class="row">
-      <div class="col-md-6 col-lg-4 mb-4">
-        <h6 class="mb-3 text-primary"><i class="far fa-paper-plane text-primary pe-2"></i> A simple
-          question?</h6>
-        <p>
-          <strong><u>Absolutely!</u></strong> We work with top payment companies which guarantees
-          your
-          safety and
-          security. All billing information is stored on our payment processing partner.
-        </p>
-      </div>
-  
-      <div class="col-md-6 col-lg-4 mb-4">
-        <h6 class="mb-3 text-primary"><i class="fas fa-pen-alt text-primary pe-2"></i> A question
-          that
-          is longer then the previous one?</h6>
-        <p>
-          <strong><u>Yes, it is possible!</u></strong> You can cancel your subscription anytime in
-          your
-          account. Once the subscription is
-          cancelled, you will not be charged next month.
-        </p>
-      </div>
-  
-      <div class="col-md-6 col-lg-4 mb-4">
-        <h6 class="mb-3 text-primary"><i class="fas fa-user text-primary pe-2"></i> A simple
-          question?
-        </h6>
-        <p>
-          Currently, we only offer monthly subscription. You can upgrade or cancel your monthly
-          account at any time with no further obligation.
-        </p>
-      </div>
-  
-      <div class="col-md-6 col-lg-4 mb-4">
-        <h6 class="mb-3 text-primary"><i class="fas fa-rocket text-primary pe-2"></i> A simple
-          question?
-        </h6>
-        <p>
-          Yes. Go to the billing section of your dashboard and update your payment information.
-        </p>
-      </div>
-  
-      <div class="col-md-6 col-lg-4 mb-4">
-        <h6 class="mb-3 text-primary"><i class="fas fa-home text-primary pe-2"></i> A simple
-          question?
-        </h6>
-        <p><strong><u>Unfortunately no</u>.</strong> We do not issue full or partial refunds for any
-          reason.</p>
-      </div>
-  
-      <div class="col-md-6 col-lg-4 mb-4">
-        <h6 class="mb-3 text-primary"><i class="fas fa-book-open text-primary pe-2"></i> Another
-          question that is longer than usual</h6>
-        <p>
-          Of course! We’re happy to offer a free plan to anyone who wants to try our service.
-        </p>
+      <div style="text-align: center;">
+        <h6 class="mb-3 text-primary">{{ faq.title }}</h6>
+        <p>{{ faq.content }}</p>
       </div>
     </div>
+  {% endfor %}
   </section>
   <!--Section: FAQ-->
 
-  <!--Section: Answers-->
+
+   <!--Section: Questions-->
+
   <div class="container my-4">
-  <div class="list-group w-100">
-    <a href="#shortExampleAnswer1collapse" data-mdb-toggle="collapse" aria-expanded="false"
-      aria-controls="shortExampleAnswer1collapse" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">Question 1</h5>
+    {% for question in questions %}
+    <div class="list-group w-100">
+      <a class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#questionModal{{ question.id }}">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ question.title }}</h5>
+        </div>
+        <p class="mb-1">
+          {{ question.short_answer }}
+        </p>
+        <small><u>Leer más</u></small>
+        <!-- Collapsed content -->
+      </a>
+        <!-- Modal -->
+        <div class="modal fade" id="questionModal{{ question.id }}" tabindex="-1" aria-labelledby="questionModalLabel{{ question.id }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="questionModalLabel{{ question.id }}">{{ question.title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                {{ question.complete_answer }}
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if request.user.is_staff or request.user.is_superuser %}
+        <form method="POST" action="{% url 'delete_question' question.id %}">
+          {% csrf_token %}
+          <button type="submit"  aria-label="Delete">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"></path>
+              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"></path>
+            </svg>
+          </button>
+        </form>
+        {% endif %}
       </div>
-      <p class="mb-1">
-        Short & concise version of the answer.
-      </p>
-      <small><u>Learn more</u></small>
-      <!-- Collapsed content -->
-      <div class="collapse mt-3" id="shortExampleAnswer1collapse">
-        Detailed and comprehensive answer goes here. pariatur cliche reprehenderit, enim eiusmod
-        high
-        life accusamus terry richardson ad
-        squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-        sapiente ea proident.
-      </div>
-    </a>
-    <a href="#shortExampleAnswer2collapse" data-mdb-toggle="collapse" aria-expanded="false"
-      aria-controls="shortExampleAnswer1collapse" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">Question 2</h5>
-      </div>
-      <p class="mb-1">
-        Short & concise version of the answer.
-      </p>
-      <small class="text-muted"><u>Learn more</u></small>
-      <!-- Collapsed content -->
-      <div class="collapse mt-3" id="shortExampleAnswer2collapse">
-        Detailed and comprehensive answer goes here. pariatur cliche reprehenderit, enim eiusmod
-        high
-        life accusamus terry richardson ad
-        squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-        sapiente ea proident.
-      </div>
-    </a>
-    <a href="#shortExampleAnswer3collapse" data-mdb-toggle="collapse" aria-expanded="false"
-      aria-controls="shortExampleAnswer1collapse" class="list-group-item list-group-item-action">
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">Question 3</h5>
-      </div>
-      <p class="mb-1">
-        Short & concise version of the answer.
-      </p>
-      <small class="text-muted"><u>Learn more</u></small>
-      <!-- Collapsed content -->
-      <div class="collapse mt-3" id="shortExampleAnswer3collapse">
-        Detailed and comprehensive answer goes here. pariatur cliche reprehenderit, enim eiusmod
-        high
-        life accusamus terry richardson ad
-        squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
-        sapiente ea proident.
-      </div>
-    </a>
-  </div>
-</div>
+      <!-- Aquí termina el bloque que se repite por cada question -->
+      {% endfor %}
+    </div>
+    <!-- ... más contenido ... -->
 {% endblock content %}

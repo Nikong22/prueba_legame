@@ -1,78 +1,103 @@
 {% extends "base.html" %}
 {% load static %}
+{% load my_custom_filters %}
 
 {% block content %}
-<style>
-  .card-custom {
-    border-color: #050a30;
-  }
-  .card-header-custom {
-    background-color: #050a30;
-    color: white;
-  }
-  .card-body-custom {
-    background-color: white;
-  }
-  .btn-custom {
-    background-color: #050a30;
-    color: white;
-  }
-  .btn-custom:hover {
-    background-color: #03081f;
-    color: white;
-  }
-  .filter-form {
-    margin-bottom: 1rem;
-  }
-  
-</style>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css'>
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="{% static 'stylesmanage.css' %}" rel="stylesheet">
+<link href="{% static 'stylesjobsmanage.css' %}" rel="stylesheet">
 
-<div class="container mt-3">
-  <h2 class="mb-4">Gestión de Empresas</h2>
-  
+
+<div class="container mt-5">
   <!-- Formulario de filtro -->
-  <form class="filter-form" method="get">
-    <div class="form-row">
-      <div class="col">
-        <input type="text" name="name" class="form-control" placeholder="Nombre de empresa" value="{{ request.GET.name }}">
-      </div>
-      <div class="col">
-        <select name="status" class="form-control">
-          <option value="">Estado</option>
-          <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Activa</option>
-          <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>Inactiva</option>
-        </select>
-      </div>
-      <div class="col">
-        <button type="submit" class="btn btn-custom">Buscar</button>
-      </div>
-    </div>
-  </form>
-
-  <!-- Cards de empresas con Bootstrap -->
   <div class="row">
-    {% for company in companies %}
-    <!-- Después de cambiar -->
-    <div class="col-12 mb-4">
-      <div class="card card-custom">
-        <div class="card-header card-header-custom">
-          {{ company.company_name }}
-        </div>
-        <div class="card-body card-body-custom">
-          <h5 class="card-title">Estado: {{ company.status }}</h5>
-          <p class="card-text">
-            <!-- Información adicional de la empresa si la hay -->
-          </p>
-          <a href="{% url 'company_details' company.id %}" class="btn btn-custom">Ver Detalles</a>
+    <div class="col-lg-12 card-margin">
+      <div class="card search-form">
+        <div class="card-body p-0">
+          <form id="search-form" method="get">
+            <div class="row">
+              <div class="col-12">
+                <div class="row no-gutters">
+                  <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                    <select name="status" class="form-control" id="exampleFormControlSelect1">
+                      <option value="">Estado</option>
+                      <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Activa</option>
+                      <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>Inactiva</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                    <input type="text" placeholder="Search..." class="form-control" id="search" name="name" value="{{ request.GET.name }}">
+                  </div>
+                  <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                    <button type="submit" class="btn btn-base">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-    {% empty %}
-    <div class="col">
-      <p>No se encontraron empresas.</p>
+  </div>
+  <br>
+  <!-- Tabla de empresas -->
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <h2 class="mb-4 text-center">Gestión de Empresas</h2>
+      <div class="card">
+        <div class="card-header pb-0">
+          <h5 class="card-title mb-0">Clients</h5>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Cuit</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for company in companies %}
+              <tr>
+                <td><div class="job-box d-md-flex align-items-center justify-content-between mb-30">
+                  <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+                      <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex" >
+                        {{ company.company_name|make_initials }}
+                      </div>
+                  </div>
+               </div></td>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.address }}</td>
+                <td>{{ company.cuit }}</td>
+                <td>{{ company.contact_email }}</td>
+                <td>
+                  {% if company.status == 'inactive' %}
+                    <span class="badge bg-warning">{{ company.status }}</span>
+                  {% else %}
+                    <span class="badge bg-success">{{ company.status }}</span>
+                  {% endif %}
+                </td>
+                <td><a href="{% url 'company_details' company.id %}" class="btn btn-custom">Ver Detalles</a></td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="7">No se encontraron empresas.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    {% endfor %}
   </div>
 </div>
-{% endblock %}
 
+{% endblock %}

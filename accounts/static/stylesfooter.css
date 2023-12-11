@@ -1,0 +1,116 @@
+body {
+    margin-top: 20px;
+    /* Otros estilos para body si los hay */
+}
+#page-content {
+    flex: 1;
+  }
+  
+.footer_area {
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+    box-shadow: 0 8px 48px 8px rgba(47, 91, 234, 0.175);
+    padding: 50px 0; /* Ajuste el padding según sea necesario */
+    flex-shrink: 0; /* Esto es para asegurarse de que el footer no se reduzca */
+}
+
+/* Media queries para tablets */
+@media (max-width: 768px) {
+    .footer_area {
+        padding: 35px 0; /* Padding más pequeño para tabletas */
+    }
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 576px) {
+    .footer_area {
+        padding: 20px 0; /* Padding aún más pequeño para móviles */
+    }
+}
+
+.footer_social_area {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    padding: 10px 0;
+}
+
+.footer_social_area a {
+    border-radius: 50%;
+    height: 40px;
+    text-align: center;
+    width: 40px;
+    display: inline-block;
+    background-color: #f5f5ff;
+    line-height: 40px;
+    margin-right: 10px;
+    text-decoration: none; /* Quita el subrayado */
+}
+
+.footer_social_area a i {
+    line-height: 40px; /* Alinea verticalmente los iconos */
+}
+.footer_menu {
+    padding-left: 10; /* Elimina el padding por defecto de la lista */
+  }
+  .footer_menu li {
+  list-style: none; /* Elimina los puntos de la lista */
+  margin-bottom: 0.25rem; /* Ajusta el espacio entre elementos de la lista */
+}
+
+.footer_menu li a {
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  color: inherit; /* Hereda el color de texto del elemento padre */
+}
+.footer_social_area a:hover,
+.footer_social_area a:focus {
+    color: #ffffff;
+    background-color: #3f43fd; /* Cambia el color de fondo al hacer hover */
+}
+.widget-title {
+    margin-top: 0; /* Ajuste para espaciado entre título y lista */
+  
+  }
+  h5.widget-title {
+    margin-top: 0 !important; /* Usa !important para asegurarte de que este estilo tenga prioridad */
+}
+  
+.single-footer-widget {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.single-footer-widget .widget-title {
+    margin-bottom: 1.5rem;
+    color: #495057; /* Color para los títulos del widget */
+    font-size: 1.2rem;
+}
+
+.single-footer-widget .footer_menu {
+    list-style: none; /* Quita los estilos de lista */
+    padding-left: 0; /* Quita el padding de la lista */
+}
+
+.single-footer-widget .footer_menu li a {
+    color: #747794;
+    margin-bottom: 0.5rem; /* Ajusta el margen según sea necesario */
+    display: block;
+    font-size: 1rem;
+    text-decoration: none; /* Quita el subrayado */
+}
+
+.single-footer-widget .footer_menu li a:hover,
+.single-footer-widget .footer_menu li a:focus {
+    color: #3f43fd; /* Color cuando el usuario hace hover o focus */
+    text-decoration: underline; /* Subraya el enlace al hacer hover */
+}
+
+/* Ajustes adicionales y estilos específicos que puedas necesitar irían aquí */
+ul {
+    list-style-type: none; /* Esto elimina los marcadores de lista */
+    padding-left: 0; /* Esto elimina el relleno izquierdo que normalmente empuja los elementos de la lista hacia adentro */
+    margin-left: 0; /* Esto elimina cualquier margen izquierdo si está presente */
+  }

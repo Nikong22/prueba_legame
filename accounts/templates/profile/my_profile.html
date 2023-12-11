@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
+{% load static widget_tweaks %}
+{% load my_custom_filters %}
 
 {% block content %}
-<section style="background-color: #eee;">
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="{% static 'stylesprofile.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">-->
+
+<section style="background-color: #fffefe;">
   <div class="container py-5">
     <div class="row">
       <div class="col">
@@ -30,11 +37,23 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="{% if user_info.profile_picture %}{{ user_info.profile_picture.url }}{% else %}https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp{% endif %}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-            <form id="profilePictureForm" action="{% url 'upload_profile_picture' %}" method="post" enctype="multipart/form-data">
+            <div class="job-box">
+              <div class="img-holder">
+                {% if user_type == 'Empresa' %}
+                <!-- Asumiendo que 'user_info' es una instancia de 'Company' -->
+                {{ user_info.company_name|make_initials }}
+              {% elif user_type == 'Usuario' %}
+                <!-- Asumiendo que 'user_info' es una instancia de 'UserProfile' -->
+                {{ user_info.name|first|upper }}{{ user_info.lastname|first|upper }}
+              {% elif user_type == 'Admin' %}
+                <!-- Asumiendo que 'user_info' es una instancia de 'AdminUser' -->
+                {{ request.user.username|make_initials }}
+              {% endif %}
+              </div>
+            </div>
+            <form id="profileForm" action="{% url 'upload_profile_picture' %}" method="post" enctype="multipart/form-data">
               {% csrf_token %}
-              <input type="file" id="profilePictureInput" name="profile_picture" accept="image/*" style="display: none;">
-        </form>
+            </form>
             <h5 class="my-3">{{ user.username }}</h5>
             <p class="text-muted mb-1">{{ user_info.sector }}</p>
             <p class="text-muted mb-4">{{ user_info.address }}</p>
@@ -116,6 +135,16 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
+                <p class="mb-0">CUIT</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" id="cuitText">{{ user_info.cuit }}</p>
+                <input type="text" id="cuitInput" class="form-control" style="display: none;" value="{{ user_info.cuit }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
                 <p class="mb-0">Nombre de empresa</p>
               </div>
               <div class="col-sm-9">
@@ -123,6 +152,7 @@
                 <input type="text" id="companyNameInput" style="display: none;" value="{{ user_info.company_name }}">
               </div>
             </div>
+            
             <hr>
             <div class="row">
               <div class="col-sm-3">
@@ -135,6 +165,7 @@
                 </select>
               </div>
             </div>
+            
             <hr>
             <div class="row">
               <div class="col-sm-3">
@@ -145,6 +176,7 @@
                 <input type="text" id="razónSocialInput" style="display: none;" value="{{ user_info.razón_social }}">
               </div>
             </div>
+            
             <hr>
             <div class="row">
               <div class="col-sm-3">
@@ -152,7 +184,7 @@
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0" id="sectorText">{{ user_info.sector }}</p>
-                <select id="sectorInput" class="form-select" style="display: none;">
+                <select id="sectorInput" class="form-select" style="display: none;"></select>
               </div>
             </div>
            
@@ -183,6 +215,24 @@
               <div class="col-sm-9">
                 <p class="text-muted mb-0" id="phoneNumberText">{{ user_info.phone_number }}</p>
                 <input type="text" id="phoneNumberInput" style="display: none;" value="{{ user_info.phone_number }}">
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Documento</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user_info.document_type }}-{{ user_info.document_number }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Genero</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user_info.genero}}</p>
               </div>
             </div>
             <hr>
@@ -220,100 +270,105 @@
           </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-  $(document).ready(function() {
-    // Función para cargar los sectores desde un archivo JSON
-    function loadSectors() {
-      $.ajax({
-        url: '/ruta-para-obtener-sectores/',
-        type: 'GET',
-        success: function(response) {
-          var sectores = response.sectores;
-          $.each(sectores, function(i, sector) {
-            $('#sectorInput').append($('<option>', {
-              value: sector.nombre,
-              text: sector.nombre
-            }));
-          });
-        },
-        error: function() {
-          alert('Error al cargar los sectores');
-        }
-      });
-    }
-
-    // Poblar el select de cantidad de empleados
-    function loadEmployeeCounts() {
-      var cantidadEmpleadosChoices = [
-        '1-10', '11-50', '51-150', '151-300', '301-500', '501-1000', '1001-más'
-      ];
-      $.each(cantidadEmpleadosChoices, function(index, value) {
-        $('#cantidadEmpleadosInput').append(new Option(value, value));
-      });
-    }
-
-    // Cargar los sectores cuando la página se carga
-    loadSectors();
-    loadEmployeeCounts();
-
-    // Manejador para el botón 'Editar'
-    $('#editButton').click(function() {
-      $('#usernameText').toggle();
-      $('#usernameInput').toggle();
-      $('#phoneNumberText').toggle();
-      $('#phoneNumberInput').toggle();
-      $('#addressText').toggle();
-      $('#addressInput').toggle();
-      $('#companyNameText').toggle();
-      $('#companyNameInput').toggle();
-      $('#bioText').toggle();
-      $('#bioInput').toggle();
-      $('#sectorText').toggle();
-      $('#sectorInput').toggle();
-      $('#cantidadEmpleadosText').toggle();
-      $('#cantidadEmpleadosInput').toggle();
-      $('#razónSocialText').toggle();
-      $('#razónSocialInput').toggle();
-    });
-
-    // Manejador para el botón 'Guardar'
-    $('#saveButton').click(function() {
-      var updatedData = {
-        'username': $('#usernameInput').val(),
-        'phone_number': $('#phoneNumberInput').val(),
-        'address': $('#addressInput').val(),
-        'company_name': $('#companyNameInput').val(),
-        'bio': $('#bioInput').val(),
-        'sector': $('#sectorInput').val(),
-        'cantidad_empleados': $('#cantidadEmpleadosInput').val(),
-        'razón_social': $('#razónSocialInput').val()
-      };
-
-      $.ajax({
-        url: '/ruta-para-actualizar-datos/',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify(updatedData),
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-        },
-        success: function(response) {
-          if(response.status === 'success') {
-            alert('Datos actualizados con éxito');
-            location.reload();
-          } else {
-            alert(response.message);
-          }
-        },
-        error: function() {
-          alert('Error al actualizar los datos');
-        }
-      });
-    });
-  });
-</script>
-
+        <script>
+          $(document).ready(function() {
+            // Función para cargar los sectores desde un archivo JSON
+            function loadSectors() {
+              $.ajax({
+                url: '/ruta-para-obtener-sectores/',
+                type: 'GET',
+                success: function(response) {
+                  var sectores = response.sectores;
+                  $.each(sectores, function(i, sector) {
+                    $('#sectorInput').append($('<option>', {
+                      value: sector.nombre,
+                      text: sector.nombre
+                    }));
+                  });
+                },
+                error: function() {
+                  alert('Error al cargar los sectores');
+                }
+              });
+            }
         
+            // Poblar el select de cantidad de empleados
+            function loadEmployeeCounts() {
+              var cantidadEmpleadosChoices = [
+                '1-10', '11-50', '51-150', '151-300', '301-500', '501-1000', '1001-más'
+              ];
+              $.each(cantidadEmpleadosChoices, function(index, value) {
+                $('#cantidadEmpleadosInput').append(new Option(value, value));
+              });
+            }
+        
+            // Cargar los sectores cuando la página se carga
+            loadSectors();
+            loadEmployeeCounts();
+        
+            // Manejador para el botón 'Editar'
+            $('#editButton').click(function() {
+              $('#usernameText').toggle();
+              $('#usernameInput').toggle();
+              $('#phoneNumberText').toggle();
+              $('#phoneNumberInput').toggle();
+              $('#addressText').toggle();
+              $('#addressInput').toggle();
+              $('#companyNameText').toggle();
+              $('#companyNameInput').toggle();
+              $('#bioText').toggle();
+              $('#bioInput').toggle();
+              $('#sectorText').toggle();
+              $('#sectorInput').toggle();
+              $('#cantidadEmpleadosText').toggle();
+              $('#cantidadEmpleadosInput').toggle();
+              $('#razónSocialText').toggle();
+              $('#razónSocialInput').toggle();
+              $('#profilePictureInput').show(); // Muestra el input para editar el avatar
+              $('#profilePictureSaveButton').show(); // Muestra el botón 'Guardar Cambios' del formulario de imagen
+
+            });
+        
+            // Manejador para el botón 'Guardar'
+            $('#saveButton').click(function() {
+              var updatedData = {
+                'username': $('#usernameInput').val(),
+                'phone_number': $('#phoneNumberInput').val(),
+                'address': $('#addressInput').val(),
+                'company_name': $('#companyNameInput').val(),
+                'bio': $('#bioInput').val(),
+                'sector': $('#sectorInput').val(),
+                'cantidad_empleados': $('#cantidadEmpleadosInput').val(),
+                'razón_social': $('#razónSocialInput').val()
+              };
+        
+              $.ajax({
+                url: '/ruta-para-actualizar-datos/',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(updatedData),
+                beforeSend: function(xhr) {
+                  xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                },
+                success: function(response) {
+                  if(response.status === 'success') {
+                    alert('Datos actualizados con éxito');
+                    location.reload();
+                  } else {
+                    alert(response.message);
+                  }
+                  // Ocultar el botón 'Guardar' después de guardar los cambios
+                  $('#saveButton').hide();
+                },
+                error: function() {
+                  alert('Error al actualizar los datos');
+                  // También ocultar el botón 'Guardar' en caso de error
+                  $('#saveButton').hide();
+                }
+              });
+            });
+          });
+        </script>
         
 </section>
 

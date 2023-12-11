@@ -9,7 +9,8 @@ from .views import admin_blog
 
 
 urlpatterns = [
-    path('', views.login_view, name='login_view'),
+    path('', views.index, name='index'),  # Asegúrate de que 'views.index' es tu función de vista que maneja la búsqueda
+    path('login', views.login_view, name='login_view'),
     path('signup/', views.signup_user, name='signup_user'),
     path('signup_comp/', views.signup_comp, name='signup_comp'),
     path('signup_admin/', views.signup_admin, name='signup_admin'),
@@ -34,6 +35,10 @@ urlpatterns = [
     path('job_details/<int:job_id>/', views.job_details, name='job_details'),
     path('edit-job/<int:job_id>/', views.edit_job_post, name='edit_job_post'),
     path('apply_for_job/<int:job_id>/', views.apply_for_job, name='apply_for_job'),
+    path('my_applications/', views.my_applications, name='my_applications'),
+    path('jobs/<int:job_id>/applicants/', views.view_applicants, name='view_applicants'),
+    path('questions/delete/<int:question_id>/', views.delete_question, name='delete_question'),
+    path('verify_email/', views.verify_email, name='verify_email'),
 
 ]
 

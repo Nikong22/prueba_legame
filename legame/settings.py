@@ -52,9 +52,12 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware', #Util para internacionalizacion
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'accounts.middleware.OneSessionPerUserMiddleware',
+
 ]
 
 ROOT_URLCONF = 'legame.urls'
@@ -80,7 +83,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'legame.wsgi.application'
-
+SESSION_COOKIE_AGE = 1800  # 30 minutos en segundos
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_SECURE = False  # Debería ser True solo si estás usando HTTPS
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = 'Lax'  # Podrías probar con 'None' si estás enfrentando problemas con el atributo SameSite
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nikongg22@gmail.com'
+EMAIL_HOST_PASSWORD = 'AlaGaDunga22'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

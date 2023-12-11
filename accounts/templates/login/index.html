@@ -1,81 +1,148 @@
 {% extends "base.html" %}
+{% load static %}
+{% load my_custom_filters %}
 
 {% block content %}
-<!-- Contenedor principal -->
-<div class="container my-4">
-    <!-- Fila para el layout de dos columnas -->
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="{% static 'stylesjobs.css' %}" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+
+<div class="container">
     <div class="row">
-        <!-- Columna para el filtro y trabajos activos -->
+        <!-- Sección de títulos -->
+        <div class="col-lg-10 mx-auto mb-4">
+            <div class="section-title text-center">
+                <h3 class="top-c-sep">Grow your career with us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor. Nullam quis ante etiam sit amet orci eget eros faucibus.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Columna de publicaciones de trabajo -->
         <div class="col-md-8">
-            <h2>Trabajos Activos</h2>
-             <!-- Formulario de filtro -->
-             <form class="row g-3 align-items-center mb-4" method="get">
-                <div class="col-auto">
-                  <input type="text" name="name" class="form-control" placeholder="Buscar vacante" value="{{ request.GET.name }}">
-                </div>
-                <div class="col-auto">
-                  <select name="country" class="form-select">
-                    <option value="">País</option>
-                    <!-- Opciones de países -->
-                    <option value="argentina">Argentina</option>
-                    <option value="italia">Italia</option>
-                    <!-- Más países -->
-                  </select>
-                </div>
-                <div class="col-auto">
-                  <input type="text" name="location" class="form-control" placeholder="Ubicación" value="{{ request.GET.location }}">
-                </div>
-                <div class="col-auto">
-                  <select name="category" class="form-select">
-                    <option value="">Área</option>
-                    <!-- Opciones de categorías -->
-                    <option value="tecnologia">Tecnología</option>
-                    <option value="marketing">Marketing</option>
-                    <!-- Más categorías -->
-                  </select>
-                </div>
-                <div class="col-auto">
-                  <select name="type" class="form-select">
-                    <option value="">Tipo</option>
-                    <!-- Opciones de tipos -->
-                    <option value="full_time">Full-time</option>
-                    <option value="part_time">Part-time</option>
-                    <!-- Más tipos -->
-                  </select>
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-outline-secondary">Buscar</button>
-                </div>
-              </form>
-            <!-- Aquí iría el loop para mostrar los trabajos -->
-            {% for job in jobs %}
-                {% if job.status == 'active' %}
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ job.title }}</h5>
-                            <p class="card-text">{{ job.sector }}</p>
-                            <p class="card-text"><small class="text-muted">{{ job.category }}</small></p>
-                            <a href="{% url 'job_details' job.id %}" class="btn btn-primary float-end">Ver Detalles</a>
-                            <!-- Agrega más detalles del trabajo aquí -->
+            <div class="career-search mb-60">
+                <!-- ... Formulario de búsqueda ... -->
+                <form action="/" method="get" class="career-form mb-60">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-5 my-3">
+                            <div class="input-group position-relative">
+                                <input type="text" class="form-control" placeholder="Puesto o palabra clave..." id="keywords" name="search_query" value="{{ request.GET.search_query }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2 my-3">
+                            <div class="select-container">
+                                <select class="custom-select" name="country">
+                                    <option value="">País</option>
+                                    {% for country in countries %}
+                                        <option value="{{ country.country }}">{{ country.country }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 my-3">
+                            <div class="select-container">
+                                <select class="custom-select"  name="sector">
+                                    <option value="">Sector de trabajo</option>
+                                    {% for sector in sectors %}
+                                        <option value="{{ sector.sector }}">{{ sector.sector }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-2 my-3">
+                            <button type="submit" class="btn btn-lg btn-block btn-light btn-custom" id="contact-submit">
+                                Search
+                            </button>
                         </div>
                     </div>
-                {% endif %}
-            {% empty %}
-                <p>No hay trabajos activos en este momento.</p>
-            {% endfor %}
+                </form>
+            </div>
+            <!-- Resultados de la búsqueda -->
+            <div class="filter-result">
+                <!-- ... Resultados ... -->
+                <p class="mb-30 ff-montserrat">Total Job Openings: {{ page_obj.paginator.count }}</p>
+                    {% for job in page_obj %}
+                    {% if job.status == 'active' %}
+                    <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
+                        <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+                            <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
+                                {{ job.company.company_name|make_initials }}
+                            </div>
+                            <div class="job-content">
+                                <h5 class="card-title" style="text-align: center;">{{ job.title }}</h5>
+                                <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-pin mr-2"></i> {{ job.city }}
+                                    </li>
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-money mr-2"></i> {{ job.sector }}
+                                    </li>
+                                    <li class="mr-md-4">
+                                        <i class="zmdi zmdi-time mr-2"></i> {{ job.category }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="job-right my-4 flex-shrink-0">
+                            <a href="{% url 'job_details' job.id %}" class="btn d-block w-100 d-sm-inline-block btn-light">Ver Detalles</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% empty %}
+                    <p>No hay trabajos activos en este momento.</p>
+                    {% endfor %}
+            </div>
+            <!-- Navegación de paginación -->
+            <nav aria-label="Page navigation">
+                <!-- ... Paginación ... -->
+                <ul class="pagination pagination-reset justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1" aria-label="First">
+                                <span aria-hidden="true">&laquo;&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                <span aria-hidden="true">&raquo;&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
-        <!-- BLOG INFORMATIVO -->
+        
+        <!-- Columna del blog informativo -->
         <div class="col-md-4">
-          {% if latest_entry %}
-          <div class="blog-informativo">
-              <h2>{{ latest_entry.title }}</h2>
-              <p>{{ latest_entry.content|linebreaks }}</p>
-          </div>
-          {% else %}
-          <p>No hay entradas de blog para mostrar.</p>
-          {% endif %}
-      </div>
-            <!-- Aquí continúa el texto existente -->
+            {% if latest_entry %}
+            <div class="blog-informativo">
+                <h2>{{ latest_entry.title }}</h2>
+                <p>{{ latest_entry.content|linebreaks }}</p>
+            </div>
+            {% else %}
+            <p>No hay entradas de blog para mostrar.</p>
+            {% endif %}
         </div>
     </div>
 </div>

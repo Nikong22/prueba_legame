@@ -1,162 +1,100 @@
 {% load static %}
 <!doctype html>
 <html lang="es" style="height: 100%;">
-  <style>
-    body, html {
-      height: 100%;
-    }
-    #page-content {
-      flex: 1 0 auto;
-    }
-    
-    /* Esta clase se aplica al contenido principal para evitar que se superponga con el footer fijo */
-    .body-content {
-    padding-bottom: 60px; /* Ajusta esto al alto de tu footer */
-  }
-  .dropdown {
-  margin-right: 1rem; /* Añade un margen a la derecha */
-  }
-
-  /* Asegúrate de que el menú desplegable no se desborde de la pantalla */
-  @media (min-width: 992px) { /* Este es el punto de interrupción para dispositivos grandes en Bootstrap */
-    .navbar .dropdown-menu {
-      left: auto; /* Ajusta esto según sea necesario */
-      right: 0;
-    }
-  }
-  </style>
 <head>
   <title>Legame</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+  
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
      <!-- Bootstrap Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" rel="stylesheet">
-</head>
-   <style>
-html, body {
-  margin: 0;
-  padding: 0;
-  min-height: 100%; /* Usa min-height en lugar de height */
-  position: relative;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-#page-content {
-  flex: 1; /* Asegura que el contenido se expanda para llenar el espacio */
-  padding-bottom: 100px; /* Ajusta esto a la altura de tu footer */
-}
-
-/* Asegúrate de que el padding-bottom de .body-content es suficiente para la altura del footer */
-.body-content {
-  padding-bottom: 100px; /* Ajusta este valor al alto de tu footer */
-}
-    .navbar {
-      background-color: #050a30; /* Azul oscuro especificado para la barra de navegación */
-    }
-    .navbar .navbar-brand, .navbar .navbar-nav .nav-link {
-      color: #050a30;
-    }
-    .navbar .navbar-brand:hover, .navbar .navbar-nav .nav-link:hover {
-      color: #aaa;
-    }
-    /* Otros estilos para detalles en azul */
-    .btn-custom {
-      background-color: #050a30;
-      color: white;
-    }
-    .btn-custom:hover {
-      background-color: #03081f;
-      color: white;
-    }
-    /* Fondo para la sección principal */
-    .main-bg {
-      background-color: #050a30; /* Fondo azul para la sección principal */
-      color: white;
-    }
-
-  </style>
-  
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
-
-<body class="d-flex flex-column h-100">
- 
+<body class="d-flex flex-column h-100" style="padding-top: 70px;">
   <header>
-    <!-- place navbar here -->
-    
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="{% static 'accounts/images/logo.png' %}" alt="Logo" width="30" height="30">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top" style="background-color: #fff;">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" href="/">
+      <img
+        src="{% static 'accounts/images/logo.png' %}"
+        height="45"
+        alt="MDB Logo"
+        loading="lazy"
+        style="margin-top: -1px;"
+      />
+    </a>
+    <!-- Toggle button -->
+    <button
+      data-mdb-collapse-init
+      class="navbar-toggler"
+      type="button"
+      data-mdb-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Inicio</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+      <div class="d-flex align-items-center">
+          <a class="nav-link" href="{% url 'faqs' %}" style="text-decoration: none; color: #495057; margin-right: 20px;">Preguntas frecuentes</a>
+        <button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
+          <a class="nav-link" href="{% url 'signin' %}">Login</a>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-   
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Registrarse</a>
-                {% if user.is_authenticated %}
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
-                </ul>
-              {% else %}
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'signup_comp' %}">Empresa</a></li>
-                  <li><a class="dropdown-item" href="{% url 'signup_user' %}">Usuario</a></li>
-                </ul>
-              {% endif %}
-            </li>
+        <div class="dropdown" style="margin-right: 1rem;">
+          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle" style="font-size: 2.5rem;"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+            {% if user.is_authenticated %}
+            <li><h6 class="dropdown-header">{{ user.username }}-{{user_type}}</h6></li>
+            <li><a class="dropdown-item" href="{% url 'my_profile' %}"><i class="bi bi-person"> Mi Perfil</i></a></li>
+            {% if user_type == 'Usuario' %}
+            <li><a class="dropdown-item" href="{% url 'my_applications' %}"><i class="fa fa-check" aria-hidden="true"></i> Mis Postulaciones</a></li>
+            {% endif %}
+            {% if user_type == 'Empresa' %}
+            <li><a class="dropdown-item" href="{% url 'my_job_list' %}"><i class="bi bi-card-list"> Mis publicaciones</i></a></li>
+            <li><a class="dropdown-item" href="{% url 'create_job_post' %}"><i class="bi bi-plus"> Crear publicacion</i></a></li>
+            {% endif %}
+            {% if user.is_superuser or user.is_staff %}
+            <li><a class="dropdown-item" href="{% url 'manage_companies' %}"><i class="bi bi-card-checklist"> Ver listado de empresas</i></a></li>
+            <li><a class="dropdown-item" href="{% url 'admin_blog' %}"><i class="fa fa-align-center" aria-hidden="true"></i> Blog informativo</a></li>
+            {% endif %}
+            <hr>
+            <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar sesión</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{% url 'signin' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</a></li>
+            
+            {% endif %}
           </ul>
         </div>
       </div>
-      <div class="navbar-nav ml-auto">
     </div>
-    <div class="navbar-nav">
-      <!-- Asegúrate de agregar el enlace dentro de la estructura de la barra de navegación -->
-      <a class="nav-link" href="{% url 'faqs' %}">Preguntas frecuentes</a>
-    </div>
-      <div class="dropdown" style="margin-right: 1rem;">
-      <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-person-circle" style="font-size: 2.5rem;"></i>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-        {% if user.is_authenticated %}
-        <li><h6 class="dropdown-header">{{ user.username }}-{{user_type}}</h6></li>
-        <li><a class="dropdown-item" href="{% url 'my_profile' %}"><i class="bi bi-person"> Perfil</i></a></li>
-        {% if user_type == 'Usuario' %}
-        <li><a class="dropdown-item" href="#"> Mis postulaciones</a></li>
-        {% endif %}
-        {% if user_type == 'Empresa' %}
-        <li><a class="dropdown-item" href="{% url 'my_job_list' %}"><i class="bi bi-card-list"> Mis publicaciones</i></a></li>
-        <li><a class="dropdown-item" href="{% url 'create_job_post' %}"><i class="bi bi-plus"> Crear publicacion</i></a></li>
-        {% endif %}
-        {% if user.is_superuser or user.is_staff %}
-        <li><a class="dropdown-item" href="{% url 'manage_companies' %}"><i class="bi bi-card-checklist"> Ver listado de empresas</i></a></li>
-        <li><a class="dropdown-item" href="{% url 'admin_blog' %}">Blog informativo</a></li>
-        {% endif %}
-        <hr>
-        <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
-        {% else %}
-        <li><a class="dropdown-item" href="{% url 'signin' %}">Ingresar</a></li>
-        
-        {% endif %}
-      </ul>
-    </div>
+    <!-- Collapsible wrapper -->
   </div>
+  <!-- Container wrapper -->
 </nav>
-    <div class="container">
+<!-- Navbar -->
 
-    </div>
+      <!-- Asegúrate de agregar el enlace dentro de la estructura de la barra de navegación -->
   </header>
   <main id="page-content" class="body-content">
     {% block content %}
@@ -166,91 +104,77 @@ body {
     <!-- En base.html o en un archivo de inclusión de footer si prefieres -->
 {% load static %}
 <br>
-<footer class="bg-body-tertiary text-center">
-  <!-- Grid container -->
-  <div class="container p-4">
-    <!-- Section: Images -->
-    <section class="">
-      <div class="row">
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
-          <div data-mdb-ripple-init
-            class="bg-image hover-overlay shadow-1-strong rounded"
-            data-ripple-color="light"
-          >
-            <img src="https://mdbcdn.b-cdn.net/img/new/fluid/city/113.webp" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-            </a>
+
+
+<footer class="footer_area section_padding_130_0">
+      <div class="container">
+        <div class="row">
+          <!-- Single Widget-->
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="single-footer-widget section_padding_0_130">
+              <!-- Footer Logo-->
+              <div class="footer-logo mb-3"></div>
+              <p>Appland is completely creative, lightweight, clean app landing page.</p>
+              <!-- Copywrite Text-->
+              <div class="copywrite-text mb-5">
+                <p class="mb-0">Made with <i class="lni-heart mr-1"></i>by Designing World</p>
+              </div>
+              <!-- Footer Social Area-->
+              <div class="footer_social_area"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest"><i class="fa fa-pinterest"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype"><i class="fa fa-skype"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></div>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
-          <div data-mdb-ripple-init
-            class="bg-image hover-overlay shadow-1-strong rounded"
-            data-ripple-color="light"
-          >
-            <img src="{% static 'accounts/images/ACLICagliari.png' %}" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-            </a>
+          <!-- Single Widget-->
+          <div class="col-12 col-sm-6 col-lg">
+            <div class="single-footer-widget ">
+              <!-- Widget Title-->
+              <h5 class="widget-title">About</h5>
+              <!-- Footer Menu-->
+              <div class="footer_menu">
+                <ul>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Corporate Sale</a></li>
+                  <li><a href="#">Terms &amp; Policy</a></li>
+                  <li><a href="#">Community</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
-          <div data-mdb-ripple-init
-            class="bg-image hover-overlay shadow-1-strong rounded"
-            data-ripple-color="light"
-          >
-            <img src="{% static 'accounts/images/ACLISardegna.png' %}" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-            </a>
+          <!-- Single Widget-->
+          <div class="col-12 col-sm-6 col-lg">
+            <div class="single-footer-widget ">
+              <!-- Widget Title-->
+              <h5 class="widget-title">Support</h5>
+              <!-- Footer Menu-->
+              <div class="footer_menu">
+                <ul>
+                  <li><a href="#">Help</a></li>
+                  <li><a href="#">Support</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Term &amp; Conditions</a></li>
+                  <li><a href="#">Help &amp; Support</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
-          <div data-mdb-ripple-init
-            class="bg-image hover-overlay shadow-1-strong rounded"
-            data-ripple-color="light"
-          >
-            <img src="{% static 'accounts/images/CasaSardegna_Logo_sfondobianco.jpg' %}"  class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
-          <div data-mdb-ripple-init
-            class="bg-image hover-overlay shadow-1-strong rounded"
-            data-ripple-color="light"
-          >
-            <img src="{% static 'accounts/images/LOGOCREI-ACLI-300x217.jpg' %}" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-2 col-md-12 mb-4 mb-md-0">
-          <div data-mdb-ripple-init
-            class="bg-image hover-overlay shadow-1-strong rounded"
-            data-ripple-color="light"
-          >
-            <img src="{% static 'accounts/images/LogoRegioneSardegnaAssessoratoLavoro_definitivo.png' %}" class="w-100" />
-            <a href="#!">
-              <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-            </a>
+          <!-- Single Widget-->
+          <div class="col-12 col-sm-6 col-lg">
+            <div class="single-footer-widget section_padding_0_130">
+              <!-- Widget Title-->
+              <h5 class="widget-title">Contact</h5>
+              <!-- Footer Menu-->
+              <div class="footer_menu">
+                <ul>
+                  <li><a href="#">Call Centre</a></li>
+                  <li><a href="#">Email Us</a></li>
+                  <li><a href="#">Term &amp; Conditions</a></li>
+                  <li><a href="#">Help Center</a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Section: Images -->
-  </div>
-  <!-- Grid container -->
-
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2020 Copyright:
-    <a class="text-body" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
-</footer>
+    </footer>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -261,20 +185,6 @@ body {
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
 <!-- Al final de tu cuerpo justo antes de cerrar la etiqueta </body> -->
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var footerHeight = document.getElementById('sticky-footer').offsetHeight;
-    var content = document.getElementById('page-content');
-    content.style.paddingBottom = footerHeight + 'px';
-  });
-  
-  // Si también quieres ajustar el padding cuando la ventana cambia de tamaño
-  window.onresize = function(event) {
-    var footerHeight = document.getElementById('sticky-footer').offsetHeight;
-    var content = document.getElementById('page-content');
-    content.style.paddingBottom = footerHeight + 'px';
-  };
-  </script>
 
 </body>
 </html>

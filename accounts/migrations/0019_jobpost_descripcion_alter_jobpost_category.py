@@ -18,8 +18,8 @@ class Migration(migrations.Migration):
             model_name="jobpost",
             name="category",
             field=models.CharField(
-                choices=[("full-time", "Full-time"), ("part-time", "Part-time")],
-                default="full-time",
+                choices=[("Full-time", "Full-time"), ("Part-time", "Part-time")],
+                default="Full-time",
                 max_length=20,
             ),
         ),

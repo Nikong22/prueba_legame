@@ -2,106 +2,142 @@
 {% load static widget_tweaks %}
 
 {% block content %}
-<div class="container mt-5">
-    <h2 class="mb-4">Editar Publicación de Trabajo</h2>
-    <form id="updateForm" data-job-id="{{ job.id }}">
-        {% csrf_token %}
-        
-        <!-- Mostrar errores que no están asociados a un campo específico -->
-        {{ form.non_field_errors }}
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="{% static 'stylescomp.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-        <div class="form-group">
-            <label for="{{ form.title.id_for_label }}">Título:</label>
-            {{ form.title|add_class:"form-control" }}
-            <!-- Mostrar errores para el campo 'title' -->
-            {{ form.title.errors }}
+<div class="container">
+    <div class="contact__wrapper shadow-lg mt-n9">
+        <div class="row no-gutters">
+            <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
+                <h3>Editar Publicación de Trabajo</h3>
+                <ul class="contact-info__list list-style--none position-relative z-index-101">
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-envelope"></i></span> support@bootdey.com
+                    </li>
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-phone"></i></span> (021)-241454-545
+                    </li>
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span> bootdey Technologies Inc.
+                        <br> 2694 Queen City Rainbow Drive
+                        <br> Florida 99161
+    
+                        <div class="mt-3">
+                            <a href="https://www.google.com/maps" target="_blank" class="text-link link--right-icon text-white">Get directions <i class="link__icon fa fa-directions"></i></a>
+                        </div>
+                    </li>
+                </ul>
+    
+            </div>
+    
+            <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
+                <form id="updateForm" data-job-id="{{ job.id }}">
+                    {% csrf_token %}
+                    <!-- Mostrar errores que no están asociados a un campo específico -->
+                    {{ form.non_field_errors }}
+                    <div class="col-sm-6 mb-3">
+                        <label for="{{ form.category.id_for_label }}">Categoría:</label>
+                        {{ form.category|add_class:"form-control" }}
+                        <!-- Mostrar errores para el campo 'category' -->
+                        {{ form.category.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.sector.id_for_label }}">Sector:</label>
+                        {{ form.sector|add_class:"form-control" }}
+                        {% if form.sector.errors %}
+                            <div class="alert alert-danger">
+                                {{ form.sector.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.application_limit.id_for_label }}">Limite de postulaciones:</label>
+                        {{ form.application_limit|add_class:"form-control" }}
+                        {{ form.application_limit.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}">Título:</label>
+                        {{ form.title|add_class:"form-control" }}
+                        <!-- Mostrar errores para el campo 'title' -->
+                        {{ form.title.errors }}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.descripcion.id_for_label }}">Descripción:</label>
+                        {{ form.descripcion|add_class:"form-control" }}
+                        <!-- Mostrar errores para el campo 'descripcion' -->
+                        {{ form.descripcion.errors }}
+                    </div>
+                    <br>
+                    <button type="submit" id="updateButton" class="btn btn-primary">Actualizar Publicación</button>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="{{ form.descripcion.id_for_label }}">Descripción:</label>
-            {{ form.descripcion|add_class:"form-control" }}
-            <!-- Mostrar errores para el campo 'descripcion' -->
-            {{ form.descripcion.errors }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.category.id_for_label }}">Categoría:</label>
-            {{ form.category|add_class:"form-control" }}
-            <!-- Mostrar errores para el campo 'category' -->
-            {{ form.category.errors }}
-        </div>
-
-        <!-- Si necesitas mostrar errores de otros campos, sigue el mismo patrón -->
-        <!-- Por ejemplo, para 'country', 'province', 'city', 'sector': -->
-        <!--
-        <div class="form-group">
-            <label for="{{ form.country.id_for_label }}">País:</label>
-            {{ form.country|add_class:"form-control" }}
-            {{ form.country.errors }}
-        </div>
-        y así sucesivamente para los demás campos...
-        -->
-
-        <button type="submit" id="updateButton" class="btn btn-primary">Actualizar Publicación</button>
-    </form>
+    </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var updateButton = document.getElementById('updateButton');
-        if (updateButton) {
-            updateButton.addEventListener('click', function(event) {
-                event.preventDefault();
-                var form = document.getElementById('updateForm');
-                var jobId = form.getAttribute('data-job-id');
-                updateJobPost(jobId);
-            });
-        }
-    });
-    
-    function updateJobPost(jobId) {
-        var title = document.getElementById('id_title').value;
-        var descripcion = document.getElementById('id_descripcion').value;
-        var category = document.getElementById('id_category').value;
-    
-        fetch(`/edit-job/${jobId}/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken')
-            },
-            body: JSON.stringify({
-                title: title,
-                descripcion: descripcion,
-                category: category
-            })
-        }).then(response => response.json())
-        .then(data => {
-        console.log(data);
-        if(data.status === 'success') {
-            // Redirige a /my_job_list/ si la actualización fue exitosa
-            window.location.href = '/my_job_list/';
-        } else {
-            // Manejar errores si la actualización no fue exitosa
-            alert('Error al actualizar: ' + data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al actualizar: ' + error);
-    });
-    }
-    
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var updateButton = document.getElementById('updateButton');
+                if (updateButton) {
+                    updateButton.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        var form = document.getElementById('updateForm');
+                        var jobId = form.getAttribute('data-job-id');
+                        updateJobPost(jobId);
+                    });
                 }
+            });
+            
+            function updateJobPost(jobId) {
+                var title = document.getElementById('id_title').value;
+                var descripcion = document.getElementById('id_descripcion').value;
+                var category = document.getElementById('id_category').value;
+                var sector= document.getElementById('id_sector').value;
+                var application_limit = document.getElementById('id_application_limit').value;
+
+                fetch(`/edit-job/${jobId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        descripcion: descripcion,
+                        category: category,
+                        sector: sector,
+                        application_limit: application_limit
+                    })
+                }).then(response => response.json())
+                .then(data => {
+                console.log(data);
+                if(data.status === 'success') {
+                    // Redirige a /my_job_list/ si la actualización fue exitosa
+                    window.location.href = '/my_job_list/';
+                } else {
+                    // Manejar errores si la actualización no fue exitosa
+                    alert('Error al actualizar: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error al actualizar: ' + error);
+            });
             }
-        }
-        return cookieValue;
-    }
-    </script>
+            
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            </script>
 {% endblock %}

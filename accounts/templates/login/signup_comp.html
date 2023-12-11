@@ -2,116 +2,172 @@
 {% load static widget_tweaks %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title text-center">Registro de Empresas</h1>
-                    {% if form.non_field_errors %}
-                        <div class="alert alert-danger">
-                            {{ form.non_field_errors }}
+<link href="{% static 'stylescomp.css' %}" rel="stylesheet">
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+    <div class="contact__wrapper shadow-lg mt-n9">
+        <div class="row no-gutters">
+            <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
+                <h3 class="color--white mb-5">Registro de Empresas</h3>
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+            <form method="POST" class="mt-3">
+                {% csrf_token %}
+                <!-- Mostrar errores no asociados a un campo específico -->
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>¡Error!</strong> Por favor corrige los errores debajo.
+                    </div>
+                {% endif %}
+                <ul class="contact-info__list list-style--none position-relative z-index-101">
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-envelope"></i></span> support@bootdey.com
+                    </li>
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-phone"></i></span> (021)-241454-545
+                    </li>
+                    <li class="mb-4 pl-4">
+                        <span class="position-absolute"><i class="fas fa-map-marker-alt"></i></span> bootdey Technologies Inc.
+                        <br> 2694 Queen City Rainbow Drive
+                        <br> Florida 99161
+    
+                        <div class="mt-3">
+                            <a href="https://www.google.com/maps" target="_blank" class="text-link link--right-icon text-white">Get directions <i class="link__icon fa fa-directions"></i></a>
                         </div>
-                    {% endif %}
-                    <form method="POST" class="mt-3">
-                        {% csrf_token %}
-                        <!-- Mostrar errores no asociados a un campo específico -->
-                        {% if form.errors %}
-                            <div class="alert alert-danger">
-                                <strong>¡Error!</strong> Por favor corrige los errores debajo.
-                            </div>
-                        {% endif %}
-                        <!-- Campos del modelo User -->
-                        <div class="row">
-                        <div class="col-md-6">
-                            <label for="{{ form.username.id_for_label }}">Username:</label>
+                    </li>
+                </ul>
+    
+                
+            </div>
+    
+            <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
+                <form action="#" class="contact-form form-validate" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="{{ form.username.id_for_label }}">Username</label>
                             {{ form.username|add_class:"form-control" }}
                             {{ form.username.errors }}
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="{{ form.email.id_for_label }}">Email:</label>
+    
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}">Email</label>
                             {{ form.email|add_class:"form-control" }}
                             {{ form.email.errors }}
+                            </div>
                         </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-6">
-                            <label for="{{ form.password1.id_for_label }}">Password:</label>
+    
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="{{ form.password1.id_for_label }}">Password</label>
                             {{ form.password1|add_class:"form-control" }}
                             {{ form.password1.errors }}
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="{{ form.password2.id_for_label }}">Password Confirmation:</label>
+    
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="{{ form.password2.id_for_label }}">Password Confirmation</label>
                             {{ form.password2|add_class:"form-control" }}
                             {{ form.password2.errors }}
+                            </div>
                         </div>
-                        </div>
-                        <!-- Campos adicionales para Company -->
-                        <div class="row">
-                        <div class="col-md-6">
-                            <label for="company_name">Nombre de la Empresa:</label>
+                        
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="company_name">Nombre de la Empresa</label>
                             {{ form.company_name|add_class:"form-control" }}
                             {{ form.company_name.errors }}
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label for="phone_number">Teléfono:</label>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="phone_number">Teléfono:</label>
                             {{ form.phone_number|add_class:"form-control" }}
                             {{ form.phone_number.errors }}
+                            </div>
                         </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-6">
-                            <label for="address">Dirección:</label>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="address">Dirección:</label>
                             {{ form.address|add_class:"form-control" }}
                             {{ form.address.errors }}
+                            </div>
                         </div>
-                        <!-- Agregar aquí los nuevos campos de acuerdo al modelo actualizado -->
-                        <div class="col-md-6">
-                            <label for="country">País:</label>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="country">País:</label>
                             <select name="country" class="form-control" id="country">
                                 <option value="AR">Argentina</option>
                                 <option value="IT">Italia</option>
                             </select>
+                            </div>
                         </div>
-                        </div>
-                        <!-- Agrega un campo select para las provincias -->
-                        <div class="row">
-                        <div class="col-md-6">
-                        <label for="province">Provincia:</label>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="province">Provincia:</label>
                         <select name="province" id="province" class="form-control" onchange="updateCities()">
                             <option value="">Selecciona una provincia</option>
                           {% for province in provinces %}
                           <option value="{{ province.id }}">{{ province.nombre }}</option>
                           {% endfor %}
                         </select>
+                            </div>
                         </div>
-                        <!-- Este campo select se llenará dinámicamente con las ciudades basado en la provincia seleccionada -->
-                        <div class="col-md-6">
-                          <label for="city">Ciudad:</label>
-                          <select name="city" class="form-control" id="city">
-                              <option value="">Primero selecciona una provincia</option>
-                              <!-- Las opciones se añadirán dinámicamente con JS -->
-                          </select>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="city">Ciudad:</label>
+                                <select name="city" class="form-control" id="city">
+                                    <option value="">Primero selecciona una provincia</option>
+                                    <!-- Las opciones se añadirán dinámicamente con JS -->
+                                </select>
+                            </div>
                         </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            <label for="{{ form.sector.id_for_label }}">Sector:</label>
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="{{ form.sector.id_for_label }}">Sector:</label>
                             {{ form.sector|add_class:"form-control" }}
                             {% if form.sector.errors %}
                                 <div class="alert alert-danger">
                                     {{ form.sector.errors }}
                                 </div>
                             {% endif %}
-                        </div>
-                            <div class="col-md-6">
-                                <label for="razón_social">Razón Social:</label>
-                                {{ form.razón_social|add_class:"form-control" }}
-                                {{ form.razón_social.errors }}
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="razón_social">Razón Social:</label>
+                            {{ form.razón_social|add_class:"form-control" }}
+                            {{ form.razón_social.errors }}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                                <label for="id_cuit">CUIT:</label>
+                                {{ form.cuit|add_class:"form-control" }}
+                                {% if form.cuit.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.cuit.errors.as_text }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
                                 <label for="cantidad_empleados">Cantidad de Empleados:</label>
                                 <select name="cantidad_empleados" class="form-control" id="cantidad_empleados">
                                     {% for code, name in form.cantidad_empleados.field.choices %}
@@ -120,20 +176,29 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="col-sm-12 mb-3">
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                         </div>
-                        <!-- Repetir para otros campos como provincia, ciudad, etc. -->
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Registrarse</button>
-                        </div>
-                    </form>
-                    <br>
-                </div>
+    
+                    </div>
+                </form>
             </div>
+            <!-- End Contact Form Wrapper -->
+    
         </div>
     </div>
 </div>
-<br>
+
 <script>
+    function formatCUIT(input) {
+    var numbers = input.value.replace(/\D/g, '');  // Remueve todo lo que no sea números
+    var char = {2:'-', 10:'-'};
+    input.value = '';
+    for (var i = 0; i < numbers.length; i++) {
+        input.value += (char[i] || '') + numbers[i];
+    }
+}
     var provinceToCities = {{ province_to_cities_map|safe }};
   
     function updateCities() {

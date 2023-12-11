@@ -15,12 +15,54 @@ from .models import JobPost, BlogEntry, Application
 from django.contrib.staticfiles import finders
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
+from django.utils import timezone
+from .models import UserSession  # Asegúrate de importar UserSession
+from .forms import CustomAuthenticationForm
+from django.db.models import Count
+from django.core.paginator import Paginator
+from .models import FAQ, Question
+from .forms import FAQForm, QuestionForm
+from django.core.signing import Signer, BadSignature
+from django.core.mail import send_mail
+from django.urls import reverse
 import os
+
 
 def faqs(request):
     
     return render(request, 'admin/faqs.html')
+
+def index(request):
+    search_query = request.GET.get('search_query', '')
+    sector_query = request.GET.get('sector', '')
+    country_query = request.GET.get('country', '')
+    job_list = JobPost.objects.filter(status='active').order_by('-created_at')  # Asumiendo que 'created_at' es el campo de fecha
+
+    if search_query:
+        job_list = job_list.filter(title__icontains=search_query)
+    if sector_query:
+        job_list = job_list.filter(sector=sector_query)
+    if country_query:
+        job_list = job_list.filter(country=country_query)
+
+    # Paginación
+    paginator = Paginator(job_list, 10)  # Muestra 10 trabajos por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    sectors = JobPost.objects.values('sector').distinct()
+    countries = JobPost.objects.values('country').distinct()
+    latest_entry = BlogEntry.objects.order_by('-updated_at').first()
+
+    context = {
+        'page_obj': page_obj,  # Cambiado de 'jobs' a 'page_obj'
+        'search_query': search_query,
+        'sectors': sectors,
+        'countries': countries,
+        'latest_entry': latest_entry
+
+    }
+    return render(request, 'login/index.html', context)
 
 
 def get_user_type(user):
@@ -34,6 +76,33 @@ def get_user_type(user):
         return None
 
 def login_view(request):
+    if request.method == 'POST':
+        # Obtén las credenciales del formulario
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        # Autenticar al usuario
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            # Inicia sesión con el usuario
+            if request.session.exists(request.session.session_key):
+                request.session.flush()
+            login(request, user)
+            # Elimina sesiones anteriores
+            UserSession.objects.filter(user=user).delete()
+
+            # Crea una nueva sesión de usuario
+            UserSession.objects.create(
+                user=user,
+                session_key=request.session.session_key,
+                device_identifier=request.META.get('HTTP_USER_AGENT')  # Ejemplo de identificador
+            )
+            print(f"Clave de sesión: {request.session.session_key}")  # Mensaje de depuración
+
+            # Aquí puedes redirigir al usuario a la página de inicio u otra página
+            return redirect('index')
+
+    # La lógica para usuarios no autenticados o para solicitudes GET
     active_jobs = JobPost.objects.filter(status='active')
     latest_entry = BlogEntry.objects.order_by('-updated_at').first()  # Obtén la última entrada del blog
     context = {
@@ -62,13 +131,17 @@ def signup_user(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            send_verification_email(user, request)
             user_profile = UserProfile(
                 user=user, 
                 name=form.cleaned_data.get('name'),
                 lastname=form.cleaned_data.get('lastname'),
                 email=form.cleaned_data.get('email'),
-                phone_number=request.POST.get('phone_number'),  # Captura el número de teléfono del formulario
+                phone_number=form.cleaned_data.get('phone_number'),
                 bio=request.POST.get('bio'),
+                genero=form.cleaned_data.get('genero'),
+                document_type=form.cleaned_data.get('document_type'),
+                document_number=form.cleaned_data.get('document_number'),
                 # Agrega aquí la lógica para otros campos si es necesario
             )
             user_profile.save()
@@ -76,7 +149,6 @@ def signup_user(request):
             return redirect('/')
         else:
             return render(request, 'login/signup_user.html', {'form': form})
-
 
 
 
@@ -192,61 +264,77 @@ def signout(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
-    
-    if request.method == 'GET':
-        return render(request, 'login/signin.html', {'form': AuthenticationForm()})
-    else:
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        return redirect('/')
 
-        if user is not None:
-            # Comprobar si el usuario es un administrador y rechazar el inicio de sesión
-            if user.is_superuser:
-                messages.error(request, 'El inicio de sesión no está permitido.')
-                return render(request, 'login/signin.html', {
-                    'form': AuthenticationForm()
-                })
+    if request.method == 'POST':
+        form = CustomAuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            
+            # Verificar si el usuario es un administrador
+            if user.is_superuser or user.is_staff:
+                messages.error(request, 'Los administradores deben iniciar sesión desde la página de administrador.')
+                return redirect('signin')
             
             login(request, user)
-            # Redireccionar a la página de inicio de la empresa o del usuario según el tipo
-            if hasattr(user, 'company'):
-                return redirect('/')  
-            else:
-                return redirect('/')  
-        else:
-            messages.error(request, 'Acceso restringido o usuario/contraseña incorrecta')
-            return render(request, 'login/signin.html', {
-                'form': AuthenticationForm()
-            })
 
-def signin_admin(request):
-    if request.user.is_authenticated:
-        return HttpResponseForbidden("No tienes permiso para acceder a esta página.")
-    if request.method == 'GET':
-        return render(request, 'login/signin_admin.html', {
-            'form': AuthenticationForm()
-        })
-    else:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+            # Eliminar sesiones anteriores
+            UserSession.objects.filter(user=user).delete()
 
-        if user is not None and user.is_staff:
-            login(request, user)
-
-            # Imprimir en la consola el estado del usuario
-            print(f"Usuario Autenticado: {user.is_authenticated}")
-            print(f"Es Staff: {user.is_staff}")
-            print(f"Es Superusuario: {user.is_superuser}")
+            # Crear una nueva sesión de usuario
+            UserSession.objects.create(
+                user=user,
+                session_key=request.session.session_key,
+                device_identifier=request.META.get('HTTP_USER_AGENT')
+            )
 
             return redirect('/')
         else:
-            return render(request, 'login/signin_admin.html', {
-                'form': AuthenticationForm(),
-                'error': 'Acceso restringido o usuario/contraseña incorrecta'
-            })
+            messages.error(request, 'Acceso restringido o usuario/contraseña incorrecta')
+    else:
+        form = CustomAuthenticationForm()
+
+    return render(request, 'login/signin.html', {'form': form})
+
+def signin_view(request):
+    form = CustomAuthenticationForm()
+    # ... tu lógica para manejar el POST y autenticar al usuario ...
+    return render(request, 'signin.html', {'form': form})
+
+def signin_admin(request):
+    if request.user.is_authenticated:
+        return redirect('/')  # Ajusta esta ruta según sea necesario
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+
+            if user.is_superuser or user.is_staff:
+                login(request, user)
+
+                # Eliminar sesiones anteriores de este usuario
+                UserSession.objects.filter(user=user).delete()
+
+                # Crear una nueva entrada de UserSession para esta sesión
+                UserSession.objects.create(
+                    user=user,
+                    session_key=request.session.session_key,
+                    device_identifier=request.META.get('HTTP_USER_AGENT')
+                )
+
+                return redirect('/')  # Ajusta esta ruta según sea necesario
+            else:
+                messages.error(request, 'Acceso restringido a usuarios administradores.')
+
+        else:
+            messages.error(request, 'Usuario o contraseña incorrectos.')
+
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'login/signin_admin.html', {'form': form})
+
 
 def manage_companies(request):
     if not request.user.is_authenticated or not request.user.is_superuser:
@@ -275,6 +363,7 @@ def manage_companies(request):
 
 def company_details(request, company_id):
     company = get_object_or_404(Company, pk=company_id)
+
     return render(request, 'admin/company_details.html', {'company': company})
 
 def activate_company(request, company_id):
@@ -321,6 +410,15 @@ def create_job_post(request):
     if request.method == 'POST' and form.is_valid():
         job_post = form.save(commit=False)
         job_post.company = request.user.company
+        job_post.expiration_date = form.cleaned_data['expiration_date']
+        if 'province_name' in form.cleaned_data:
+            province_id = form.cleaned_data['province_name']
+            job_post.province_name = id_to_province_name(province_id)
+        else:
+            # Maneja el caso de que 'province' no esté en form.cleaned_data
+            # Por ejemplo, asignar un valor predeterminado o manejar el error
+            job_post.province_name = 'Valor predeterminado o manejo de error'
+
         job_post.save()
         messages.success(request, "La publicación de trabajo ha sido creada con éxito.")
         return redirect('my_job_list')
@@ -354,6 +452,10 @@ def load_provinces_and_cities():
             province_to_cities_map[province_id].append(city['nombre'])
 
     return provinces_data, province_to_cities_map
+
+
+
+
 
 
 @login_required
@@ -433,11 +535,14 @@ def upload_profile_picture(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Imagen de perfil actualizada.')
-        else:
-            messages.error(request, 'Error al actualizar la imagen de perfil.')
-        return redirect('my_profile')
+            form.save()  # Esto debería guardar la imagen en el objeto userprofile
+            messages.success(request, 'Imagen de perfil actualizada.')  # Mensaje de confirmación
+            return redirect('my_profile')  # Redirige a la URL de perfil
+    else:
+        form = UserProfileForm(instance=request.user.userprofile)
+
+    return render(request, 'profile/my_profile.html', {'form': form})
+
 
 # Helper function to check if user is admin
 def is_admin(user):
@@ -446,18 +551,52 @@ def is_admin(user):
 @login_required
 @user_passes_test(is_admin)
 def admin_blog(request):
-    # Suponiendo que solo hay una entrada que actúa como la principal
-    entry = BlogEntry.objects.first() or BlogEntry()  # Obtén la primera entrada o crea una nueva si no hay ninguna
+    entry = BlogEntry.objects.first() or BlogEntry()
+    blog_form = BlogEntryForm(request.POST or None, instance=entry)
+    faq_instance = FAQ.objects.first()  # Obtén la primera FAQ o None si no existe
+    faq_form = FAQForm(request.POST or None, instance=faq_instance)
+    question_instance = Question.objects.first()  # Obtén la primera FAQ o None si no existe
+    question_form = QuestionForm(request.POST or None, instance=question_instance)
+    
     if request.method == 'POST':
-        form = BlogEntryForm(request.POST, instance=entry)  # Asegúrate de pasar la instancia existente para actualizar
-        if form.is_valid():
-            form.save()
+        if 'action' in request.POST and request.POST['action'] == 'save_blog' and blog_form.is_valid():
+            blog_form.save()
             messages.success(request, 'La entrada del blog ha sido actualizada con éxito.')
-            return redirect('admin_blog')  # Redirige para evitar el envío doble del formulario
-    else:
-        form = BlogEntryForm(instance=entry)
-    return render(request, 'admin/admin_blog.html', {'form': form})
+            return redirect('/')  # Redirige a la ruta de inicio ('/')
 
+        if 'action' in request.POST and request.POST['action'] == 'save_faq' and faq_form.is_valid():
+            faq_form.save()
+            messages.success(request, 'FAQ guardada con éxito.')
+            return redirect('/faqs/')  # Redirige a la ruta de FAQs ('/faqs/')
+        
+        question_form = QuestionForm(request.POST or None)
+        if request.method == 'POST':
+            if 'action' in request.POST and request.POST['action'] == 'save_question':
+                if question_form.is_valid():
+                    question_form.save()
+                    messages.success(request, 'Pregunta guardada con éxito.')
+                    return redirect('/faqs/')
+                else:
+                    messages.error(request, 'Error en el formulario de pregunta.')
+
+    # ... código existente ...
+    context = {'blog_form': blog_form, 'faq_form': faq_form, 'question_form': question_form}
+    return render(request, 'admin/admin_blog.html', context)
+
+def faqs(request):
+    faqs = FAQ.objects.all()
+    questions = Question.objects.all()  # Agregamos esto
+
+    return render(request, 'admin/faqs.html', {'faqs': faqs, 'questions': questions})
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def delete_question(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    question.delete()
+    messages.success(request, 'La pregunta ha sido eliminada.')
+    return redirect('faqs')
 
 
 @csrf_exempt
@@ -508,26 +647,37 @@ def update_user_data(request):
 
 def job_details(request, job_id):
     job = get_object_or_404(JobPost, pk=job_id)
-    return render(request, 'jobs/job_details.html', {'job': job})
+
+    # Inicializamos is_applied en False
+    is_applied = False
+
+    # Comprobamos si el usuario es una empresa o un usuario con perfil
+    if hasattr(request.user, 'userprofile'):
+        # Si el usuario es un perfil de usuario, comprobamos si ya se postuló al trabajo
+        is_applied = Application.objects.filter(job=job, user_profile=request.user.userprofile).exists()
+    elif hasattr(request.user, 'company'):
+        # Aquí puedes agregar lógica adicional si quieres manejar algo específico para los usuarios de empresa
+        pass
+
+    # Pasamos is_applied y job al contexto de la plantilla
+    context = {
+        'job': job,
+        'is_applied': is_applied
+    }
+
+    return render(request, 'jobs/job_details.html', context)
 
 def id_to_province_name(province_id):
-    # Encuentra la ruta completa al archivo JSON en tus archivos estáticos
     json_path = finders.find('accounts/argentina/provincias.json')
-    
-    # Asegúrate de manejar el caso en el que el archivo no se encuentre
     if not json_path:
         return None
-
-    # Carga los datos del JSON
+    
     with open(json_path, 'r', encoding='utf-8') as file:
-        provinces_data = json.load(file)
+        provinces_data = json.load(file)['provincias']
+        for province in provinces_data:
+            if str(province['id']) == str(province_id):
+                return province['nombre']  # o 'iso_nombre' si prefieres ese campo
     
-    # Busca el nombre de la provincia correspondiente al ID
-    for province in provinces_data['provincias']:
-        if str(province['id']) == str(province_id):
-            return province['nombre']
-    
-    # Si no se encuentra la provincia, devuelve None o una cadena vacía
     return None
 
 def is_company_user(user):
@@ -546,6 +696,9 @@ def edit_job_post(request, job_id):
             job.title = data.get('title', job.title)
             job.descripcion = data.get('descripcion', job.descripcion)
             job.category = data.get('category', job.category)
+            job.sector = data.get('sector', job.sector)
+            job.application_limit = data.get('application_limit', job.application_limit)
+
             job.save()
             return JsonResponse({'status': 'success', 'message': 'Publicación actualizada correctamente'})
         except json.JSONDecodeError as e:
@@ -560,11 +713,74 @@ def edit_job_post(request, job_id):
 @login_required
 def apply_for_job(request, job_id):
     job = get_object_or_404(JobPost, pk=job_id)
-    user_profile = request.user.userprofile
+    
+    if job.expiration_date < timezone.now().date():
+        messages.error(request, 'La fecha de vencimiento para este trabajo ha pasado y no se aceptan más postulaciones.')
+        return redirect('job_details', job_id=job_id)
+    
+    # Verificar si ya se ha alcanzado el límite de postulaciones
+    if job.application_limit <= 0:
+        messages.error(request, 'Este trabajo ya ha alcanzado el número máximo de postulaciones.')
+        return redirect('job_details', job_id=job_id)
 
-    # Verifica si el usuario ya se ha postulado para evitar duplicados
-    if not Application.objects.filter(job=job, user_profile=user_profile).exists():
-        Application.objects.create(job=job, user_profile=user_profile)
-        # Agrega aquí cualquier lógica adicional, como enviar un correo electrónico de confirmación
+    user_profile = request.user.userprofile
+    # Verificar si el usuario ya se ha postulado
+    if Application.objects.filter(job=job, user_profile=user_profile).exists():
+        messages.info(request, 'Ya te has postulado para este puesto.')
+        return redirect('job_details', job_id=job_id)
+
+    # Crear la postulación y actualizar el límite
+    with transaction.atomic():
+        job.refresh_from_db()
+        if job.application_limit > 0:
+            Application.objects.create(job=job, user_profile=user_profile)
+            job.application_limit -= 1
+            job.save()
+            messages.success(request, 'Te has postulado exitosamente para este puesto.')
+        else:
+            messages.error(request, 'Este trabajo ya ha alcanzado el número máximo de postulaciones.')
 
     return redirect('job_details', job_id=job_id)
+
+
+@login_required
+def my_applications(request):
+    user_profile = request.user.userprofile
+    applications = Application.objects.filter(user_profile=user_profile).select_related('job')
+    return render(request, 'jobs/my_applications.html', {'applications': applications})
+
+@login_required
+def view_applicants(request, job_id):
+    job = get_object_or_404(JobPost, pk=job_id, company=request.user.company)
+    applications = Application.objects.filter(job=job).select_related('user_profile')
+    return render(request, 'jobs/view_applicants.html', {'job': job, 'applications': applications})
+
+
+def send_verification_email(user, request):
+    signer = Signer()
+    signed_user_id = signer.sign(user.id)
+    verification_link = request.build_absolute_uri(reverse('verify_email') + f'?id={signed_user_id}')
+    
+    send_mail(
+        'Verifica tu dirección de correo electrónico',
+        f'Haz clic en el siguiente enlace para verificar tu correo electrónico: {verification_link}',
+        'nikongg22@gmail.com',  # Cambia esto por tu dirección de correo
+        [user.email],
+        fail_silently=False,
+    )
+    
+def verify_email(request):
+    user_id_signed = request.GET.get('id')
+    if user_id_signed:
+        try:
+            signer = Signer()
+            user_id = signer.unsign(user_id_signed)
+            user = User.objects.get(id=user_id)
+            user.email_confirmed = True
+            user.save()
+            login(request, user)  # Inicia sesión automáticamente
+            return redirect('index')  # Redirige a la página de inicio
+        except (BadSignature, User.DoesNotExist):
+            # Manejar la verificación fallida
+            return render(request, 'verification_failed.html')
+    return render(request, 'invalid_verification_link.html')

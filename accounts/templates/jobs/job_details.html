@@ -1,24 +1,50 @@
 {% extends "base.html" %}
+{% load static %}
+{% load tz %}
 
 {% block content %}
-<div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <h2>{{ job.title }}</h2>
-            <p><strong>Sector:</strong> {{ job.sector }}</p>
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="{% static 'styleslistjob.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin="anonymous" />
+{% now "Y-m-d" as today %} <!-- Captura la fecha actual en una variable llamada "today" -->
+
+<section>
+  <div class="container">
+    <div class="row mt-60">
+      <div class="col-12">
+        <div class="service-block4 h-100">
+          <div class="service-icon">
+            <i class="icon-tools"></i>
+          </div>
+          <div class="service-desc">
+            <h4>{{ job.title }}</h4>
+            <h5><strong>Sector:</strong> {{ job.sector }}</h5>
             <p><strong>Categoría:</strong> {{ job.category }}</p>
             <p><strong>Ubicación:</strong> {{ job.city }}, {{ job.province }}</p>
+            <p><strong>Fecha de vencimiento:</strong> {{ job.expiration_date }}</p>
+            <p><strong>Dirección:</strong> {{ job.address }}</p>
             <p><strong>Descripción:</strong> {{ job.descripcion }}</p>
-            <!-- Agrega aquí más detalles del trabajo según sea necesario -->
-            <!-- Verificar si el usuario actual tiene un 'userprofile' asociado -->
+            {% if job.expiration_date|date:"Y-m-d" < today %}
+            <!-- Si la fecha de vencimiento es anterior a la fecha actual, muestra el botón de vencido -->
+            <button class="btn btn-danger">Publicación Vencida</button>
+          {% else %}
             {% if request.user.is_authenticated and request.user.userprofile %}
-        <!-- Si el usuario tiene un perfil, muestra el botón de postulación -->
-            <form action="{% url 'apply_for_job' job.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Postularse</button>
-            </form>
-            {% endif %}
+                {% if is_applied %}
+                    <button class="btn btn-success" disabled>Ya está postulado</button>
+                {% else %}
+                    <form action="{% url 'apply_for_job' job.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Postularse</button>
+                    </form>
+                {% endif %}
+            {% endif %}  <!-- Cierra el bloque if aquí -->
+            {% endif %}  <!-- Cierra el bloque if aquí -->
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>
+
+
 {% endblock %}

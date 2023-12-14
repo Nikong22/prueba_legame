@@ -131,7 +131,6 @@ def signup_user(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            send_verification_email(user, request)
             user_profile = UserProfile(
                 user=user, 
                 name=form.cleaned_data.get('name'),
@@ -150,31 +149,76 @@ def signup_user(request):
         else:
             return render(request, 'login/signup_user.html', {'form': form})
 
-
+def some_view(request):
+    # Suponiendo que 'countries' es una lista de objetos de país que obtienes de tu modelo o forma estática
+    countries = [
+        {'country_code': 'AR', 'country_name': 'Argentina'},
+        {'country_code': 'IT', 'country_name': 'Italia'},
+        # Añade otros países si es necesario
+    ]
+    # ... resto de tu lógica de la vista ...
+    return render(request, 'index.html', {'countries': countries})
 
 
 def signup_comp(request):
+    print(request.POST)  # Imprimir todos los datos del formulario
+
     if request.user.is_authenticated:
         return redirect('/')
 
+    # Tus otros caminos para cargar archivos JSON...
     sectors_json_path = finders.find('accounts/lista/sectores.json')
     provinces_json_path = finders.find('accounts/argentina/provincias.json')
     cities_json_path = finders.find('accounts/argentina/localidades.json')
 
+    # Tus métodos para cargar datos estáticos...
     sector_choices, provinces, province_to_cities_map = load_static_data(
         sectors_json_path, provinces_json_path, cities_json_path
     )
 
     if request.method == 'POST':
-        form = CompanySignUpForm(request.POST)
+        form = CompanySignUpForm(request.POST, request.FILES)
         form.fields['sector'].choices = sector_choices
+
         if form.is_valid():
             try:
                 with transaction.atomic():
-                    user = form.save()
-                    user.refresh_from_db()  # Actualiza la instancia del usuario
+                    # Guarda el objeto User
+                    user = form.save(commit=False)
+                    user.save()
 
                     # Aquí puedes agregar lógica adicional si necesitas crear un perfil de usuario
+                    # ...
+
+                    # Creamos el objeto Company asociado al usuario
+                    company = Company(
+                        user=user,
+                        company_name=form.cleaned_data['company_name'],
+                        contact_email=form.cleaned_data['email'],  # Asigna el email al contact_email de Company
+                        phone_number=form.cleaned_data['phone_number'],
+                        address=form.cleaned_data['address'],
+                        city=form.cleaned_data['city'],
+                        sector=form.cleaned_data['sector'],
+                        razón_social=form.cleaned_data['razón_social'],
+                        cantidad_empleados=form.cleaned_data['cantidad_empleados'],
+                        cuit=form.cleaned_data['cuit'],
+
+                        # Aquí deberías manejar los campos específicos de Italia si es el caso
+                        # ...
+                    )
+                    company.country = form.cleaned_data.get('country')
+
+                    # Manejo de los campos específicos de Italia y Argentina
+                    country = form.cleaned_data.get('country')
+                    if country == 'IT':
+                        company.region_it = form.cleaned_data.get('region_it', '')
+                        company.provincia_it = form.cleaned_data.get('provincia_it', '')
+                        company.comuna_it = form.cleaned_data.get('comuna_it', '')
+                    elif country == 'AR':
+                        company.province_name = form.cleaned_data.get('province_name', '')
+                        company.city = form.cleaned_data.get('city', '')
+
+                    company.save()
 
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                     return redirect('/')
@@ -192,7 +236,6 @@ def signup_comp(request):
         'province_to_cities_map': province_to_cities_map
     }
     return render(request, 'login/signup_comp.html', context)
-
 
 def load_static_data(sectors_path, provinces_path, cities_path):
     # Carga de sectores
@@ -754,33 +797,3 @@ def view_applicants(request, job_id):
     job = get_object_or_404(JobPost, pk=job_id, company=request.user.company)
     applications = Application.objects.filter(job=job).select_related('user_profile')
     return render(request, 'jobs/view_applicants.html', {'job': job, 'applications': applications})
-
-
-def send_verification_email(user, request):
-    signer = Signer()
-    signed_user_id = signer.sign(user.id)
-    verification_link = request.build_absolute_uri(reverse('verify_email') + f'?id={signed_user_id}')
-    
-    send_mail(
-        'Verifica tu dirección de correo electrónico',
-        f'Haz clic en el siguiente enlace para verificar tu correo electrónico: {verification_link}',
-        'nikongg22@gmail.com',  # Cambia esto por tu dirección de correo
-        [user.email],
-        fail_silently=False,
-    )
-    
-def verify_email(request):
-    user_id_signed = request.GET.get('id')
-    if user_id_signed:
-        try:
-            signer = Signer()
-            user_id = signer.unsign(user_id_signed)
-            user = User.objects.get(id=user_id)
-            user.email_confirmed = True
-            user.save()
-            login(request, user)  # Inicia sesión automáticamente
-            return redirect('index')  # Redirige a la página de inicio
-        except (BadSignature, User.DoesNotExist):
-            # Manejar la verificación fallida
-            return render(request, 'verification_failed.html')
-    return render(request, 'invalid_verification_link.html')

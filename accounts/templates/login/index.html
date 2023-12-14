@@ -35,9 +35,9 @@
                             <div class="select-container">
                                 <select class="custom-select" name="country">
                                     <option value="">País</option>
-                                    {% for country in countries %}
-                                        <option value="{{ country.country }}">{{ country.country }}</option>
-                                    {% endfor %}
+                                    <option value="AR" {% if request.GET.country == "AR" %}selected{% endif %}>Argentina</option>
+                                    <option value="IT" {% if request.GET.country == "IT" %}selected{% endif %}>Italia</option>
+
                                 </select>
                             </div>
                         </div>

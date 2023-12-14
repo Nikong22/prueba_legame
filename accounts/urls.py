@@ -38,7 +38,6 @@ urlpatterns = [
     path('my_applications/', views.my_applications, name='my_applications'),
     path('jobs/<int:job_id>/applicants/', views.view_applicants, name='view_applicants'),
     path('questions/delete/<int:question_id>/', views.delete_question, name='delete_question'),
-    path('verify_email/', views.verify_email, name='verify_email'),
 
 ]
 

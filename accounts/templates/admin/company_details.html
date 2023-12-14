@@ -21,8 +21,15 @@
             <p><strong>Nombre de la empresa: </strong>{{ company.company_name }}<p>
             <p><strong>Email de Contacto: </strong>{{ company.contact_email }}</p>
             <p><strong>Telefono: </strong>{{ company.phone_number }}</p>
+            <p><strong>Pais: </strong>{{ company.country }}</p>
+            {% if company.country == 'AR' %}
             <p><strong>Ciudad: </strong>{{ company.city }}</p>
             <p><strong>Provincia: </strong>{{ company.province_name }}</p>
+            {% elif company.country == 'IT' %}
+            <p><strong>Región: </strong>{{ company.region_it }}</p>
+            <p><strong>Provincia: </strong>{{ company.provincia_it }}</p>
+            <p><strong>Comuna: </strong>{{ company.comuna_it }}</p>
+            {% endif %}
             <p><strong>Sector: </strong>{{ company.sector }}</p>
             <p><strong>Cantidad de empleados: </strong>{{ company.cantidad_empleados }}</p>
             <p><strong>Razon Social: </strong>{{ company.razón_social }}</p>

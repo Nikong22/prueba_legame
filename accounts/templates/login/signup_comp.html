@@ -11,19 +11,27 @@
         <div class="row no-gutters">
             <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
                 <h3 class="color--white mb-5">Registro de Empresas</h3>
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <form method="POST" class="mt-3">
+                {% csrf_token %}
+                <!-- Mostrar errores no asociados a un campo específico -->
                 {% if form.non_field_errors %}
                 <div class="alert alert-danger">
                     {{ form.non_field_errors }}
                 </div>
             {% endif %}
-            <form method="POST" class="mt-3">
-                {% csrf_token %}
-                <!-- Mostrar errores no asociados a un campo específico -->
-                {% if form.errors %}
-                    <div class="alert alert-danger">
-                        <strong>¡Error!</strong> Por favor corrige los errores debajo.
-                    </div>
-                {% endif %}
+            {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        
                 <ul class="contact-info__list list-style--none position-relative z-index-101">
                     <li class="mb-4 pl-4">
                         <span class="position-absolute"><i class="fas fa-envelope"></i></span> support@bootdey.com
@@ -46,21 +54,28 @@
             </div>
     
             <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
-                <form action="#" class="contact-form form-validate" novalidate="novalidate">
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="{{ form.username.id_for_label }}">Username</label>
-                            {{ form.username|add_class:"form-control" }}
-                            {{ form.username.errors }}
-                            </div>
+                                {{ form.username|add_class:"form-control" }}
+                                {% if form.username.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.username.errors|first }}
+                                    </div>
+                                {% endif %}
+                        </div>
                         </div>
     
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="{{ form.email.id_for_label }}">Email</label>
                             {{ form.email|add_class:"form-control" }}
-                            {{ form.email.errors }}
+                            {% if form.email.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.email.errors|first }}
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
     
@@ -68,7 +83,11 @@
                             <div class="form-group">
                                 <label for="{{ form.password1.id_for_label }}">Password</label>
                             {{ form.password1|add_class:"form-control" }}
-                            {{ form.password1.errors }}
+                            {% if form.password1.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.password1.errors|first }}
+                            </div>
+                        {% endif %}
                             </div>
                         </div>
     
@@ -76,7 +95,11 @@
                             <div class="form-group">
                                 <label for="{{ form.password2.id_for_label }}">Password Confirmation</label>
                             {{ form.password2|add_class:"form-control" }}
-                            {{ form.password2.errors }}
+                            {% if form.password2.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.password2.errors|first }}
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                         
@@ -84,7 +107,11 @@
                             <div class="form-group">
                                 <label for="company_name">Nombre de la Empresa</label>
                             {{ form.company_name|add_class:"form-control" }}
-                            {{ form.company_name.errors }}
+                            {% if form.company_name.errors %}
+                                <div class="invalid-feedback">
+                                        {{ form.company_name.errors|first }}
+                                </div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -92,7 +119,11 @@
                             <div class="form-group">
                                 <label for="phone_number">Teléfono:</label>
                             {{ form.phone_number|add_class:"form-control" }}
-                            {{ form.phone_number.errors }}
+                            {% if form.phone_number.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.phone_number.errors|first }}
+                            </div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -100,7 +131,11 @@
                             <div class="form-group">
                                 <label for="address">Dirección:</label>
                             {{ form.address|add_class:"form-control" }}
-                            {{ form.address.errors }}
+                            {% if form.address.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.address.errors|first }}
+                            </div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -113,7 +148,7 @@
                             </select>
                             </div>
                         </div>
-
+                    <div id="argentinian-fields">
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="province">Provincia:</label>
@@ -125,7 +160,7 @@
                         </select>
                             </div>
                         </div>
-
+                    
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="city">Ciudad:</label>
@@ -135,7 +170,34 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div id="italian-fields" style="display:none;">
 
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                        <label for="select-region">Región:</label>
+                        <select id="select-region" name="region_it" class="form-control" onchange="cargarProvincias()">
+                            <option value="">Selecciona una región</option>
+                        </select>
+                    </div>
+                </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                        <label for="select-provincia" >Provincia:</label>
+                        <select id="select-provincia" name="provincia_it" class="form-control" onchange="cargarComunas()">
+                            <option value="">Selecciona una provincia</option>
+                        </select>
+                    </div>
+                </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                        <label for="select-comuna">Comuna:</label>
+                        <select id="select-comuna" name="comuna_it" class="form-control">
+                            <option value="">Selecciona una comuna</option>
+                        </select>
+                        </div>
+                    </div>
+                    </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="{{ form.sector.id_for_label }}">Sector:</label>
@@ -230,7 +292,94 @@
             citySelect.appendChild(option);
         });
     }
-  
+ 
+// Funciones similares para cargar provincias y comunas basadas en la región seleccionada
+// ...
+  // Función que se ejecuta al cargar la página
+  document.addEventListener('DOMContentLoaded', function() {
+            cargarRegiones();
+        });
+
+        // Carga las regiones desde el archivo JSON
+        function cargarRegiones() {
+            fetch('/static/accounts/italia/italia.json') // Modifica esta ruta al archivo JSON
+                .then(response => response.json())
+                .then(data => {
+                    const selectRegion = document.getElementById('select-region');
+                    console.log(selectRegion)
+                    data.regioni.forEach(region => {
+                        let option = document.createElement('option');
+                        option.value = region.nome;
+                        option.textContent = region.nome;
+                        selectRegion.appendChild(option);
+                    });
+                });
+        }
+
+        // Carga las provincias según la región seleccionada
+        function cargarProvincias() {
+            const regionSeleccionada = document.getElementById('select-region').value;
+            fetch('/static/accounts/italia/italia.json') // Modifica esta ruta al archivo JSON
+                .then(response => response.json())
+                .then(data => {
+                    const selectProvincia = document.getElementById('select-provincia');
+                    selectProvincia.innerHTML = ''; // Limpiar provincias anteriores
+                    data.regioni.forEach(region => {
+                        if (region.nome === regionSeleccionada) {
+                            region.province.forEach(provincia => {
+                                let option = document.createElement('option');
+                                option.value = provincia.nome;
+                                option.textContent = provincia.nome;
+                                selectProvincia.appendChild(option);
+                            });
+                        }
+                    });
+                });
+        }
+
+        // Carga las comunas según la provincia seleccionada
+        function cargarComunas() {
+            const provinciaSeleccionada = document.getElementById('select-provincia').value;
+            fetch('/static/accounts/italia/italia.json') // Modifica esta ruta al archivo JSON
+                .then(response => response.json())
+                .then(data => {
+                    const selectComuna = document.getElementById('select-comuna');
+                    selectComuna.innerHTML = ''; // Limpiar comunas anteriores
+                    data.regioni.forEach(region => {
+                        region.province.forEach(provincia => {
+                            if (provincia.nome === provinciaSeleccionada) {
+                                provincia.comuni.forEach(comuna => {
+                                    let option = document.createElement('option');
+                                    option.value = comuna.nome;
+                                    option.textContent = comuna.nome;
+                                    selectComuna.appendChild(option);
+                                });
+                            }
+                        });
+                    });
+                });
+        }
+        
+        document.getElementById('country').addEventListener('change', function() {
+    var country = this.value;
+    var italianFields = document.getElementById('italian-fields');
+    var argentinianFields = document.getElementById('argentinian-fields');
+    var provinceField = document.getElementsByName('province')[0]; // Ajusta si el nombre es diferente
+    var cityField = document.getElementsByName('city')[0]; // Ajusta si el nombre es diferente
+
+    if (country === 'IT') {
+        italianFields.style.display = 'block';
+        argentinianFields.style.display = 'none';
+        provinceField.disabled = true;
+        cityField.disabled = true;
+    } else {
+        italianFields.style.display = 'none';
+        argentinianFields.style.display = 'block';
+        provinceField.disabled = false;
+        cityField.disabled = false;
+    }
+});
+
   </script>
 
 

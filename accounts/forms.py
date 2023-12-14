@@ -118,10 +118,11 @@ class CompanySignUpForm(UserCreationForm):
     phone_number = forms.CharField(required=True)
     address = forms.CharField(required=True)
     email = forms.EmailField(required=True, help_text='Requerido. Ingresa una dirección de email válida.')
-    city = forms.CharField(required=True)
+    city = forms.CharField(required=False)
     sector = forms.ChoiceField(choices=[])  # Asegúrate de llenar esta lista dinámicamente si es necesario
     razón_social = forms.CharField(required=True)
     cantidad_empleados = forms.ChoiceField(choices=CANTIDAD_EMPLEADOS_CHOICES, required=True)
+    province_name = forms.CharField(max_length=100, required=False)
     cuit = forms.CharField(
         max_length=13,
         validators=[
@@ -131,10 +132,17 @@ class CompanySignUpForm(UserCreationForm):
             )
         ]
     )
+     # Campos para Italia
+    region_it = forms.CharField(max_length=100, required=False)
+    provincia_it = forms.CharField(max_length=100, required=False)
+    comuna_it = forms.CharField(max_length=100, required=False)
+    country = forms.CharField(max_length=2, required=True)  # Ejemplo, ajusta según sea necesario
+
+
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'company_name', 'razón_social', 'cantidad_empleados', 'phone_number', 'address', 'city', 'sector']
+        fields = ['username', 'email', 'password1', 'password2', 'company_name', 'razón_social', 'cantidad_empleados', 'phone_number', 'address', 'city', 'sector', 'province_name', 'region_it', 'provincia_it', 'comuna_it']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -147,7 +155,28 @@ class CompanySignUpForm(UserCreationForm):
         if Company.objects.filter(cuit=cuit).exists():
             raise forms.ValidationError("Este CUIT ya está en uso.")
         return cuit
+    def clean(self):
+        cleaned_data = super().clean()
+        country = cleaned_data.get("country")
 
+        if country == "IT":
+            # Valida campos para Italia
+            for field_name in ['region_it', 'provincia_it', 'comuna_it']:
+                if not cleaned_data.get(field_name):
+                    self.add_error(field_name, 'Este campo es obligatorio para Italia.')
+        elif country == "AR":
+            # Valida campos para Argentina
+            if not cleaned_data.get('city'):
+                self.add_error('city', 'Este campo es obligatorio para Argentina.')
+            # Agrega validaciones adicionales para Argentina si es necesario
+        else:
+            # Maneja otros países o errores
+            # Puedes agregar un mensaje de error si el país no está soportado
+            pass
+
+        return cleaned_data
+
+    
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
@@ -166,6 +195,10 @@ class CompanySignUpForm(UserCreationForm):
                 contact_email=self.cleaned_data['email'],
                 cuit=self.cleaned_data['cuit'],
                 province_name=self.cleaned_data.get('province_name', ''),  # Asumiendo que puedes obtener este dato de alguna manera
+                region_it=self.cleaned_data['region_it'],
+                provincia_it=self.cleaned_data['provincia_it'],
+                comuna_it=self.cleaned_data['comuna_it']
+                
             )
             company.save()
         return user
@@ -174,7 +207,7 @@ class CompanySignUpForm(UserCreationForm):
         super(CompanySignUpForm, self).__init__(*args, **kwargs)
         # La lógica para cargar las opciones de 'sector' desde un archivo JSON u otra fuente debe ir aquí
         self.fields['sector'].choices = self.load_sector_choices()
-
+    
     def load_sector_choices(self):
         # Aquí iría tu lógica para cargar las opciones de sector desde un archivo JSON u otra fuente
         return []

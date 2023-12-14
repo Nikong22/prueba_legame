@@ -55,6 +55,11 @@
                             <div class="form-group">
                               <label for="{{ form.name.id_for_label }}">Nombre:</label>
                               {{ form.name|add_class:"form-control" }}
+                              {% if form.name.errors %}
+                              <div class="invalid-feedback">
+                                  {{ form.name.errors.as_text }}
+                              </div>
+                          {% endif %}
                             </div>
                         </div>
     
@@ -62,6 +67,11 @@
                             <div class="form-group">
                               <label for="{{ form.lastname.id_for_label }}">Apellido:</label>
                               {{ form.lastname|add_class:"form-control" }}
+                              {% if form.lastname.errors %}
+                              <div class="invalid-feedback">
+                                  {{ form.lastname.errors.as_text }}
+                              </div>
+                          {% endif %}
                             </div>
                         </div>
     
@@ -69,6 +79,11 @@
                             <div class="form-group">
                               <label for="{{ form.email.id_for_label }}">Email:</label>
                               {{ form.email|add_class:"form-control" }}
+                              {% if form.email.errors %}
+                              <div class="invalid-feedback">
+                                  {{ form.email.errors.as_text }}
+                              </div>
+                          {% endif %}
                             </div>
                         </div>
                         
@@ -123,6 +138,11 @@
                         <div class="form-group">
                             <label for="{{ form.document_number.id_for_label }}">Número de Documento:</label>
                             {{ form.document_number|add_class:"form-control" }}
+                            {% if form.document_number.errors %}
+                            <div class="invalid-feedback">
+                                {{ form.document_number.errors.as_text }}
+                            </div>
+                        {% endif %}
                         </div>
                     </div>
                         <div class="col-sm-12 mb-3">

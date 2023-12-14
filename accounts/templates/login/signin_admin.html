@@ -15,9 +15,11 @@
             <div class="card-body">
               <h1>Login</h1>
               <p class="text-muted">Login para Administrador</p>
-              {% if error %}
-                        <div class="alert alert-danger">{{ error }}</div>
-                    {% endif %}
+              {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
                     <form action="{% url 'signin_admin' %}" method="POST" class="mt-4">
                         {% csrf_token %}
                         <div class="input-group mb-3">

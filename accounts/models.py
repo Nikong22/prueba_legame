@@ -66,13 +66,16 @@ class Company(models.Model):
     sector = models.CharField(max_length=100, blank=True, verbose_name='Categoría')
     razón_social = models.CharField(max_length=100)  # Nuevo campo para la razón social
     cantidad_empleados = models.CharField(max_length=50, choices=CANTIDAD_EMPLEADOS_CHOICES)
-    cuit = models.CharField(max_length=13, unique=True)  # Incluye los guiones en la longitud máxima
-
+    cuit = models.CharField(max_length=13, unique=True)  # Incluye los guiones en la longitud máxim
     STATUS_CHOICES = (
         ('active', 'Activa'),
         ('inactive', 'Inactiva'),
     )
     status = models.CharField(max_length=8, choices=STATUS_CHOICES, default='inactive')
+    region_it = models.CharField("Región (Italia)", max_length=100, blank=True, null=True)
+    provincia_it = models.CharField("Provincia (Italia)", max_length=100, blank=True, null=True)
+    comuna_it = models.CharField("Comuna (Italia)", max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=2, choices=[('AR', 'Argentina'), ('IT', 'Italia')], default='AR')
 
     def __str__(self):
         return self.company_name

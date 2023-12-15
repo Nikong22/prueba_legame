@@ -11,7 +11,10 @@ from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from django.contrib.staticfiles import finders
 from django.contrib.auth.forms import AuthenticationForm
 from .models import FAQ 
-from .models import Question 
+from .models import Question
+from .utils import id_to_province_name
+
+
 # Asegúrate de incluir esta línea
 
 import re
@@ -89,10 +92,12 @@ class JobPostForm(forms.ModelForm):
     category = forms.ChoiceField(choices=CATEGORY_CHOICES, required=True)
     expiration_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
     sector = forms.ChoiceField(choices=[])
-
+    region_it = forms.CharField(max_length=100, required=False)
+    provincia_it = forms.CharField(max_length=100, required=False)
+    comuna_it = forms.CharField(max_length=100, required=False)
     class Meta:
         model = JobPost
-        fields = ['title', 'country', 'province_name', 'city', 'sector', 'category', 'descripcion', 'application_limit', 'expiration_date', 'address']
+        fields = ['title', 'country', 'province_name', 'city', 'sector', 'region_it', 'provincia_it', 'comuna_it', 'category', 'descripcion', 'application_limit', 'expiration_date', 'address']
         widgets = {
             'province': forms.Select(attrs={'onchange': 'updateCities()'}),
             'city': forms.Select(),
@@ -182,6 +187,8 @@ class CompanySignUpForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         if commit:
             user.save()
+            province_id = self.cleaned_data.get('province_name', '')
+            province_name = id_to_province_name(province_id) if province_id else ''
             # Aquí, simplemente usamos los campos proporcionados por el modelo Company
             company = Company(
                 user=user, 
@@ -194,12 +201,13 @@ class CompanySignUpForm(UserCreationForm):
                 cantidad_empleados=self.cleaned_data['cantidad_empleados'],
                 contact_email=self.cleaned_data['email'],
                 cuit=self.cleaned_data['cuit'],
-                province_name=self.cleaned_data.get('province_name', ''),  # Asumiendo que puedes obtener este dato de alguna manera
+                province_name=province_name,  # Asigna aquí el nombre de la provincia
                 region_it=self.cleaned_data['region_it'],
                 provincia_it=self.cleaned_data['provincia_it'],
                 comuna_it=self.cleaned_data['comuna_it']
                 
             )
+
             company.save()
         return user
     

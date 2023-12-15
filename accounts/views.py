@@ -25,6 +25,7 @@ from .forms import FAQForm, QuestionForm
 from django.core.signing import Signer, BadSignature
 from django.core.mail import send_mail
 from django.urls import reverse
+from .utils import id_to_province_name
 import os
 
 
@@ -161,7 +162,6 @@ def some_view(request):
 
 
 def signup_comp(request):
-    print(request.POST)  # Imprimir todos los datos del formulario
 
     if request.user.is_authenticated:
         return redirect('/')
@@ -177,6 +177,7 @@ def signup_comp(request):
     )
 
     if request.method == 'POST':
+
         form = CompanySignUpForm(request.POST, request.FILES)
         form.fields['sector'].choices = sector_choices
 
@@ -186,6 +187,8 @@ def signup_comp(request):
                     # Guarda el objeto User
                     user = form.save(commit=False)
                     user.save()
+                    province_id = form.cleaned_data['province_name']
+                    province_name = id_to_province_name(province_id)
 
                     # Aquí puedes agregar lógica adicional si necesitas crear un perfil de usuario
                     # ...
@@ -202,6 +205,7 @@ def signup_comp(request):
                         razón_social=form.cleaned_data['razón_social'],
                         cantidad_empleados=form.cleaned_data['cantidad_empleados'],
                         cuit=form.cleaned_data['cuit'],
+                        province_name=province_name,  # Asigna el nombre de la provincia
 
                         # Aquí deberías manejar los campos específicos de Italia si es el caso
                         # ...
@@ -454,13 +458,29 @@ def create_job_post(request):
         job_post = form.save(commit=False)
         job_post.company = request.user.company
         job_post.expiration_date = form.cleaned_data['expiration_date']
-        if 'province_name' in form.cleaned_data:
-            province_id = form.cleaned_data['province_name']
-            job_post.province_name = id_to_province_name(province_id)
+
+        # Si el país seleccionado es Italia, procesa los campos de Italia
+        if form.cleaned_data['country'] == 'IT':
+            job_post.region_it = form.cleaned_data.get('region_it', '')
+            job_post.provincia_it = form.cleaned_data.get('provincia_it', '')
+            job_post.comuna_it = form.cleaned_data.get('comuna_it', '')
+            # Puedes asignar None o un valor predeterminado a los campos de Argentina
+            job_post.province_name = None
+            job_post.city = None
+        # Si no, procesa los campos de Argentina
         else:
-            # Maneja el caso de que 'province' no esté en form.cleaned_data
-            # Por ejemplo, asignar un valor predeterminado o manejar el error
-            job_post.province_name = 'Valor predeterminado o manejo de error'
+            if 'province_name' in form.cleaned_data:
+                province_id = form.cleaned_data['province_name']
+                job_post.province_name = id_to_province_name(province_id)
+            else:
+                # Maneja el caso de que 'province' no esté en form.cleaned_data
+                job_post.province_name = 'Valor predeterminado o manejo de error'
+
+            if 'city' in form.cleaned_data:
+                job_post.city = form.cleaned_data['city']
+            else:
+                # Maneja el caso de que 'city' no esté en form.cleaned_data
+                job_post.city = 'Valor predeterminado o manejo de error'
 
         job_post.save()
         messages.success(request, "La publicación de trabajo ha sido creada con éxito.")
@@ -710,18 +730,10 @@ def job_details(request, job_id):
 
     return render(request, 'jobs/job_details.html', context)
 
-def id_to_province_name(province_id):
-    json_path = finders.find('accounts/argentina/provincias.json')
-    if not json_path:
-        return None
-    
-    with open(json_path, 'r', encoding='utf-8') as file:
-        provinces_data = json.load(file)['provincias']
-        for province in provinces_data:
-            if str(province['id']) == str(province_id):
-                return province['nombre']  # o 'iso_nombre' si prefieres ese campo
-    
-    return None
+
+
+
+
 
 def is_company_user(user):
     return hasattr(user, 'company') and user.company is not None

@@ -151,8 +151,8 @@
                     <div id="argentinian-fields">
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                                <label for="province">Provincia:</label>
-                        <select name="province" id="province" class="form-control" onchange="updateCities()">
+                                <label for="id_province">Provincia:</label>
+                        <select name="province_name" id="province" class="form-control" onchange="updateCities()">
                             <option value="">Selecciona una provincia</option>
                           {% for province in provinces %}
                           <option value="{{ province.id }}">{{ province.nombre }}</option>

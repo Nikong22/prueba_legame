@@ -10,7 +10,6 @@ from .views import admin_blog
 
 urlpatterns = [
     path('', views.index, name='index'),  # Asegúrate de que 'views.index' es tu función de vista que maneja la búsqueda
-    path('login', views.login_view, name='login_view'),
     path('signup/', views.signup_user, name='signup_user'),
     path('signup_comp/', views.signup_comp, name='signup_comp'),
     path('signup_admin/', views.signup_admin, name='signup_admin'),

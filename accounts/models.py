@@ -104,7 +104,10 @@ class JobPost(models.Model):
     application_limit = models.PositiveIntegerField(default=10)  # Un valor por defecto de 10
     expiration_date = models.DateField("Fecha de vencimiento", default=timezone.now)
     address = models.CharField(max_length=255, blank=True)  # Nuevo campo para la dirección
-
+    region_it = models.CharField("Región (Italia)", max_length=100, blank=True, null=True)
+    provincia_it = models.CharField("Provincia (Italia)", max_length=100, blank=True, null=True)
+    comuna_it = models.CharField("Comuna (Italia)", max_length=100, blank=True, null=True)
+    
     STATUS_CHOICES = (
         ('active', 'Activa'),
         ('inactive', 'Inactiva'),

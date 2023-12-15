@@ -44,11 +44,12 @@
                             </select>
                             </div>
                         </div>
-    
+                        <div id="argentinian-fields">
+
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="id_province">Provincia/Estado:</label>
-                                <select name="province_name" id="province" class="form-control" onchange="updateCities()" required>
+                                <select name="province_name" id="province" class="form-control" onchange="updateCities()">
                                     <option value="">Selecciona una provincia</option>
                                     {% for province in provinces %}
                                         <option value="{{ province.id }}">{{ province.nombre }}</option>
@@ -60,12 +61,39 @@
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="id_city">Ciudad/Localidad:</label>
-                                <select name="city" id="city" class="form-control" required>
+                                <select name="city" id="city" class="form-control">
                                     <option value="">Primero selecciona una provincia</option>
                                 </select>
                             </div>
                         </div>
-    
+                    </div>
+                    <div id="italy-fields" style="display: none;">
+
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                        <label for="select-region">Región:</label>
+                        <select id="select-region" name="region_it" class="form-control" onchange="cargarProvincias()">
+                            <option value="">Selecciona una región</option>
+                        </select>
+                    </div>
+                </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                        <label for="select-provincia" >Provincia:</label>
+                        <select id="select-provincia" name="provincia_it" class="form-control" onchange="cargarComunas()">
+                            <option value="">Selecciona una provincia</option>
+                        </select>
+                    </div>
+                </div>
+                        <div class="col-sm-6 mb-3">
+                            <div class="form-group">
+                        <label for="select-comuna">Comuna:</label>
+                        <select id="select-comuna" name="comuna_it" class="form-control">
+                            <option value="">Selecciona una comuna</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="id_sector">Sector:</label>
@@ -181,7 +209,103 @@
             citySelect.appendChild(option);
         });
     }
-  
+    document.addEventListener('DOMContentLoaded', function() {
+        var countrySelect = document.getElementById('id_country');
+        var argentinianFields = document.getElementById('argentinian-fields');
+        var italianFields = document.getElementById('italy-fields');
+
+        function updateFieldsVisibility() {
+            if (countrySelect.value === 'IT') {
+                italianFields.style.display = 'block';
+                argentinianFields.style.display = 'none';
+            } else if (countrySelect.value === 'AR') {
+                italianFields.style.display = 'none';
+                argentinianFields.style.display = 'block';
+            } else {
+                italianFields.style.display = 'none';
+                argentinianFields.style.display = 'none';
+            }
+        }
+
+        countrySelect.addEventListener('change', updateFieldsVisibility);
+
+        // Llama a la función de inmediato para establecer la visibilidad correcta al cargar la página
+        updateFieldsVisibility();
+    });
+
+        // Carga las regiones desde el archivo JSON
+        function cargarRegiones() {
+            fetch('/static/accounts/italia/italia.json') // Modifica esta ruta al archivo JSON
+                .then(response => response.json())
+                .then(data => {
+                    const selectRegion = document.getElementById('select-region');
+                    console.log(selectRegion)
+                    data.regioni.forEach(region => {
+                        let option = document.createElement('option');
+                        option.value = region.nome;
+                        option.textContent = region.nome;
+                        selectRegion.appendChild(option);
+                    });
+                });
+        }
+
+        // Carga las provincias según la región seleccionada
+        function cargarProvincias() {
+            const regionSeleccionada = document.getElementById('select-region').value;
+            fetch('/static/accounts/italia/italia.json') // Modifica esta ruta al archivo JSON
+                .then(response => response.json())
+                .then(data => {
+                    const selectProvincia = document.getElementById('select-provincia');
+                    selectProvincia.innerHTML = ''; // Limpiar provincias anteriores
+                    data.regioni.forEach(region => {
+                        if (region.nome === regionSeleccionada) {
+                            region.province.forEach(provincia => {
+                                let option = document.createElement('option');
+                                option.value = provincia.nome;
+                                option.textContent = provincia.nome;
+                                selectProvincia.appendChild(option);
+                            });
+                        }
+                    });
+                });
+        }
+
+        // Carga las comunas según la provincia seleccionada
+        function cargarComunas() {
+            const provinciaSeleccionada = document.getElementById('select-provincia').value;
+            fetch('/static/accounts/italia/italia.json') // Modifica esta ruta al archivo JSON
+                .then(response => response.json())
+                .then(data => {
+                    const selectComuna = document.getElementById('select-comuna');
+                    selectComuna.innerHTML = ''; // Limpiar comunas anteriores
+                    data.regioni.forEach(region => {
+                        region.province.forEach(provincia => {
+                            if (provincia.nome === provinciaSeleccionada) {
+                                provincia.comuni.forEach(comuna => {
+                                    let option = document.createElement('option');
+                                    option.value = comuna.nome;
+                                    option.textContent = comuna.nome;
+                                    selectComuna.appendChild(option);
+                                });
+                            }
+                        });
+                    });
+                });
+        }
+        
+        document.getElementById('id_country').addEventListener('change', function() {
+    var country = this.value;
+    var argentinianFields = document.getElementById('argentinian-fields');
+    var italianFields = document.getElementById('italian-fields');
+
+    if (country === 'IT') {
+        italianFields.style.display = 'block';
+        argentinianFields.style.display = 'none';
+    } else {
+        italianFields.style.display = 'none';
+        argentinianFields.style.display = 'block';
+    }
+});
   </script>
   
 {% endblock %}

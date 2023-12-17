@@ -1,6 +1,9 @@
+* {
+    box-sizing: border-box;
+}
 body {
     margin-top: 20px;
-    /* Otros estilos para body si los hay */
+    overflow-x: hidden; /* Esto previene el desplazamiento lateral */
 }
 #page-content {
     flex: 1;
@@ -24,10 +27,25 @@ body {
 
 /* Media queries para dispositivos móviles */
 @media (max-width: 576px) {
-    .footer_area {
-        padding: 20px 0; /* Padding aún más pequeño para móviles */
+    .footer_area .row .col-6 {
+        padding: 0; /* Asegúrate de que no haya padding que cause desbordamiento */
+        margin-bottom: 15px; /* Espacio entre imágenes apiladas */
     }
-}
+  }
+
+  
+  @media (max-width: 991px) { /* Estilo para pantallas pequeñas */
+    .footer_area .row .col-md-3 {
+      margin-bottom: 15px; /* Agrega espacio entre imágenes apiladas */
+    }
+  }
+  
+  @media (max-width: 767px) { /* Estilo para pantallas muy pequeñas */
+    .footer_area .row .col-sm-4 {
+      margin-bottom: 15px; /* Agrega espacio entre imágenes apiladas */
+    }
+  }
+  
 
 .footer_social_area {
     position: relative;
@@ -135,4 +153,28 @@ ul {
 
 #logo-especial{
     padding-left: -1100px; /* Ajusta este valor según sea necesario */
+}
+
+@media (max-width: 768px) {
+    #link-especial {
+        font-size: 20px; /* Tamaño más pequeño para pantallas menores */
+    }
+    .navbar-brand img {
+        height: 50px; /* Menor tamaño para el logo */
+    }
+    .nav-item, .nav-link {
+        display: block; /* Muestra los elementos en pantalla completa en dispositivos móviles */
+        width: 100%; /* Ocupa toda la anchura disponible */
+        text-align: left; /* Alinea el texto a la izquierda */
+    }
+    /* Asegúrate de que el menú de navegación se colapsa correctamente */
+    .navbar-collapse {
+        transform: none !important; /* Elimina cualquier transformación que pueda estar escondiendo el menú */
+    }
+}
+
+/* Clases para imágenes responsivas */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
 }

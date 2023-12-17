@@ -33,7 +33,11 @@ body{
         max-width: 1140px;
     }
 }
-
+@media (max-width: 991px) { /* Pantallas menores a 992px (md) */
+    .card.text-white.bg-primary.py-5.d-md-down-none {
+      width: 100%; /* Ajusta el ancho a 100% en dispositivos móviles */
+    }
+  }
 
 
 .card-columns .card {

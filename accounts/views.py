@@ -76,51 +76,7 @@ def get_user_type(user):
     else:
         return None
 
-def login_view(request):
-    if request.method == 'POST':
-        # Obtén las credenciales del formulario
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        # Autenticar al usuario
-        user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            # Inicia sesión con el usuario
-            if request.session.exists(request.session.session_key):
-                request.session.flush()
-            login(request, user)
-            # Elimina sesiones anteriores
-            UserSession.objects.filter(user=user).delete()
-
-            # Crea una nueva sesión de usuario
-            UserSession.objects.create(
-                user=user,
-                session_key=request.session.session_key,
-                device_identifier=request.META.get('HTTP_USER_AGENT')  # Ejemplo de identificador
-            )
-            print(f"Clave de sesión: {request.session.session_key}")  # Mensaje de depuración
-
-            # Aquí puedes redirigir al usuario a la página de inicio u otra página
-            return redirect('index')
-
-    # La lógica para usuarios no autenticados o para solicitudes GET
-    active_jobs = JobPost.objects.filter(status='active')
-    latest_entry = BlogEntry.objects.order_by('-updated_at').first()  # Obtén la última entrada del blog
-    context = {
-        'jobs': active_jobs,
-        'latest_entry': latest_entry  # Asegúrate de pasar 'latest_entry' al contexto
-    }
-    if request.user.is_authenticated:
-        context['username'] = request.user.username
-        if hasattr(request.user, 'userprofile'):
-            context['user_type'] = 'Usuario'
-        elif hasattr(request.user, 'company'):
-            context['user_type'] = 'Empresa'
-        elif request.user.is_staff or request.user.is_superuser:
-            context['user_type'] = 'Admin'
-        else:
-            context['user_type'] = 'Tipo de usuario no definido'
-    return render(request, 'login/index.html', context)
 
 def signup_user(request):
     if request.user.is_authenticated:
@@ -214,13 +170,17 @@ def signup_comp(request):
 
                     # Manejo de los campos específicos de Italia y Argentina
                     country = form.cleaned_data.get('country')
-                    if country == 'IT':
+                    if form.cleaned_data['country'] == 'IT':
                         company.region_it = form.cleaned_data.get('region_it', '')
                         company.provincia_it = form.cleaned_data.get('provincia_it', '')
                         company.comuna_it = form.cleaned_data.get('comuna_it', '')
-                    elif country == 'AR':
-                        company.province_name = form.cleaned_data.get('province_name', '')
-                        company.city = form.cleaned_data.get('city', '')
+                    else:
+                        if 'province_name' in form.cleaned_data:
+                            province_id = form.cleaned_data['province_name']
+                            company.province_name = id_to_province_name(province_id)
+                        else:
+                            company.province_name = form.cleaned_data.get('province_name', '')
+                            company.city = form.cleaned_data.get('city', '')
 
                     company.save()
 
@@ -465,22 +425,16 @@ def create_job_post(request):
             job_post.provincia_it = form.cleaned_data.get('provincia_it', '')
             job_post.comuna_it = form.cleaned_data.get('comuna_it', '')
             # Puedes asignar None o un valor predeterminado a los campos de Argentina
-            job_post.province_name = None
-            job_post.city = None
+            job_post.province_name =  ''
+            job_post.city =  ''
         # Si no, procesa los campos de Argentina
         else:
             if 'province_name' in form.cleaned_data:
                 province_id = form.cleaned_data['province_name']
                 job_post.province_name = id_to_province_name(province_id)
             else:
-                # Maneja el caso de que 'province' no esté en form.cleaned_data
-                job_post.province_name = 'Valor predeterminado o manejo de error'
-
-            if 'city' in form.cleaned_data:
-                job_post.city = form.cleaned_data['city']
-            else:
-                # Maneja el caso de que 'city' no esté en form.cleaned_data
-                job_post.city = 'Valor predeterminado o manejo de error'
+                job_post.province_name = form.cleaned_data.get('province_name', '')
+                job_post.city = form.cleaned_data.get('city', '')
 
         job_post.save()
         messages.success(request, "La publicación de trabajo ha sido creada con éxito.")

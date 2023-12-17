@@ -88,13 +88,13 @@ class BlogEntryForm(ModelForm):
         fields = ['title', 'content']
 
 class JobPostForm(forms.ModelForm):
-    country = forms.ChoiceField(choices=[('AR', 'Argentina'), ('IT', 'Italia')], required=True)
     category = forms.ChoiceField(choices=CATEGORY_CHOICES, required=True)
     expiration_date = forms.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
     sector = forms.ChoiceField(choices=[])
     region_it = forms.CharField(max_length=100, required=False)
     provincia_it = forms.CharField(max_length=100, required=False)
     comuna_it = forms.CharField(max_length=100, required=False)
+    country = forms.CharField(max_length=2, required=True)  # Ejemplo, ajusta según sea necesario
     class Meta:
         model = JobPost
         fields = ['title', 'country', 'province_name', 'city', 'sector', 'region_it', 'provincia_it', 'comuna_it', 'category', 'descripcion', 'application_limit', 'expiration_date', 'address']
@@ -108,7 +108,19 @@ class JobPostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(JobPostForm, self).__init__(*args, **kwargs)
         self.fields['sector'].choices = self.load_sector_choices()
-        
+    def clean(self):
+        cleaned_data = super().clean()
+        country = cleaned_data.get("country")
+
+        if country == "IT":
+            # Para Italia, no requerimos province_name, así que lo establecemos en blanco o nulo
+            cleaned_data['province_name'] = None
+        else:
+            # Para otros países, asegúrate de que province_name esté presente
+            if not cleaned_data.get('province_name'):
+                self.add_error('province_name', 'Este campo es obligatorio.')
+
+        return cleaned_data    
     def load_sector_choices(self):
         sectors_json_path = finders.find('accounts/lista/sectores.json')
         if sectors_json_path:
@@ -120,7 +132,10 @@ class JobPostForm(forms.ModelForm):
         
 class CompanySignUpForm(UserCreationForm):
     company_name = forms.CharField(required=True)
-    phone_number = forms.CharField(required=True)
+    phone_number = PhoneNumberField(
+        widget=PhoneNumberPrefixWidget(initial='AR'),  # Predeterminado a Argentina
+        help_text='Número de teléfono con prefijo internacional'
+    )    
     address = forms.CharField(required=True)
     email = forms.EmailField(required=True, help_text='Requerido. Ingresa una dirección de email válida.')
     city = forms.CharField(required=False)
@@ -148,7 +163,21 @@ class CompanySignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ['username', 'email', 'password1', 'password2', 'company_name', 'razón_social', 'cantidad_empleados', 'phone_number', 'address', 'city', 'sector', 'province_name', 'region_it', 'provincia_it', 'comuna_it']
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number')
 
+        # Comprueba si el número de teléfono es None
+        if phone_number is None:
+            raise forms.ValidationError("Este campo es obligatorio.")
+        
+        # Comprueba si el número de teléfono tiene un código de país válido
+        if str(phone_number.country_code) in ['54', '39']:
+            print("El código de país es válido")
+        else:
+            print("El código de país no es válido")
+            raise forms.ValidationError("Por favor ingresa un número de teléfono válido para Argentina o Italia.")
+
+        return phone_number
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():

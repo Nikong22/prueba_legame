@@ -116,15 +116,15 @@
                         </div>
 
                         <div class="col-sm-6 mb-3">
-                            <div class="form-group">
-                                <label for="phone_number">Teléfono:</label>
+                           <div class="form-group">
+                            <label for="{{ form.phone_number.id_for_label }}">Teléfono:</label>
                             {{ form.phone_number|add_class:"form-control" }}
                             {% if form.phone_number.errors %}
-                            <div class="invalid-feedback">
-                                {{ form.phone_number.errors|first }}
-                            </div>
-                                {% endif %}
-                            </div>
+                                <div class="invalid-feedback">
+                                    {{ form.phone_number.errors.as_text }}
+                                </div>
+                            {% endif %}
+                        </div>
                         </div>
 
                         <div class="col-sm-6 mb-3">

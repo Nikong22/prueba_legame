@@ -20,7 +20,15 @@
             <h4>{{ job.title }}</h4>
             <h5><strong>Sector:</strong> {{ job.sector }}</h5>
             <p><strong>Categoría:</strong> {{ job.category }}</p>
-            <p><strong>Ubicación:</strong> {{ job.city }}, {{ job.province }}</p>
+            <p><strong>Pais: </strong>{{ job.country }}</p>
+            {% if job.country == 'AR' %}
+            <p><strong>Ciudad: </strong>{{ job.city }}</p>
+            <p><strong>Provincia: </strong>{{ job.province_name }}</p>
+            {% elif job.country == 'IT' %}
+            <p><strong>Región: </strong>{{ job.region_it }}</p>
+            <p><strong>Provincia: </strong>{{ job.provincia_it }}</p>
+            <p><strong>Comuna: </strong>{{ job.comuna_it }}</p>
+            {% endif %}
             <p><strong>Fecha de vencimiento:</strong> {{ job.expiration_date }}</p>
             <p><strong>Dirección:</strong> {{ job.address }}</p>
             <p><strong>Descripción:</strong> {{ job.descripcion }}</p>

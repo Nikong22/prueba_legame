@@ -114,3 +114,25 @@ ul {
     padding-left: 0; /* Esto elimina el relleno izquierdo que normalmente empuja los elementos de la lista hacia adentro */
     margin-left: 0; /* Esto elimina cualquier margen izquierdo si está presente */
   }
+
+
+  @font-face {
+    font-family: 'Alta Regular';
+    src: url('fonts/Alta_regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+#link-especial {
+    font-size: 40px; /* O el tamaño que prefieras */
+    font-family: 'Alta Regular', sans-serif;
+    color: #495057;
+    margin-right: 20px;
+    margin-left: 0; /* Ajusta este valor según sea necesario */
+
+}
+
+#logo-especial{
+    padding-left: -1100px; /* Ajusta este valor según sea necesario */
+}

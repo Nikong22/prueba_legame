@@ -60,7 +60,7 @@ class Company(models.Model):
     company_name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     contact_email = models.EmailField()
-    phone_number = models.CharField(max_length=15)
+    phone_number = PhoneNumberField(blank=True, help_text='Número de teléfono con prefijo internacional')
     province_name = models.CharField(max_length=100, null=True, blank=True)
     city = models.CharField(max_length=100, blank=True)
     sector = models.CharField(max_length=100, blank=True, verbose_name='Categoría')
@@ -96,9 +96,9 @@ class JobPost(models.Model):
     title = models.CharField(max_length=200)
     sector  = models.CharField(max_length=50)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='full-time')
-    country = models.CharField(max_length=2, choices=[('AR', 'Argentina'), ('IT', 'Italia')])
-    province_name = models.CharField(max_length=100, blank=True)
-    city = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=2, choices=[('AR', 'Argentina'), ('IT', 'Italia')], default='AR')
+    province_name = models.CharField(max_length=100, blank=True, null=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     descripcion = models.TextField(blank=True)  # Campo nuevo para la descripción
     application_limit = models.PositiveIntegerField(default=10)  # Un valor por defecto de 10

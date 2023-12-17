@@ -209,29 +209,12 @@
             citySelect.appendChild(option);
         });
     }
-    document.addEventListener('DOMContentLoaded', function() {
-        var countrySelect = document.getElementById('id_country');
-        var argentinianFields = document.getElementById('argentinian-fields');
-        var italianFields = document.getElementById('italy-fields');
-
-        function updateFieldsVisibility() {
-            if (countrySelect.value === 'IT') {
-                italianFields.style.display = 'block';
-                argentinianFields.style.display = 'none';
-            } else if (countrySelect.value === 'AR') {
-                italianFields.style.display = 'none';
-                argentinianFields.style.display = 'block';
-            } else {
-                italianFields.style.display = 'none';
-                argentinianFields.style.display = 'none';
-            }
-        }
-
-        countrySelect.addEventListener('change', updateFieldsVisibility);
-
-        // Llama a la función de inmediato para establecer la visibilidad correcta al cargar la página
-        updateFieldsVisibility();
-    });
+// Funciones similares para cargar provincias y comunas basadas en la región seleccionada
+// ...
+  // Función que se ejecuta al cargar la página
+  document.addEventListener('DOMContentLoaded', function() {
+            cargarRegiones();
+        });
 
         // Carga las regiones desde el archivo JSON
         function cargarRegiones() {
@@ -295,8 +278,8 @@
         
         document.getElementById('id_country').addEventListener('change', function() {
     var country = this.value;
+    var italianFields = document.getElementById('italy-fields');
     var argentinianFields = document.getElementById('argentinian-fields');
-    var italianFields = document.getElementById('italian-fields');
 
     if (country === 'IT') {
         italianFields.style.display = 'block';

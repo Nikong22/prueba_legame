@@ -31,7 +31,8 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True)
     cv = models.FileField(upload_to='cvs/', null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
-    
+    email_confirmed = models.BooleanField(default=False)
+
     GENDER_CHOICES = [
         ('Masculino', 'Masculino'),
         ('Femenino', 'Femenino'),
@@ -76,6 +77,8 @@ class Company(models.Model):
     provincia_it = models.CharField("Provincia (Italia)", max_length=100, blank=True, null=True)
     comuna_it = models.CharField("Comuna (Italia)", max_length=100, blank=True, null=True)
     country = models.CharField(max_length=2, choices=[('AR', 'Argentina'), ('IT', 'Italia')], default='AR')
+    email_confirmed = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.company_name
@@ -84,7 +87,8 @@ class Company(models.Model):
 class AdminUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # Campos adicionales específicos para administradores, si son necesarios
-    admin_code = models.CharField(max_length=10, unique=True)
+    email = models.EmailField(unique=True)  # Asegura que el email sea único
+    email_confirmed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

@@ -17,7 +17,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
 from .models import UserSession  # Asegúrate de importar UserSession
-from .forms import CustomAuthenticationForm
+from .forms import CustomAuthenticationForm, AdminCreationForm
 from django.db.models import Count
 from django.core.paginator import Paginator
 from .models import FAQ, Question
@@ -27,7 +27,8 @@ from django.core.mail import send_mail
 from django.urls import reverse
 from .utils import id_to_province_name
 import os
-
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.contrib.auth.tokens import default_token_generator
 
 def faqs(request):
     
@@ -85,7 +86,7 @@ def signup_user(request):
         form = CustomUserCreationForm()
         return render(request, 'login/signup_user.html', {'form': form})
     else:
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST, request=request)
         if form.is_valid():
             user = form.save()
             user_profile = UserProfile(
@@ -101,7 +102,6 @@ def signup_user(request):
                 # Agrega aquí la lógica para otros campos si es necesario
             )
             user_profile.save()
-            login(request, user)
             return redirect('/')
         else:
             return render(request, 'login/signup_user.html', {'form': form})
@@ -236,34 +236,20 @@ def load_sectors(request):
 
 def signup_admin(request):
     if request.method == 'GET':
-        return render(request, 'login/signup_admin.html', {'form': UserCreationForm()})
+        form = AdminCreationForm()
+        return render(request, 'login/signup_admin.html', {'form': form})
     else:
-        if request.POST.get('password1') == request.POST.get('password2'):
-            try:
-                user = User.objects.create_user(
-                    username=request.POST.get('username'),
-                    password=request.POST.get('password1')
-                )
-                # Establecer el usuario como miembro del staff y superusuario
-                user.is_staff = True
-                user.is_superuser = True
-                user.save()
-
-                # Crear y guardar la entidad del administrador
-                admin_user = AdminUser(user=user, admin_code=request.POST.get('admin_code'))
-                admin_user.save()
-                login(request, user)
-                return redirect('/')
-            except IntegrityError:
-                return render(request, 'login/signup_admin.html', {
-                    'form': UserCreationForm(),
-                    'error': 'Ya existe un usuario con ese nombre'
-                })
+        form = AdminCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.is_staff = True
+            user.is_superuser = True
+            user.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('/')
         else:
-            return render(request, 'login/signup_admin.html', {
-                'form': UserCreationForm(),
-                'error': 'Las contraseñas no coinciden'
-            })
+            return render(request, 'login/signup_admin.html', {'form': form})
+
 
 def signout(request):
         logout(request)
@@ -763,3 +749,25 @@ def view_applicants(request, job_id):
     job = get_object_or_404(JobPost, pk=job_id, company=request.user.company)
     applications = Application.objects.filter(job=job).select_related('user_profile')
     return render(request, 'jobs/view_applicants.html', {'job': job, 'applications': applications})
+
+
+
+
+
+def activate_account(request, uidb64, token):
+    try:
+        uid = str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.profile.email_confirmed = True
+        user.save()
+        # Si estás trabajando con el modelo Company, asegúrate de hacer lo mismo con el campo email_confirmed
+        # user.company.email_confirmed = True
+        # user.company.save()
+        login(request, user)  # Inicia sesión automáticamente al usuario
+        return redirect('home')  # O donde sea que quieras redirigir al usuario después de activar
+    else:
+        return render(request, 'activation_invalid.html')

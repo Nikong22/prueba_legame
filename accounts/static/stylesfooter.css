@@ -1,6 +1,8 @@
 body {
     margin-top: 20px;
     /* Otros estilos para body si los hay */
+    overflow-x: hidden; /* Esto previene el desplazamiento horizontal */
+
 }
 #page-content {
     flex: 1;

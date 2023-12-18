@@ -13,6 +13,18 @@ from django.contrib.auth.forms import AuthenticationForm
 from .models import FAQ 
 from .models import Question
 from .utils import id_to_province_name
+from .models import AdminUser
+from django.core.exceptions import ValidationError
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect, get_object_or_404
+from django.template.loader import render_to_string
+from django.contrib.auth.models import User
+from django.urls import reverse
+
+
 
 
 # Asegúrate de incluir esta línea
@@ -75,11 +87,31 @@ class CustomUserCreationForm(UserCreationForm):
         if UserProfile.objects.filter(document_number=document_number).exists():
             raise forms.ValidationError("Este número de documento ya está en uso.")
         return document_number
+    def send_verification_email(self, user):
+        token = default_token_generator.make_token(user)
+        uid = urlsafe_base64_encode(force_bytes(user.pk))
+        url = self.request.build_absolute_uri(reverse('activate_account', kwargs={'uidb64': uid, 'token': token}))
+        message = render_to_string('activation_email.html', {
+            'user': user,
+            'url': url,
+        })
+        send_mail(
+            'Activación de cuenta',
+            message,
+            'nikongg22@gmail.com',
+            [user.email],
+            fail_silently=False,
+        )
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
         if commit:
             user.save()
+            self.send_verification_email(user)  # Aquí llamas al método para enviar el email
+
         return user
 
 class BlogEntryForm(ModelForm):
@@ -129,6 +161,19 @@ class JobPostForm(forms.ModelForm):
             return [(sector['nombre'], sector['nombre']) for sector in sectors_data['sectores']]
         else:
             return []
+
+class AdminCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True, help_text="Requerido. Ingresa una dirección de email válida.")
+
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("Ya existe un usuario con este correo electrónico.")
+        return email
         
 class CompanySignUpForm(UserCreationForm):
     company_name = forms.CharField(required=True)

@@ -34,7 +34,7 @@
         id="logo-especial"
       />
     </a>
-    <a class="nav-link d-none d-lg-block" id="link-especial" href="/">LEGAME</a>
+    <a class="nav-link d-lg-block" id="link-especial" href="/" style="text-align: center; display: block;">LEGAME</a>
 
     <!-- Toggle button -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,16 +45,16 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/">Inicio</a>
+          <!--<a class="nav-link" href="/">Inicio</a>-->
         </li>
       </ul>
       <!-- Left links -->
       <div class="d-flex align-items-center">
           <a class="nav-link" href="{% url 'faqs' %}" style="text-decoration: none; color: #495057; margin-right: 20px;">Preguntas frecuentes</a>
         <button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
-          <a class="nav-link" href="{% url 'signin' %}">Login</a>
+          <a class="nav-link btn-login" href="{% url 'signin' %}">Login</a>
         </button>
-        <div class="dropdown" style="margin-right: 1rem;">
+        <div class="dropdown profile-icon" style="margin-right: 1rem;">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="bi bi-person-circle" style="font-size: 2.5rem;"></i>
           </a>

@@ -30,6 +30,9 @@ import os
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 
+
+
+
 def faqs(request):
     
     return render(request, 'admin/faqs.html')

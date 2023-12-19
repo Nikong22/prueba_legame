@@ -90,11 +90,11 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'  # Podrías probar con 'None' si estás enfrentando problemas con el atributo SameSite
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'relay-hosting.secureserver.net'
-EMAIL_PORT = 25
-EMAIL_USE_TLS = False
-EMAIL_HOST_USER = ''  # No se requiere usuario para el servidor de retransmisión
-EMAIL_HOST_PASSWORD = ''  # No se requiere contraseña para el servidor de retransmisión
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nikongg22@gmail.com'
+EMAIL_HOST_PASSWORD = 'ilijutddaguesron'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

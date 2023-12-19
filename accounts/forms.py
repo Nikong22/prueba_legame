@@ -98,7 +98,7 @@ class CustomUserCreationForm(UserCreationForm):
         send_mail(
             'Activación de cuenta',
             message,
-            'nikongg22@gmail.com',
+            'algo@progettolegame.com',
             [user.email],
             fail_silently=False,
         )

@@ -1,0 +1,8 @@
+
+Activación de Cuenta
+
+  Hola {{ user.username }},
+  Gracias por registrarte en nuestro sitio. Por favor, activa tu cuenta haciendo clic en el siguiente enlace:
+  {{ url }} Activar Cuenta
+  Si no has sido tú quien se registró, por favor ignora este mensaje.
+

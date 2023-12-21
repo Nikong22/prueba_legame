@@ -29,6 +29,7 @@ from .utils import id_to_province_name
 import os
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
+from django.template.loader import render_to_string
 
 
 
@@ -712,31 +713,45 @@ def edit_job_post(request, job_id):
 def apply_for_job(request, job_id):
     job = get_object_or_404(JobPost, pk=job_id)
     
+    # Verifica si la fecha de vencimiento ha pasado o si se ha alcanzado el límite de postulaciones
     if job.expiration_date < timezone.now().date():
         messages.error(request, 'La fecha de vencimiento para este trabajo ha pasado y no se aceptan más postulaciones.')
         return redirect('job_details', job_id=job_id)
     
-    # Verificar si ya se ha alcanzado el límite de postulaciones
     if job.application_limit <= 0:
         messages.error(request, 'Este trabajo ya ha alcanzado el número máximo de postulaciones.')
         return redirect('job_details', job_id=job_id)
 
     user_profile = request.user.userprofile
-    # Verificar si el usuario ya se ha postulado
+    # Verifica si el usuario ya se ha postulado
     if Application.objects.filter(job=job, user_profile=user_profile).exists():
         messages.info(request, 'Ya te has postulado para este puesto.')
-        return redirect('job_details', job_id=job_id)
+    else:
+        with transaction.atomic():
+            job.refresh_from_db()
+            if job.application_limit > 0:
+                application = Application.objects.create(job=job, user_profile=user_profile)
+                job.application_limit -= 1
+                job.save()
 
-    # Crear la postulación y actualizar el límite
-    with transaction.atomic():
-        job.refresh_from_db()
-        if job.application_limit > 0:
-            Application.objects.create(job=job, user_profile=user_profile)
-            job.application_limit -= 1
-            job.save()
-            messages.success(request, 'Te has postulado exitosamente para este puesto.')
-        else:
-            messages.error(request, 'Este trabajo ya ha alcanzado el número máximo de postulaciones.')
+                # Envía el correo electrónico al usuario de la empresa
+                subject = 'Nueva postulación para tu publicación de trabajo'
+                message = render_to_string('new_application_notification.txt', {
+                    'company': job.company,
+                    'job': job,
+                    'user_profile': user_profile,
+                    'application': application,
+                    'link_to_job': request.build_absolute_uri(reverse('view_applicants', args=[job.id]))
+                })
+                send_mail(
+                    subject,
+                    message,
+                    'nikongg22@gmail.com',  # Correo electrónico del remitente
+                    [job.company.contact_email],  # Correo electrónico del destinatario
+                    fail_silently=False,
+                )
+
+                messages.success(request, 'Te has postulado exitosamente para este puesto.')
 
     return redirect('job_details', job_id=job_id)
 
@@ -765,12 +780,17 @@ def activate_account(request, uidb64, token):
         user = None
 
     if user is not None and default_token_generator.check_token(user, token):
-        user.profile.email_confirmed = True
-        user.save()
-        # Si estás trabajando con el modelo Company, asegúrate de hacer lo mismo con el campo email_confirmed
-        # user.company.email_confirmed = True
-        # user.company.save()
+        # Confirma el correo electrónico para el perfil de usuario si existe
+        if hasattr(user, 'userprofile'):
+            user.userprofile.email_confirmed = True
+            user.userprofile.save()
+
+        # Confirma el correo electrónico para la empresa si existe
+        if hasattr(user, 'company'):
+            user.company.email_confirmed = True
+            user.company.save()
+
         login(request, user)  # Inicia sesión automáticamente al usuario
-        return redirect('home')  # O donde sea que quieras redirigir al usuario después de activar
+        return redirect('/')  # O donde sea que quieras redirigir al usuario después de activar
     else:
         return render(request, 'activation_invalid.html')

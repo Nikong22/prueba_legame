@@ -23,7 +23,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.contrib.auth.models import User
 from django.urls import reverse
+from smtplib import SMTPException
+from django.core.mail import send_mail
+from .email_utils import send_verification_email
+import logging
+from django.db import transaction
 
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s',
+)
+logger = logging.getLogger(__name__)
 
 
 
@@ -87,21 +97,7 @@ class CustomUserCreationForm(UserCreationForm):
         if UserProfile.objects.filter(document_number=document_number).exists():
             raise forms.ValidationError("Este número de documento ya está en uso.")
         return document_number
-    def send_verification_email(self, user):
-        token = default_token_generator.make_token(user)
-        uid = urlsafe_base64_encode(force_bytes(user.pk))
-        url = self.request.build_absolute_uri(reverse('activate_account', kwargs={'uidb64': uid, 'token': token}))
-        message = render_to_string('activation_email.html', {
-            'user': user,
-            'url': url,
-        })
-        send_mail(
-            'Activación de cuenta',
-            message,
-            'nikongg22@gmail.com',
-            [user.email],
-            fail_silently=False,
-        )
+    
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
@@ -110,8 +106,7 @@ class CustomUserCreationForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         if commit:
             user.save()
-            self.send_verification_email(user)  # Aquí llamas al método para enviar el email
-
+            send_verification_email(user, self.request)  # Usando la función de utilidad
         return user
 
 class BlogEntryForm(ModelForm):
@@ -255,15 +250,28 @@ class CompanySignUpForm(UserCreationForm):
 
         return cleaned_data
 
-    
     def save(self, commit=True):
+        logger.info("Iniciando el método save en CompanySignUpForm")
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
+
         if commit:
-            user.save()
+            with transaction.atomic():
+                user.save()
+                self.send_verification_email(user, self.request)
+
+            try:
+                print("Antes de llamar a send_verification_email")
+                send_verification_email(user, self.request)
+                print("Después de llamar a send_verification_email")
+                logger.info("Correo de verificación enviado correctamente.")
+            except Exception as e:
+                print(f"Excepción capturada en send_verification_email: {e}")
+                logger.error(f"Error al enviar correo de verificación: {e}")
+
+            # Resto del código para guardar el objeto Company
             province_id = self.cleaned_data.get('province_name', '')
             province_name = id_to_province_name(province_id) if province_id else ''
-            # Aquí, simplemente usamos los campos proporcionados por el modelo Company
             company = Company(
                 user=user, 
                 company_name=self.cleaned_data['company_name'],
@@ -275,20 +283,25 @@ class CompanySignUpForm(UserCreationForm):
                 cantidad_empleados=self.cleaned_data['cantidad_empleados'],
                 contact_email=self.cleaned_data['email'],
                 cuit=self.cleaned_data['cuit'],
-                province_name=province_name,  # Asigna aquí el nombre de la provincia
+                province_name=province_name,
                 region_it=self.cleaned_data['region_it'],
                 provincia_it=self.cleaned_data['provincia_it'],
                 comuna_it=self.cleaned_data['comuna_it']
-                
             )
 
             company.save()
+            print("Objeto Company guardado correctamente")
+
+        print("Fin del método save en CompanySignUpForm")
         return user
-    
+    def send_verification_email(self, user, request):
+        # Llama a la función global send_verification_email
+        send_verification_email(user, request)
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
         super(CompanySignUpForm, self).__init__(*args, **kwargs)
-        # La lógica para cargar las opciones de 'sector' desde un archivo JSON u otra fuente debe ir aquí
         self.fields['sector'].choices = self.load_sector_choices()
+        # La lógica para cargar las opciones de 'sector' desde un archivo JSON u otra fuente debe ir aquí
     
     def load_sector_choices(self):
         # Aquí iría tu lógica para cargar las opciones de sector desde un archivo JSON u otra fuente

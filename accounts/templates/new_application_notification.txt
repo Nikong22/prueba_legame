@@ -1,0 +1,13 @@
+Estimado {{ company.company_name }},
+
+Has recibido una nueva postulación para la oferta de trabajo "{{ job.title }}".
+
+Detalles del postulante:
+Nombre: {{ user_profile.name }}
+Apellido: {{ user_profile.lastname }}
+Email: {{ user_profile.email }}
+
+Puedes ver más detalles de la postulación aquí: {{ link_to_job }}
+
+Saludos,
+El equipo de Legame

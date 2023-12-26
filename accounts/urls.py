@@ -41,6 +41,8 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate_account, name='activate_account'),
     path('activation_valid/', views.activation_valid, name='activation_valid'),
     path('resend_activation_email/<uidb64>/', views.resend_activation_email, name='resend_activation_email'),
+    path('activation_valid_admin/', views.activation_valid_admin, name='activation_valid_admin'),
+
 
 
 ]

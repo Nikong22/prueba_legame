@@ -169,7 +169,15 @@ class AdminCreationForm(UserCreationForm):
         if User.objects.filter(email=email).exists():
             raise ValidationError("Ya existe un usuario con este correo electrónico.")
         return email
-        
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_staff = True
+        user.is_superuser = True
+        if commit:
+            user.save()
+            AdminUser.objects.create(user=user, email=user.email)
+        return user
+    
 class CompanySignUpForm(UserCreationForm):
     company_name = forms.CharField(required=True)
     phone_number = PhoneNumberField(

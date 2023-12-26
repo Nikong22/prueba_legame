@@ -33,6 +33,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_str
 from django.utils.encoding import force_bytes
 from django.http import HttpResponseRedirect
+from .email_utils import send_verification_email  # Asegúrate de importar send_verification_email
 
 
 
@@ -240,21 +241,22 @@ def load_sectors(request):
     else:
         return JsonResponse({'error': 'Archivo de sectores no encontrado'}, status=404)
 
+
 def signup_admin(request):
-    if request.method == 'GET':
-        form = AdminCreationForm()
-        return render(request, 'login/signup_admin.html', {'form': form})
-    else:
+    if request.method == 'POST':
         form = AdminCreationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.is_staff = True
-            user.is_superuser = True
-            user.save()
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            return redirect('/')
-        else:
-            return render(request, 'login/signup_admin.html', {'form': form})
+            user = form.save()
+            send_verification_email(user, request)  # Aquí se pasa el 'request'
+            return render(request, 'email/registration_success.html')
+    else:
+        form = AdminCreationForm()
+
+    return render(request, 'login/signup_admin.html', {'form': form})
+
+
+
+
 
 
 def signout(request):
@@ -319,6 +321,11 @@ def signin_admin(request):
             user = form.get_user()
 
             if user.is_superuser or user.is_staff:
+                  # Verificar si el correo electrónico del administrador ha sido confirmado
+                if hasattr(user, 'adminuser') and not user.adminuser.email_confirmed:
+                    messages.error(request, 'Por favor, activa tu cuenta desde el enlace enviado a tu email.')
+                    return render(request, 'login/signin_admin.html', {'form': form})
+
                 login(request, user)
 
                 # Eliminar sesiones anteriores de este usuario
@@ -791,23 +798,36 @@ def activate_account(request, uidb64, token):
         user = None
 
     if user is not None and default_token_generator.check_token(user, token):
-        # Confirma el correo electrónico para el perfil de usuario si existe
         if hasattr(user, 'userprofile'):
             user.userprofile.email_confirmed = True
             user.userprofile.save()
-
-        # Confirma el correo electrónico para la empresa si existe
-        if hasattr(user, 'company'):
+            login(request, user)  # Inicia sesión automáticamente al usuario
+            return redirect('activation_valid')
+        elif hasattr(user, 'company'):
             user.company.email_confirmed = True
             user.company.save()
-
-        login(request, user)  # Inicia sesión automáticamente al usuario
-        return redirect('activation_valid')  # Redirigir usando el nombre de la ruta
+            login(request, user)  # Inicia sesión automáticamente al usuario
+            return redirect('activation_valid')
+        elif hasattr(user, 'adminuser'):
+            user.adminuser.email_confirmed = True
+            user.adminuser.save()
+            # No inicia sesión automáticamente al administrador aquí
+            return redirect('activation_valid_admin')  # Redirige a la página de inicio de sesión de admin
+        else:
+            return render(request, 'email/activation_invalid.html')
     else:
         return render(request, 'email/activation_invalid.html', {'uidb64': uidb64})
+
     
 def activation_valid(request):
-    return render(request, 'email/activation_valid.html')
+    is_admin = request.user.is_authenticated and (request.user.is_superuser or request.user.is_staff)
+    context = {'is_admin': is_admin}
+    return render(request, 'email/activation_valid.html', context)
+
+def activation_valid_admin(request):
+    is_admin = request.user.is_authenticated and (request.user.is_superuser or request.user.is_staff)
+    context = {'is_admin': is_admin}
+    return render(request, 'email/activation_valid_admin.html', context)
 
 
 
@@ -834,3 +854,5 @@ def resend_activation_email(request, uidb64):
     else:
         # Si el uidb64 no es válido, puedes renderizar una plantilla de error o redirigir a otra página
         return render(request, '/')
+
+

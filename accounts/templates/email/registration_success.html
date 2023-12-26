@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static widget_tweaks %}
+
+{% block content %}
+<link href="{% static 'styles.css' %}" rel="stylesheet">
+<link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<br><br>
+<div class="container">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">¡Casi has terminado!</h4>
+        <p>Te hemos enviado un enlace a tu casilla de correo electrónico. Por favor, activa tu cuenta para continuar con el registro.</p>
+        <hr>
+        <p class="mb-0">Si no encuentras el correo, revisa tu carpeta de spam o solicita el envío de un nuevo enlace.</p>
+    </div>
+</div>
+{% endblock %}

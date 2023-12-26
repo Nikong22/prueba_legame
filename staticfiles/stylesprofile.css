@@ -1,0 +1,22 @@
+.job-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Asegúrate de que esto no esté causando un exceso de altura */
+  }
+  
+  .img-holder {
+    height: 140px;
+    width: 140px;
+    background-color: #4e63d7;
+    background-image: linear-gradient(to right, rgba(78, 99, 215, 0.9) 0%, #5a85dd 100%);
+    color: #fff;
+    font-size: 65px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: auto; /* Puede que no necesites esta línea si el contenedor padre ya usa flex */
+  }
+  

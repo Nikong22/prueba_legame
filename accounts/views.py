@@ -30,7 +30,9 @@ import os
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.template.loader import render_to_string
-
+from django.utils.encoding import force_str
+from django.utils.encoding import force_bytes
+from django.http import HttpResponseRedirect
 
 
 
@@ -106,7 +108,7 @@ def signup_user(request):
                 # Agrega aquí la lógica para otros campos si es necesario
             )
             user_profile.save()
-            return redirect('/')
+            return render(request, 'email/registration_success.html')
         else:
             return render(request, 'login/signup_user.html', {'form': form})
 
@@ -138,15 +140,15 @@ def signup_comp(request):
 
     if request.method == 'POST':
 
-        form = CompanySignUpForm(request.POST, request.FILES)
+        form = CompanySignUpForm( request.POST, request=request)
         form.fields['sector'].choices = sector_choices
 
         if form.is_valid():
             try:
                 with transaction.atomic():
                     # Guarda el objeto User
-                    user = form.save(commit=False)
-                    user.save()
+                    user = form.save()
+                    #user.save()
                     province_id = form.cleaned_data['province_name']
                     province_name = id_to_province_name(province_id)
 
@@ -189,7 +191,7 @@ def signup_comp(request):
                     company.save()
 
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                    return redirect('/')
+                return render(request, 'email/registration_success.html')
             except IntegrityError as e:
                 messages.error(request, f'Hubo un error al crear la cuenta: {e}')
         else:
@@ -267,6 +269,15 @@ def signin(request):
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
+            
+            
+            # Verificar si el correo electrónico ha sido confirmado
+            if hasattr(user, 'userprofile') and not user.userprofile.email_confirmed:
+                messages.error(request, 'Por favor, activa tu cuenta desde el enlace enviado a tu email.')
+                return render(request, 'login/signin.html', {'form': form})
+            elif hasattr(user, 'company') and not user.company.email_confirmed:
+                messages.error(request, 'Por favor, activa tu cuenta desde el enlace enviado a tu email.')
+                return render(request, 'login/signin.html', {'form': form})
             
             # Verificar si el usuario es un administrador
             if user.is_superuser or user.is_staff:
@@ -774,7 +785,7 @@ def view_applicants(request, job_id):
 
 def activate_account(request, uidb64, token):
     try:
-        uid = str(urlsafe_base64_decode(uidb64))
+        uid = force_str(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
@@ -791,6 +802,35 @@ def activate_account(request, uidb64, token):
             user.company.save()
 
         login(request, user)  # Inicia sesión automáticamente al usuario
-        return redirect('/')  # O donde sea que quieras redirigir al usuario después de activar
+        return redirect('activation_valid')  # Redirigir usando el nombre de la ruta
     else:
-        return render(request, 'activation_invalid.html')
+        return render(request, 'email/activation_invalid.html', {'uidb64': uidb64})
+    
+def activation_valid(request):
+    return render(request, 'email/activation_valid.html')
+
+
+
+def resend_activation_email(request, uidb64):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user is not None:
+        token = default_token_generator.make_token(user)
+        activation_link = request.build_absolute_uri(
+            reverse('activate_account', args=[urlsafe_base64_encode(force_bytes(user.pk)), token])
+        )
+        subject = 'Activación de Cuenta'
+        message = render_to_string('activation_email.txt', {
+            'user': user,
+            'url': activation_link,
+        })
+        send_mail(subject, message, 'nikongg22@gmail.com', [user.email], fail_silently=False)
+        # Redirige al usuario a la página de inicio de sesión después de reenviar el correo electrónico
+        return redirect('/signin')
+    else:
+        # Si el uidb64 no es válido, puedes renderizar una plantilla de error o redirigir a otra página
+        return render(request, '/')

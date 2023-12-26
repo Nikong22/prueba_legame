@@ -8,7 +8,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 def send_verification_email(user, request):
-    logger.info("Intentando enviar correo de verificación...")
     try:
         token = default_token_generator.make_token(user)
         uid = urlsafe_base64_encode(force_bytes(user.pk))

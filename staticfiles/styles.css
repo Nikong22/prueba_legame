@@ -1,6 +1,6 @@
 body{
     margin-top:20px;
-    background:#eee;
+    background:#ffffff;
 }
 .container {
     margin-right: auto;
@@ -33,7 +33,11 @@ body{
         max-width: 1140px;
     }
 }
-
+@media (max-width: 991px) { /* Pantallas menores a 992px (md) */
+    .card.text-white.bg-primary.py-5.d-md-down-none {
+      width: 100%; /* Ajusta el ancho a 100% en dispositivos móviles */
+    }
+  }
 
 
 .card-columns .card {
@@ -66,4 +70,22 @@ p {
     position: relative;
     display: flex;
     width: 100%;
+    margin-bottom: 1rem; /* espacio debajo de cada input */
+
 }
+/* Estilo para los iconos de los input groups */
+.input-group-addon {
+    color: #495057; /* color de los iconos */
+    background-color: #e9ecef; /* fondo gris para el addon */
+    border: 1px solid #ced4da; /* borde gris */
+    border-right: none; /* elimina el borde derecho para unirlo con el input */
+    padding: 0.375rem 0.75rem; /* padding similar al input */
+  }
+
+  /* Estilo para los inputs */
+.input-group .form-control {
+    border: 1px solid #ced4da; /* borde gris */
+    border-left: none; /* elimina el borde izquierdo para unir el input con el addon */
+    padding: 0.375rem 0.75rem; /* padding para que coincida con el addon */
+  }
+  

@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_countries',
     'django.contrib.sites',
-
 ]
 
 MIDDLEWARE = [
@@ -77,7 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n', #Util para internacionalizacion
                 'accounts.context_processors.user_context',  # Añade la ruta a tu procesador de contexto
 
-
+                
             ],
         },
     },
@@ -89,18 +88,12 @@ SESSION_COOKIE_SECURE = False  # Debería ser True solo si estás usando HTTPS
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'  # Podrías probar con 'None' si estás enfrentando problemas con el atributo SameSite
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.gmail.com'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
-EMAIL_USE_SSL = False
-EMAIL_USE_TLS = False
-EMAIL_HOST_USER = 'info@progettolegame.com'
-EMAIL_HOST_PASSWORD = 'Plataforma.it'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'nikongg22@gmail.com'
+EMAIL_HOST_PASSWORD = 'ilijutddaguesron'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -116,8 +109,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'legame',
-        'USER': 'progettolegame',
-        'PASSWORD': 'Plataforma.it',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',   # Generalmente 'localhost' o la dirección IP del servidor
         'PORT': '3306',            # El puerto por defecto para MySQL es 3306
     }

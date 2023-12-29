@@ -268,15 +268,6 @@ class CompanySignUpForm(UserCreationForm):
                 user.save()
                 # self.send_verification_email(user, self.request)
 
-            try:
-                print("Antes de llamar a send_verification_email")
-                send_verification_email(user, self.request)
-                print("Después de llamar a send_verification_email")
-                logger.info("Correo de verificación enviado correctamente.")
-            except Exception as e:
-                print(f"Excepción capturada en send_verification_email: {e}")
-                logger.error(f"Error al enviar correo de verificación: {e}")
-
             # # Resto del código para guardar el objeto Company
             # province_id = self.cleaned_data.get('province_name', '')
             # province_name = id_to_province_name(province_id) if province_id else ''

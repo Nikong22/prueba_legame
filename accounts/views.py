@@ -190,11 +190,28 @@ def signup_comp(request):
                             company.city = form.cleaned_data.get('city', '')
 
                     company.save()
+                    # try:
+                    #     print("Antes de llamar a send_verification_email")
+                    #     send_verification_email(user, request)
+                    #     print("Después de llamar a send_verification_email")
+                    #     #logger.info("Correo de verificación enviado correctamente.")
+                    # except Exception as e:
+                    #     print(f"Excepción capturada en send_verification_email: {e}")
+                    #     #logger.error(f"Error al enviar correo de verificación: {e}")
 
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return render(request, 'email/registration_success.html')
             except IntegrityError as e:
                 messages.error(request, f'Hubo un error al crear la cuenta: {e}')
+            finally:
+                try:
+                    print("Antes de llamar a send_verification_email")
+                    send_verification_email(user, request)
+                    print("Después de llamar a send_verification_email")
+                    #logger.info("Correo de verificación enviado correctamente.")
+                except Exception as e:
+                    print(f"Excepción capturada en send_verification_email: {e}")
+                    #logger.error(f"Error al enviar correo de verificación: {e}")
         else:
             messages.error(request, 'Por favor corrige los errores en el formulario.')
     else:
@@ -839,16 +856,24 @@ def resend_activation_email(request, uidb64):
         user = None
 
     if user is not None:
-        token = default_token_generator.make_token(user)
-        activation_link = request.build_absolute_uri(
-            reverse('activate_account', args=[urlsafe_base64_encode(force_bytes(user.pk)), token])
-        )
-        subject = 'Activación de Cuenta'
-        message = render_to_string('activation_email.txt', {
-            'user': user,
-            'url': activation_link,
-        })
-        send_mail(subject, message, 'nikongg22@gmail.com', [user.email], fail_silently=False)
+        # token = default_token_generator.make_token(user)
+        # activation_link = request.build_absolute_uri(
+        #     reverse('activate_account', args=[urlsafe_base64_encode(force_bytes(user.pk)), token])
+        # )
+        # subject = 'Activación de Cuenta'
+        # message = render_to_string('activation_email.txt', {
+        #     'user': user,
+        #     'url': activation_link,
+        # })
+        # send_mail(subject, message, 'nikongg22@gmail.com', [user.email], fail_silently=False)
+        try:
+            print("Antes de llamar a send_verification_email")
+            send_verification_email(user, request)
+            print("Después de llamar a send_verification_email")
+            #logger.info("Correo de verificación enviado correctamente.")
+        except Exception as e:
+            print(f"Excepción capturada en send_verification_email: {e}")
+            #logger.error(f"Error al enviar correo de verificación: {e}")
         # Redirige al usuario a la página de inicio de sesión después de reenviar el correo electrónico
         return redirect('/signin')
     else:

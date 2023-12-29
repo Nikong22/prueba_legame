@@ -781,7 +781,7 @@ def apply_for_job(request, job_id):
                 send_mail(
                     subject,
                     message,
-                    'nikongg22@gmail.com',  # Correo electrónico del remitente
+                    'info@progettolegame.com',  # Correo electrónico del remitente
                     [job.company.contact_email],  # Correo electrónico del destinatario
                     fail_silently=False,
                 )

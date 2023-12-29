@@ -26,7 +26,7 @@ def send_verification_email(user, request):
         send_mail(
             'Activación de cuenta',
             message,
-            'nikongg22@gmail.com',  # Reemplaza con tu dirección de correo electrónico real
+            'info@progettolegame.com',  # Reemplaza con tu dirección de correo electrónico real
             [user.email],
             fail_silently=False,
         )

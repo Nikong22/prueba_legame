@@ -23,4 +23,8 @@ from django.conf.urls.i18n import i18n_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
-]
+    path('i18n/', include('django.conf.urls.i18n')),
+
+] + i18n_patterns(
+    # Incluye tus URLs que necesitan traducción aquí
+)

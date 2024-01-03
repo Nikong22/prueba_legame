@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages  # Importa la librería de mensajes
 from django.http import HttpResponseForbidden
 from .forms import JobPostForm, CompanySignUpForm, UserProfileForm, BlogEntryForm, CustomUserCreationForm
-from .models import JobPost, BlogEntry, Application
+from .models import JobPost, BlogEntry, Application, BlogEntryTranslation
 from django.contrib.staticfiles import finders
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -20,7 +20,7 @@ from .models import UserSession  # Asegúrate de importar UserSession
 from .forms import CustomAuthenticationForm, AdminCreationForm
 from django.db.models import Count
 from django.core.paginator import Paginator
-from .models import FAQ, Question
+from .models import FAQ, Question, FAQTranslation
 from .forms import FAQForm, QuestionForm
 from django.core.signing import Signer, BadSignature
 from django.core.mail import send_mail
@@ -34,12 +34,12 @@ from django.utils.encoding import force_str
 from django.utils.encoding import force_bytes
 from django.http import HttpResponseRedirect
 from .email_utils import send_verification_email  # Asegúrate de importar send_verification_email
+from django.utils.translation import get_language
+from django.utils.translation import gettext as _
 
 
 
-def faqs(request):
-    
-    return render(request, 'admin/faqs.html')
+
 
 def index(request):
     search_query = request.GET.get('search_query', '')
@@ -593,43 +593,177 @@ def is_admin(user):
 @login_required
 @user_passes_test(is_admin)
 def admin_blog(request):
-    entry = BlogEntry.objects.first() or BlogEntry()
-    blog_form = BlogEntryForm(request.POST or None, instance=entry)
-    faq_instance = FAQ.objects.first()  # Obtén la primera FAQ o None si no existe
-    faq_form = FAQForm(request.POST or None, instance=faq_instance)
-    question_instance = Question.objects.first()  # Obtén la primera FAQ o None si no existe
-    question_form = QuestionForm(request.POST or None, instance=question_instance)
-    
+    entry = BlogEntry.objects.first()  # Asume que siempre hay al menos una entrada
+    entry_es = entry.get_translation('es') if entry else None
+    entry_it = entry.get_translation('it') if entry else None
+    if not entry:
+        entry = BlogEntry.objects.create()
+
     if request.method == 'POST':
-        if 'action' in request.POST and request.POST['action'] == 'save_blog' and blog_form.is_valid():
-            blog_form.save()
-            messages.success(request, 'La entrada del blog ha sido actualizada con éxito.')
-            return redirect('/')  # Redirige a la ruta de inicio ('/')
+        if 'save_blog_es' in request.POST:
+            blog_form_es = BlogEntryForm(request.POST, instance=entry, prefix='es')
+            if blog_form_es.is_valid():
+                blog_entry = blog_form_es.save(commit=False)
+                blog_entry.save()
+                BlogEntryTranslation.objects.update_or_create(
+                    blog_entry=blog_entry, language='es',
+                    defaults={
+                        'title': blog_form_es.cleaned_data.get('title'),
+                        'content': blog_form_es.cleaned_data.get('content')
+                    }
+                )
+                messages.success(request, 'La entrada del blog en español ha sido actualizada con éxito.')
+                return redirect('admin_blog')
 
-        if 'action' in request.POST and request.POST['action'] == 'save_faq' and faq_form.is_valid():
-            faq_form.save()
-            messages.success(request, 'FAQ guardada con éxito.')
-            return redirect('/faqs/')  # Redirige a la ruta de FAQs ('/faqs/')
-        
-        question_form = QuestionForm(request.POST or None)
-        if request.method == 'POST':
-            if 'action' in request.POST and request.POST['action'] == 'save_question':
-                if question_form.is_valid():
-                    question_form.save()
-                    messages.success(request, 'Pregunta guardada con éxito.')
-                    return redirect('/faqs/')
-                else:
-                    messages.error(request, 'Error en el formulario de pregunta.')
+        elif 'save_blog_it' in request.POST:
+            blog_form_it = BlogEntryForm(request.POST, instance=entry, prefix='it')
+            if blog_form_it.is_valid():
+                blog_entry = blog_form_it.save(commit=False)
+                blog_entry.save()
+                BlogEntryTranslation.objects.update_or_create(
+                    blog_entry=blog_entry, language='it',
+                    defaults={
+                        'title': blog_form_it.cleaned_data.get('title'),
+                        'content': blog_form_it.cleaned_data.get('content')
+                    }
+                )
+                messages.success(request, 'La entrada del blog en italiano ha sido actualizada con éxito.')
+                return redirect('admin_blog')
 
-    # ... código existente ...
-    context = {'blog_form': blog_form, 'faq_form': faq_form, 'question_form': question_form}
+    # Si no es POST o si es un GET, se cargan los formularios con los datos existentes
+    blog_form_es = BlogEntryForm(instance=entry_es, prefix='es') if entry_es else BlogEntryForm(prefix='es')
+    blog_form_it = BlogEntryForm(instance=entry_it, prefix='it') if entry_it else BlogEntryForm(prefix='it')
+
+
+    context = {
+        'blog_form_es': blog_form_es,
+        'blog_form_it': blog_form_it,
+        'entry_es': entry_es,
+        'entry_it': entry_it,
+    }
     return render(request, 'admin/admin_blog.html', context)
 
-def faqs(request):
-    faqs = FAQ.objects.all()
-    questions = Question.objects.all()  # Agregamos esto
+def save_blog_in_language(request, form, language_code):
+    blog_entry = form.save(commit=False)
+    blog_entry.save()
+    BlogEntryTranslation.objects.update_or_create(
+        blog_entry=blog_entry, language=language_code,
+        defaults={
+            'title': form.cleaned_data[f'title_{language_code}'],
+            'content': form.cleaned_data[f'content_{language_code}']
+        }
+    )
+    messages.success(request, f'La entrada del blog en {language_code} ha sido actualizada con éxito.')
+    return redirect('/')
 
-    return render(request, 'admin/faqs.html', {'faqs': faqs, 'questions': questions})
+def faqs(request):
+    language_code = get_language()  # Obtienes el código de idioma actual de la sesión
+    faqs_translated = FAQ.objects.all().prefetch_related('translations')
+
+    # Agregas las traducciones al contexto
+    context = {'faqs': faqs_translated, 'language_code': language_code}
+    return render(request, 'admin/faqs.html', context)
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_faq(request):
+    print("Accediendo a la vista admin_faq")
+    faq_es_instance = FAQTranslation.objects.filter(language='es').first()
+    faq_it_instance = FAQTranslation.objects.filter(language='it').first()
+    if request.method == 'POST':
+        print("Método POST detectado")
+
+        title_es = request.POST.get('title_es', '').strip()
+        content_es = request.POST.get('content_es', '').strip()
+        title_it = request.POST.get('title_it', '').strip()
+        content_it = request.POST.get('content_it', '').strip()
+
+        # Estableceremos un ID único o título para las FAQs que serán constantes y conocidos.
+        FAQ_ID = 1  # Reemplazar con el ID real o mecanismo de identificación que estés utilizando
+
+        if 'save_faq_es' in request.POST:
+            print("Botón para guardar FAQ en español presionado")
+            if title_es and content_es:
+                # Aquí asumimos que FAQ_ID es conocido y válido
+                faq_instance, _ = FAQ.objects.get_or_create(id=FAQ_ID, defaults={'title': title_es})
+                faq_translation, _ = FAQTranslation.objects.update_or_create(
+                    faq=faq_instance,
+                    language='es',
+                    defaults={
+                        'title': title_es,
+                        'content': content_es
+                    }
+                )
+                print(f"FAQ en español actualizada: {faq_translation}")
+                messages.success(request, 'La FAQ en español ha sido actualizada con éxito.')
+            else:
+                messages.error(request, 'El título y contenido en español no pueden estar vacíos.')
+            
+            return redirect('faqs')  # Redireccionamos a la vista de FAQs
+
+        elif 'save_faq_it' in request.POST:
+            print("Botón para guardar FAQ en italiano presionado")
+            if title_it and content_it:
+                faq_instance, _ = FAQ.objects.get_or_create(id=FAQ_ID, defaults={'title': title_it})
+                faq_translation, _ = FAQTranslation.objects.update_or_create(
+                    faq=faq_instance,
+                    language='it',
+                    defaults={
+                        'title': title_it,
+                        'content': content_it
+                    }
+                )
+                print(f"FAQ en italiano actualizada: {faq_translation}")
+                messages.success(request, 'La FAQ en italiano ha sido actualizada con éxito.')
+            else:
+                messages.error(request, 'El título y contenido en italiano no pueden estar vacíos.')
+            
+            return redirect('faqs')
+
+    else:
+        # Aquí se establecen los formularios con el contexto de la FAQ actual si existe.
+        try:
+            faq_instance = FAQ.objects.get(id=FAQ_ID)
+            form_es = FAQForm(prefix='es', instance=faq_instance)
+            form_it = FAQForm(prefix='it', instance=faq_instance)
+        except FAQ.DoesNotExist:
+            form_es = FAQForm(prefix='es')
+            form_it = FAQForm(prefix='it')
+    form_es = FAQForm(prefix='es', instance=faq_es_instance) if faq_es_instance else FAQForm(prefix='es')
+    form_it = FAQForm(prefix='it', instance=faq_it_instance) if faq_it_instance else FAQForm(prefix='it')
+
+    context = {
+        'form_es': form_es,
+        'form_it': form_it,
+        'faq_es': faq_es_instance,
+        'faq_it': faq_it_instance,
+    }
+    return render(request, 'admin/admin_faq.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+def save_faq_in_language(request, form, language_code):
+    blog_faq = form.save(commit=False)
+    blog_faq.save()
+    FAQTranslation.objects.update_or_create(
+        blog_faq=blog_faq, language=language_code,
+        defaults={
+            'title': form.cleaned_data[f'title_{language_code}'],
+            'content': form.cleaned_data[f'content_{language_code}']
+        }
+    )
+    messages.success(request, f'La entrada del blog en {language_code} ha sido actualizada con éxito.')
+    return redirect('/')
+
 
 
 @login_required

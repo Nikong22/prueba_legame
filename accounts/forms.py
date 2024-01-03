@@ -28,6 +28,7 @@ from django.core.mail import send_mail
 from .email_utils import send_verification_email
 import logging
 from django.db import transaction
+from .models import FAQTranslation
 
 logging.basicConfig(
     level=logging.INFO,
@@ -109,10 +110,22 @@ class CustomUserCreationForm(UserCreationForm):
             send_verification_email(user, self.request)  # Usando la función de utilidad
         return user
 
-class BlogEntryForm(ModelForm):
+class BlogEntryForm(forms.ModelForm):
+    title_es = forms.CharField(max_length=200, required=False)  # Agregar required=False si el campo puede estar vacío
+    content_es = forms.CharField(widget=forms.Textarea, required=False)
+    title_it = forms.CharField(max_length=200, required=False)
+    content_it = forms.CharField(widget=forms.Textarea, required=False)
+
     class Meta:
         model = BlogEntry
-        fields = ['title', 'content']
+        fields = ['title', 'content', 'title_es', 'content_es', 'title_it', 'content_it']
+        
+    def __init__(self, *args, **kwargs):
+        super(BlogEntryForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs.update({'class': 'form-control mi-clase-adicional'})
+        self.fields['content'].widget.attrs.update({'class': 'form-control mi-clase-adicional'})
+
+
 
 class JobPostForm(forms.ModelForm):
     category = forms.ChoiceField(choices=CATEGORY_CHOICES, required=True)
@@ -329,11 +342,24 @@ class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'id': 'username', 'class': 'form-control', 'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'id': 'password', 'class': 'form-control', 'placeholder': 'Password'}))
 
-
 class FAQForm(forms.ModelForm):
+    title_es = forms.CharField(max_length=200, required=False)  # No es requerido
+    content_es = forms.CharField(widget=forms.Textarea, required=False)  # No es requerido
+    title_it = forms.CharField(max_length=200, required=False)  # No es requerido
+    content_it = forms.CharField(widget=forms.Textarea, required=False)  # No es requerido
+
     class Meta:
-        model = FAQ
-        fields = ['title', 'content']
+        model = FAQTranslation
+        fields = ['title_es', 'content_es', 'title_it', 'content_it']
+
+    def __init__(self, *args, **kwargs):
+        super(FAQForm, self).__init__(*args, **kwargs)
+        # Asegúrate de que estás configurando las etiquetas y clases para los campos correctos
+        self.fields['title_es'].label = "Título ESP"
+        self.fields['content_es'].label = "Contenido ESP"
+        self.fields['title_it'].label = "Título IT"
+        self.fields['content_it'].label = "Contenido IT"
+
 
 class QuestionForm(forms.ModelForm):
     class Meta:

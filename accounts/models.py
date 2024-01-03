@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 
 
@@ -120,14 +121,30 @@ class JobPost(models.Model):
     def __str__(self):
         return self.title
 
+# models.py
+
 
 class BlogEntry(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     updated_at = models.DateTimeField(auto_now=True)
-
+    def get_translation(self, language_code):
+        return self.translations.filter(language=language_code).first()
     def __str__(self):
         return self.title
+
+class BlogEntryTranslation(models.Model):
+    blog_entry = models.ForeignKey(BlogEntry, on_delete=models.CASCADE, related_name='translations')
+    language = models.CharField(max_length=2, choices=[('es', 'Spanish'), ('it', 'Italian')])
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+
+    class Meta:
+        unique_together = ('blog_entry', 'language')
+
+    def __str__(self):
+        return f'{self.language} translation of {self.blog_entry.title}'
+
     
     
 class Application(models.Model):
@@ -148,13 +165,34 @@ class UserSession(models.Model):
     
     
 class FAQ(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
+    title = models.CharField(max_length=200)  # Neutral title
+    content = models.TextField()  # Neutral content
 
     def __str__(self):
         return self.title
-    
 
+    def get_translation(self, language_code):
+        # Lógica para obtener la traducción basada en el código de idioma
+        if language_code == 'es':
+            return self.title_es, self.content_es
+        elif language_code == 'it':
+            return self.title_it, self.content_it
+        else:
+            # Manejo de idioma predeterminado o error
+            return self.title_es, self.content_es
+
+    
+class FAQTranslation(models.Model):
+    faq = models.ForeignKey(FAQ, related_name='translations', on_delete=models.CASCADE)
+    language = models.CharField(max_length=2, choices=[('es', 'Español'), ('it', 'Italiano')])
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+
+    class Meta:
+        unique_together = ('faq', 'language')
+    def __str__(self):
+        return f'{self.language} translation of {self.faq.title}'
+       
 class Question(models.Model):
     title = models.CharField(max_length=200)
     short_answer = models.TextField()

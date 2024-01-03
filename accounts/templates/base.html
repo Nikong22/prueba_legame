@@ -16,6 +16,31 @@
      <!-- Bootstrap Icons -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <style>
+    .flag-container {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Centra las banderas horizontalmente */
+        gap: 10px; /* Espacio entre las banderas */
+        background: transparent; /* Asegúrate de que no haya un fondo */
+        text-align: right;
+    }
+    
+    .flag-icon {
+        border: none; /* Elimina bordes si los hay */
+        background: none; /* Fondo transparente para los botones/imagenes */
+        padding: 0; /* Elimina el padding si lo hay */
+        max-height: 20px;
+        margin-top: 0.5rem;
+        margin-right: 1rem;
+    }
+    
+    /* Asegúrate de que no haya estilos adicionales aplicados a las imágenes que puedan causar problemas */
+    img.flag-icon {
+        width: 50px; /* o el tamaño que desees */
+        height: auto;
+    }
+    </style>
 </head>
 
 <body class="d-flex flex-column h-100" style="padding-top: 70px;">
@@ -88,6 +113,21 @@
   </div>
   <!-- Container wrapper -->
 </nav>
+<form action="{% url 'set_language' %}" method="post">
+  {% csrf_token %}
+  <input name="next" type="hidden" value="{{ request.path }}">
+  <button type="submit" name="language" value="es" class="flag-icon">
+      <img src="{% static 'accounts/images/Argentina.png' %}" alt="Argentina">
+  </button>
+</form>
+<form action="{% url 'set_language' %}" method="post">
+  {% csrf_token %}
+  <input name="next" type="hidden" value="{{ request.path }}">
+  <button type="submit" name="language" value="it" class="flag-icon">
+      <img src="{% static 'accounts/images/Italy.png' %}" alt="Italy">
+  </button>
+</form>
+
 <!-- Navbar -->
 
       <!-- Asegúrate de agregar el enlace dentro de la estructura de la barra de navegación -->
@@ -116,7 +156,7 @@
                 <p class="mb-0">Made with <i class="lni-heart mr-1"></i>by Designing World</p>
               </div>
               <!-- Footer Social Area-->
-              <div class="footer_social_area"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Pinterest"><i class="fa fa-pinterest"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype"><i class="fa fa-skype"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></div>
+              <div class="footer_social_area"><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Instagram"><i class="fa fa-instagram"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Skype"><i class="fa fa-skype"></i></a><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></div>
             </div>
           </div>
           <!-- Single Widget-->

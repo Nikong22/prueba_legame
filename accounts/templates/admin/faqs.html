@@ -13,13 +13,14 @@
     </p>
   
     {% for faq in faqs %}
-    <div class="row">
-      <div style="text-align: center;">
-        <h6 class="mb-3 text-primary">{{ faq.title }}</h6>
-        <p>{{ faq.content }}</p>
-      </div>
-    </div>
-  {% endfor %}
+    {% for translation in faq.translations.all %}
+        {% if translation.language == request.LANGUAGE_CODE %}
+            <h6 class="mb-3 text-primary">{{ translation.title }}</h6>
+            <p>{{ translation.content }}</p>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
   </section>
   <!--Section: FAQ-->
 

@@ -4,6 +4,8 @@ body {
     overflow-x: hidden; /* Esto previene el desplazamiento horizontal */
 
 }
+
+  
 #page-content {
     flex: 1;
   }

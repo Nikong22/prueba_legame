@@ -1,3 +1,4 @@
+<!-- admin_faq.html -->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -5,19 +6,32 @@
 <link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
 <div class="container">
     <h1>Administrar FAQs</h1>
-    <form method="post">
+    <!-- ... -->
+    <form method="post" action="{% url 'admin_faq' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Guardar FAQ</button>
-    </form>
-
-    <h2>FAQs Existentes</h2>
-    {% for faq in faqs %}
-        <div>
-            <strong>Pregunta:</strong> {{ faq.question }}<br>
-            <strong>Respuesta:</strong> {{ faq.answer }}
-            <!-- Aquí puedes agregar botones o enlaces para editar/borrar -->
+        <!-- Formulario para español -->
+        <div class="mb-3">
+            <label for="id_es-title">Título ESP:</label>
+            <input type="text" name="title_es" id="id_es-title" value="{{ faq_es.title|default_if_none:'' }}">
         </div>
-    {% endfor %}
+        <div class="mb-3">
+            <label for="id_es-content">Contenido ESP:</label>
+            <textarea name="content_es" id="id_es-content">{{ faq_es.content|default_if_none:'' }}</textarea>
+        </div>
+        <button type="submit" name="save_faq_es">Guardar FAQ ESP</button>
+    </form>
+    <form method="post" action="{% url 'admin_faq' %}">
+        {% csrf_token %}
+        <!-- Formulario para italiano -->
+        <div class="mb-3">
+            <label for="id_it-title">Título IT:</label>
+            <input type="text" name="title_it" id="id_it-title" value="{{ faq_it.title|default_if_none:'' }}">
+        </div>
+        <div class="mb-3">
+            <label for="id_it-content">Contenuto IT:</label>
+            <textarea name="content_it" id="id_it-content">{{ faq_it.content|default_if_none:'' }}</textarea>
+        </div>
+        <button type="submit" name="save_faq_it">Guardar FAQ IT</button>
+    </form>
 </div>
 {% endblock %}

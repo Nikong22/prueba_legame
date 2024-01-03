@@ -137,8 +137,12 @@
         <div class="col-md-4">
             {% if latest_entry %}
             <div class="blog-informativo">
-                <h2>{{ latest_entry.title }}</h2>
-                <p>{{ latest_entry.content|linebreaks }}</p>
+                {% for translation in latest_entry.translations.all %}
+                    {% if translation.language == LANGUAGE_CODE %}
+                        <h2>{{ translation.title }}</h2>
+                        <p>{{ translation.content }}</p>
+                    {% endif %}
+                {% endfor %}
             </div>
             {% else %}
             <p>No hay entradas de blog para mostrar.</p>

@@ -3,12 +3,27 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import admin_blog
+from django.contrib.auth import views as auth_views
 
 # Tus otras URLs...
 
 
 
 urlpatterns = [
+    path('password_reset/', auth_views.PasswordResetView.as_view(
+        template_name='registration/password_reset_form.html'
+    ), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(
+        template_name='registration/password_reset_done.html'
+    ), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+        template_name='registration/password_reset_confirm.html',
+        success_url='/signin/'
+    ), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
+        template_name='registration/password_reset_complete.html'
+    ), name='password_reset_complete'),
+
     path('', views.index, name='index'),  # Asegúrate de que 'views.index' es tu función de vista que maneja la búsqueda
 
     path('signup/', views.signup_user, name='signup_user'),
@@ -42,9 +57,9 @@ urlpatterns = [
     path('activation_valid/', views.activation_valid, name='activation_valid'),
     path('resend_activation_email/<uidb64>/', views.resend_activation_email, name='resend_activation_email'),
     path('activation_valid_admin/', views.activation_valid_admin, name='activation_valid_admin'),
+    path('admin_faq/', views.admin_faq, name='admin_faq'),
 
-
-
+    
 ]
 
 if settings.DEBUG:

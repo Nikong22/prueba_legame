@@ -27,19 +27,19 @@ SECRET_KEY = 'django-insecure-u$lx*q=putuu_^#l1hpgedm=7or6g4$5rp1(gdi=io!s=d7k=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['progettolegame.com', 'www.progettolegame.com']
+#ALLOWED_HOSTS = ['progettolegame.com', 'www.progettolegame.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
     'widget_tweaks',
     'crispy_forms',
     'django_countries',
@@ -140,13 +140,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+USE_I18N = True
+LANGUAGE_CODE = 'es'  # o 'it' o cualquier otro que esté definido en LANGUAGES
 
-#_ = lambda s: s
-#LANGUAGES = (
-#    ('es', _('Español')),
-#    ('it', _('Italiano')),
-#)
+LANGUAGES = [
+    ('es', 'Español'),
+    ('it', 'Italiano'),
+    # ... otros idiomas
+]
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
@@ -154,7 +155,6 @@ LOCALE_PATHS = (
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
 
 USE_TZ = True
 

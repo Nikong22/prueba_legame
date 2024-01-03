@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 <link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
@@ -9,7 +10,6 @@
   <!-- Título de la página -->
   <h2 class="text-center mb-5">Panel de Administración</h2>
 
-  <!-- Card para Administrar Información Adicional -->
   <div class="card mb-4 shadow-lg">
     <div class="card-header bg-primary text-white">
       <h3 class="my-0 font-weight-normal">Información Página Principal</h3>
@@ -17,58 +17,91 @@
     <div class="card-body">
       <form method="post">
         {% csrf_token %}
-        <div class="mb-3">
-          <label for="titleField" class="form-label">Title:</label>
-          <input type="text" name="title" class="form-control" id="titleField" placeholder="Enter title" value="{{ blog_form.instance.title }}" required>
-        </div>
-        <div class="mb-3">
-          <label for="contentField" class="form-label">Content:</label>
-        <textarea name="content" class="form-control" id="contentField" rows="3" required>{{ blog_form.instance.content }}</textarea>        </div>
-        <div class="text-center">
-          <button type="submit" name="action" value="save_blog" class="btn btn-lg btn-block btn-primary">Guardar Blog</button>
-        </div>
+        
+        <!-- Campos para español -->
+       <!-- Campos para español -->
+<div class="mb-3">
+  <label for="id_es-title" class="form-label">Título ESP:</label>
+  <input type="text" name="es-title" class="form-control" id="id_es-title" placeholder="Ingrese el título" value="{{ entry_es.title }}" required>
+</div>
+<div class="mb-3">
+  <label for="id_es-content" class="form-label">Contenido ESP:</label>
+  <textarea name="es-content" class="form-control" id="id_es-content" rows="3" required>{{ entry_es.content }}</textarea>
+</div>
+<!-- Botón para guardar blog en español -->
+<div class="text-center">
+  <button type="submit" name="save_blog_es" class="btn btn-primary">Guardar Blog ESP</button>
+</div>
+
+<!-- Campos para italiano -->
+<div class="mb-3">
+  <label for="id_it-title" class="form-label">Título IT:</label>
+  <input type="text" name="it-title" class="form-control" id="id_it-title" placeholder="Inserisci il titolo" value="{{ entry_it.title }}" required>
+</div>
+<div class="mb-3">
+  <label for="id_it-content" class="form-label">Contenuto IT:</label>
+  <textarea name="it-content" class="form-control" id="id_it-content" rows="3" required>{{ entry_it.content }}</textarea>
+</div>
+<!-- Botón para guardar blog en italiano -->
+<div class="text-center">
+  <button type="submit" name="save_blog_it" class="btn btn-primary">Guardar Blog IT</button>
+</div>
+
       </form>
     </div>
   </div>
+  
 
-  <!-- Aquí puedes agregar más cards para secciones futuras -->
-<!-- ... código existente ... -->
 
 <!-- Formulario para las preguntas de FAQ -->
-
-
-<!-- Script para agregar una nueva pregunta -->
-
 
 <div class="card mb-4 shadow-lg">
   <div class="card-header bg-success text-white">
     <h3 class="my-0 font-weight-normal">Sección FAQ</h3>
   </div>
   <div class="card-body">
-    <form method="post">
-      {% csrf_token %}
+  <!-- ... -->
+  <form method="post" action="{% url 'admin_faq' %}">
+    {% csrf_token %}
+    <!-- Campos para español -->
+    <div class="mb-3">
+        <label for="id_es-title" class="form-label">Título ESP:</label>
+        <input type="text" name="title_es" class="form-control" id="id_es-title" placeholder="Ingrese el título ESP" required>
+    </div>
+    <div class="mb-3">
+        <label for="id_es-content" class="form-label">Contenido ESP:</label>
+        <textarea name="content_es" class="form-control" id="id_es-content" rows="3" required></textarea>
+    </div>
+    <div class="text-center">
+        <button type="submit" name="save_faq_es" class="btn btn-primary">Guardar FAQ ESP</button>
+    </div>
+    <!-- Campos para italiano -->
+    <div class="mb-3">
+        <label for="id_it-title" class="form-label">Título IT:</label>
+        <input type="text" name="title_it" class="form-control" id="id_it-title" placeholder="Inserisci il titolo IT" required>
+    </div>
+    <div class="mb-3">
+        <label for="id_it-content" class="form-label">Contenuto IT:</label>
+        <textarea name="content_it" class="form-control" id="id_it-content" rows="3" required></textarea>
+    </div>
+    <div class="text-center">
+        <button type="submit" name="save_faq_it" class="btn btn-primary">Guardar FAQ IT</button>
+    </div>
+</form>
 
-      <div class="mb-3">
-        <label for="faqTitle" class="form-label">Título:</label>
-        <input type="text" name="title" class="form-control" id="faqTitle" placeholder="Ingrese el título" value="{{ faq_form.instance.title }}" required>
-      </div>
-      <div class="mb-3">
-        <label for="faqContent" class="form-label">Contenido:</label>
-        <textarea name="content" class="form-control" id="faqContent" rows="3" required>{{ faq_form.instance.content }}</textarea>
-      </div>
-        <div class="text-center">
-          <button type="submit" name="action" value="save_faq" class="btn btn-primary">Guardar FAQ</button>
-        </div>
-    </form>
+
   </div>
 </div>
+
+
+<!-- Formulario para las Questions -->
 
 <div class="card mb-4 shadow-lg">
     <div class="card-header bg-danger text-white">
       <h3 class="my-0 font-weight-normal">Sección Questions</h3>
     </div>
     <div class="card-body">
-      <form method="post">
+      <form method="post" action="{% url 'admin_faq' %}">
         {% csrf_token %}
 
         <div class="mb-3">
@@ -97,4 +130,3 @@
 <script>
    </script>
 {% endblock content %}
-

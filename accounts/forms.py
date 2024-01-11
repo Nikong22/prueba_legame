@@ -29,6 +29,7 @@ from .email_utils import send_verification_email
 import logging
 from django.db import transaction
 from .models import FAQTranslation
+from .models import QuestionTranslation
 
 logging.basicConfig(
     level=logging.INFO,
@@ -343,26 +344,78 @@ class CustomAuthenticationForm(AuthenticationForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'id': 'password', 'class': 'form-control', 'placeholder': 'Password'}))
 
 class FAQForm(forms.ModelForm):
-    title_es = forms.CharField(max_length=200, required=False)  # No es requerido
-    content_es = forms.CharField(widget=forms.Textarea, required=False)  # No es requerido
-    title_it = forms.CharField(max_length=200, required=False)  # No es requerido
-    content_it = forms.CharField(widget=forms.Textarea, required=False)  # No es requerido
+    title_es = forms.CharField(max_length=200, required=False, label="Título ESP")  
+    content_es = forms.CharField(widget=forms.Textarea, required=False, label="Contenido ESP")  
+    title_it = forms.CharField(max_length=200, required=False, label="Título IT")  
+    content_it = forms.CharField(widget=forms.Textarea, required=False, label="Contenido IT")  
 
     class Meta:
         model = FAQTranslation
         fields = ['title_es', 'content_es', 'title_it', 'content_it']
 
-    def __init__(self, *args, **kwargs):
-        super(FAQForm, self).__init__(*args, **kwargs)
-        # Asegúrate de que estás configurando las etiquetas y clases para los campos correctos
-        self.fields['title_es'].label = "Título ESP"
-        self.fields['content_es'].label = "Contenido ESP"
-        self.fields['title_it'].label = "Título IT"
-        self.fields['content_it'].label = "Contenido IT"
+    def clean(self):
+        cleaned_data = super().clean()
+        title_es = cleaned_data.get('title_es')
+        content_es = cleaned_data.get('content_es')
+        title_it = cleaned_data.get('title_it')
+        content_it = cleaned_data.get('content_it')
+
+        if title_es and not content_es:
+            raise forms.ValidationError({'content_es': 'El contenido en español no puede estar vacío.'})
+
+        if content_es and not title_es:
+            raise forms.ValidationError({'title_es': 'El título en español no puede estar vacío.'})
+
+        if title_it and not content_it:
+            raise forms.ValidationError({'content_it': 'El contenido en italiano no puede estar vacío.'})
+
+        if content_it and not title_it:
+            raise forms.ValidationError({'title_it': 'El título en italiano no puede estar vacío.'})
+
+
 
 
 class QuestionForm(forms.ModelForm):
-    class Meta:
-        model = Question
-        fields = ['title', 'short_answer', 'complete_answer']
+    title_es = forms.CharField(max_length=200, required=False, label="Título ESP")  
+    short_answer_es = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Corta ESP")  
+    complete_answer_es = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Completa ESP")  
+    title_it = forms.CharField(max_length=200, required=False, label="Título IT")  
+    short_answer_it = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Corta IT")  
+    complete_answer_it = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Completa IT")  
 
+    class Meta:
+        model = QuestionTranslation
+        fields = ['title_es', 'short_answer_es', 'complete_answer_es', 'title_it', 'short_answer_it', 'complete_answer_it']
+
+    def clean(self):
+        cleaned_data = super().clean()
+        title_es = cleaned_data.get('title_es')
+        short_answer_es = cleaned_data.get('short_answer_es')
+        complete_answer_es = cleaned_data.get('complete_answer_es')
+        title_it = cleaned_data.get('title_it')
+        short_answer_it = cleaned_data.get('short_answer_it')
+        complete_answer_it = cleaned_data.get('complete_answer_it')
+
+        if title_es and not short_answer_es:
+            raise forms.ValidationError({'short_answer_es': 'La respuesta corta en español no puede estar vacía.'})
+
+        if short_answer_es and not title_es:
+            raise forms.ValidationError({'title_es': 'El título en español no puede estar vacío.'})
+
+        if complete_answer_es and not short_answer_es:
+            raise forms.ValidationError({'short_answer_es': 'La respuesta corta en español no puede estar vacía.'})
+
+        if short_answer_es and not complete_answer_es:
+            raise forms.ValidationError({'complete_answer_es': 'La respuesta completa en español no puede estar vacía.'})
+
+        if title_it and not short_answer_it:
+            raise forms.ValidationError({'short_answer_it': 'La respuesta corta en italiano no puede estar vacía.'})
+
+        if short_answer_it and not title_it:
+            raise forms.ValidationError({'title_it': 'El título en italiano no puede estar vacío.'})
+
+        if complete_answer_it and not short_answer_it:
+            raise forms.ValidationError({'short_answer_it': 'La respuesta corta en italiano no puede estar vacía.'})
+
+        if short_answer_it and not complete_answer_it:
+            raise forms.ValidationError({'complete_answer_it': 'La respuesta completa en italiano no puede estar vacía.'})

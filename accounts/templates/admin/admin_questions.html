@@ -1,0 +1,48 @@
+<!-- admin_faq.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- admin_questions.html -->
+
+<div class="card mb-4 shadow-lg">
+    <div class="card-header bg-danger text-white">
+      <h3 class="my-0 font-weight-normal">Sección Questions</h3>
+    </div>
+    <div class="card-body">
+      <form method="post" action="{% url 'admin_questions' %}">
+        {% csrf_token %}
+        <!-- Campos para ESP -->
+        <div class="mb-3">
+            <label for="id_es-title" class="form-label">Título ESP:</label>
+            {{ question_form_es.title }}
+        </div>
+        <div class="mb-3">
+            <label for="id_es-short-answer" class="form-label">Respuesta corta ESP:</label>
+            {{ question_form_es.short_answer }}
+        </div>
+        <div class="mb-3">
+            <label for="id_es-complete-answer" class="form-label">Respuesta completa ESP:</label>
+            {{ question_form_es.complete_answer }}
+        </div>
+        <button type="submit" name="save_question_es" class="btn btn-primary">Guardar Pregunta ESP</button>
+
+        <!-- Campos para italiano -->
+        <div class="mb-3">
+          <label for="id_it-title" class="form-label">Título IT:</label>
+          {{ question_form_it.title }}
+        </div>
+        <div class="mb-3">
+          <label for="id_it-short-answer" class="form-label">Respuesta corta IT:</label>
+          {{ question_form_it.short_answer }}
+        </div>
+        <div class="mb-3">
+          <label for="id_it-complete-answer" class="form-label">Respuesta completa IT:</label>
+          {{ question_form_it.complete_answer }}
+        </div>
+        <button type="submit" name="save_question_it" class="btn btn-primary">Guardar Pregunta IT</button>
+      </form>
+    </div>
+</div>
+
+{% endblock %}

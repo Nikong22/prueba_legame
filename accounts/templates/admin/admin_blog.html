@@ -65,25 +65,25 @@
     {% csrf_token %}
     <!-- Campos para español -->
     <div class="mb-3">
-        <label for="id_es-title" class="form-label">Título ESP:</label>
-        <input type="text" name="title_es" class="form-control" id="id_es-title" placeholder="Ingrese el título ESP" required>
-    </div>
-    <div class="mb-3">
-        <label for="id_es-content" class="form-label">Contenido ESP:</label>
-        <textarea name="content_es" class="form-control" id="id_es-content" rows="3" required></textarea>
-    </div>
+      <label for="id_es-title" class="form-label">Título ESP:</label>
+      <input type="text" name="title_es" class="form-control" id="id_es-title" placeholder="Ingrese el título ESP" value="{{ form_es.title_es.value|default:'' }}" required>
+  </div>
+  <div class="mb-3">
+      <label for="id_es-content" class="form-label">Contenido ESP:</label>
+      <textarea name="content_es" class="form-control" id="id_es-content" rows="3" required>{{ form_es.content_es.value|default:'' }}</textarea>
+  </div>
     <div class="text-center">
         <button type="submit" name="save_faq_es" class="btn btn-primary">Guardar FAQ ESP</button>
     </div>
     <!-- Campos para italiano -->
     <div class="mb-3">
-        <label for="id_it-title" class="form-label">Título IT:</label>
-        <input type="text" name="title_it" class="form-control" id="id_it-title" placeholder="Inserisci il titolo IT" required>
-    </div>
-    <div class="mb-3">
-        <label for="id_it-content" class="form-label">Contenuto IT:</label>
-        <textarea name="content_it" class="form-control" id="id_it-content" rows="3" required></textarea>
-    </div>
+      <label for="id_it-title" class="form-label">Título IT:</label>
+      <input type="text" name="title_it" class="form-control" id="id_it-title" placeholder="Inserisci il titolo IT" value="{{ form_it.title_it.value|default:'' }}" required>
+  </div>
+  <div class="mb-3">
+      <label for="id_it-content" class="form-label">Contenuto IT:</label>
+      <textarea name="content_it" class="form-control" id="id_it-content" rows="3" required>{{ form_it.content_it.value|default:'' }}</textarea>
+  </div>
     <div class="text-center">
         <button type="submit" name="save_faq_it" class="btn btn-primary">Guardar FAQ IT</button>
     </div>
@@ -92,41 +92,58 @@
 
   </div>
 </div>
-
-
 <!-- Formulario para las Questions -->
-
 <div class="card mb-4 shadow-lg">
-    <div class="card-header bg-danger text-white">
-      <h3 class="my-0 font-weight-normal">Sección Questions</h3>
-    </div>
-    <div class="card-body">
-      <form method="post" action="{% url 'admin_faq' %}">
-        {% csrf_token %}
-
-        <div class="mb-3">
-          <label for="questionTitle" class="form-label">Título:</label>
-          <input type="text" name="title" class="form-control" id="questionTitle" placeholder="Ingrese el título"  required>
-        </div>
-        <div class="mb-3">
-          <label for="questionContent" class="form-label">Respuesta corta:</label>
-          <input name="short_answer" class="form-control" id="questionContent" rows="3" maxlength="140" placeholder="Ingrese una respuesta corta" required>
-        </div>
-        <div class="mb-3">
-          <label for="questionsContent" class="form-label">Respuesta Completa:</label>
-          <textarea name="complete_answer" class="form-control" id="questionsContent" rows="3" placeholder="Ingrese respuesta completa" required></textarea>
-        </div>
-        <div class="text-center">
-          <button type="submit" name="action" value="save_question" class="btn btn-lg btn-block btn-primary">Guardar Questions</button>
-        </div>
-      </form>
-    </div>
+  <div class="card-header bg-danger text-white">
+    <h3 class="my-0 font-weight-normal">Sección Questions</h3>
   </div>
+  <div class="card-body">
+    <form method="post" action="{% url 'admin_questions' %}">
+      {% csrf_token %}
+      <!-- Campos para ESP -->
+      <div class="mb-3">
+          <label for="id_es-title" class="form-label">Título ESP:</label>
+          <input type="text" name="title_es" class="form-control" id="id_es-title" placeholder="Ingrese el título ESP" required>
+      </div>
+      <div class="mb-3">
+          <label for="id_es-short-answer" class="form-label">Respuesta corta ESP:</label>
+          <input name="short_answer_es" class="form-control" id="id_es-short-answer" rows="3" maxlength="140" placeholder="Ingrese una respuesta corta ESP" required>
+      </div>
+      <div class="mb-3">
+          <label for="id_es-complete-answer" class="form-label">Respuesta Completa ESP:</label>
+          <textarea name="complete_answer_es" class="form-control" id="id_es-complete-answer" rows="3" placeholder="Ingrese respuesta completa ESP" required></textarea>
+      </div>
+      <!-- Botón para guardar en ESP -->
+      <div class="text-center">
+          <button type="submit" name="action" value="save_question_es" class="btn btn-lg btn-block btn-primary">Guardar ESP</button>
+      </div>
+  </form>
+    <!-- Formulario para italiano -->
+    <form method="post" action="{% url 'admin_questions' %}">
+      {% csrf_token %}
 
-  <!-- Puedes continuar agregando más cards según sea necesario -->
-  
+      <!-- Campos para italiano -->
+      <div class="mb-3">
+        <label for="id_it-title" class="form-label">Título IT:</label>
+        <input type="text" name="title_it" class="form-control" id="id_it-title" placeholder="Ingrese el título IT" required>
+      </div>
+      <div class="mb-3">
+        <label for="id_it-short-answer" class="form-label">Respuesta corta IT:</label>
+        <input name="short_answer_it" class="form-control" id="id_it-short-answer" rows="3" maxlength="140" placeholder="Ingrese una respuesta corta IT" required>
+      </div>
+      <div class="mb-3">
+        <label for="id_it-complete-answer" class="form-label">Respuesta Completa IT:</label>
+        <textarea name="complete_answer_it" class="form-control" id="id_it-complete-answer" rows="3" placeholder="Ingrese respuesta completa IT" required></textarea>
+      </div>
+
+      <!-- Botón para guardar en italiano -->
+      <div class="text-center">
+        <button type="submit" name="action" value="save_question_it" class="btn btn-lg btn-block btn-primary">Guardar IT</button>
+      </div>
+    </form>
+  </div>
 </div>
 
-<script>
-   </script>
+</div>
+
 {% endblock content %}

@@ -36,7 +36,10 @@ from django.http import HttpResponseRedirect
 from .email_utils import send_verification_email  # Asegúrate de importar send_verification_email
 from django.utils.translation import get_language
 from django.utils.translation import gettext as _
+from django.core.exceptions import ValidationError
 
+from .models import Question, QuestionTranslation
+from .forms import QuestionForm
 
 
 
@@ -317,7 +320,7 @@ def signin(request):
 
             return redirect('/')
         else:
-            messages.error(request, 'Acceso restringido o usuario/contraseña incorrecta')
+            messages.error(request, _('ERROR_LOGIN'))
     else:
         form = CustomAuthenticationForm()
 
@@ -668,8 +671,21 @@ def faqs(request):
 @user_passes_test(lambda u: u.is_superuser)
 def admin_faq(request):
     print("Accediendo a la vista admin_faq")
+
+    # Obtener instancias de FAQTranslation
     faq_es_instance = FAQTranslation.objects.filter(language='es').first()
     faq_it_instance = FAQTranslation.objects.filter(language='it').first()
+
+    # Estableceremos un ID único o título para las FAQs que serán constantes y conocidos.
+    FAQ_ID = 1  # Reemplazar con el ID real o mecanismo de identificación que estés utilizando
+
+    # Crear instancias de formularios con datos iniciales
+    form_es_initial = {'title_es': faq_es_instance.title, 'content_es': faq_es_instance.content} if faq_es_instance else {}
+    form_it_initial = {'title_it': faq_it_instance.title, 'content_it': faq_it_instance.content} if faq_it_instance else {}
+
+    form_es = FAQForm(prefix='es', initial=form_es_initial)
+    form_it = FAQForm(prefix='it', initial=form_it_initial)
+
     if request.method == 'POST':
         print("Método POST detectado")
 
@@ -678,13 +694,11 @@ def admin_faq(request):
         title_it = request.POST.get('title_it', '').strip()
         content_it = request.POST.get('content_it', '').strip()
 
-        # Estableceremos un ID único o título para las FAQs que serán constantes y conocidos.
-        FAQ_ID = 1  # Reemplazar con el ID real o mecanismo de identificación que estés utilizando
-
         if 'save_faq_es' in request.POST:
             print("Botón para guardar FAQ en español presionado")
-            if title_es and content_es:
-                # Aquí asumimos que FAQ_ID es conocido y válido
+            form_es = FAQForm(prefix='es', data=request.POST, initial=form_es_initial)
+            form_it = FAQForm(prefix='it', initial=form_it_initial)  # Creamos una instancia de formulario italiano vacía
+            if form_es.is_valid():
                 faq_instance, _ = FAQ.objects.get_or_create(id=FAQ_ID, defaults={'title': title_es})
                 faq_translation, _ = FAQTranslation.objects.update_or_create(
                     faq=faq_instance,
@@ -697,13 +711,13 @@ def admin_faq(request):
                 print(f"FAQ en español actualizada: {faq_translation}")
                 messages.success(request, 'La FAQ en español ha sido actualizada con éxito.')
             else:
-                messages.error(request, 'El título y contenido en español no pueden estar vacíos.')
-            
-            return redirect('faqs')  # Redireccionamos a la vista de FAQs
+                messages.error(request, 'Error al validar el formulario en español.')
 
         elif 'save_faq_it' in request.POST:
             print("Botón para guardar FAQ en italiano presionado")
-            if title_it and content_it:
+            form_it = FAQForm(prefix='it', data=request.POST, initial=form_it_initial)
+            form_es = FAQForm(prefix='es', initial=form_es_initial)  # Creamos una instancia de formulario español vacía
+            if form_it.is_valid():
                 faq_instance, _ = FAQ.objects.get_or_create(id=FAQ_ID, defaults={'title': title_it})
                 faq_translation, _ = FAQTranslation.objects.update_or_create(
                     faq=faq_instance,
@@ -716,21 +730,9 @@ def admin_faq(request):
                 print(f"FAQ en italiano actualizada: {faq_translation}")
                 messages.success(request, 'La FAQ en italiano ha sido actualizada con éxito.')
             else:
-                messages.error(request, 'El título y contenido en italiano no pueden estar vacíos.')
-            
-            return redirect('faqs')
+                messages.error(request, 'Error al validar el formulario en italiano.')
 
-    else:
-        # Aquí se establecen los formularios con el contexto de la FAQ actual si existe.
-        try:
-            faq_instance = FAQ.objects.get(id=FAQ_ID)
-            form_es = FAQForm(prefix='es', instance=faq_instance)
-            form_it = FAQForm(prefix='it', instance=faq_instance)
-        except FAQ.DoesNotExist:
-            form_es = FAQForm(prefix='es')
-            form_it = FAQForm(prefix='it')
-    form_es = FAQForm(prefix='es', instance=faq_es_instance) if faq_es_instance else FAQForm(prefix='es')
-    form_it = FAQForm(prefix='it', instance=faq_it_instance) if faq_it_instance else FAQForm(prefix='it')
+        return redirect('faqs')
 
     context = {
         'form_es': form_es,
@@ -738,17 +740,8 @@ def admin_faq(request):
         'faq_es': faq_es_instance,
         'faq_it': faq_it_instance,
     }
+
     return render(request, 'admin/admin_faq.html', context)
-
-
-
-
-
-
-
-
-
-
 
 
 def save_faq_in_language(request, form, language_code):
@@ -765,6 +758,73 @@ def save_faq_in_language(request, form, language_code):
     return redirect('/')
 
 
+# views.py
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def admin_questions(request):
+    # Asumo que siempre habrá al menos una pregunta, ajusta según tus necesidades
+    question = Question.objects.first()
+
+    # Crear instancias de formularios para ESP e IT
+    question_form_es = QuestionForm(prefix='es', instance=question)
+    question_form_it = QuestionForm(prefix='it', instance=question)
+
+    if request.method == 'POST':
+        # Verificar qué botón se presionó
+        if 'save_question_es' in request.POST:
+            question_form_es = QuestionForm(request.POST, prefix='es', instance=question)
+            language_code = 'es'
+        elif 'save_question_it' in request.POST:
+            question_form_it = QuestionForm(request.POST, prefix='it', instance=question)
+            language_code = 'it'
+        else:
+            messages.error(request, 'Acción no válida.')
+            return redirect('admin_questions')
+
+        if question_form_es.is_valid() and question_form_it.is_valid():
+            # Guardar la pregunta en el modelo base
+            question_entry = question_form_es.save(commit=False)
+            question_entry.save()
+
+            # Actualizar las traducciones según el idioma seleccionado
+            question_entry.title_es = question_form_es.cleaned_data.get('title_es')
+            question_entry.short_answer_es = question_form_es.cleaned_data.get('short_answer_es')
+            question_entry.complete_answer_es = question_form_es.cleaned_data.get('complete_answer_es')
+
+            question_entry.title_it = question_form_it.cleaned_data.get('title_it')
+            question_entry.short_answer_it = question_form_it.cleaned_data.get('short_answer_it')
+            question_entry.complete_answer_it = question_form_it.cleaned_data.get('complete_answer_it')
+
+            question_entry.save()
+            
+            messages.success(request, f'La pregunta ha sido actualizada con éxito en {language_code}.')
+            
+            # Redireccionar a la página correcta (puede ser 'admin_blog' o 'faqs' según tus necesidades)
+            return redirect('admin_blog')
+
+    context = {
+        'question_form_es': question_form_es,
+        'question_form_it': question_form_it,
+        'question': question,
+    }
+
+    return render(request, 'admin/admin_questions.html', context)
+def save_questions_in_language(request, form, language_code):
+    question_entry = form.save(commit=False)
+    question_entry.save()
+
+    QuestionTranslation.objects.update_or_create(
+        question=question_entry, language=language_code,
+        defaults={
+            'title': form.cleaned_data[f'title_{language_code}'],
+            'short_answer': form.cleaned_data[f'short_answer_{language_code}'],
+            'complete_answer': form.cleaned_data[f'complete_answer_{language_code}']
+        }
+    )
+
+    messages.success(request, f'La pregunta en {language_code} ha sido actualizada con éxito.')
+    return redirect('/')
+
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
@@ -773,7 +833,6 @@ def delete_question(request, question_id):
     question.delete()
     messages.success(request, 'La pregunta ha sido eliminada.')
     return redirect('faqs')
-
 
 @csrf_exempt
 def update_user_data(request):

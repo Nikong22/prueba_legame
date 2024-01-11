@@ -9,29 +9,40 @@
     <!-- ... -->
     <form method="post" action="{% url 'admin_faq' %}">
         {% csrf_token %}
-        <!-- Formulario para español -->
+        <!-- Campos para español -->
         <div class="mb-3">
             <label for="id_es-title">Título ESP:</label>
-            <input type="text" name="title_es" id="id_es-title" value="{{ faq_es.title|default_if_none:'' }}">
+            <input type="text" name="title_es" class="form-control" id="id_es-title" placeholder="Ingrese el título ESP" value="{{ form_es.title_es.value }}" required>
         </div>
         <div class="mb-3">
             <label for="id_es-content">Contenido ESP:</label>
-            <textarea name="content_es" id="id_es-content">{{ faq_es.content|default_if_none:'' }}</textarea>
+            <textarea name="content_es" class="form-control" id="id_es-content" rows="3" required>{{ form_es.content_es.value }}</textarea>
         </div>
         <button type="submit" name="save_faq_es">Guardar FAQ ESP</button>
     </form>
+    
+    
     <form method="post" action="{% url 'admin_faq' %}">
         {% csrf_token %}
         <!-- Formulario para italiano -->
         <div class="mb-3">
             <label for="id_it-title">Título IT:</label>
-            <input type="text" name="title_it" id="id_it-title" value="{{ faq_it.title|default_if_none:'' }}">
+            {{ form_it.title_it }}
+            {% if form_it.errors.title_it %}
+                <p class="error">{{ form_it.errors.title_it }}</p>
+            {% endif %}
         </div>
         <div class="mb-3">
             <label for="id_it-content">Contenuto IT:</label>
-            <textarea name="content_it" id="id_it-content">{{ faq_it.content|default_if_none:'' }}</textarea>
+            {{ form_it.content_it }}
+            {% if form_it.errors.content_it %}
+                <p class="error">{{ form_it.errors.content_it }}</p>
+            {% endif %}
         </div>
         <button type="submit" name="save_faq_it">Guardar FAQ IT</button>
     </form>
+    
+    
+    
 </div>
 {% endblock %}

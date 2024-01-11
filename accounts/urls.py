@@ -58,6 +58,7 @@ urlpatterns = [
     path('resend_activation_email/<uidb64>/', views.resend_activation_email, name='resend_activation_email'),
     path('activation_valid_admin/', views.activation_valid_admin, name='activation_valid_admin'),
     path('admin_faq/', views.admin_faq, name='admin_faq'),
+    path('admin_questions/', views.admin_questions, name='admin_questions'),
 
     
 ]

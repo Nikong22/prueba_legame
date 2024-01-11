@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
@@ -197,7 +198,23 @@ class Question(models.Model):
     title = models.CharField(max_length=200)
     short_answer = models.TextField()
     complete_answer = models.TextField()
-    # Si decides agregar respuestas completas en el futuro, puedes incluir otro campo aquí.
 
     def __str__(self):
         return self.title
+    
+    def get_translation(self, language_code):
+        return self.translations.filter(language=language_code).first()
+
+
+class QuestionTranslation(models.Model):
+    question = models.ForeignKey(Question, related_name='translations', on_delete=models.CASCADE)
+    language = models.CharField(max_length=2, choices=[('es', 'Español'), ('it', 'Italiano')])
+    title = models.CharField(max_length=200)
+    short_answer = models.TextField()
+    complete_answer = models.TextField()
+
+    class Meta:
+        unique_together = ('question', 'language')
+
+    def __str__(self):
+        return f'{self.language} translation of {self.question.title}'

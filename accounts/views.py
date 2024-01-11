@@ -662,9 +662,10 @@ def save_blog_in_language(request, form, language_code):
 def faqs(request):
     language_code = get_language()  # Obtienes el código de idioma actual de la sesión
     faqs_translated = FAQ.objects.all().prefetch_related('translations')
+    questions = QuestionTranslation.objects.filter(language=language_code)
 
     # Agregas las traducciones al contexto
-    context = {'faqs': faqs_translated, 'language_code': language_code}
+    context = {'faqs': faqs_translated, 'language_code': language_code, 'questions': questions}
     return render(request, 'admin/faqs.html', context)
 
 @login_required

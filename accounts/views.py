@@ -801,7 +801,7 @@ def admin_questions(request):
             messages.success(request, f'La pregunta ha sido actualizada con éxito en {language_code}.')
             
             # Redireccionar a la página correcta (puede ser 'admin_blog' o 'faqs' según tus necesidades)
-            return redirect('admin_blog')
+            return redirect('faqs')
 
     context = {
         'question_form_es': question_form_es,
@@ -810,6 +810,7 @@ def admin_questions(request):
     }
 
     return render(request, 'admin/admin_questions.html', context)
+
 def save_questions_in_language(request, form, language_code):
     question_entry = form.save(commit=False)
     question_entry.save()

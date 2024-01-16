@@ -233,10 +233,7 @@ class CompanySignUpForm(UserCreationForm):
             raise forms.ValidationError("Este campo es obligatorio.")
         
         # Comprueba si el número de teléfono tiene un código de país válido
-        if str(phone_number.country_code) in ['54', '39']:
-            print("El código de país es válido")
-        else:
-            print("El código de país no es válido")
+        if not str(phone_number.country_code) in ['54', '39']:
             raise forms.ValidationError("Por favor ingresa un número de teléfono válido para Argentina o Italia.")
 
         return phone_number
@@ -280,32 +277,6 @@ class CompanySignUpForm(UserCreationForm):
         if commit:
             with transaction.atomic():
                 user.save()
-                # self.send_verification_email(user, self.request)
-
-            # # Resto del código para guardar el objeto Company
-            # province_id = self.cleaned_data.get('province_name', '')
-            # province_name = id_to_province_name(province_id) if province_id else ''
-            # company = Company(
-            #     user=user,
-            #     company_name=self.cleaned_data['company_name'],
-            #     phone_number=self.cleaned_data['phone_number'],
-            #     address=self.cleaned_data['address'],
-            #     city=self.cleaned_data['city'],
-            #     sector=self.cleaned_data['sector'],
-            #     razón_social=self.cleaned_data['razón_social'],
-            #     cantidad_empleados=self.cleaned_data['cantidad_empleados'],
-            #     contact_email=self.cleaned_data['email'],
-            #     cuit=self.cleaned_data['cuit'],
-            #     province_name=province_name,
-            #     region_it=self.cleaned_data['region_it'],
-            #     provincia_it=self.cleaned_data['provincia_it'],
-            #     comuna_it=self.cleaned_data['comuna_it']
-            # )
-            #
-            # company.save()
-            # print("Objeto Company guardado correctamente")
-
-        print("Fin del método save en CompanySignUpForm")
         return user
     def send_verification_email(self, user, request):
         # Llama a la función global send_verification_email

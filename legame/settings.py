@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-u$lx*q=putuu_^#l1hpgedm=7or6g4$5rp1(gdi=io!s=d7k=#
 DEBUG = True
 
 #ALLOWED_HOSTS = ['progettolegame.com', 'www.progettolegame.com']
+#DOMAIN = 'example.com'
 
 
 # Application definition

@@ -193,28 +193,18 @@ def signup_comp(request):
                             company.city = form.cleaned_data.get('city', '')
 
                     company.save()
-                    # try:
-                    #     print("Antes de llamar a send_verification_email")
+                   # try:
                     #     send_verification_email(user, request)
-                    #     print("Después de llamar a send_verification_email")
                     #     #logger.info("Correo de verificación enviado correctamente.")
                     # except Exception as e:
-                    #     print(f"Excepción capturada en send_verification_email: {e}")
                     #     #logger.error(f"Error al enviar correo de verificación: {e}")
-
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return render(request, 'email/registration_success.html')
             except IntegrityError as e:
                 messages.error(request, f'Hubo un error al crear la cuenta: {e}')
             finally:
-                try:
-                    print("Antes de llamar a send_verification_email")
                     send_verification_email(user, request)
-                    print("Después de llamar a send_verification_email")
-                    #logger.info("Correo de verificación enviado correctamente.")
-                except Exception as e:
-                    print(f"Excepción capturada en send_verification_email: {e}")
-                    #logger.error(f"Error al enviar correo de verificación: {e}")
+                    
         else:
             messages.error(request, 'Por favor corrige los errores en el formulario.')
     else:
@@ -343,7 +333,7 @@ def signin_admin(request):
             if user.is_superuser or user.is_staff:
                   # Verificar si el correo electrónico del administrador ha sido confirmado
                 if hasattr(user, 'adminuser') and not user.adminuser.email_confirmed:
-                    messages.error(request, 'Por favor, activa tu cuenta desde el enlace enviado a tu email.')
+                    messages.error(request, _('ACTIVATE_ACCOUNT'))
                     return render(request, 'login/signin_admin.html', {'form': form})
 
                 login(request, user)
@@ -671,7 +661,6 @@ def faqs(request):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_faq(request):
-    print("Accediendo a la vista admin_faq")
 
     # Obtener instancias de FAQTranslation
     faq_es_instance = FAQTranslation.objects.filter(language='es').first()
@@ -688,7 +677,6 @@ def admin_faq(request):
     form_it = FAQForm(prefix='it', initial=form_it_initial)
 
     if request.method == 'POST':
-        print("Método POST detectado")
 
         title_es = request.POST.get('title_es', '').strip()
         content_es = request.POST.get('content_es', '').strip()
@@ -696,7 +684,6 @@ def admin_faq(request):
         content_it = request.POST.get('content_it', '').strip()
 
         if 'save_faq_es' in request.POST:
-            print("Botón para guardar FAQ en español presionado")
             form_es = FAQForm(prefix='es', data=request.POST, initial=form_es_initial)
             form_it = FAQForm(prefix='it', initial=form_it_initial)  # Creamos una instancia de formulario italiano vacía
             if form_es.is_valid():
@@ -709,13 +696,11 @@ def admin_faq(request):
                         'content': content_es
                     }
                 )
-                print(f"FAQ en español actualizada: {faq_translation}")
                 messages.success(request, 'La FAQ en español ha sido actualizada con éxito.')
             else:
                 messages.error(request, 'Error al validar el formulario en español.')
 
         elif 'save_faq_it' in request.POST:
-            print("Botón para guardar FAQ en italiano presionado")
             form_it = FAQForm(prefix='it', data=request.POST, initial=form_it_initial)
             form_es = FAQForm(prefix='es', initial=form_es_initial)  # Creamos una instancia de formulario español vacía
             if form_it.is_valid():
@@ -728,7 +713,6 @@ def admin_faq(request):
                         'content': content_it
                     }
                 )
-                print(f"FAQ en italiano actualizada: {faq_translation}")
                 messages.success(request, 'La FAQ en italiano ha sido actualizada con éxito.')
             else:
                 messages.error(request, 'Error al validar el formulario en italiano.')
@@ -919,7 +903,6 @@ def edit_job_post(request, job_id):
     job = get_object_or_404(JobPost, pk=job_id, company=request.user.company)
 
     if request.method == 'POST':
-        print(request.body)  # Agrega esta línea para depurar
         try:
             data = json.loads(request.body)
             job.title = data.get('title', job.title)

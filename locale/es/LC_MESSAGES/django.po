@@ -1778,3 +1778,72 @@ msgstr[1] ""
 #
 msgid "ERROR_LOGIN"
 msgstr "Acceso restringido o usuario/contraseña incorrecta"
+
+msgid "ACTIVATE_ACCOUNT"
+msgstr "Por favor, activa tu cuenta desde el enlace enviado a tu email."
+
+msgid "PREG_FRECS"
+msgstr "Preguntas frecuentes"
+
+msgid "TITULO_INDEX"
+msgstr "Somos el puente entre Argentina y Cerdeña"
+
+msgid "SUBTITULO_INDEX"
+msgstr "Buscá o publicá ofertas de empleos en Cerdeña"
+
+msgid "ABOUT"
+msgstr "Sobre Progetto Legame"
+
+msgid "SOBRE_NOS"
+msgstr "Sobre nosotros"
+
+msgid "TEAM"
+msgstr "Equipo"
+
+msgid "TERM_COND"
+msgstr "Terminos y condiciones"
+
+msgid "POLIT_PRIV"
+msgstr "Políticas de privacidad"
+
+msgid "SUPPORT"
+msgstr "Soporte"
+
+msgid "PREG_FREC"
+msgstr "Preguntas frecuentas "
+
+msgid "SUP_CAND"
+msgstr "Soporte a candidatos"
+
+msgid "SUP_COMP"
+msgstr "Soporte a empresas"
+
+msgid "CONTACT"
+msgstr "Contacto"
+
+msgid "CONTACT_NOS"
+msgstr "Contactános"
+
+msgid "CONTACT_AGEN"
+msgstr "Agendanos"
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""

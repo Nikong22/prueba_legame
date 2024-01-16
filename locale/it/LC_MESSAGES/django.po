@@ -1777,3 +1777,51 @@ msgstr[1] ""
 
 msgid "ERROR_LOGIN"
 msgstr "Siamo fuori della Copa"
+
+msgid "ACTIVATE_ACCOUNT"
+msgstr "italiannn”
+
+msgid "PREG_FRECS"
+msgstr "Domande frequenti"
+
+msgid "TITULO_INDEX"
+msgstr "Siamo il ponte tra Argentina e Sardegna"
+
+msgid "SUBTITULO_INDEX"
+msgstr "Cerca o pubblica offerte di lavoro in Sardegna"
+
+msgid "ABOUT"
+msgstr "Sul Progetto Legame"
+
+msgid "SOBRE_NOS"
+msgstr "Chi siamo "
+
+msgid "TEAM"
+msgstr "Team"
+
+msgid "TERM_COND"
+msgstr "Termini e Condizioni"
+
+msgid "POLIT_PRIV"
+msgstr "Politiche sulla privacy"
+
+msgid "SUPPORT"
+msgstr "Aiuto"
+
+msgid "PREG_FREC"
+msgstr "Domande frequenti"
+
+msgid "SUP_CAND"
+msgstr "Supporto al candidato"
+
+msgid "SUP_COMP"
+msgstr "Supporto alle imprese"
+
+msgid "CONTACT"
+msgstr "Contatto"
+
+msgid "CONTACT_NOS"
+msgstr "Contattaci "
+
+msgid "CONTACT_AGEN"
+msgstr "Salva i nostri contatti"

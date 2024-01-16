@@ -76,7 +76,7 @@
       </ul>
       <!-- Left links -->
       <div class="d-flex align-items-center">
-          <a class="nav-link" href="{% url 'faqs' %}" style="text-decoration: none; color: #495057; margin-right: 20px;">Preguntas frecuentes</a>
+          <a class="nav-link" href="{% url 'faqs' %}" style="text-decoration: none; color: #495057; margin-right: 20px;">{% trans "PREG_FRECS" %}</a>
         <button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
           <a class="nav-link btn-login" href="{% url 'signin' %}">Login</a>
         </button>
@@ -150,7 +150,7 @@
             <div class="single-footer-widget section_padding_0_130">
               <!-- Footer Logo-->
               <div class="footer-logo mb-3"></div>
-              <p>Appland is completely creative, lightweight, clean app landing page.</p>
+              <p>ACA MI PARTE</p>
               <!-- Copywrite Text-->
               <div class="copywrite-text mb-5">
                 <p class="mb-0">Made with <i class="lni-heart mr-1"></i>by Designing World</p>
@@ -163,14 +163,14 @@
           <div class="col-12 col-sm-6 col-lg">
             <div class="single-footer-widget ">
               <!-- Widget Title-->
-              <h5 class="widget-title">About</h5>
+              <h5 class="widget-title">{% trans "ABOUT" %}</h5>
               <!-- Footer Menu-->
               <div class="footer_menu">
                 <ul>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Corporate Sale</a></li>
-                  <li><a href="#">Terms &amp; Policy</a></li>
-                  <li><a href="#">Community</a></li>
+                  <li><a href="#">{% trans "SOBRE_NOS" %}</a></li>
+                  <li><a href="#">{% trans "TEAM" %}</a></li>
+                  <li><a href="#">{% trans "TERM_COND" %}</a></li>
+                  <li><a href="#">{% trans "POLIT_PRIV" %}</a></li>
                 </ul>
               </div>
             </div>
@@ -179,15 +179,13 @@
           <div class="col-12 col-sm-6 col-lg">
             <div class="single-footer-widget ">
               <!-- Widget Title-->
-              <h5 class="widget-title">Support</h5>
+              <h5 class="widget-title">{% trans "SUPPORT" %}</h5>
               <!-- Footer Menu-->
               <div class="footer_menu">
                 <ul>
-                  <li><a href="#">Help</a></li>
-                  <li><a href="#">Support</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Term &amp; Conditions</a></li>
-                  <li><a href="#">Help &amp; Support</a></li>
+                  <li><a href="#">{% trans "PREG_FREC" %}</a></li>
+                  <li><a href="#">{% trans "SUP_CAND" %}</a></li>
+                  <li><a href="#">{% trans "SUP_COMP" %}</a></li>
                 </ul>
               </div>
             </div>
@@ -196,14 +194,12 @@
           <div class="col-12 col-sm-6 col-lg">
             <div class="single-footer-widget section_padding_0_130">
               <!-- Widget Title-->
-              <h5 class="widget-title">Contact</h5>
+              <h5 class="widget-title">{% trans "CONTACT" %}</h5>
               <!-- Footer Menu-->
               <div class="footer_menu">
                 <ul>
-                  <li><a href="#">Call Centre</a></li>
-                  <li><a href="#">Email Us</a></li>
-                  <li><a href="#">Term &amp; Conditions</a></li>
-                  <li><a href="#">Help Center</a></li>
+                  <li><a href="#">{% trans "CONTACT_NOS" %}</a></li>
+                  <li><a href="#">{% trans "CONTACT_AGEN" %}</a></li>
                 </ul>
               </div>
             </div>

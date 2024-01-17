@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 01:47-0300\n"
+"POT-Creation-Date: 2024-01-16 14:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/templates/base.html:79
+msgid "PREG_FRECS"
+msgstr "Preguntas frecuentes"
+
+#: accounts/templates/base.html:166
+msgid "ABOUT"
+msgstr "Sobre Progetto Legame"
+
+#: accounts/templates/base.html:170
+msgid "SOBRE_NOS"
+msgstr "Sobre nosotros"
+
+#: accounts/templates/base.html:171
+msgid "TEAM"
+msgstr "Equipo"
+
+#: accounts/templates/base.html:172
+msgid "TERM_COND"
+msgstr "Terminos y condiciones"
+
+#: accounts/templates/base.html:173
+msgid "POLIT_PRIV"
+msgstr "Políticas de privacidad"
+
+#: accounts/templates/base.html:182
+msgid "SUPPORT"
+msgstr "Soporte"
+
+#: accounts/templates/base.html:186
+msgid "PREG_FREC"
+msgstr "Preguntas frecuentas "
+
+#: accounts/templates/base.html:187
+msgid "SUP_CAND"
+msgstr "Soporte a candidatos"
+
+#: accounts/templates/base.html:188
+msgid "SUP_COMP"
+msgstr "Soporte a empresas"
+
+#: accounts/templates/base.html:197
+msgid "CONTACT"
+msgstr "Contacto"
+
+#: accounts/templates/base.html:201
+msgid "CONTACT_NOS"
+msgstr "Contactános"
+
+#: accounts/templates/base.html:202
+msgid "CONTACT_AGEN"
+msgstr "Agendanos"
+
+#: accounts/templates/login/index.html:16
+msgid "TITULO_INDEX"
+msgstr "Somos el puente entre Argentina y Cerdeña"
+
+#: accounts/templates/login/index.html:17
+msgid "SUBTITULO_INDEX"
+msgstr "Buscá o publicá ofertas de empleos en Cerdeña"
+
+#
+#: accounts/views.py:313
+msgid "ERROR_LOGIN"
+msgstr "Acceso restringido o usuario/contraseña incorrecta"
+
+#: accounts/views.py:336
+msgid "ACTIVATE_ACCOUNT"
+msgstr "Por favor, activa tu cuenta desde el enlace enviado a tu email."
 
 #: legame_venv/Lib/site-packages/django/contrib/messages/apps.py:15
 #: venv/Lib/site-packages/django/contrib/messages/apps.py:15
@@ -1774,76 +1843,3 @@ msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
-
-#
-msgid "ERROR_LOGIN"
-msgstr "Acceso restringido o usuario/contraseña incorrecta"
-
-msgid "ACTIVATE_ACCOUNT"
-msgstr "Por favor, activa tu cuenta desde el enlace enviado a tu email."
-
-msgid "PREG_FRECS"
-msgstr "Preguntas frecuentes"
-
-msgid "TITULO_INDEX"
-msgstr "Somos el puente entre Argentina y Cerdeña"
-
-msgid "SUBTITULO_INDEX"
-msgstr "Buscá o publicá ofertas de empleos en Cerdeña"
-
-msgid "ABOUT"
-msgstr "Sobre Progetto Legame"
-
-msgid "SOBRE_NOS"
-msgstr "Sobre nosotros"
-
-msgid "TEAM"
-msgstr "Equipo"
-
-msgid "TERM_COND"
-msgstr "Terminos y condiciones"
-
-msgid "POLIT_PRIV"
-msgstr "Políticas de privacidad"
-
-msgid "SUPPORT"
-msgstr "Soporte"
-
-msgid "PREG_FREC"
-msgstr "Preguntas frecuentas "
-
-msgid "SUP_CAND"
-msgstr "Soporte a candidatos"
-
-msgid "SUP_COMP"
-msgstr "Soporte a empresas"
-
-msgid "CONTACT"
-msgstr "Contacto"
-
-msgid "CONTACT_NOS"
-msgstr "Contactános"
-
-msgid "CONTACT_AGEN"
-msgstr "Agendanos"
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""
-
-msgid ""
-msgstr ""

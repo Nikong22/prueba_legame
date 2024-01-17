@@ -78,25 +78,24 @@
         </div>
       </form>
 
-      <!-- Formulario para italiano -->
-      <form method="post" action="{% url 'admin_faq' %}">
-        {% csrf_token %}
-        <!-- Campos para italiano -->
-        <div class="mb-3">
-          <label for="id_it-title-faq" class="form-label">Título IT:</label>
-          <input type="text" name="title_it" class="form-control" id="id_it-title-faq" placeholder="Inserisci il titolo IT" value="{{ form_it.title_it.value|default:'' }}" required>
-        </div>
-        <div class="mb-3">
-          <label for="id_it-content-faq" class="form-label">Contenuto IT:</label>
-          <textarea name="content_it" class="form-control" id="id_it-content-faq" rows="3" required>{{ form_it.content_it.value|default:'' }}</textarea>
-        </div>
-        <div class="text-center">
-          <button type="submit" name="save_faq_it" class="btn btn-primary">Guardar FAQ IT</button>
-        </div>
-      </form>
+   <!-- Formulario para italiano -->
+   <form method="post" action="{% url 'admin_faq' %}">
+    {% csrf_token %}
+    <!-- Campos para italiano -->
+    <div class="mb-3">
+      <label for="id_it-title-faq" class="form-label">Título IT:</label>
+      <input type="text" name="title_it" class="form-control" id="id_it-title-faq" placeholder="Inserisci il titolo IT" value="{{ blog_form_it.title|default:'' }}" required>
     </div>
-  </div>
-
+    <div class="mb-3">
+      <label for="id_it-content-faq" class="form-label">Contenuto IT:</label>
+      <textarea name="content_it" class="form-control" id="id_it-content-faq" rows="3" required>{{ blog_form_it.content|default:'' }}</textarea>
+    </div>
+    <div class="text-center">
+      <button type="submit" name="save_faq_it" class="btn btn-primary">Guardar FAQ IT</button>
+    </div>
+  </form>
+</div>
+</div>
 
 <!-- Formulario para las Questions -->
 <div class="card mb-4 shadow-lg">
@@ -119,15 +118,7 @@
           <label for="id_es-complete-answer" class="form-label">Respuesta Completa ESP:</label>
           <textarea name="complete_answer_es" class="form-control" id="id_es-complete-answer" rows="3" placeholder="Ingrese respuesta completa ESP" required></textarea>
       </div>
-      <!-- Botón para guardar en ESP -->
-      <div class="text-center">
-          <button type="submit" name="action" value="save_question_es" class="btn btn-lg btn-block btn-primary">Guardar ESP</button>
-      </div>
-  </form>
-    <!-- Formulario para italiano -->
-    <form method="post" action="{% url 'admin_questions' %}">
-      {% csrf_token %}
-
+<hr>
       <!-- Campos para italiano -->
       <div class="mb-3">
         <label for="id_it-title" class="form-label">Título IT:</label>
@@ -144,7 +135,7 @@
 
       <!-- Botón para guardar en italiano -->
       <div class="text-center">
-        <button type="submit" name="action" value="save_question_it" class="btn btn-lg btn-block btn-primary">Guardar IT</button>
+        <button type="submit" name="save_question" class="btn btn-lg btn-block btn-primary">Guardar</button>
       </div>
     </form>
   </div>

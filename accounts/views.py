@@ -41,8 +41,11 @@ from django.core.exceptions import ValidationError
 from .models import Question, QuestionTranslation
 from .forms import QuestionForm
 
+def terms_and_conditions_view(request):
+    return render(request, 'pages/terms_and_conditions.html')  
 
-
+def privacy_policy_view(request):
+    return render(request, 'pages/privacy_policy.html')
 
 def index(request):
     search_query = request.GET.get('search_query', '')
@@ -623,14 +626,13 @@ def admin_blog(request):
                 messages.success(request, 'La entrada del blog en italiano ha sido actualizada con éxito.')
                 return redirect('admin_blog')
 
-    # Si no es POST o si es un GET, se cargan los formularios con los datos existentes
-    blog_form_es = BlogEntryForm(instance=entry_es, prefix='es') if entry_es else BlogEntryForm(prefix='es')
-    blog_form_it = BlogEntryForm(instance=entry_it, prefix='it') if entry_it else BlogEntryForm(prefix='it')
-
+   # Obtener instancias de FAQTranslation
+    faq_es_instance = FAQTranslation.objects.filter(language='es').first()
+    faq_it_instance = FAQTranslation.objects.filter(language='it').first()
 
     context = {
-        'blog_form_es': blog_form_es,
-        'blog_form_it': blog_form_it,
+        'blog_form_es': faq_es_instance,
+        'blog_form_it': faq_it_instance,
         'entry_es': entry_es,
         'entry_it': entry_it,
     }
@@ -743,49 +745,36 @@ def save_faq_in_language(request, form, language_code):
     return redirect('/')
 
 
-# views.py
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def admin_questions(request):
-    # Asumo que siempre habrá al menos una pregunta, ajusta según tus necesidades
-    question = Question.objects.first()
-
-    # Crear instancias de formularios para ESP e IT
-    question_form_es = QuestionForm(prefix='es', instance=question)
-    question_form_it = QuestionForm(prefix='it', instance=question)
+    # Siempre se crea una nueva instancia de Question
+    question = Question.objects.create()
 
     if request.method == 'POST':
-        # Verificar qué botón se presionó
-        if 'save_question_es' in request.POST:
-            question_form_es = QuestionForm(request.POST, prefix='es', instance=question)
-            language_code = 'es'
-        elif 'save_question_it' in request.POST:
-            question_form_it = QuestionForm(request.POST, prefix='it', instance=question)
-            language_code = 'it'
-        else:
-            messages.error(request, 'Acción no válida.')
-            return redirect('admin_questions')
+        # Crear instancias de formulario para cada idioma
+        question_form_es = QuestionForm(request.POST, prefix='es', instance=question)
+        question_form_it = QuestionForm(request.POST, prefix='it', instance=question)
 
+        # Verificar que ambos formularios sean válidos
         if question_form_es.is_valid() and question_form_it.is_valid():
-            # Guardar la pregunta en el modelo base
-            question_entry = question_form_es.save(commit=False)
-            question_entry.save()
+            # Guardar la pregunta base solo una vez
+            question_entry = question_form_es.save()
 
-            # Actualizar las traducciones según el idioma seleccionado
-            question_entry.title_es = question_form_es.cleaned_data.get('title_es')
-            question_entry.short_answer_es = question_form_es.cleaned_data.get('short_answer_es')
-            question_entry.complete_answer_es = question_form_es.cleaned_data.get('complete_answer_es')
+            # Guardar las traducciones para cada idioma
+            save_question_translation(question_entry, question_form_es, 'es')
+            save_question_translation(question_entry, question_form_it, 'it')
 
-            question_entry.title_it = question_form_it.cleaned_data.get('title_it')
-            question_entry.short_answer_it = question_form_it.cleaned_data.get('short_answer_it')
-            question_entry.complete_answer_it = question_form_it.cleaned_data.get('complete_answer_it')
+            messages.success(request, 'La pregunta y sus traducciones han sido creadas con éxito.')
+            return redirect('faqs')  # Redireccionar a la página deseada
 
-            question_entry.save()
-            
-            messages.success(request, f'La pregunta ha sido actualizada con éxito en {language_code}.')
-            
-            # Redireccionar a la página correcta (puede ser 'admin_blog' o 'faqs' según tus necesidades)
-            return redirect('faqs')
+        else:
+            messages.error(request, 'Hubo un error con el formulario.')
+
+    else:
+        # Crear formularios vacíos si no es un POST
+        question_form_es = QuestionForm(prefix='es')
+        question_form_it = QuestionForm(prefix='it')
 
     context = {
         'question_form_es': question_form_es,
@@ -793,23 +782,18 @@ def admin_questions(request):
         'question': question,
     }
 
-    return render(request, 'admin/admin_questions.html', context)
+    return render(request, 'admin/faqs.html', context)
 
-def save_questions_in_language(request, form, language_code):
-    question_entry = form.save(commit=False)
-    question_entry.save()
-
+def save_question_translation(question_entry, form, language_code):
+    # Crear o actualizar la traducción de la pregunta
     QuestionTranslation.objects.update_or_create(
         question=question_entry, language=language_code,
         defaults={
-            'title': form.cleaned_data[f'title_{language_code}'],
-            'short_answer': form.cleaned_data[f'short_answer_{language_code}'],
-            'complete_answer': form.cleaned_data[f'complete_answer_{language_code}']
+            'title': form.data.get(f'title_{language_code}'),
+            'short_answer': form.data.get(f'short_answer_{language_code}'),
+            'complete_answer': form.data.get(f'complete_answer_{language_code}')
         }
     )
-
-    messages.success(request, f'La pregunta en {language_code} ha sido actualizada con éxito.')
-    return redirect('/')
 
 
 @login_required

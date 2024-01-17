@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-10 01:48-0300\n"
+"POT-Creation-Date: 2024-01-16 14:56-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,74 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/templates/base.html:79
+msgid "PREG_FRECS"
+msgstr "Domande frequenti"
+
+#: accounts/templates/base.html:166
+msgid "ABOUT"
+msgstr "Sul Progetto Legame"
+
+#: accounts/templates/base.html:170
+msgid "SOBRE_NOS"
+msgstr "Chi siamo "
+
+#: accounts/templates/base.html:171
+msgid "TEAM"
+msgstr "Team"
+
+#: accounts/templates/base.html:172
+msgid "TERM_COND"
+msgstr "Termini e Condizioni"
+
+#: accounts/templates/base.html:173
+msgid "POLIT_PRIV"
+msgstr "Politiche sulla privacy"
+
+#: accounts/templates/base.html:182
+msgid "SUPPORT"
+msgstr "Aiuto"
+
+#: accounts/templates/base.html:186
+msgid "PREG_FREC"
+msgstr "Domande frequenti"
+
+#: accounts/templates/base.html:187
+msgid "SUP_CAND"
+msgstr "Supporto al candidato"
+
+#: accounts/templates/base.html:188
+msgid "SUP_COMP"
+msgstr "Supporto alle imprese"
+
+#: accounts/templates/base.html:197
+msgid "CONTACT"
+msgstr "Contatto"
+
+#: accounts/templates/base.html:201
+msgid "CONTACT_NOS"
+msgstr "Contattaci "
+
+#: accounts/templates/base.html:202
+msgid "CONTACT_AGEN"
+msgstr "Salva i nostri contatti"
+
+#: accounts/templates/login/index.html:16
+msgid "TITULO_INDEX"
+msgstr "Siamo il ponte tra Argentina e Sardegna"
+
+#: accounts/templates/login/index.html:17
+msgid "SUBTITULO_INDEX"
+msgstr "Cerca o pubblica offerte di lavoro in Sardegna"
+
+#: accounts/views.py:313
+msgid "ERROR_LOGIN"
+msgstr "Siamo fuori della Copa"
+
+#: accounts/views.py:336
+msgid "ACTIVATE_ACCOUNT"
+msgstr "italiannn"
 
 #: legame_venv/Lib/site-packages/django/contrib/messages/apps.py:15
 #: venv/Lib/site-packages/django/contrib/messages/apps.py:15
@@ -1774,54 +1842,3 @@ msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "ERROR_LOGIN"
-msgstr "Siamo fuori della Copa"
-
-msgid "ACTIVATE_ACCOUNT"
-msgstr "italiannn”
-
-msgid "PREG_FRECS"
-msgstr "Domande frequenti"
-
-msgid "TITULO_INDEX"
-msgstr "Siamo il ponte tra Argentina e Sardegna"
-
-msgid "SUBTITULO_INDEX"
-msgstr "Cerca o pubblica offerte di lavoro in Sardegna"
-
-msgid "ABOUT"
-msgstr "Sul Progetto Legame"
-
-msgid "SOBRE_NOS"
-msgstr "Chi siamo "
-
-msgid "TEAM"
-msgstr "Team"
-
-msgid "TERM_COND"
-msgstr "Termini e Condizioni"
-
-msgid "POLIT_PRIV"
-msgstr "Politiche sulla privacy"
-
-msgid "SUPPORT"
-msgstr "Aiuto"
-
-msgid "PREG_FREC"
-msgstr "Domande frequenti"
-
-msgid "SUP_CAND"
-msgstr "Supporto al candidato"
-
-msgid "SUP_COMP"
-msgstr "Supporto alle imprese"
-
-msgid "CONTACT"
-msgstr "Contatto"
-
-msgid "CONTACT_NOS"
-msgstr "Contattaci "
-
-msgid "CONTACT_AGEN"
-msgstr "Salva i nostri contatti"

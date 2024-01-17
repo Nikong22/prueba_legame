@@ -59,6 +59,8 @@ urlpatterns = [
     path('activation_valid_admin/', views.activation_valid_admin, name='activation_valid_admin'),
     path('admin_faq/', views.admin_faq, name='admin_faq'),
     path('admin_questions/', views.admin_questions, name='admin_questions'),
+    path('privacy_policy/', views.privacy_policy_view, name='privacy_policy'),
+    path('terms_and_conditions/', views.terms_and_conditions_view, name='terms_and_conditions'),
 
     
 ]

@@ -61,7 +61,9 @@ urlpatterns = [
     path('admin_questions/', views.admin_questions, name='admin_questions'),
     path('privacy_policy/', views.privacy_policy_view, name='privacy_policy'),
     path('terms_and_conditions/', views.terms_and_conditions_view, name='terms_and_conditions'),
-
+    path('about_me/', views.about_me_view, name='about_me'),
+    path('contact/', views.contact_view, name='contact'),
+    path('team/', views.team_view, name='team'),
     
 ]
 

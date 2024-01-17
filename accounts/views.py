@@ -37,9 +37,18 @@ from .email_utils import send_verification_email  # Asegúrate de importar send_
 from django.utils.translation import get_language
 from django.utils.translation import gettext as _
 from django.core.exceptions import ValidationError
-
 from .models import Question, QuestionTranslation
 from .forms import QuestionForm
+
+
+def team_view(request):
+    return render(request, 'pages/team.html')  
+
+def contact_view(request):
+    return render(request, 'pages/contact.html')  
+
+def about_me_view(request):
+    return render(request, 'pages/about_me.html')  
 
 def terms_and_conditions_view(request):
     return render(request, 'pages/terms_and_conditions.html')  

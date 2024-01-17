@@ -269,7 +269,7 @@ background-color: #5a6268;
             <div class="single-footer-widget section_padding_0_130">
               <!-- Footer Logo-->
               <div class="footer-logo mb-3"></div>
-              <p>ACA MI PARTE</p>
+              <p>Appland is completely creative, lightweight, clean app landing page.</p>
               <!-- Copywrite Text-->
               <div class="copywrite-text mb-5">
                 <p class="mb-0">Made with <i class="lni-heart mr-1"></i>by Designing World</p>
@@ -294,8 +294,8 @@ background-color: #5a6268;
               <!-- Footer Menu-->
               <div class="footer_menu">
                 <ul>
-                  <li><a href="#">{% trans "SOBRE_NOS" %}</a></li>
-                  <li><a href="#">{% trans "TEAM" %}</a></li>
+                  <li><a href="{% url 'about_me' %}">{% trans "SOBRE_NOS" %}</a></li>
+                  <li><a href="{% url 'team' %}">{% trans "TEAM" %}</a></li>
                   <li><a href="{% url 'terms_and_conditions' %}">{% trans "TERM_COND" %}</a></li>
                   <li><a href="{% url 'privacy_policy' %}">{% trans "POLIT_PRIV" %}</a></li>
                 </ul>
@@ -310,7 +310,7 @@ background-color: #5a6268;
               <!-- Footer Menu-->
               <div class="footer_menu">
                 <ul>
-                  <li><a href="#">{% trans "PREG_FREC" %}</a></li>
+                  <li><a href="{% url 'faqs' %}">{% trans "PREG_FREC" %}</a></li>
                   <li><a href="#">{% trans "SUP_CAND" %}</a></li>
                   <li><a href="#">{% trans "SUP_COMP" %}</a></li>
                 </ul>
@@ -325,7 +325,7 @@ background-color: #5a6268;
               <!-- Footer Menu-->
               <div class="footer_menu">
                 <ul>
-                  <li><a href="#">{% trans "CONTACT_NOS" %}</a></li>
+                  <li><a href="{% url 'contact' %}">{% trans "CONTACT_NOS" %}</a></li>
                   <li><a href="#">{% trans "CONTACT_AGEN" %}</a></li>
                 </ul>
               </div>

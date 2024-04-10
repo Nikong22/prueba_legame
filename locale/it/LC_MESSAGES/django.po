@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-16 14:56-0300\n"
+"POT-Creation-Date: 2024-04-10 21:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,326 +18,478 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: accounts/templates/base.html:79
-msgid "PREG_FRECS"
-msgstr "Domande frequenti"
-
-#: accounts/templates/base.html:166
-msgid "ABOUT"
-msgstr "Sul Progetto Legame"
-
-#: accounts/templates/base.html:170
-msgid "SOBRE_NOS"
-msgstr "Chi siamo "
-
-#: accounts/templates/base.html:171
-msgid "TEAM"
-msgstr "Team"
-
-#: accounts/templates/base.html:172
-msgid "TERM_COND"
-msgstr "Termini e Condizioni"
-
-#: accounts/templates/base.html:173
-msgid "POLIT_PRIV"
-msgstr "Politiche sulla privacy"
-
-#: accounts/templates/base.html:182
-msgid "SUPPORT"
-msgstr "Aiuto"
-
-#: accounts/templates/base.html:186
-msgid "PREG_FREC"
-msgstr "Domande frequenti"
-
-#: accounts/templates/base.html:187
-msgid "SUP_CAND"
-msgstr "Supporto al candidato"
-
-#: accounts/templates/base.html:188
-msgid "SUP_COMP"
-msgstr "Supporto alle imprese"
-
-#: accounts/templates/base.html:197
-msgid "CONTACT"
-msgstr "Contatto"
-
-#: accounts/templates/base.html:201
-msgid "CONTACT_NOS"
-msgstr "Contattaci "
-
-#: accounts/templates/base.html:202
-msgid "CONTACT_AGEN"
-msgstr "Salva i nostri contatti"
-
-#: accounts/templates/login/index.html:16
-msgid "TITULO_INDEX"
-msgstr "Siamo il ponte tra Argentina e Sardegna"
-
-#: accounts/templates/login/index.html:17
-msgid "SUBTITULO_INDEX"
-msgstr "Cerca o pubblica offerte di lavoro in Sardegna"
-
-#: accounts/views.py:313
-msgid "ERROR_LOGIN"
-msgstr "Siamo fuori della Copa"
-
-#: accounts/views.py:336
-msgid "ACTIVATE_ACCOUNT"
-msgstr "italiannn"
-
-msgid "SIGN_IN"
-msgstr "Accedi al tuo account"
-
-msgid "LOGIN" 
-msgstr "Accedi"
-
-msgid "FORGOT_PASS"
-msgstr "Hai dimenticato la tua password?"
-
-msgid "SIGN_UP"
-msgstr "Benvenuti a LEGAME"
-
-msgid "SIGN_TEXT"
-msgstr "Siamo il ponte tra l’Argentina e la Sardegna"
-
-msgid "REGISTRATE_USER"
-msgstr "Registrati come utente."
-
-msgid "REGISTRATE_COMP"
-msgstr "Registrati come dita."
-
-msgid "SIGN_ADMIN"
-msgstr "Utente amministratore"
-
-msgid "REGISTRO_USER"
-msgstr "Registro di utente"
-
-msgid "USER"
-msgstr "User:"
-
-msgid "NAME"
-msgstr "Nome:"
-
-msgid "LASTNAME"
-msgstr "Cognome:"
-
-msgid "PASS_CONFIRM"
-msgstr "Conferma password:"
- 
-msgid "GENERO"
-msgstr "Genere:"
-
-msgid "PHONE"
-msgstr "Telefono:"
-
-msgid "DOC"
-msgstr "Tipo di documento:"
-
-msgid "NUM_DOC"
-msgstr "Numero di documento:"
-
-msgid "SUBMIT"
-msgstr "Invia"
-
-msgid "REGISTRO_COMP"
-msgstr "Registrazione dell'azienda"
-
-msgid "NAME_COMP"
-msgstr "Marchio d’impresa"
-
-msgid "ADRESS"
-msgstr "Indirizzo"
-
-msgid "COUNTRY"
-msgstr "Paese"
-
-msgid "SECTOR"
-msgstr "Settore"
-
-msgid "RAZON_SOCIAL"
-msgstr "Nome commerciale"
-
-msgid "CUIT"
-msgstr "Partita IVA"
-
-msgid "CANT_EMP"
-msgstr "Numero di dipendenti"
-
+#: accounts/templates/admin/admin_blog.html:16
 msgid "INFO_PRINCIPAL"
 msgstr "Informazione pagina principale"
 
-msgid "CREA_NEWPASS"
-msgstr "Creare una nuova password"
-
-msgid "TEXT_NEWPASS"
-msgstr "Assicurati che la tua password sia complessa e non condividerla con nessuno."
-
-msgid "ESCRIBA_NEWPASS"
-msgstr "Inserisci una nuova password:"
-
-msgid "CONFIRM_NEWPASS"
-msgstr "Conferma la tua nuova password:"
-
-msgid "SUBMIT_NEWPASS"
-msgstr "Invia password"
-
-msgid "RESTABLECER_PASS"
-msgstr "Reimposta password"
-
-msgid "RESTABLECER_TEXT"
-msgstr "Per favore, inserisci il tuo indirizzo e-mail qui sotto e ti invieremo le istruzioni su come reimpostare la password."
-
-msgid "SUBMIT_INSTRU"
-msgstr "Invia istruzioni"
-
-msgid "TEXT_INSTRU"
-msgstr "Per motivi di sicurezza, non memorizziamo la tua password. La tua password verrà reimpostata e ne riceverai una nuova"
-
-msgid "PROFILE_EDIT"
-msgstr "Modifica"
-
-msgid "PROFILE_SAVE"
-msgstr "Salva"
-
-msgid "DNI"
-msgstr "Carta d’identità"
-
-msgid "BIO"
-msgstr "Biografie"
-
-msgid "SUBIR_CV"
-msgstr "Carica CV"
-
-msgid "NOT_CV"
-msgstr "Nessun CV caricato"
-
-msgid "INSTR_SENT"
-msgstr "Istruzioni inviate"
-
-msgid "INSTR_TEXT"
-msgstr "Controlla la tua e-mail per istruzioni su come reimpostare la password. Se non ricevi l'e-mail entro pochi minuti, controlla la cartella spam o           "
-
-msgid "INSTR_LINK"
-msgstr "prova a inviarla di nuovo"
-
-msgid "INSTR_FIN"
-msgstr "Se continui ad avere problemi, ti preghiamo"
-
-msgid "INSTR_CONTACT"
-msgstr "di contattarci"
-
-msgid "POST"
-msgstr "Le mie candidature"
-
-msgid "NO_POST"
-msgstr "Al momento non ci sono applicazioni."
-
-msgid "ACT_TITLE"
-msgstr "Hai quasi finito!"
-
-msgid "ACT_TEXT"
-msgstr "Ti abbiamo inviato un link alla tua casella di posta elettronica. Attiva il tuo account per procedere con la registrazione."
-
-msgid "ACT_FIN"
-msgstr "Se non riesci a trovare l'e-mail, controlla la cartella spam o richiedi l'invio di un nuovo link."
-
-msgid "ACTIVACION"
-msgstr "Il tuo account è stato attivato con successo."
-
-msgid "ACTIVACION_LOGIN"
-msgstr "Clicca per accedere."
-
-msgid "JOB_LIST"
-msgstr "Le mie offerte di lavoro."
-
-msgid "JOB_TEXT"
-msgstr "Qui trovi tutti gli annunci di lavoro che hai pubblicato."
-
-msgid "NOJOB_LIST"
-msgstr "Non hai ancora pubblicato nessun lavoro."
-
-msgid "GESTION_EMPRESA"
-msgstr "Gestione della Azienda"
-
-msgid "CLIENTS"
-msgstr "Cliente"
-
-msgid "STATUS"
-msgstr "Stato"
-
-msgid "STATUS_ACT"
-msgstr "Attivo"
-
-msgid "STATUS_INACT"
-msgstr "Disattivo"
-
-msgid "DETALLES"
-msgstr "Dettagli"
-
-msgid "DETALLES_VER"
-msgstr "Vedi i dettagli"
-
+#: accounts/templates/admin/company_details.html:13
 msgid "VOLVER_GESTION"
 msgstr "Torna a Gestione Aziendale"
 
+#: accounts/templates/admin/company_details.html:21
+#: accounts/templates/jobs/my_applications.html:22
+#: accounts/templates/login/signup_comp.html:88
+#: accounts/templates/profile/my_profile.html:148
+msgid "NAME_COMP"
+msgstr "Marchio d’impresa"
+
+#: accounts/templates/admin/company_details.html:23
+#: accounts/templates/jobs/view_applicants.html:27
+#: accounts/templates/login/signup_comp.html:100
+#: accounts/templates/login/signup_user.html:102
+#: accounts/templates/profile/my_profile.html:118
+#: accounts/templates/profile/my_profile.html:213
+msgid "PHONE"
+msgstr "Telefono:"
+
+#: accounts/templates/admin/company_details.html:24
+#: accounts/templates/jobs/create_job_post.html:21
+#: accounts/templates/jobs/job_details.html:23
+#: accounts/templates/login/signup_comp.html:124
+msgid "COUNTRY"
+msgstr "Paese"
+
+#: accounts/templates/admin/company_details.html:33
+#: accounts/templates/jobs/create_job_post.html:80
+#: accounts/templates/jobs/edit-job.html:28
+#: accounts/templates/jobs/job_details.html:21
+#: accounts/templates/login/signup_comp.html:183
+#: accounts/templates/profile/my_profile.html:183
+msgid "SECTOR"
+msgstr "Settore"
+
+#: accounts/templates/admin/company_details.html:34
+#: accounts/templates/login/signup_comp.html:213
+#: accounts/templates/profile/my_profile.html:159
+msgid "CANT_EMP"
+msgstr "Numero di dipendenti"
+
+#: accounts/templates/admin/company_details.html:35
+#: accounts/templates/login/signup_comp.html:195
+#: accounts/templates/profile/my_profile.html:172
+msgid "RAZON_SOCIAL"
+msgstr "Nome commerciale"
+
+#: accounts/templates/admin/company_details.html:36
+#: accounts/templates/admin/manage_companies.html:61
+#: accounts/templates/login/signup_comp.html:202
+#: accounts/templates/profile/my_profile.html:138
+msgid "CUIT"
+msgstr "Partita IVA"
+
+#: accounts/templates/admin/company_details.html:37
+#: accounts/templates/admin/manage_companies.html:24
+#: accounts/templates/admin/manage_companies.html:63
+msgid "STATUS"
+msgstr "Stato"
+
+#: accounts/templates/admin/company_details.html:39
 msgid "ACTIVAR"
 msgstr "Attiva l'account"
 
-msgid "DESACTIVAR"
-msgstr "Disattiva l'account"
+#: accounts/templates/admin/company_details.html:42
+#, fuzzy
+#| msgid "ACTIVAR"
+msgid "INACTIVAR"
+msgstr "Attiva l'account"
 
-msgid "CREATE_JOB"
-msgstr "Crea un'offerta di lavoro"
+#: accounts/templates/admin/faqs.html:9 accounts/templates/base.html:350
+#: accounts/templates/base.html:422
+msgid "PREG_FREC"
+msgstr "Domande frequenti"
 
-msgid "CATEGORIA"
-msgstr "Categoria"
-
-msgid "FECHA_VENCIMIENTO"
-msgstr "Data di scadenza"
-
-msgid "LIMIT_POST"
-msgstr "Limite al numero di domande"
-
-msgid "TITLE_JOB"
-msgstr "Titolo di lavoro"
-
-msgid "DESCRIP_JOB"
-msgstr "Descrizione"
-
+#: accounts/templates/admin/faqs.html:12
 msgid "DESCR_FREC"
 msgstr "Di seguito sono riportate le risposte più frequenti:"
 
+#: accounts/templates/admin/manage_companies.html:25
+msgid "STATUS_ACT"
+msgstr "Attivo"
+
+#: accounts/templates/admin/manage_companies.html:26
+msgid "STATUS_INACT"
+msgstr "Disattivo"
+
+#: accounts/templates/admin/manage_companies.html:49
+msgid "GESTION_EMPRESA"
+msgstr "Gestione della Azienda"
+
+#: accounts/templates/admin/manage_companies.html:52
+msgid "CLIENTS"
+msgstr "Cliente"
+
+#: accounts/templates/admin/manage_companies.html:59
+#: accounts/templates/jobs/view_applicants.html:24
+#: accounts/templates/login/signup_user.html:37
+#: accounts/templates/profile/my_profile.html:195
+msgid "NAME"
+msgstr "Nome:"
+
+#: accounts/templates/admin/manage_companies.html:60
+#: accounts/templates/jobs/create_job_post.html:122
+#: accounts/templates/jobs/job_details.html:33
+#: accounts/templates/login/signup_comp.html:112
+#: accounts/templates/profile/my_profile.html:128
+msgid "ADRESS"
+msgstr "Indirizzo"
+
+#: accounts/templates/admin/manage_companies.html:64
+#: accounts/templates/jobs/my_job_list.html:30
+msgid "DETALLES"
+msgstr "Dettagli"
+
+#: accounts/templates/admin/manage_companies.html:88
+msgid "DETALLES_VER"
+msgstr "Vedi i dettagli"
+
+#: accounts/templates/base.html:213
+msgid "PREG_FRECS"
+msgstr "Domande frequenti"
+
+#: accounts/templates/base.html:330 accounts/templates/base.html:402
+msgid "ABOUT"
+msgstr "Sul Progetto Legame"
+
+#: accounts/templates/base.html:334 accounts/templates/base.html:406
+msgid "SOBRE_NOS"
+msgstr "Chi siamo "
+
+#: accounts/templates/base.html:335 accounts/templates/base.html:407
+msgid "TEAM"
+msgstr "Team"
+
+#: accounts/templates/base.html:336 accounts/templates/base.html:408
+msgid "TERM_COND"
+msgstr "Termini e Condizioni"
+
+#: accounts/templates/base.html:337 accounts/templates/base.html:409
+msgid "POLIT_PRIV"
+msgstr "Politiche sulla privacy"
+
+#: accounts/templates/base.html:346 accounts/templates/base.html:418
+msgid "SUPPORT"
+msgstr "Aiuto"
+
+#: accounts/templates/base.html:351 accounts/templates/base.html:423
+msgid "SUP_CAND"
+msgstr "Supporto al candidato"
+
+#: accounts/templates/base.html:352 accounts/templates/base.html:424
+msgid "SUP_COMP"
+msgstr "Supporto alle imprese"
+
+#: accounts/templates/base.html:361 accounts/templates/base.html:434
+msgid "CONTACT"
+msgstr "Contatto"
+
+#: accounts/templates/base.html:365 accounts/templates/base.html:438
+msgid "CONTACT_NOS"
+msgstr "Contattaci "
+
+#: accounts/templates/base.html:366 accounts/templates/base.html:439
+msgid "CONTACT_AGEN"
+msgstr "Salva i nostri contatti"
+
+#: accounts/templates/email/activation_valid.html:13
+#: accounts/templates/email/activation_valid_admin.html:13
+msgid "ACTIVACION"
+msgstr "Il tuo account è stato attivato con successo."
+
+#: accounts/templates/email/activation_valid.html:14
+#: accounts/templates/email/activation_valid_admin.html:14
+msgid "ACTIVACION_LOGIN"
+msgstr "Clicca per accedere."
+
+#: accounts/templates/email/registration_success.html:11
+#: accounts/templates/email/registration_success.html:12
+msgid "ACT_TITLE"
+msgstr "Hai quasi finito!"
+
+#: accounts/templates/email/registration_success.html:14
+msgid "ACT_FIN"
+msgstr ""
+"Se non riesci a trovare l'e-mail, controlla la cartella spam o richiedi "
+"l'invio di un nuovo link."
+
+#: accounts/templates/jobs/create_job_post.html:12
+msgid "CREATE_JOB"
+msgstr "Crea un'offerta di lavoro"
+
+#: accounts/templates/jobs/create_job_post.html:91
+#: accounts/templates/jobs/edit-job.html:22
+#: accounts/templates/jobs/job_details.html:22
+msgid "CATEGORIA"
+msgstr "Categoria"
+
+#: accounts/templates/jobs/create_job_post.html:100
+#: accounts/templates/jobs/job_details.html:32
+msgid "FECHA_VENCIMIENTO"
+msgstr "Data di scadenza"
+
+#: accounts/templates/jobs/create_job_post.html:111
+#: accounts/templates/jobs/edit-job.html:37
+msgid "LIMIT_POST"
+msgstr "Limite al numero di domande"
+
+#: accounts/templates/jobs/create_job_post.html:133
+#: accounts/templates/jobs/edit-job.html:42
+msgid "TITLE_JOB"
+msgstr "Titolo di lavoro"
+
+#: accounts/templates/jobs/create_job_post.html:145
+#: accounts/templates/jobs/edit-job.html:48
+#: accounts/templates/jobs/job_details.html:34
+msgid "DESCRIP_JOB"
+msgstr "Descrizione"
+
+#: accounts/templates/jobs/create_job_post.html:149
 msgid "PUBLICAR_JOB"
 msgstr "Pubblica lavoro"
 
-msgid "POSTULADOS"
-msgstr "Postulati"
-
+#: accounts/templates/jobs/edit-job.html:13
+#: accounts/templates/jobs/my_job_list.html:32
 msgid "EDIT_POST"
 msgstr "Modifica post"
 
-msgid "POSTULADO"
-msgstr "Postulato"
-
-msgid "FECHA_POSTULACION"
-msgstr "Data di applicazione"
-
-msgid "POSTULARSE"
-msgstr "Applica"
-
+#: accounts/templates/jobs/edit-job.html:54
 msgid "JOB_UPDATE"
 msgstr "Aggiorna post"
 
+#: accounts/templates/jobs/job_details.html:45
+msgid "POSTULARSE"
+msgstr "Applica"
+
+#: accounts/templates/jobs/my_applications.html:11
+msgid "POST"
+msgstr "Le mie candidature"
+
+#: accounts/templates/jobs/my_applications.html:21
+msgid "POSTULADO"
+msgstr "Postulato"
+
+#: accounts/templates/jobs/my_applications.html:23
+msgid "FECHA_POSTULACION"
+msgstr "Data di applicazione"
+
+#: accounts/templates/jobs/my_applications.html:30
+msgid "NO_POST"
+msgstr "Al momento non ci sono applicazioni."
+
+#: accounts/templates/jobs/my_job_list.html:12
+msgid "JOB_LIST"
+msgstr "Le mie offerte di lavoro."
+
+#: accounts/templates/jobs/my_job_list.html:13
+msgid "JOB_TEXT"
+msgstr "Qui trovi tutti gli annunci di lavoro che hai pubblicato."
+
+#: accounts/templates/jobs/my_job_list.html:31
+msgid "POSTULADOS"
+msgstr "Postulati"
+
+#: accounts/templates/jobs/my_job_list.html:55
+msgid "NOJOB_LIST"
+msgstr "Non hai ancora pubblicato nessun lavoro."
+
+#: accounts/templates/jobs/view_applicants.html:12
 msgid "CANDIDATOS_POSTULADOS"
 msgstr "Candidati postulati per"
 
+#: accounts/templates/jobs/view_applicants.html:25
+#: accounts/templates/login/signup_user.html:49
+#: accounts/templates/profile/my_profile.html:204
+msgid "LASTNAME"
+msgstr "Cognome:"
+
+#: accounts/templates/jobs/view_applicants.html:28
+#: accounts/templates/profile/my_profile.html:223
+msgid "DNI"
+msgstr "Carta d’identità"
+
+#: accounts/templates/jobs/view_applicants.html:29
+#: accounts/templates/login/signup_user.html:96
+#: accounts/templates/profile/my_profile.html:232
+msgid "GENERO"
+msgstr "Genere:"
+
+#: accounts/templates/jobs/view_applicants.html:31
+#: accounts/templates/login/signup_user.html:131
+#: accounts/templates/profile/my_profile.html:261
+msgid "BIO"
+msgstr "Biografie"
+
+#: accounts/templates/login/index.html:17
+msgid "TITULO_INDEX"
+msgstr "Siamo il ponte tra Argentina e Sardegna"
+
+#: accounts/templates/login/index.html:18
+msgid "SUBTITULO_INDEX"
+msgstr "Cerca o pubblica offerte di lavoro in Sardegna"
+
+#: accounts/templates/login/signin.html:18
+msgid "SIGN_IN"
+msgstr "Accedi al tuo account"
+
+#: accounts/templates/login/signin.html:48
+#: accounts/templates/login/signin_admin.html:47
+msgid "LOGIN"
+msgstr "Accedi"
+
+#: accounts/templates/login/signin.html:51
+#: accounts/templates/login/signin_admin.html:50
+msgid "FORGOT_PASS"
+msgstr "Hai dimenticato la tua password?"
+
+#: accounts/templates/login/signin.html:59
+#: accounts/templates/login/signin_admin.html:59
+msgid "SIGN_UP"
+msgstr "Benvenuti a LEGAME"
+
+#: accounts/templates/login/signin.html:60
+#: accounts/templates/login/signin_admin.html:60
+msgid "SIGN_TEXT"
+msgstr "Siamo il ponte tra l’Argentina e la Sardegna"
+
+#: accounts/templates/login/signin.html:61
+msgid "REGISTRATE_USER"
+msgstr "Registrati come utente."
+
+#: accounts/templates/login/signin.html:62
+msgid "REGISTRATE_COMP"
+msgstr "Registrati come dita."
+
+#: accounts/templates/login/signin_admin.html:17
+msgid "SIGN_ADMIN"
+msgstr "Utente amministratore"
+
+#: accounts/templates/login/signup_admin.html:11
 msgid "REGISTRO_ADMIN"
 msgstr "Registrazione amministratore"
 
+#: accounts/templates/login/signup_admin.html:14
 msgid "ERR_FORM"
 msgstr "Si prega di correggere eventuali errori nel modulo."
 
+#: accounts/templates/login/signup_admin.html:47
+#: accounts/templates/login/signup_comp.html:223
+#: accounts/templates/login/signup_user.html:137
+msgid "SUBMIT"
+msgstr "Invia"
+
+#: accounts/templates/login/signup_comp.html:13
+msgid "REGISTRO_COMP"
+msgstr "Registrazione dell'azienda"
+
+#: accounts/templates/login/signup_comp.html:40
+#: accounts/templates/login/signup_user.html:25
+#: accounts/templates/profile/my_profile.html:97
+msgid "USER"
+msgstr "User:"
+
+#: accounts/templates/login/signup_comp.html:76
+#: accounts/templates/login/signup_user.html:85
+msgid "PASS_CONFIRM"
+msgstr "Conferma password:"
+
+#: accounts/templates/login/signup_user.html:12
+msgid "REGISTRO_USER"
+msgstr "Registro di utente"
+
+#: accounts/templates/login/signup_user.html:114
+msgid "DOC"
+msgstr "Tipo di documento:"
+
+#: accounts/templates/login/signup_user.html:120
+msgid "NUM_DOC"
+msgstr "Numero di documento:"
+
+#: accounts/templates/profile/my_profile.html:20
+msgid "PROFILE_EDIT"
+msgstr "Modifica"
+
+#: accounts/templates/profile/my_profile.html:29
+msgid "PROFILE_SAVE"
+msgstr "Salva"
+
+#: accounts/templates/profile/my_profile.html:249
+msgid "SUBIR_CV"
+msgstr "Carica CV"
+
+#: accounts/templates/profile/my_profile.html:254
+msgid "NOT_CV"
+msgstr "Nessun CV caricato"
+
+#: accounts/templates/registration/password_reset_confirm.html:12
+msgid "CREA_NEWPASS"
+msgstr "Creare una nuova password"
+
+#: accounts/templates/registration/password_reset_confirm.html:13
+msgid "TEXT_NEWPASS"
+msgstr ""
+"Assicurati che la tua password sia complessa e non condividerla con nessuno."
+
+#: accounts/templates/registration/password_reset_confirm.html:17
+msgid "ESCRIBA_NEWPASS"
+msgstr "Inserisci una nuova password:"
+
+#: accounts/templates/registration/password_reset_confirm.html:22
+msgid "CONFIRM_NEWPASS"
+msgstr "Conferma la tua nuova password:"
+
+#: accounts/templates/registration/password_reset_confirm.html:26
+msgid "SUBMIT_NEWPASS"
+msgstr "Invia password"
+
+#: accounts/templates/registration/password_reset_done.html:11
+msgid "INSTR_SENT"
+msgstr "Istruzioni inviate"
+
+#: accounts/templates/registration/password_reset_done.html:12
+msgid "INSTR_TEXT"
+msgstr ""
+"Controlla la tua e-mail per istruzioni su come reimpostare la password. Se "
+"non ricevi l'e-mail entro pochi minuti, controlla la cartella spam "
+"o           "
+
+#: accounts/templates/registration/password_reset_done.html:12
+msgid "INSTR_LINK"
+msgstr "prova a inviarla di nuovo"
+
+#: accounts/templates/registration/password_reset_done.html:14
+msgid "INSTR_FIN"
+msgstr "Se continui ad avere problemi, ti preghiamo"
+
+#: accounts/templates/registration/password_reset_done.html:14
+msgid "INSTR_CONTACT"
+msgstr "di contattarci"
+
+#: accounts/templates/registration/password_reset_form.html:13
+msgid "RESTABLECER_PASS"
+msgstr "Reimposta password"
+
+#: accounts/templates/registration/password_reset_form.html:14
+msgid "RESTABLECER_TEXT"
+msgstr ""
+"Per favore, inserisci il tuo indirizzo e-mail qui sotto e ti invieremo le "
+"istruzioni su come reimpostare la password."
+
+#: accounts/templates/registration/password_reset_form.html:21
+msgid "SUBMIT_INSTRU"
+msgstr "Invia istruzioni"
+
+#: accounts/templates/registration/password_reset_form.html:24
+msgid "TEXT_INSTRU"
+msgstr ""
+"Per motivi di sicurezza, non memorizziamo la tua password. La tua password "
+"verrà reimpostata e ne riceverai una nuova"
+
+#: accounts/views.py:325
+msgid "ERROR_LOGIN"
+msgstr "Siamo fuori della Copa"
+
+#: accounts/views.py:348
+msgid "ACTIVATE_ACCOUNT"
+msgstr "italiannn"
 
 #: legame_venv/Lib/site-packages/django/contrib/messages/apps.py:15
 #: venv/Lib/site-packages/django/contrib/messages/apps.py:15
@@ -2095,3 +2247,11 @@ msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
+
+#~ msgid "ACT_TEXT"
+#~ msgstr ""
+#~ "Ti abbiamo inviato un link alla tua casella di posta elettronica. Attiva "
+#~ "il tuo account per procedere con la registrazione."
+
+#~ msgid "DESACTIVAR"
+#~ msgstr "Disattiva l'account"

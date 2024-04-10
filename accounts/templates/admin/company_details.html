@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
 <link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
 <link href="{% static 'styleslistjob.css' %}" rel="stylesheet">
@@ -39,7 +39,7 @@
             <a href="{% url 'activate_company' company.id %}" class="btn btn-success">{% trans "ACTIVAR" %}</a>
             {% endif %}
             {% if company.status == 'active' %}
-            <a href="{% url 'inactivate_company' company.id %}" class="btn btn-danger">{% trans "INACTIVAR" %}</a>
+            <a href="{% url 'inactivate_company' company.id %}" class="btn btn-danger">{% trans "DESACTIVAR" %}</a>
             {% endif %}
           </div>
         </div>

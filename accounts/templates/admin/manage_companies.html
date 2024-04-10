@@ -21,9 +21,9 @@
                 <div class="row no-gutters">
                   <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                     <select name="status" class="form-control" id="exampleFormControlSelect1">
-                      <option value="">Estado</option>
-                      <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>Activa</option>
-                      <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>Inactiva</option>
+                      <option value="">{% trans "STATUS" %}</option>
+                      <option value="active" {% if request.GET.status == 'active' %}selected{% endif %}>{% trans "STATUS_ACT" %}</option>
+                      <option value="inactive" {% if request.GET.status == 'inactive' %}selected{% endif %}>{% trans "STATUS_INACT" %}</option>
                     </select>
                   </div>
                   <div class="col-lg-8 col-md-6 col-sm-12 p-0">
@@ -46,22 +46,22 @@
   <!-- Tabla de empresas -->
   <div class="row justify-content-center">
     <div class="col-12">
-      <h2 class="mb-4 text-center">Gestión de Empresas</h2>
+      <h2 class="mb-4 text-center">{% trans "GESTION_EMPRESA" %}</h2>
       <div class="card">
         <div class="card-header pb-0">
-          <h5 class="card-title mb-0">Clients</h5>
+          <h5 class="card-title mb-0">{% trans "CLIENTS" %}</h5>
         </div>
         <div class="card-body">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Nombre</th>
-                <th>Dirección</th>
-                <th>Cuit</th>
+                <th>{% trans "NAME" %}</th>
+                <th>{% trans "ADRESS" %}</th>
+                <th>{% trans "CUIT" %}</th>
                 <th>Email</th>
-                <th>Status</th>
-                <th>Detalles</th>
+                <th>{% trans "STATUS" %}</th>
+                <th>{% trans "DETALLES" %}</th>
               </tr>
             </thead>
             <tbody>
@@ -85,7 +85,7 @@
                     <span class="badge bg-success">{{ company.status }}</span>
                   {% endif %}
                 </td>
-                <td><a href="{% url 'company_details' company.id %}" class="btn btn-custom">Ver Detalles</a></td>
+                <td><a href="{% url 'company_details' company.id %}" class="btn btn-custom">{% trans "DETALLES_VER" %}</a></td>
               </tr>
               {% empty %}
               <tr>

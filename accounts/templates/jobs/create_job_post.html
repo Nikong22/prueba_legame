@@ -9,26 +9,7 @@
     <div class="contact__wrapper shadow-lg mt-n9">
         <div class="row no-gutters">
             <div class="col-lg-5 contact-info__wrapper gradient-brand-color p-5 order-lg-2">
-                <h3>Crear Publicación de Trabajo</h3>
-                <ul class="contact-info__list list-style--none position-relative z-index-101">
-                    <li class="mb-4 pl-4">
-                        <span class="position-absolute"></span> support@bootdey.com
-                    </li>
-                    <li class="mb-4 pl-4">
-                        <span class="position-absolute"></span> (021)-241454-545
-                    </li>
-                    <li class="mb-4 pl-4">
-                        <span class="position-absolute"></span> bootdey Technologies Inc.
-                        <br> 2694 Queen City Rainbow Drive
-                        <br> Florida 99161
-    
-                        <div class="mt-3">
-                            <a href="https://www.google.com/maps" target="_blank" class="text-link link--right-icon text-white">Get directions </a>
-                        </div>
-                    </li>
-                </ul>
-    
-              
+                <h3>{% trans "CREATE_JOB" %}</h3>
             </div>
     
             <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
@@ -37,7 +18,7 @@
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                                <label for="id_country">País:</label>
+                                <label for="id_country">{% trans "COUNTRY" %}:</label>
                             <select name="country" class="form-control" id="id_country" required>
                                 <option value="AR">Argentina</option>
                                 <option value="IT">Italia</option>
@@ -71,7 +52,7 @@
 
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                        <label for="select-region">Región:</label>
+                        <label for="select-region">Regione:</label>
                         <select id="select-region" name="region_it" class="form-control" onchange="cargarProvincias()">
                             <option value="">Selecciona una región</option>
                         </select>
@@ -87,7 +68,7 @@
                 </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                        <label for="select-comuna">Comuna:</label>
+                        <label for="select-comuna">Comune:</label>
                         <select id="select-comuna" name="comuna_it" class="form-control">
                             <option value="">Selecciona una comuna</option>
                         </select>
@@ -96,7 +77,7 @@
                 </div>
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                                <label for="id_sector">Sector:</label>
+                                <label for="id_sector">{% trans "SECTOR" %}:</label>
                                 <select name="sector" id="id_sector" class="form-control" required>
                                 {% for value, text in form.fields.sector.choices %}
                                 <option value="{{ value }}">{{ text }}</option>
@@ -107,7 +88,7 @@
 
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
-                                <label for="id_category">Categoría:</label>
+                                <label for="id_category">{% trans "CATEGORIA" %}:</label>
                             <select name="category" id="id_category" class="form-control" required>
                                 {% for value, text in form.fields.category.choices %}
                                 <option value="{{ value }}">{{ text }}</option>
@@ -116,7 +97,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
-                            <label for="id_expiration_date">Fecha de vencimiento:</label>
+                            <label for="id_expiration_date">{% trans "FECHA_VENCIMIENTO" %}:</label>
                             {{ form.expiration_date|add_class:"form-control" }}
                             {% if form.expiration_date.errors %}
                                 {% for error in form.expiration_date.errors %}
@@ -127,7 +108,7 @@
                             {% endif %}
                         </div>
                         <div class="col-sm-6 mb-3">
-                            <label for="id_application_limit">Límite de Postulaciones:</label>
+                            <label for="id_application_limit">{% trans "LIMIT_POST" %}:</label>
                             <input type="number" name="application_limit" id="id_application_limit" class="form-control" value="{{ form.application_limit.value|default_if_none:10 }}" min="1" required>
                             {% if form.application_limit.errors %}
                                 {% for error in form.application_limit.errors %}
@@ -138,7 +119,7 @@
                             {% endif %}
                         </div>
                         <div class="col-sm-6 mb-3">
-                            <label for="id_address">Dirección:</label>
+                            <label for="id_address">{% trans "ADRESS" %}:</label>
                             <input type="text" name="address" id="id_address" class="form-control" value="{{ form.address.value|default_if_none:'' }}" required>
                             {% if form.address.errors %}
                                 {% for error in form.address.errors %}
@@ -149,7 +130,7 @@
                             {% endif %}
                         </div>
                         <div class="mb-3">
-                            <label for="id_title">Título del Trabajo:</label>
+                            <label for="id_title">{% trans "TITLE_JOB" %}:</label>
                             <input type="text" name="title" id="id_title" class="form-control" value="{{ form.title.value|default_if_none:'' }}" required>
                             {% if form.title.errors %}
                                 {% for error in form.title.errors %}
@@ -161,11 +142,11 @@
                         </div>
                         <div class="col-sm-12 mb-3">
                             <div class="form-group">
-                                <label for="id_descripcion" required>Descripción:</label>
+                                <label for="id_descripcion" required>{% trans "DESCRIP_JOB" %}:</label>
                             {{ form.descripcion|add_class:"form-control" }}
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary">Publicar Trabajo</button>
+                        <button type="submit" class="btn btn-primary">{% trans "PUBLICAR_JOB" %}o</button>
                             </div>
                         </div>
                     </div>

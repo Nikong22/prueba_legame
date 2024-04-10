@@ -8,7 +8,7 @@
 
 <section>
     <div class="container">
-        <h2>Mis Postulaciones</h2>
+        <h2>{% trans "POST" %}</h2>
         <div class="row mt-60">
             {% if applications %}
                 {% for application in applications %}
@@ -18,16 +18,16 @@
                                 <i class="icon-tools"></i>
                             </div>
                             <div class="service-desc">
-                                <strong>Postulado a:</strong> {{ application.job.title }} <br>
-                                <strong>Empresa:</strong> {{ application.job.company.company_name }} <br>
-                                <strong>Fecha de Postulación:</strong> {{ application.applied_on|date:"d M Y H:i" }} <br>
+                                <strong>{% trans "POSTULADO" %} a:</strong> {{ application.job.title }} <br>
+                                <strong>{% trans "NAME_COMP" %}:</strong> {{ application.job.company.company_name }} <br>
+                                <strong>{% trans "FECHA_POSTULACION" %}:</strong> {{ application.applied_on|date:"d M Y H:i" }} <br>
                             </div>
                         </div>
                     </div>
                 {% endfor %}
             {% else %}
                 <div class="col">
-                    <p>No tienes postulaciones actualmente.</p>
+                    <p>{% trans "NO_POST" %}.</p>
                 </div>
             {% endif %}
         </div>

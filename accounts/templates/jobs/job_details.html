@@ -18,9 +18,9 @@
           </div>
           <div class="service-desc">
             <h4>{{ job.title }}</h4>
-            <h5><strong>Sector:</strong> {{ job.sector }}</h5>
-            <p><strong>Categoría:</strong> {{ job.category }}</p>
-            <p><strong>Pais: </strong>{{ job.country }}</p>
+            <h5><strong>{% trans "SECTOR" %}:</strong> {{ job.sector }}</h5>
+            <p><strong>{% trans "CATEGORIA" %}:</strong> {{ job.category }}</p>
+            <p><strong>{% trans "COUNTRY" %}: </strong>{{ job.country }}</p>
             {% if job.country == 'AR' %}
             <p><strong>Ciudad: </strong>{{ job.city }}</p>
             <p><strong>Provincia: </strong>{{ job.province_name }}</p>
@@ -29,9 +29,9 @@
             <p><strong>Provincia: </strong>{{ job.provincia_it }}</p>
             <p><strong>Comuna: </strong>{{ job.comuna_it }}</p>
             {% endif %}
-            <p><strong>Fecha de vencimiento:</strong> {{ job.expiration_date }}</p>
-            <p><strong>Dirección:</strong> {{ job.address }}</p>
-            <p><strong>Descripción:</strong> {{ job.descripcion }}</p>
+            <p><strong>{% trans "FECHA_VENCIMIENTO" %}:</strong> {{ job.expiration_date }}</p>
+            <p><strong>{% trans "ADRESS" %}:</strong> {{ job.address }}</p>
+            <p><strong>{% trans "DESCRIP_JOB" %}:</strong> {{ job.descripcion }}</p>
             {% if job.expiration_date|date:"Y-m-d" < today %}
             <!-- Si la fecha de vencimiento es anterior a la fecha actual, muestra el botón de vencido -->
             <button class="btn btn-danger">Publicación Vencida</button>
@@ -42,7 +42,7 @@
                 {% else %}
                     <form action="{% url 'apply_for_job' job.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Postularse</button>
+                        <button type="submit" class="btn btn-primary">{% trans "POSTULARSE" %}</button>
                     </form>
                 {% endif %}
             {% endif %}  <!-- Cierra el bloque if aquí -->

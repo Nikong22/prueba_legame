@@ -86,6 +86,259 @@ msgstr "Siamo fuori della Copa"
 msgid "ACTIVATE_ACCOUNT"
 msgstr "italiannn"
 
+msgid "SIGN_IN"
+msgstr "Accedi al tuo account"
+
+msgid "LOGIN" 
+msgstr "Accedi"
+
+msgid "FORGOT_PASS"
+msgstr "Hai dimenticato la tua password?"
+
+msgid "SIGN_UP"
+msgstr "Benvenuti a LEGAME"
+
+msgid "SIGN_TEXT"
+msgstr "Siamo il ponte tra l’Argentina e la Sardegna"
+
+msgid "REGISTRATE_USER"
+msgstr "Registrati come utente."
+
+msgid "REGISTRATE_COMP"
+msgstr "Registrati come dita."
+
+msgid "SIGN_ADMIN"
+msgstr "Utente amministratore"
+
+msgid "REGISTRO_USER"
+msgstr "Registro di utente"
+
+msgid "USER"
+msgstr "User:"
+
+msgid "NAME"
+msgstr "Nome:"
+
+msgid "LASTNAME"
+msgstr "Cognome:"
+
+msgid "PASS_CONFIRM"
+msgstr "Conferma password:"
+ 
+msgid "GENERO"
+msgstr "Genere:"
+
+msgid "PHONE"
+msgstr "Telefono:"
+
+msgid "DOC"
+msgstr "Tipo di documento:"
+
+msgid "NUM_DOC"
+msgstr "Numero di documento:"
+
+msgid "SUBMIT"
+msgstr "Invia"
+
+msgid "REGISTRO_COMP"
+msgstr "Registrazione dell'azienda"
+
+msgid "NAME_COMP"
+msgstr "Marchio d’impresa"
+
+msgid "ADRESS"
+msgstr "Indirizzo"
+
+msgid "COUNTRY"
+msgstr "Paese"
+
+msgid "SECTOR"
+msgstr "Settore"
+
+msgid "RAZON_SOCIAL"
+msgstr "Nome commerciale"
+
+msgid "CUIT"
+msgstr "Partita IVA"
+
+msgid "CANT_EMP"
+msgstr "Numero di dipendenti"
+
+msgid "INFO_PRINCIPAL"
+msgstr "Informazione pagina principale"
+
+msgid "CREA_NEWPASS"
+msgstr "Creare una nuova password"
+
+msgid "TEXT_NEWPASS"
+msgstr "Assicurati che la tua password sia complessa e non condividerla con nessuno."
+
+msgid "ESCRIBA_NEWPASS"
+msgstr "Inserisci una nuova password:"
+
+msgid "CONFIRM_NEWPASS"
+msgstr "Conferma la tua nuova password:"
+
+msgid "SUBMIT_NEWPASS"
+msgstr "Invia password"
+
+msgid "RESTABLECER_PASS"
+msgstr "Reimposta password"
+
+msgid "RESTABLECER_TEXT"
+msgstr "Per favore, inserisci il tuo indirizzo e-mail qui sotto e ti invieremo le istruzioni su come reimpostare la password."
+
+msgid "SUBMIT_INSTRU"
+msgstr "Invia istruzioni"
+
+msgid "TEXT_INSTRU"
+msgstr "Per motivi di sicurezza, non memorizziamo la tua password. La tua password verrà reimpostata e ne riceverai una nuova"
+
+msgid "PROFILE_EDIT"
+msgstr "Modifica"
+
+msgid "PROFILE_SAVE"
+msgstr "Salva"
+
+msgid "DNI"
+msgstr "Carta d’identità"
+
+msgid "BIO"
+msgstr "Biografie"
+
+msgid "SUBIR_CV"
+msgstr "Carica CV"
+
+msgid "NOT_CV"
+msgstr "Nessun CV caricato"
+
+msgid "INSTR_SENT"
+msgstr "Istruzioni inviate"
+
+msgid "INSTR_TEXT"
+msgstr "Controlla la tua e-mail per istruzioni su come reimpostare la password. Se non ricevi l'e-mail entro pochi minuti, controlla la cartella spam o           "
+
+msgid "INSTR_LINK"
+msgstr "prova a inviarla di nuovo"
+
+msgid "INSTR_FIN"
+msgstr "Se continui ad avere problemi, ti preghiamo"
+
+msgid "INSTR_CONTACT"
+msgstr "di contattarci"
+
+msgid "POST"
+msgstr "Le mie candidature"
+
+msgid "NO_POST"
+msgstr "Al momento non ci sono applicazioni."
+
+msgid "ACT_TITLE"
+msgstr "Hai quasi finito!"
+
+msgid "ACT_TEXT"
+msgstr "Ti abbiamo inviato un link alla tua casella di posta elettronica. Attiva il tuo account per procedere con la registrazione."
+
+msgid "ACT_FIN"
+msgstr "Se non riesci a trovare l'e-mail, controlla la cartella spam o richiedi l'invio di un nuovo link."
+
+msgid "ACTIVACION"
+msgstr "Il tuo account è stato attivato con successo."
+
+msgid "ACTIVACION_LOGIN"
+msgstr "Clicca per accedere."
+
+msgid "JOB_LIST"
+msgstr "Le mie offerte di lavoro."
+
+msgid "JOB_TEXT"
+msgstr "Qui trovi tutti gli annunci di lavoro che hai pubblicato."
+
+msgid "NOJOB_LIST"
+msgstr "Non hai ancora pubblicato nessun lavoro."
+
+msgid "GESTION_EMPRESA"
+msgstr "Gestione della Azienda"
+
+msgid "CLIENTS"
+msgstr "Cliente"
+
+msgid "STATUS"
+msgstr "Stato"
+
+msgid "STATUS_ACT"
+msgstr "Attivo"
+
+msgid "STATUS_INACT"
+msgstr "Disattivo"
+
+msgid "DETALLES"
+msgstr "Dettagli"
+
+msgid "DETALLES_VER"
+msgstr "Vedi i dettagli"
+
+msgid "VOLVER_GESTION"
+msgstr "Torna a Gestione Aziendale"
+
+msgid "ACTIVAR"
+msgstr "Attiva l'account"
+
+msgid "DESACTIVAR"
+msgstr "Disattiva l'account"
+
+msgid "CREATE_JOB"
+msgstr "Crea un'offerta di lavoro"
+
+msgid "CATEGORIA"
+msgstr "Categoria"
+
+msgid "FECHA_VENCIMIENTO"
+msgstr "Data di scadenza"
+
+msgid "LIMIT_POST"
+msgstr "Limite al numero di domande"
+
+msgid "TITLE_JOB"
+msgstr "Titolo di lavoro"
+
+msgid "DESCRIP_JOB"
+msgstr "Descrizione"
+
+msgid "DESCR_FREC"
+msgstr "Di seguito sono riportate le risposte più frequenti:"
+
+msgid "PUBLICAR_JOB"
+msgstr "Pubblica lavoro"
+
+msgid "POSTULADOS"
+msgstr "Postulati"
+
+msgid "EDIT_POST"
+msgstr "Modifica post"
+
+msgid "POSTULADO"
+msgstr "Postulato"
+
+msgid "FECHA_POSTULACION"
+msgstr "Data di applicazione"
+
+msgid "POSTULARSE"
+msgstr "Applica"
+
+msgid "JOB_UPDATE"
+msgstr "Aggiorna post"
+
+msgid "CANDIDATOS_POSTULADOS"
+msgstr "Candidati postulati per"
+
+msgid "REGISTRO_ADMIN"
+msgstr "Registrazione amministratore"
+
+msgid "ERR_FORM"
+msgstr "Si prega di correggere eventuali errori nel modulo."
+
+
 #: legame_venv/Lib/site-packages/django/contrib/messages/apps.py:15
 #: venv/Lib/site-packages/django/contrib/messages/apps.py:15
 msgid "Messages"

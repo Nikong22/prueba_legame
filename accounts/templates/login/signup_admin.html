@@ -8,10 +8,10 @@
     <div class="col-md-6 offset-md-3">
       <div class="card">
         <div class="card-body">
-          <h1 class="card-title text-center">Registro de Administrador</h1>
+          <h1 class="card-title text-center">{% trans "REGISTRO_ADMIN" %}</h1>
           {% if form.errors %}
             <div class="alert alert-danger">
-              <strong>Error:</strong> Por favor, corrije los errores en el formulario.
+              <strong>Error:</strong> {% trans "ERR_FORM" %}
               {{ form.non_field_errors }}
             </div>
           {% endif %}
@@ -44,7 +44,7 @@
             </div>
             <div class="text-center">
               <button type="submit" class="btn btn-primary">
-                Registrarse
+                {% trans "SUBMIT" %}
               </button>
             </div>
           </form>

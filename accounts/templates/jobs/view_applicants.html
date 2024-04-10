@@ -9,7 +9,7 @@
 <section>
   <div class="container">
     <div class="section-heading title-style4 border-bottom padding-25px-bottom sm-padding-15px-bottom">
-      <h3><span>Candidatos</span> Postulados para {{ job.title }}</h3>
+      <h3>{% trans "CANDIDATOS_POSTULADOS" %} {{ job.title }}</h3>
     </div>
     
     <div class="row">
@@ -21,14 +21,14 @@
           </div>
           <div class="service-desc">
             <h4>{{ application.user_profile.user.username }}</h4>
-            <p>Nombre: {{ application.user_profile.name }}</p>
-            <p>Apellido: {{ application.user_profile.lastname }}</p>
+            <p>{% trans "NAME" %}: {{ application.user_profile.name }}</p>
+            <p>{% trans "LASTNAME" %}: {{ application.user_profile.lastname }}</p>
             <p>Email: {{ application.user_profile.email }}</p>
-            <p>Teléfono: {{ application.user_profile.phone_number }}</p>
-            <p>Documento: {{ application.user_profile.document_type }} {{ application.user_profile.document_number }}</p>
-            <p>Género: {{ application.user_profile.genero }}</p>
+            <p>{% trans "PHONE" %}: {{ application.user_profile.phone_number }}</p>
+            <p>{% trans "DNI" %}: {{ application.user_profile.document_type }} {{ application.user_profile.document_number }}</p>
+            <p>{% trans "GENERO" %}: {{ application.user_profile.genero }}</p>
             <p>CV: {% if application.user_profile.cv %}<a href="{{ application.user_profile.cv.url }}">Descargar</a>{% else %}No disponible{% endif %}</p>
-            <p>Biografía: {{ application.user_profile.bio }}</p>
+            <p>{% trans "BIO" %}: {{ application.user_profile.bio }}</p>
           </div>
         </div>
       </div>

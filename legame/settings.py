@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-u$lx*q=putuu_^#l1hpgedm=7or6g4$5rp1(gdi=io!s=d7k=#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['progettolegame.com', 'www.progettolegame.com', '127.0.0.1']
-DOMAIN = 'progettolegame.com'
+#ALLOWED_HOSTS = ['progettolegame.com', 'www.progettolegame.com']
+#DOMAIN = 'example.com'
 
 
 # Application definition
@@ -90,13 +90,11 @@ SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'  # Podrías probar con 'None' si estás enfrentando problemas con el atributo SameSite
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
-EMAIL_USE_SSL = False
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'info@progettolegame.com'
-EMAIL_HOST_PASSWORD = 'Plataforma.it'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_USER = 'nikongg22@gmail.com'
+EMAIL_HOST_PASSWORD = 'ilijutddaguesron'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -112,8 +110,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'legame',
-        'USER': 'progettolegame',
-        'PASSWORD': 'Plataforma.it',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',   # Generalmente 'localhost' o la dirección IP del servidor
         'PORT': '3306',            # El puerto por defecto para MySQL es 3306
     }
@@ -165,8 +163,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/yzmk2wsbe9ym/public_html/static/'
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]

@@ -180,7 +180,7 @@ background-color: #5a6268;
       <div class="d-flex align-items-center">
           <a class="nav-link" href="{% url 'faqs' %}" style="text-decoration: none; color: #495057; margin-right: 20px;">{% trans "PREG_FRECS" %}</a>
         <button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
-          <a class="nav-link btn-login" href="{% url 'signin' %}">Login</a>
+          <a class="nav-link btn-login" href="{% url 'signin' %}">{% trans "REGISTRATE" %}</a>
         </button>
         <div class="dropdown profile-icon" style="margin-right: 1rem;">
           <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
@@ -191,11 +191,11 @@ background-color: #5a6268;
             <li><h6 class="dropdown-header">{{ user.username }}-{{user_type}}</h6></li>
             <li><a class="dropdown-item" href="{% url 'my_profile' %}"><i class="bi bi-person"> Mi Perfil</i></a></li>
             {% if user_type == 'Usuario' %}
-            <li><a class="dropdown-item" href="{% url 'my_applications' %}"><i class="fa fa-check" aria-hidden="true"></i> Mis Postulaciones</a></li>
+            <li><a class="dropdown-item" href="{% url 'my_applications' %}"><i class="fa fa-check" aria-hidden="true"></i> {% trans "POST" %}</a></li>
             {% endif %}
             {% if user_type == 'Empresa' %}
-            <li><a class="dropdown-item" href="{% url 'my_job_list' %}"><i class="bi bi-card-list"> Mis publicaciones</i></a></li>
-            <li><a class="dropdown-item" href="{% url 'create_job_post' %}"><i class="bi bi-plus"> Crear publicacion</i></a></li>
+            <li><a class="dropdown-item" href="{% url 'my_job_list' %}"><i class="bi bi-card-list"> {% trans "JOB_LIST" %}</i></a></li>
+            <li><a class="dropdown-item" href="{% url 'create_job_post' %}"><i class="bi bi-plus"> {% trans "CREATE_JOB" %}</i></a></li>
             {% endif %}
             {% if user.is_superuser or user.is_staff %}
             <li><a class="dropdown-item" href="{% url 'manage_companies' %}"><i class="bi bi-card-checklist"> Ver listado de empresas</i></a></li>
@@ -204,7 +204,7 @@ background-color: #5a6268;
             <hr>
             <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar sesión</a></li>
             {% else %}
-            <li><a class="dropdown-item" href="{% url 'signin' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar</a></li>
+            <li><a class="dropdown-item" href="{% url 'signin' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "LOGIN" %}</a></li>
             
             {% endif %}
           </ul>

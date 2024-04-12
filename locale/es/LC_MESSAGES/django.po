@@ -491,6 +491,24 @@ msgstr "Acceso restringido o usuario/contraseña incorrecta"
 msgid "ACTIVATE_ACCOUNT"
 msgstr "Por favor, activa tu cuenta desde el enlace enviado a tu email."
 
+msgid "SEARCH_PUESTO"
+msgstr "Puesto o palabra clave..."
+
+msgid "BUSCAR"
+msgstr "Buscar"
+
+msgid "SEARCH_LISTADO"
+msgstr "Buscar..."
+
+msgid "CANT_JOB"
+msgstr "Publicaciones encontradas: "
+
+msgid "TEXTO_NOJOB"
+msgstr "No hay trabajos activos en este momento."
+
+msgid "REGISTRATE"
+msgstr "Registrate"
+
 #: legame_venv/Lib/site-packages/django/contrib/messages/apps.py:15
 #: venv/Lib/site-packages/django/contrib/messages/apps.py:15
 msgid "Messages"

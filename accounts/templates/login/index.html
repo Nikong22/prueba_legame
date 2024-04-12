@@ -29,13 +29,13 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-5 my-3">
                             <div class="input-group position-relative">
-                                <input type="text" class="form-control" placeholder="Puesto o palabra clave..." id="keywords" name="search_query" value="{{ request.GET.search_query }}">
+                                <input type="text" class="form-control" placeholder="{% trans "SEARCH_PUESTO" %}" id="keywords" name="search_query" value="{{ request.GET.search_query }}">
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-2 my-3">
                             <div class="select-container">
                                 <select class="custom-select" name="country">
-                                    <option value="">País</option>
+                                    <option value="">{% trans "COUNTRY" %}</option>
                                     <option value="AR" {% if request.GET.country == "AR" %}selected{% endif %}>Argentina</option>
                                     <option value="IT" {% if request.GET.country == "IT" %}selected{% endif %}>Italia</option>
 
@@ -45,7 +45,7 @@
                         <div class="col-md-6 col-lg-3 my-3">
                             <div class="select-container">
                                 <select class="custom-select"  name="sector">
-                                    <option value="">Sector de trabajo</option>
+                                    <option value="">{% trans "SECTOR" %}</option>
                                     {% for sector in sectors %}
                                         <option value="{{ sector.sector }}">{{ sector.sector }}</option>
                                     {% endfor %}
@@ -54,7 +54,7 @@
                         </div>
                         <div class="col-md-6 col-lg-2 my-3">
                             <button type="submit" class="btn btn-lg btn-block btn-light btn-custom" id="contact-submit">
-                                Search
+                                {% trans "BUSCAR" %}
                             </button>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
             <!-- Resultados de la búsqueda -->
             <div class="filter-result">
                 <!-- ... Resultados ... -->
-                <p class="mb-30 ff-montserrat">Total Job Openings: {{ page_obj.paginator.count }}</p>
+                <p class="mb-30 ff-montserrat">{% trans "CANT_JOB" %} {{ page_obj.paginator.count }}</p>
                     {% for job in page_obj %}
                     {% if job.status == 'active' %}
                     <div class="job-box d-md-flex align-items-center justify-content-between mb-30">
@@ -87,12 +87,12 @@
                             </div>
                         </div>
                         <div class="job-right my-4 flex-shrink-0">
-                            <a href="{% url 'job_details' job.id %}" class="btn d-block w-100 d-sm-inline-block btn-light">Ver Detalles</a>
+                            <a href="{% url 'job_details' job.id %}" class="btn d-block w-100 d-sm-inline-block btn-light">{% trans "DETALLES_VER" %}</a>
                         </div>
                     </div>
                     {% endif %}
                     {% empty %}
-                    <p>No hay trabajos activos en este momento.</p>
+                    <p>{% trans "TEXTO_NOJOB" %}</p>
                     {% endfor %}
             </div>
             <!-- Navegación de paginación -->

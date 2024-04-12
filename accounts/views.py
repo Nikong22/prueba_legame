@@ -234,7 +234,7 @@ def load_static_data(sectors_path, provinces_path, cities_path):
     # Carga de sectores
     with open(sectors_path, 'r', encoding='utf-8') as sectors_file:
         sectors_data = json.load(sectors_file)['sectores']
-    sector_choices = [(sector['nombre'], sector['nombre']) for sector in sectors_data]
+    sector_choices = [(sector['es'], sector['it']) for sector in sectors_data]
 
     # Carga de provincias
     with open(provinces_path, 'r', encoding='utf-8') as provinces_file:
@@ -436,7 +436,7 @@ def create_job_post(request):
     json_path = finders.find('accounts/lista/sectores.json')
     with open(json_path, 'r', encoding='utf-8') as sectors_file:
         sectors_data = json.load(sectors_file)
-    sector_choices = [(sector['nombre'], sector['nombre']) for sector in sectors_data['sectores']]
+    sector_choices = [(sector['es'], sector['it']) for sector in sectors_data['sectores']]
 
     # Carga de datos de provincias y ciudades
     provinces, province_to_cities_map = load_provinces_and_cities()

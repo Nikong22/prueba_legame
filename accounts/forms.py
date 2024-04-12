@@ -167,7 +167,7 @@ class JobPostForm(forms.ModelForm):
         if sectors_json_path:
             with open(sectors_json_path, 'r', encoding='utf-8') as sectors_file:
                 sectors_data = json.load(sectors_file)
-            return [(sector['nombre'], sector['nombre']) for sector in sectors_data['sectores']]
+            return [(sector['es'], sector['it']) for sector in sectors_data['sectores']]
         else:
             return []
 

@@ -491,6 +491,24 @@ msgstr "Siamo fuori della Copa"
 msgid "ACTIVATE_ACCOUNT"
 msgstr "italiannn"
 
+msgid "SEARCH_PUESTO"
+msgstr "Posizione o parola chiave"
+
+msgid "BUSCAR"
+msgstr "Cerca"
+
+msgid "SEARCH_LISTADO"
+msgstr "Cerca..."
+
+msgid "CANT_JOB"
+msgstr "Annunci di lavoro trovati: "
+
+msgid "TEXTO_NOJOB"
+msgstr "Non ci sono lavori attivi in questo momento."
+
+msgid "REGISTRATE"
+msgstr "Registrati"
+
 #: legame_venv/Lib/site-packages/django/contrib/messages/apps.py:15
 #: venv/Lib/site-packages/django/contrib/messages/apps.py:15
 msgid "Messages"

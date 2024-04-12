@@ -1,141 +1,84 @@
 {
-    "sectores": [
-      {
-        "nombre": "Informática / Software",
-        "puestos_de_trabajo": [
-          "Desarrollador de software",
-          "Ingeniero de software",
-          "Analista de sistemas",
-          "Arquitecto de software",
-          "Desarrollador Front-End",
-          "Desarrollador Back-End",
-          "Desarrollador de Juegos",
-          "Especialista en Seguridad Informática"
-        ]
-      },
-      {
-        "nombre": "Ingeniería Industrial",
-        "puestos_de_trabajo": [ "Ingeniero de Procesos",
-        "Ingeniero Logístico",
-        "Ingeniero de Calidad",
-        "Ingeniero de Seguridad Industrial"]
-      },
-      {
-        "nombre": "Ingeniería Civil",
-        "puestos_de_trabajo": ["Ingeniero de Construcción",
-        "Ingeniero Estructural",
-        "Ingeniero Hidráulico",
-        "Ingeniero de Transporte"]
-      },
-      {
-        "nombre": "Medicina",
-        "puestos_de_trabajo": ["Médico General",
-        "Cirujano",
-        "Pediatra",
-        "Psiquiatra"]
-      },
-      {
-        "nombre": "Derecho",
-        "puestos_de_trabajo": ["Abogado Civil",
-        "Abogado Penal",
-        "Abogado Corporativo",
-        "Asesor Legal"]
-      },
-      {
-        "nombre": "Tecnologías de la Información",
-        "puestos_de_trabajo": [    "Analista de Sistemas",
-        "Administrador de Redes",
-        "Administrador de Bases de Datos",
-        "Consultor TI"]
-      },
-      {
-        "nombre": "Energía",
-        "puestos_de_trabajo": [
-          "Ingeniero de petróleo",
-          "Técnico en energías renovables",
-          "Operador de planta de energía",
-          "Analista de eficiencia energética"
-        ]
-      },
-      {
-        "nombre": "Entretenimiento / Deportes",
-        "puestos_de_trabajo": [
-          "Organizador de eventos",
-          "Entrenador personal",
-          "Gestor de recintos deportivos",
-          "Promotor de eventos deportivos"
-        ]
-      },
-      {
-        "nombre": "Fabricación",
-        "puestos_de_trabajo": [
-          "Operario de línea de ensamblaje",
-          "Gerente de planta de fabricación",
-          "Ingeniero de procesos industriales",
-          "Técnico de control de calidad"
-        ]
-      },
-      {
-        "nombre": "Finanzas / Banca",
-        "puestos_de_trabajo": [
-          "Analista financiero",
-          "Asesor de inversiones",
-          "Contador",
-          "Gerente de sucursal bancaria",
-          "Especialista en riesgos financieros",
-          "Ejecutivo de cuentas",
-          "Auditor interno",
-          "Analista de crédito"
-        ]
-      },
-      {
-        "nombre": "Administración/Contabilidad",
-        "puestos_de_trabajo": [
-          "Asistente administrativo",
-          "Analista Senior de Administración y Finanzas",
-          "Gerente administrativo",
-          "Coordinador administrativo",
-          "Director de operaciones",
-          "Jefe de oficina",
-          "Secretario ejecutivo",
-          "Recepcionista",
-          "Administrador de contratos",
-          "Contador público",
-          "Contador general",
-          "Auxiliar contable",
-          "Analista contable",
-          "Auditor externo",
-          "Director financiero",
-          "Gerente de cuentas por pagar",
-          "Gerente de cuentas por cobrar"
-        ]
-      },
-      {
-        "nombre": "Gobierno / No Lucro",
-        "puestos_de_trabajo": [
-          "Funcionario público",
-          "Gestor de proyectos de ONG",
-          "Analista de políticas públicas",
-          "Coordinador de programas comunitarios"
-        ]
-      },
-      {
-        "nombre": "Hostelería / Turismo",
-        "puestos_de_trabajo": [
-          "Gerente de hotel",
-          "Guía turístico",
-          "Agente de viajes",
-          "Recepcionista de hotel"
-        ]
-      },
-      {
-        "nombre": "Informática / Hardware",
-        "puestos_de_trabajo": [
-          "Técnico de soporte de TI",
-          "Ingeniero de hardware",
-          "Diseñador de sistemas embebidos",
-          "Especialista en redes"
-        ]
-      }
-    ]
-  }
+  "sectores": [
+    {
+      "es": "Salud y atención médica",
+      "it":"Salute e assistenza medica"
+    },
+    {
+      "es": "Tecnología de la información y la comunicación (TIC)",
+      "it":"Tecnologia dell'informazione e della comunicazione (TIC)"
+    },
+    {
+      "es": "Educación y formación",
+      "it":"Educazione e formazione"
+    },
+    {
+      "es": "Gobierno y administración pública",
+      "it":"Governo e amministrazione pubblica"
+    },
+    {
+      "es": "Ingeniería y construcción",
+      "it":"Ingegneria e costruzione"
+    },
+    {
+      "es": "Medios de comunicación y entretenimiento",
+      "it":"Media e intrattenimento"
+    },
+    {
+      "es": "Investigación y desarrollo",
+      "it":"Ricerca e sviluppo"
+    },
+    {
+      "es": "Servicios profesionales (consultoría, legal, contabilidad, etc.)",
+      "it":"Servizi professionali (consulenza, legale, contabilità, ecc.)"
+    },
+    {
+      "es": "Comercio minorista y mayorista",
+      "it":"Commercio al dettaglio e all'ingrosso"
+    },
+    {
+      "es": "Finanzas y Banca",
+      "it":"Finanza e banca"
+    },
+    {
+      "es": "Turismo y hostelería",
+      "it":"Turismo e ospitalità"
+    },
+    {
+      "es": "Agricultura y alimentación",
+      "it":"Agricoltura e alimentazione"
+    },
+    {
+      "es": "Transporte y logística",
+      "it":"Trasporto e logistica"
+    },
+    {
+      "es": "Energía y medio ambiente",
+      "it":"Energia e ambiente"
+    },
+    {
+      "es": "Fabricación y producción industrial",
+      "it":"Manifattura e produzione industriale"
+    },
+    {
+      "es": "Arte y diseño",
+      "it":"Arte e design"
+    },
+    {
+      "es": "Recursos humanos y gestión de personal",
+      "it":"Risorse umane e gestione del personale"
+    },
+    {
+      "es": "Marketing y publicidad",
+      "it":"Marketing e pubblicità"
+    },
+    {
+      "es": "Seguridad y defensa",
+      "it":"Sicurezza e difesa"
+    },
+    {
+      "es": "Sector sin ánimo de lucro y organizaciones sociales",
+      "it":"Settore senza scopo di lucro e organizzazioni sociali"
+    }
+  ]
+}

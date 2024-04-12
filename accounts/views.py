@@ -805,13 +805,15 @@ def save_question_translation(question_entry, form, language_code):
     )
 
 
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def delete_question(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    question.delete()
-    messages.success(request, 'La pregunta ha sido eliminada.')
+    question_translation = get_object_or_404(QuestionTranslation, question_id=question_id)
+    question_translation.delete()
+    messages.success(request, 'La pregunta y sus traducciones han sido eliminadas.')
     return redirect('faqs')
+
 
 @csrf_exempt
 def update_user_data(request):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-10 21:05+0000\n"
+"POT-Creation-Date: 2024-04-12 15:42-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,629 +18,651 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: accounts/templates/admin/admin_blog.html:16
+#: .\accounts\templates\admin\admin_blog.html:16
 msgid "INFO_PRINCIPAL"
 msgstr "Información página principal"
 
-#: accounts/templates/admin/company_details.html:13
+#: .\accounts\templates\admin\company_details.html:13
 msgid "VOLVER_GESTION"
 msgstr "Volver a Gestión de Empresas"
 
-#: accounts/templates/admin/company_details.html:21
-#: accounts/templates/jobs/my_applications.html:22
-#: accounts/templates/login/signup_comp.html:88
-#: accounts/templates/profile/my_profile.html:148
+#: .\accounts\templates\admin\company_details.html:21
+#: .\accounts\templates\jobs\my_applications.html:22
+#: .\accounts\templates\login\signup_comp.html:88
+#: .\accounts\templates\profile\my_profile.html:148
 msgid "NAME_COMP"
 msgstr "Nombre de la empresa"
 
-#: accounts/templates/admin/company_details.html:23
-#: accounts/templates/jobs/view_applicants.html:27
-#: accounts/templates/login/signup_comp.html:100
-#: accounts/templates/login/signup_user.html:102
-#: accounts/templates/profile/my_profile.html:118
-#: accounts/templates/profile/my_profile.html:213
+#: .\accounts\templates\admin\company_details.html:23
+#: .\accounts\templates\jobs\view_applicants.html:27
+#: .\accounts\templates\login\signup_comp.html:100
+#: .\accounts\templates\login\signup_user.html:102
+#: .\accounts\templates\profile\my_profile.html:118
+#: .\accounts\templates\profile\my_profile.html:213
 msgid "PHONE"
 msgstr "Teléfono:"
 
-#: accounts/templates/admin/company_details.html:24
-#: accounts/templates/jobs/create_job_post.html:21
-#: accounts/templates/jobs/job_details.html:23
-#: accounts/templates/login/signup_comp.html:124
+#: .\accounts\templates\admin\company_details.html:24
+#: .\accounts\templates\jobs\create_job_post.html:21
+#: .\accounts\templates\jobs\job_details.html:23
+#: .\accounts\templates\login\index.html:38
+#: .\accounts\templates\login\signup_comp.html:124
 msgid "COUNTRY"
 msgstr "País"
 
-#: accounts/templates/admin/company_details.html:33
-#: accounts/templates/jobs/create_job_post.html:80
-#: accounts/templates/jobs/edit-job.html:28
-#: accounts/templates/jobs/job_details.html:21
-#: accounts/templates/login/signup_comp.html:183
-#: accounts/templates/profile/my_profile.html:183
+#: .\accounts\templates\admin\company_details.html:33
+#: .\accounts\templates\jobs\create_job_post.html:80
+#: .\accounts\templates\jobs\edit-job.html:28
+#: .\accounts\templates\jobs\job_details.html:21
+#: .\accounts\templates\login\index.html:48
+#: .\accounts\templates\login\signup_comp.html:183
+#: .\accounts\templates\profile\my_profile.html:183
 msgid "SECTOR"
 msgstr "Sector"
 
-#: accounts/templates/admin/company_details.html:34
-#: accounts/templates/login/signup_comp.html:213
-#: accounts/templates/profile/my_profile.html:159
+#: .\accounts\templates\admin\company_details.html:34
+#: .\accounts\templates\login\signup_comp.html:213
+#: .\accounts\templates\profile\my_profile.html:159
 msgid "CANT_EMP"
 msgstr "Cantidad de empleados"
 
-#: accounts/templates/admin/company_details.html:35
-#: accounts/templates/login/signup_comp.html:195
-#: accounts/templates/profile/my_profile.html:172
+#: .\accounts\templates\admin\company_details.html:35
+#: .\accounts\templates\login\signup_comp.html:195
+#: .\accounts\templates\profile\my_profile.html:172
 msgid "RAZON_SOCIAL"
 msgstr "Razón social"
 
-#: accounts/templates/admin/company_details.html:36
-#: accounts/templates/admin/manage_companies.html:61
-#: accounts/templates/login/signup_comp.html:202
-#: accounts/templates/profile/my_profile.html:138
+#: .\accounts\templates\admin\company_details.html:36
+#: .\accounts\templates\admin\manage_companies.html:61
+#: .\accounts\templates\login\signup_comp.html:202
+#: .\accounts\templates\profile\my_profile.html:138
 msgid "CUIT"
 msgstr "CUIT"
 
-#: accounts/templates/admin/company_details.html:37
-#: accounts/templates/admin/manage_companies.html:24
-#: accounts/templates/admin/manage_companies.html:63
+#: .\accounts\templates\admin\company_details.html:37
+#: .\accounts\templates\admin\manage_companies.html:24
+#: .\accounts\templates\admin\manage_companies.html:63
 msgid "STATUS"
 msgstr "Estado"
 
-#: accounts/templates/admin/company_details.html:39
+#: .\accounts\templates\admin\company_details.html:39
 msgid "ACTIVAR"
 msgstr "Activar Empresa"
 
-#: accounts/templates/admin/company_details.html:42
-#, fuzzy
-#| msgid "ACTIVAR"
-msgid "INACTIVAR"
-msgstr "Activar Empresa"
+#: .\accounts\templates\admin\company_details.html:42
+msgid "DESACTIVAR"
+msgstr "Inactivar Empresa"
 
-#: accounts/templates/admin/faqs.html:9 accounts/templates/base.html:350
-#: accounts/templates/base.html:422
+#: .\accounts\templates\admin\faqs.html:9 .\accounts\templates\base.html:313
 msgid "PREG_FREC"
 msgstr "Preguntas frecuentes"
 
-#: accounts/templates/admin/faqs.html:12
+#: .\accounts\templates\admin\faqs.html:12
 msgid "DESCR_FREC"
 msgstr "Encuentre las respuestas a las preguntas más frecuentes a continuación"
 
-#: accounts/templates/admin/manage_companies.html:25
-msgid "STATUS_ACT"
-msgstr "Activo"
-
-#: accounts/templates/admin/manage_companies.html:26
-msgid "STATUS_INACT"
-msgstr "Inactivo"
-
-#: accounts/templates/admin/manage_companies.html:49
-msgid "GESTION_EMPRESA"
-msgstr "Gestión de Empresas"
-
-#: accounts/templates/admin/manage_companies.html:52
-msgid "CLIENTS"
-msgstr "Clientes"
-
-#: accounts/templates/admin/manage_companies.html:59
-#: accounts/templates/jobs/view_applicants.html:24
-#: accounts/templates/login/signup_user.html:37
-#: accounts/templates/profile/my_profile.html:195
-msgid "NAME"
-msgstr "Nombre:"
-
-#: accounts/templates/admin/manage_companies.html:60
-#: accounts/templates/jobs/create_job_post.html:122
-#: accounts/templates/jobs/job_details.html:33
-#: accounts/templates/login/signup_comp.html:112
-#: accounts/templates/profile/my_profile.html:128
-msgid "ADRESS"
-msgstr "Dirección"
-
-#: accounts/templates/admin/manage_companies.html:64
-#: accounts/templates/jobs/my_job_list.html:30
-msgid "DETALLES"
-msgstr "Detalles"
-
-#: accounts/templates/admin/manage_companies.html:88
+#: .\accounts\templates\admin\faqs.html:36
+#: .\accounts\templates\admin\manage_companies.html:88
+#: .\accounts\templates\login\index.html:90
 msgid "DETALLES_VER"
 msgstr "Ver detalles"
 
-#: accounts/templates/base.html:213
+#: .\accounts\templates\admin\manage_companies.html:25
+msgid "STATUS_ACT"
+msgstr "Activo"
+
+#: .\accounts\templates\admin\manage_companies.html:26
+msgid "STATUS_INACT"
+msgstr "Inactivo"
+
+#: .\accounts\templates\admin\manage_companies.html:30
+msgid "SEARCH_LISTADO"
+msgstr "Buscar..."
+
+#: .\accounts\templates\admin\manage_companies.html:49
+msgid "GESTION_EMPRESA"
+msgstr "Gestión de Empresas"
+
+#: .\accounts\templates\admin\manage_companies.html:52
+msgid "CLIENTS"
+msgstr "Clientes"
+
+#: .\accounts\templates\admin\manage_companies.html:59
+#: .\accounts\templates\jobs\view_applicants.html:24
+#: .\accounts\templates\login\signup_user.html:37
+#: .\accounts\templates\profile\my_profile.html:195
+msgid "NAME"
+msgstr "Nombre:"
+
+#: .\accounts\templates\admin\manage_companies.html:60
+#: .\accounts\templates\jobs\create_job_post.html:122
+#: .\accounts\templates\jobs\job_details.html:33
+#: .\accounts\templates\login\signup_comp.html:112
+#: .\accounts\templates\profile\my_profile.html:128
+msgid "ADRESS"
+msgstr "Dirección"
+
+#: .\accounts\templates\admin\manage_companies.html:64
+#: .\accounts\templates\jobs\my_job_list.html:30
+msgid "DETALLES"
+msgstr "Detalles"
+
+#: .\accounts\templates\base.html:181
 msgid "PREG_FRECS"
 msgstr "Preguntas frecuentes"
 
-#: accounts/templates/base.html:330 accounts/templates/base.html:402
+#: .\accounts\templates\base.html:183
+msgid "REGISTRATE"
+msgstr "Registrate"
+
+#: .\accounts\templates\base.html:192
+msgid "MI_PERFIL"
+msgstr "Mi perfil"
+
+#: .\accounts\templates\base.html:194
+#: .\accounts\templates\jobs\my_applications.html:11
+msgid "POST"
+msgstr "Mis postulaciones"
+
+#: .\accounts\templates\base.html:197
+#: .\accounts\templates\jobs\my_job_list.html:12
+msgid "JOB_LIST"
+msgstr "Mis Ofertas de trabajo"
+
+#: .\accounts\templates\base.html:198
+#: .\accounts\templates\jobs\create_job_post.html:12
+msgid "CREATE_JOB"
+msgstr "Crear publicación de trabajo"
+
+#: .\accounts\templates\base.html:201
+msgid "LIST_COMP"
+msgstr "Ver listado de empresas"
+
+#: .\accounts\templates\base.html:205
+msgid "CLOSE_SESION"
+msgstr "Cerrar sesión"
+
+#: .\accounts\templates\base.html:207 .\accounts\templates\login\signin.html:48
+#: .\accounts\templates\login\signin_admin.html:47
+msgid "LOGIN"
+msgstr "Login"
+
+#: .\accounts\templates\base.html:293
 msgid "ABOUT"
 msgstr "Sobre Progetto Legame"
 
-#: accounts/templates/base.html:334 accounts/templates/base.html:406
+#: .\accounts\templates\base.html:297
 msgid "SOBRE_NOS"
 msgstr "Sobre nosotros"
 
-#: accounts/templates/base.html:335 accounts/templates/base.html:407
+#: .\accounts\templates\base.html:298
 msgid "TEAM"
 msgstr "Equipo"
 
-#: accounts/templates/base.html:336 accounts/templates/base.html:408
+#: .\accounts\templates\base.html:299
 msgid "TERM_COND"
 msgstr "Terminos y condiciones"
 
-#: accounts/templates/base.html:337 accounts/templates/base.html:409
+#: .\accounts\templates\base.html:300
 msgid "POLIT_PRIV"
 msgstr "Políticas de privacidad"
 
-#: accounts/templates/base.html:346 accounts/templates/base.html:418
+#: .\accounts\templates\base.html:309
 msgid "SUPPORT"
 msgstr "Soporte"
 
-#: accounts/templates/base.html:351 accounts/templates/base.html:423
+#: .\accounts\templates\base.html:314
 msgid "SUP_CAND"
 msgstr "Soporte a candidatos"
 
-#: accounts/templates/base.html:352 accounts/templates/base.html:424
+#: .\accounts\templates\base.html:315
 msgid "SUP_COMP"
 msgstr "Soporte a empresas"
 
-#: accounts/templates/base.html:361 accounts/templates/base.html:434
+#: .\accounts\templates\base.html:324
 msgid "CONTACT"
 msgstr "Contacto"
 
-#: accounts/templates/base.html:365 accounts/templates/base.html:438
+#: .\accounts\templates\base.html:328
 msgid "CONTACT_NOS"
 msgstr "Contactános"
 
-#: accounts/templates/base.html:366 accounts/templates/base.html:439
+#: .\accounts\templates\base.html:329
 msgid "CONTACT_AGEN"
 msgstr "Agendanos"
 
-#: accounts/templates/email/activation_valid.html:13
-#: accounts/templates/email/activation_valid_admin.html:13
+#: .\accounts\templates\email\activation_valid.html:13
+#: .\accounts\templates\email\activation_valid_admin.html:13
 msgid "ACTIVACION"
 msgstr "Tu cuenta ha sido activada con éxito."
 
-#: accounts/templates/email/activation_valid.html:14
-#: accounts/templates/email/activation_valid_admin.html:14
+#: .\accounts\templates\email\activation_valid.html:14
+#: .\accounts\templates\email\activation_valid_admin.html:14
 msgid "ACTIVACION_LOGIN"
 msgstr "Haz clic aquí para iniciar sesión"
 
-#: accounts/templates/email/registration_success.html:11
-#: accounts/templates/email/registration_success.html:12
+#: .\accounts\templates\email\registration_success.html:11
+#: .\accounts\templates\email\registration_success.html:12
 msgid "ACT_TITLE"
 msgstr "¡Casi has terminado!"
 
-#: accounts/templates/email/registration_success.html:14
+#: .\accounts\templates\email\registration_success.html:14
 msgid "ACT_FIN"
 msgstr ""
 "Si no encuentras el correo, revisa tu carpeta de spam o solicita el envío de "
 "un nuevo enlace."
 
-#: accounts/templates/jobs/create_job_post.html:12
-msgid "CREATE_JOB"
-msgstr "Crear publicación de trabajo"
-
-#: accounts/templates/jobs/create_job_post.html:91
-#: accounts/templates/jobs/edit-job.html:22
-#: accounts/templates/jobs/job_details.html:22
+#: .\accounts\templates\jobs\create_job_post.html:91
+#: .\accounts\templates\jobs\edit-job.html:22
+#: .\accounts\templates\jobs\job_details.html:22
 msgid "CATEGORIA"
 msgstr "Categoría"
 
-#: accounts/templates/jobs/create_job_post.html:100
-#: accounts/templates/jobs/job_details.html:32
+#: .\accounts\templates\jobs\create_job_post.html:100
+#: .\accounts\templates\jobs\job_details.html:32
 msgid "FECHA_VENCIMIENTO"
 msgstr "Fecha de vencimiento"
 
-#: accounts/templates/jobs/create_job_post.html:111
-#: accounts/templates/jobs/edit-job.html:37
+#: .\accounts\templates\jobs\create_job_post.html:111
+#: .\accounts\templates\jobs\edit-job.html:37
 msgid "LIMIT_POST"
 msgstr "Límite de postulaciones"
 
-#: accounts/templates/jobs/create_job_post.html:133
-#: accounts/templates/jobs/edit-job.html:42
+#: .\accounts\templates\jobs\create_job_post.html:133
+#: .\accounts\templates\jobs\edit-job.html:42
 msgid "TITLE_JOB"
 msgstr "Título de trabajo"
 
-#: accounts/templates/jobs/create_job_post.html:145
-#: accounts/templates/jobs/edit-job.html:48
-#: accounts/templates/jobs/job_details.html:34
+#: .\accounts\templates\jobs\create_job_post.html:145
+#: .\accounts\templates\jobs\edit-job.html:48
+#: .\accounts\templates\jobs\job_details.html:34
 msgid "DESCRIP_JOB"
 msgstr "Descripción"
 
-#: accounts/templates/jobs/create_job_post.html:149
+#: .\accounts\templates\jobs\create_job_post.html:149
 msgid "PUBLICAR_JOB"
 msgstr "Publicar trabajo"
 
-#: accounts/templates/jobs/edit-job.html:13
-#: accounts/templates/jobs/my_job_list.html:32
+#: .\accounts\templates\jobs\edit-job.html:13
+#: .\accounts\templates\jobs\my_job_list.html:32
 msgid "EDIT_POST"
 msgstr "Editar publicación"
 
-#: accounts/templates/jobs/edit-job.html:54
+#: .\accounts\templates\jobs\edit-job.html:54
 msgid "JOB_UPDATE"
 msgstr "Actualizar publicación"
 
-#: accounts/templates/jobs/job_details.html:45
+#: .\accounts\templates\jobs\job_details.html:45
 msgid "POSTULARSE"
 msgstr "Postularse"
 
-#: accounts/templates/jobs/my_applications.html:11
-msgid "POST"
-msgstr "Mis postulaciones"
-
-#: accounts/templates/jobs/my_applications.html:21
+#: .\accounts\templates\jobs\my_applications.html:21
 msgid "POSTULADO"
 msgstr "Postulado"
 
-#: accounts/templates/jobs/my_applications.html:23
+#: .\accounts\templates\jobs\my_applications.html:23
 msgid "FECHA_POSTULACION"
 msgstr "Fecha de postulación"
 
-#: accounts/templates/jobs/my_applications.html:30
+#: .\accounts\templates\jobs\my_applications.html:30
 msgid "NO_POST"
 msgstr "No tienes postulaciones actualmente"
 
-#: accounts/templates/jobs/my_job_list.html:12
-msgid "JOB_LIST"
-msgstr "Mis Ofertas de trabajo"
-
-#: accounts/templates/jobs/my_job_list.html:13
+#: .\accounts\templates\jobs\my_job_list.html:13
 msgid "JOB_TEXT"
 msgstr "Aquí encontrarás todos los avisos laborales que has publicado."
 
-#: accounts/templates/jobs/my_job_list.html:31
+#: .\accounts\templates\jobs\my_job_list.html:31
 msgid "POSTULADOS"
 msgstr "Postulados"
 
-#: accounts/templates/jobs/my_job_list.html:55
+#: .\accounts\templates\jobs\my_job_list.html:55
 msgid "NOJOB_LIST"
 msgstr "No has publicado trabajos aún."
 
-#: accounts/templates/jobs/view_applicants.html:12
+#: .\accounts\templates\jobs\view_applicants.html:12
 msgid "CANDIDATOS_POSTULADOS"
 msgstr "Candidatos postulados para"
 
-#: accounts/templates/jobs/view_applicants.html:25
-#: accounts/templates/login/signup_user.html:49
-#: accounts/templates/profile/my_profile.html:204
+#: .\accounts\templates\jobs\view_applicants.html:25
+#: .\accounts\templates\login\signup_user.html:49
+#: .\accounts\templates\profile\my_profile.html:204
 msgid "LASTNAME"
 msgstr "Apellido:"
 
-#: accounts/templates/jobs/view_applicants.html:28
-#: accounts/templates/profile/my_profile.html:223
+#: .\accounts\templates\jobs\view_applicants.html:28
+#: .\accounts\templates\profile\my_profile.html:223
 msgid "DNI"
 msgstr "Documento"
 
-#: accounts/templates/jobs/view_applicants.html:29
-#: accounts/templates/login/signup_user.html:96
-#: accounts/templates/profile/my_profile.html:232
+#: .\accounts\templates\jobs\view_applicants.html:29
+#: .\accounts\templates\login\signup_user.html:96
+#: .\accounts\templates\profile\my_profile.html:232
 msgid "GENERO"
 msgstr "Género:"
 
-#: accounts/templates/jobs/view_applicants.html:31
-#: accounts/templates/login/signup_user.html:131
-#: accounts/templates/profile/my_profile.html:261
+#: .\accounts\templates\jobs\view_applicants.html:31
+#: .\accounts\templates\login\signup_user.html:131
+#: .\accounts\templates\profile\my_profile.html:261
 msgid "BIO"
 msgstr "Biografía"
 
-#: accounts/templates/login/index.html:17
+#: .\accounts\templates\login\index.html:17
 msgid "TITULO_INDEX"
 msgstr "Somos el puente entre Argentina y Cerdeña"
 
-#: accounts/templates/login/index.html:18
+#: .\accounts\templates\login\index.html:18
 msgid "SUBTITULO_INDEX"
 msgstr "Buscá o publicá ofertas de empleos en Cerdeña"
 
-#: accounts/templates/login/signin.html:18
+#: .\accounts\templates\login\index.html:32
+msgid "SEARCH_PUESTO"
+msgstr "Puesto o palabra clave..."
+
+#: .\accounts\templates\login\index.html:57
+msgid "BUSCAR"
+msgstr "Buscar"
+
+#: .\accounts\templates\login\index.html:66
+msgid "CANT_JOB"
+msgstr "Publicaciones encontradas: "
+
+#: .\accounts\templates\login\index.html:95
+msgid "TEXTO_NOJOB"
+msgstr "No hay trabajos activos en este momento."
+
+#: .\accounts\templates\login\signin.html:18
 msgid "SIGN_IN"
 msgstr "Ingrese a su cuenta"
 
-#: accounts/templates/login/signin.html:48
-#: accounts/templates/login/signin_admin.html:47
-msgid "LOGIN"
-msgstr "Login"
-
-#: accounts/templates/login/signin.html:51
-#: accounts/templates/login/signin_admin.html:50
+#: .\accounts\templates\login\signin.html:51
+#: .\accounts\templates\login\signin_admin.html:50
 msgid "FORGOT_PASS"
 msgstr "Olvidaste tu contraseña?"
 
-#: accounts/templates/login/signin.html:59
-#: accounts/templates/login/signin_admin.html:59
+#: .\accounts\templates\login\signin.html:59
+#: .\accounts\templates\login\signin_admin.html:59
 msgid "SIGN_UP"
 msgstr "Bienvenidos a LEGAME"
 
-#: accounts/templates/login/signin.html:60
-#: accounts/templates/login/signin_admin.html:60
+#: .\accounts\templates\login\signin.html:60
+#: .\accounts\templates\login\signin_admin.html:60
 msgid "SIGN_TEXT"
 msgstr "Somos el puente entre Argentina y Cerdeña."
 
-#: accounts/templates/login/signin.html:61
+#: .\accounts\templates\login\signin.html:61
 msgid "REGISTRATE_USER"
 msgstr "Registro de Usuarios"
 
-#: accounts/templates/login/signin.html:62
+#: .\accounts\templates\login\signin.html:62
 msgid "REGISTRATE_COMP"
 msgstr "Registro de Empresas"
 
-#: accounts/templates/login/signin_admin.html:17
+#: .\accounts\templates\login\signin_admin.html:17
 msgid "SIGN_ADMIN"
 msgstr "Ingresa a su cuenta"
 
-#: accounts/templates/login/signup_admin.html:11
+#: .\accounts\templates\login\signup_admin.html:11
 msgid "REGISTRO_ADMIN"
 msgstr "Registro de Administrador"
 
-#: accounts/templates/login/signup_admin.html:14
+#: .\accounts\templates\login\signup_admin.html:14
 msgid "ERR_FORM"
 msgstr "Por favor, corrije los errores en el formulario."
 
-#: accounts/templates/login/signup_admin.html:47
-#: accounts/templates/login/signup_comp.html:223
-#: accounts/templates/login/signup_user.html:137
+#: .\accounts\templates\login\signup_admin.html:47
+#: .\accounts\templates\login\signup_comp.html:223
+#: .\accounts\templates\login\signup_user.html:137
 msgid "SUBMIT"
 msgstr "Enviar"
 
-#: accounts/templates/login/signup_comp.html:13
+#: .\accounts\templates\login\signup_comp.html:13
 msgid "REGISTRO_COMP"
 msgstr "Registro de Empresa"
 
-#: accounts/templates/login/signup_comp.html:40
-#: accounts/templates/login/signup_user.html:25
-#: accounts/templates/profile/my_profile.html:97
+#: .\accounts\templates\login\signup_comp.html:40
+#: .\accounts\templates\login\signup_user.html:25
+#: .\accounts\templates\profile\my_profile.html:97
 msgid "USER"
 msgstr "Usuario:"
 
-#: accounts/templates/login/signup_comp.html:76
-#: accounts/templates/login/signup_user.html:85
+#: .\accounts\templates\login\signup_comp.html:76
+#: .\accounts\templates\login\signup_user.html:85
 msgid "PASS_CONFIRM"
 msgstr "Confirmar password:"
 
-#: accounts/templates/login/signup_user.html:12
+#: .\accounts\templates\login\signup_user.html:12
 msgid "REGISTRO_USER"
 msgstr "Registro de Usuario"
 
-#: accounts/templates/login/signup_user.html:114
+#: .\accounts\templates\login\signup_user.html:114
 msgid "DOC"
 msgstr "Tipo de documento:"
 
-#: accounts/templates/login/signup_user.html:120
+#: .\accounts\templates\login\signup_user.html:120
 msgid "NUM_DOC"
 msgstr "Número de documento:"
 
-#: accounts/templates/profile/my_profile.html:20
+#: .\accounts\templates\profile\my_profile.html:20
 msgid "PROFILE_EDIT"
 msgstr "Editar"
 
-#: accounts/templates/profile/my_profile.html:29
+#: .\accounts\templates\profile\my_profile.html:29
 msgid "PROFILE_SAVE"
 msgstr "Guardar"
 
-#: accounts/templates/profile/my_profile.html:249
+#: .\accounts\templates\profile\my_profile.html:249
 msgid "SUBIR_CV"
 msgstr "Subir CV"
 
-#: accounts/templates/profile/my_profile.html:254
+#: .\accounts\templates\profile\my_profile.html:254
 msgid "NOT_CV"
 msgstr "No hay CV cargado."
 
-#: accounts/templates/registration/password_reset_confirm.html:12
+#: .\accounts\templates\registration\password_reset_confirm.html:12
 msgid "CREA_NEWPASS"
 msgstr "Creá una nueva contraseña"
 
-#: accounts/templates/registration/password_reset_confirm.html:13
+#: .\accounts\templates\registration\password_reset_confirm.html:13
 msgid "TEXT_NEWPASS"
 msgstr "Asegúrate de que tu contraseña sea segura y no la compartas con nadie."
 
-#: accounts/templates/registration/password_reset_confirm.html:17
+#: .\accounts\templates\registration\password_reset_confirm.html:17
 msgid "ESCRIBA_NEWPASS"
 msgstr "Escriba su nueva contraseña:"
 
-#: accounts/templates/registration/password_reset_confirm.html:22
+#: .\accounts\templates\registration\password_reset_confirm.html:22
 msgid "CONFIRM_NEWPASS"
 msgstr "Confirme su nueva contraseña:"
 
-#: accounts/templates/registration/password_reset_confirm.html:26
+#: .\accounts\templates\registration\password_reset_confirm.html:26
 msgid "SUBMIT_NEWPASS"
 msgstr "Cambiar contraseña"
 
-#: accounts/templates/registration/password_reset_done.html:11
+#: .\accounts\templates\registration\password_reset_done.html:11
 msgid "INSTR_SENT"
 msgstr "Instrucciones enviadas"
 
-#: accounts/templates/registration/password_reset_done.html:12
+#: .\accounts\templates\registration\password_reset_done.html:12
 msgid "INSTR_TEXT"
 msgstr ""
 "Revisa tu correo electrónico para las instrucciones de cómo restablecer tu "
 "contraseña. Si no recibes el correo en unos minutos, verifica tu carpeta de "
 "spam o "
 
-#: accounts/templates/registration/password_reset_done.html:12
+#: .\accounts\templates\registration\password_reset_done.html:12
 msgid "INSTR_LINK"
 msgstr "intenta enviar de nuevo"
 
-#: accounts/templates/registration/password_reset_done.html:14
+#: .\accounts\templates\registration\password_reset_done.html:14
 msgid "INSTR_FIN"
 msgstr "Si continúas teniendo problemas, por favor "
 
-#: accounts/templates/registration/password_reset_done.html:14
+#: .\accounts\templates\registration\password_reset_done.html:14
 msgid "INSTR_CONTACT"
 msgstr "contáctanos"
 
-#: accounts/templates/registration/password_reset_form.html:13
+#: .\accounts\templates\registration\password_reset_form.html:13
 msgid "RESTABLECER_PASS"
 msgstr "Restablecer contraseña"
 
-#: accounts/templates/registration/password_reset_form.html:14
+#: .\accounts\templates\registration\password_reset_form.html:14
 msgid "RESTABLECER_TEXT"
 msgstr ""
 "Por favor, ingresa tu dirección de correo electrónico a continuación y te "
 "enviaremos instrucciones para restablecer tu contraseña."
 
-#: accounts/templates/registration/password_reset_form.html:21
+#: .\accounts\templates\registration\password_reset_form.html:21
 msgid "SUBMIT_INSTRU"
 msgstr "Enviar Instrucciones"
 
-#: accounts/templates/registration/password_reset_form.html:24
+#: .\accounts\templates\registration\password_reset_form.html:24
 msgid "TEXT_INSTRU"
 msgstr ""
 "Por motivos de seguridad, no almacenamos tu contraseña. Tu contraseña será "
 "restablecida y recibirás una nueva."
 
 #
-#: accounts/views.py:325
+#: .\accounts\views.py:325
 msgid "ERROR_LOGIN"
 msgstr "Acceso restringido o usuario/contraseña incorrecta"
 
-#: accounts/views.py:348
+#: .\accounts\views.py:348
 msgid "ACTIVATE_ACCOUNT"
 msgstr "Por favor, activa tu cuenta desde el enlace enviado a tu email."
 
-msgid "SEARCH_PUESTO"
-msgstr "Puesto o palabra clave..."
-
-msgid "BUSCAR"
-msgstr "Buscar"
-
-msgid "SEARCH_LISTADO"
-msgstr "Buscar..."
-
-msgid "CANT_JOB"
-msgstr "Publicaciones encontradas: "
-
-msgid "TEXTO_NOJOB"
-msgstr "No hay trabajos activos en este momento."
-
-msgid "REGISTRATE"
-msgstr "Registrate"
-
-#: legame_venv/Lib/site-packages/django/contrib/messages/apps.py:15
-#: venv/Lib/site-packages/django/contrib/messages/apps.py:15
+#: .\legame_venv\Lib\site-packages\django\contrib\messages\apps.py:15
+#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/contrib/sitemaps/apps.py:8
-#: venv/Lib/site-packages/django/contrib/sitemaps/apps.py:8
+#: .\legame_venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
+#: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
 msgid "Site Maps"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/contrib/staticfiles/apps.py:9
-#: venv/Lib/site-packages/django/contrib/staticfiles/apps.py:9
+#: .\legame_venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
+#: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
 msgid "Static Files"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/contrib/syndication/apps.py:7
-#: venv/Lib/site-packages/django/contrib/syndication/apps.py:7
+#: .\legame_venv\Lib\site-packages\django\contrib\syndication\apps.py:7
+#: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
 msgid "Syndication"
 msgstr ""
 
 #. Translators: String used to replace omitted page numbers in elided page
 #. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
-#: legame_venv/Lib/site-packages/django/core/paginator.py:30
-#: venv/Lib/site-packages/django/core/paginator.py:30
+#: .\legame_venv\Lib\site-packages\django\core\paginator.py:30
+#: .\venv\Lib\site-packages\django\core\paginator.py:30
 msgid "…"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/paginator.py:50
-#: venv/Lib/site-packages/django/core/paginator.py:50
+#: .\legame_venv\Lib\site-packages\django\core\paginator.py:50
+#: .\venv\Lib\site-packages\django\core\paginator.py:50
 msgid "That page number is not an integer"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/paginator.py:52
-#: venv/Lib/site-packages/django/core/paginator.py:52
+#: .\legame_venv\Lib\site-packages\django\core\paginator.py:52
+#: .\venv\Lib\site-packages\django\core\paginator.py:52
 msgid "That page number is less than 1"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/paginator.py:54
-#: venv/Lib/site-packages/django/core/paginator.py:54
+#: .\legame_venv\Lib\site-packages\django\core\paginator.py:54
+#: .\venv\Lib\site-packages\django\core\paginator.py:54
 msgid "That page contains no results"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:22
-#: venv/Lib/site-packages/django/core/validators.py:22
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:22
+#: .\venv\Lib\site-packages\django\core\validators.py:22
 msgid "Enter a valid value."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:104
-#: legame_venv/Lib/site-packages/django/forms/fields.py:752
-#: venv/Lib/site-packages/django/core/validators.py:104
-#: venv/Lib/site-packages/django/forms/fields.py:752
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:104
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:752
+#: .\venv\Lib\site-packages\django\core\validators.py:104
+#: .\venv\Lib\site-packages\django\forms\fields.py:752
 msgid "Enter a valid URL."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:165
-#: venv/Lib/site-packages/django/core/validators.py:165
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:165
+#: .\venv\Lib\site-packages\django\core\validators.py:165
 msgid "Enter a valid integer."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:176
-#: venv/Lib/site-packages/django/core/validators.py:176
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:176
+#: .\venv\Lib\site-packages\django\core\validators.py:176
 msgid "Enter a valid email address."
 msgstr ""
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
-#: legame_venv/Lib/site-packages/django/core/validators.py:259
-#: venv/Lib/site-packages/django/core/validators.py:259
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:259
+#: .\venv\Lib\site-packages\django\core\validators.py:259
 msgid ""
 "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:267
-#: venv/Lib/site-packages/django/core/validators.py:267
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:267
+#: .\venv\Lib\site-packages\django\core\validators.py:267
 msgid ""
 "Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
 "hyphens."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:279
-#: legame_venv/Lib/site-packages/django/core/validators.py:287
-#: legame_venv/Lib/site-packages/django/core/validators.py:316
-#: venv/Lib/site-packages/django/core/validators.py:279
-#: venv/Lib/site-packages/django/core/validators.py:287
-#: venv/Lib/site-packages/django/core/validators.py:316
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:279
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:287
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:316
+#: .\venv\Lib\site-packages\django\core\validators.py:279
+#: .\venv\Lib\site-packages\django\core\validators.py:287
+#: .\venv\Lib\site-packages\django\core\validators.py:316
 msgid "Enter a valid IPv4 address."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:296
-#: legame_venv/Lib/site-packages/django/core/validators.py:317
-#: venv/Lib/site-packages/django/core/validators.py:296
-#: venv/Lib/site-packages/django/core/validators.py:317
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:296
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:317
+#: .\venv\Lib\site-packages\django\core\validators.py:296
+#: .\venv\Lib\site-packages\django\core\validators.py:317
 msgid "Enter a valid IPv6 address."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:308
-#: legame_venv/Lib/site-packages/django/core/validators.py:315
-#: venv/Lib/site-packages/django/core/validators.py:308
-#: venv/Lib/site-packages/django/core/validators.py:315
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:308
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:315
+#: .\venv\Lib\site-packages\django\core\validators.py:308
+#: .\venv\Lib\site-packages\django\core\validators.py:315
 msgid "Enter a valid IPv4 or IPv6 address."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:351
-#: venv/Lib/site-packages/django/core/validators.py:351
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:351
+#: .\venv\Lib\site-packages\django\core\validators.py:351
 msgid "Enter only digits separated by commas."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:357
-#: venv/Lib/site-packages/django/core/validators.py:357
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:357
+#: .\venv\Lib\site-packages\django\core\validators.py:357
 #, python-format
 msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:392
-#: venv/Lib/site-packages/django/core/validators.py:392
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:392
+#: .\venv\Lib\site-packages\django\core\validators.py:392
 #, python-format
 msgid "Ensure this value is less than or equal to %(limit_value)s."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:401
-#: venv/Lib/site-packages/django/core/validators.py:401
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:401
+#: .\venv\Lib\site-packages\django\core\validators.py:401
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:410
-#: venv/Lib/site-packages/django/core/validators.py:410
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:410
+#: .\venv\Lib\site-packages\django\core\validators.py:410
 #, python-format
 msgid "Ensure this value is a multiple of step size %(limit_value)s."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:420
-#: venv/Lib/site-packages/django/core/validators.py:420
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:420
+#: .\venv\Lib\site-packages\django\core\validators.py:420
 #, python-format
 msgid ""
 "Ensure this value has at least %(limit_value)d character (it has "
@@ -651,8 +673,8 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:438
-#: venv/Lib/site-packages/django/core/validators.py:438
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:438
+#: .\venv\Lib\site-packages\django\core\validators.py:438
 #, python-format
 msgid ""
 "Ensure this value has at most %(limit_value)d character (it has "
@@ -663,33 +685,33 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:461
-#: legame_venv/Lib/site-packages/django/forms/fields.py:347
-#: legame_venv/Lib/site-packages/django/forms/fields.py:386
-#: venv/Lib/site-packages/django/core/validators.py:461
-#: venv/Lib/site-packages/django/forms/fields.py:347
-#: venv/Lib/site-packages/django/forms/fields.py:386
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:461
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:347
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:386
+#: .\venv\Lib\site-packages\django\core\validators.py:461
+#: .\venv\Lib\site-packages\django\forms\fields.py:347
+#: .\venv\Lib\site-packages\django\forms\fields.py:386
 msgid "Enter a number."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:463
-#: venv/Lib/site-packages/django/core/validators.py:463
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:463
+#: .\venv\Lib\site-packages\django\core\validators.py:463
 #, python-format
 msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:468
-#: venv/Lib/site-packages/django/core/validators.py:468
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:468
+#: .\venv\Lib\site-packages\django\core\validators.py:468
 #, python-format
 msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:473
-#: venv/Lib/site-packages/django/core/validators.py:473
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:473
+#: .\venv\Lib\site-packages\django\core\validators.py:473
 #, python-format
 msgid ""
 "Ensure that there are no more than %(max)s digit before the decimal point."
@@ -698,426 +720,426 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:544
-#: venv/Lib/site-packages/django/core/validators.py:544
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:544
+#: .\venv\Lib\site-packages\django\core\validators.py:544
 #, python-format
 msgid ""
 "File extension “%(extension)s” is not allowed. Allowed extensions are: "
 "%(allowed_extensions)s."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/core/validators.py:605
-#: venv/Lib/site-packages/django/core/validators.py:605
+#: .\legame_venv\Lib\site-packages\django\core\validators.py:605
+#: .\venv\Lib\site-packages\django\core\validators.py:605
 msgid "Null characters are not allowed."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/base.py:1423
-#: legame_venv/Lib/site-packages/django/forms/models.py:893
-#: venv/Lib/site-packages/django/db/models/base.py:1423
-#: venv/Lib/site-packages/django/forms/models.py:893
+#: .\legame_venv\Lib\site-packages\django\db\models\base.py:1423
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:893
+#: .\venv\Lib\site-packages\django\db\models\base.py:1423
+#: .\venv\Lib\site-packages\django\forms\models.py:893
 msgid "and"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/base.py:1425
-#: venv/Lib/site-packages/django/db/models/base.py:1425
+#: .\legame_venv\Lib\site-packages\django\db\models\base.py:1425
+#: .\venv\Lib\site-packages\django\db\models\base.py:1425
 #, python-format
 msgid "%(model_name)s with this %(field_labels)s already exists."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/constraints.py:17
-#: venv/Lib/site-packages/django/db/models/constraints.py:17
+#: .\legame_venv\Lib\site-packages\django\db\models\constraints.py:17
+#: .\venv\Lib\site-packages\django\db\models\constraints.py:17
 #, python-format
 msgid "Constraint “%(name)s” is violated."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:128
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:128
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:128
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:128
 #, python-format
 msgid "Value %(value)r is not a valid choice."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:129
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:129
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:129
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:129
 msgid "This field cannot be null."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:130
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:130
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:130
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:130
 msgid "This field cannot be blank."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:131
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:131
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:131
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:131
 #, python-format
 msgid "%(model_name)s with this %(field_label)s already exists."
 msgstr ""
 
 #. Translators: The 'lookup_type' is one of 'date', 'year' or
 #. 'month'. Eg: "Title must be unique for pub_date year"
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:135
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:135
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:135
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:135
 #, python-format
 msgid ""
 "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:173
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:173
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:173
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:173
 #, python-format
 msgid "Field of type: %(field_type)s"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1094
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1094
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1094
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1094
 #, python-format
 msgid "“%(value)s” value must be either True or False."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1095
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1095
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1095
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1095
 #, python-format
 msgid "“%(value)s” value must be either True, False, or None."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1097
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1097
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1097
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1097
 msgid "Boolean (Either True or False)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1147
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1147
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1147
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1147
 #, python-format
 msgid "String (up to %(max_length)s)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1149
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1149
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1149
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1149
 msgid "String (unlimited)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1253
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1253
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1253
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1253
 msgid "Comma-separated integers"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1354
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1354
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1354
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1354
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
 "format."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1358
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1493
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1358
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1493
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1358
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1493
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1358
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1493
 #, python-format
 msgid ""
 "“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
 "date."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1362
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1362
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1362
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1362
 msgid "Date (without time)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1489
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1489
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1489
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1489
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
 "uuuuuu]][TZ] format."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1497
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1497
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1497
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1497
 #, python-format
 msgid ""
 "“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
 "[TZ]) but it is an invalid date/time."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1502
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1502
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1502
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1502
 msgid "Date (with time)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1626
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1626
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1626
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1626
 #, python-format
 msgid "“%(value)s” value must be a decimal number."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1628
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1628
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1628
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1628
 msgid "Decimal number"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1789
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1789
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1789
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1789
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
 "uuuuuu] format."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1793
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1793
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1793
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1793
 msgid "Duration"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1845
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1845
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1845
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1845
 msgid "Email address"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1870
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1870
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1870
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1870
 msgid "File path"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1948
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1948
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1948
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1948
 #, python-format
 msgid "“%(value)s” value must be a float."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1950
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1950
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1950
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1950
 msgid "Floating point number"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1990
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1990
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1990
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1990
 #, python-format
 msgid "“%(value)s” value must be an integer."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:1992
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:1992
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:1992
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:1992
 msgid "Integer"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2088
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2088
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2088
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2088
 msgid "Big (8 byte) integer"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2105
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2105
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2105
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2105
 msgid "Small integer"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2113
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2113
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2113
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2113
 msgid "IPv4 address"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2144
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2144
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2144
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2144
 msgid "IP address"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2237
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2238
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2237
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2238
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2237
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2238
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2237
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2238
 #, python-format
 msgid "“%(value)s” value must be either None, True or False."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2240
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2240
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2240
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2240
 msgid "Boolean (Either True, False or None)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2291
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2291
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2291
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2291
 msgid "Positive big integer"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2306
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2306
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2306
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2306
 msgid "Positive integer"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2321
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2321
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2321
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2321
 msgid "Positive small integer"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2337
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2337
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2337
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2337
 #, python-format
 msgid "Slug (up to %(max_length)s)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2373
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2373
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2373
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2373
 msgid "Text"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2448
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2448
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2448
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2448
 #, python-format
 msgid ""
 "“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
 "format."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2452
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2452
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2452
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2452
 #, python-format
 msgid ""
 "“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
 "invalid time."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2456
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2456
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2456
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2456
 msgid "Time"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2564
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2564
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2564
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2564
 msgid "URL"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2588
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2588
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2588
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2588
 msgid "Raw binary data"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2653
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2653
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2653
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2653
 #, python-format
 msgid "“%(value)s” is not a valid UUID."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/__init__.py:2655
-#: venv/Lib/site-packages/django/db/models/fields/__init__.py:2655
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\__init__.py:2655
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2655
 msgid "Universally unique identifier"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/files.py:232
-#: venv/Lib/site-packages/django/db/models/fields/files.py:232
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\files.py:232
+#: .\venv\Lib\site-packages\django\db\models\fields\files.py:232
 msgid "File"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/files.py:393
-#: venv/Lib/site-packages/django/db/models/fields/files.py:393
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\files.py:393
+#: .\venv\Lib\site-packages\django\db\models\fields\files.py:393
 msgid "Image"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/json.py:26
-#: venv/Lib/site-packages/django/db/models/fields/json.py:26
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\json.py:26
+#: .\venv\Lib\site-packages\django\db\models\fields\json.py:26
 msgid "A JSON object"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/json.py:28
-#: venv/Lib/site-packages/django/db/models/fields/json.py:28
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\json.py:28
+#: .\venv\Lib\site-packages\django\db\models\fields\json.py:28
 msgid "Value must be valid JSON."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/related.py:919
-#: venv/Lib/site-packages/django/db/models/fields/related.py:919
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\related.py:919
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:919
 #, python-format
 msgid "%(model)s instance with %(field)s %(value)r does not exist."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/related.py:921
-#: venv/Lib/site-packages/django/db/models/fields/related.py:921
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\related.py:921
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:921
 msgid "Foreign Key (type determined by related field)"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/related.py:1212
-#: venv/Lib/site-packages/django/db/models/fields/related.py:1212
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\related.py:1212
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1212
 msgid "One-to-one relationship"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/related.py:1269
-#: venv/Lib/site-packages/django/db/models/fields/related.py:1269
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\related.py:1269
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1269
 #, python-format
 msgid "%(from)s-%(to)s relationship"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/related.py:1271
-#: venv/Lib/site-packages/django/db/models/fields/related.py:1271
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\related.py:1271
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1271
 #, python-format
 msgid "%(from)s-%(to)s relationships"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/db/models/fields/related.py:1319
-#: venv/Lib/site-packages/django/db/models/fields/related.py:1319
+#: .\legame_venv\Lib\site-packages\django\db\models\fields\related.py:1319
+#: .\venv\Lib\site-packages\django\db\models\fields\related.py:1319
 msgid "Many-to-many relationship"
 msgstr ""
 
 #. Translators: If found as last label character, these punctuation
 #. characters will prevent the default label_suffix to be appended to the label
-#: legame_venv/Lib/site-packages/django/forms/boundfield.py:184
-#: venv/Lib/site-packages/django/forms/boundfield.py:184
+#: .\legame_venv\Lib\site-packages\django\forms\boundfield.py:184
+#: .\venv\Lib\site-packages\django\forms\boundfield.py:184
 msgid ":?.!"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:91
-#: venv/Lib/site-packages/django/forms/fields.py:91
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:91
+#: .\venv\Lib\site-packages\django\forms\fields.py:91
 msgid "This field is required."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:298
-#: venv/Lib/site-packages/django/forms/fields.py:298
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:298
+#: .\venv\Lib\site-packages\django\forms\fields.py:298
 msgid "Enter a whole number."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:467
-#: legame_venv/Lib/site-packages/django/forms/fields.py:1241
-#: venv/Lib/site-packages/django/forms/fields.py:467
-#: venv/Lib/site-packages/django/forms/fields.py:1241
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:467
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:1241
+#: .\venv\Lib\site-packages\django\forms\fields.py:467
+#: .\venv\Lib\site-packages\django\forms\fields.py:1241
 msgid "Enter a valid date."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:490
-#: legame_venv/Lib/site-packages/django/forms/fields.py:1242
-#: venv/Lib/site-packages/django/forms/fields.py:490
-#: venv/Lib/site-packages/django/forms/fields.py:1242
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:490
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:1242
+#: .\venv\Lib\site-packages\django\forms\fields.py:490
+#: .\venv\Lib\site-packages\django\forms\fields.py:1242
 msgid "Enter a valid time."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:517
-#: venv/Lib/site-packages/django/forms/fields.py:517
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:517
+#: .\venv\Lib\site-packages\django\forms\fields.py:517
 msgid "Enter a valid date/time."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:551
-#: venv/Lib/site-packages/django/forms/fields.py:551
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:551
+#: .\venv\Lib\site-packages\django\forms\fields.py:551
 msgid "Enter a valid duration."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:552
-#: venv/Lib/site-packages/django/forms/fields.py:552
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:552
+#: .\venv\Lib\site-packages\django\forms\fields.py:552
 #, python-brace-format
 msgid "The number of days must be between {min_days} and {max_days}."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:621
-#: venv/Lib/site-packages/django/forms/fields.py:621
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:621
+#: .\venv\Lib\site-packages\django\forms\fields.py:621
 msgid "No file was submitted. Check the encoding type on the form."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:622
-#: venv/Lib/site-packages/django/forms/fields.py:622
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:622
+#: .\venv\Lib\site-packages\django\forms\fields.py:622
 msgid "No file was submitted."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:623
-#: venv/Lib/site-packages/django/forms/fields.py:623
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:623
+#: .\venv\Lib\site-packages\django\forms\fields.py:623
 msgid "The submitted file is empty."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:625
-#: venv/Lib/site-packages/django/forms/fields.py:625
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:625
+#: .\venv\Lib\site-packages\django\forms\fields.py:625
 #, python-format
 msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
@@ -1125,676 +1147,676 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:630
-#: venv/Lib/site-packages/django/forms/fields.py:630
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:630
+#: .\venv\Lib\site-packages\django\forms\fields.py:630
 msgid "Please either submit a file or check the clear checkbox, not both."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:694
-#: venv/Lib/site-packages/django/forms/fields.py:694
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:694
+#: .\venv\Lib\site-packages\django\forms\fields.py:694
 msgid ""
 "Upload a valid image. The file you uploaded was either not an image or a "
 "corrupted image."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:857
-#: legame_venv/Lib/site-packages/django/forms/fields.py:949
-#: legame_venv/Lib/site-packages/django/forms/models.py:1566
-#: venv/Lib/site-packages/django/forms/fields.py:857
-#: venv/Lib/site-packages/django/forms/fields.py:949
-#: venv/Lib/site-packages/django/forms/models.py:1566
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:857
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:949
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:1566
+#: .\venv\Lib\site-packages\django\forms\fields.py:857
+#: .\venv\Lib\site-packages\django\forms\fields.py:949
+#: .\venv\Lib\site-packages\django\forms\models.py:1566
 #, python-format
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:951
-#: legame_venv/Lib/site-packages/django/forms/fields.py:1070
-#: legame_venv/Lib/site-packages/django/forms/models.py:1564
-#: venv/Lib/site-packages/django/forms/fields.py:951
-#: venv/Lib/site-packages/django/forms/fields.py:1070
-#: venv/Lib/site-packages/django/forms/models.py:1564
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:951
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:1070
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:1564
+#: .\venv\Lib\site-packages\django\forms\fields.py:951
+#: .\venv\Lib\site-packages\django\forms\fields.py:1070
+#: .\venv\Lib\site-packages\django\forms\models.py:1564
 msgid "Enter a list of values."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:1071
-#: venv/Lib/site-packages/django/forms/fields.py:1071
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:1071
+#: .\venv\Lib\site-packages\django\forms\fields.py:1071
 msgid "Enter a complete value."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:1310
-#: venv/Lib/site-packages/django/forms/fields.py:1310
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:1310
+#: .\venv\Lib\site-packages\django\forms\fields.py:1310
 msgid "Enter a valid UUID."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/fields.py:1340
-#: venv/Lib/site-packages/django/forms/fields.py:1340
+#: .\legame_venv\Lib\site-packages\django\forms\fields.py:1340
+#: .\venv\Lib\site-packages\django\forms\fields.py:1340
 msgid "Enter a valid JSON."
 msgstr ""
 
 #. Translators: This is the default suffix added to form field labels
-#: legame_venv/Lib/site-packages/django/forms/forms.py:98
-#: venv/Lib/site-packages/django/forms/forms.py:98
+#: .\legame_venv\Lib\site-packages\django\forms\forms.py:98
+#: .\venv\Lib\site-packages\django\forms\forms.py:98
 msgid ":"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/forms.py:244
-#: legame_venv/Lib/site-packages/django/forms/forms.py:328
-#: venv/Lib/site-packages/django/forms/forms.py:244
-#: venv/Lib/site-packages/django/forms/forms.py:328
+#: .\legame_venv\Lib\site-packages\django\forms\forms.py:244
+#: .\legame_venv\Lib\site-packages\django\forms\forms.py:328
+#: .\venv\Lib\site-packages\django\forms\forms.py:244
+#: .\venv\Lib\site-packages\django\forms\forms.py:328
 #, python-format
 msgid "(Hidden field %(name)s) %(error)s"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/formsets.py:63
-#: venv/Lib/site-packages/django/forms/formsets.py:63
+#: .\legame_venv\Lib\site-packages\django\forms\formsets.py:63
+#: .\venv\Lib\site-packages\django\forms\formsets.py:63
 #, python-format
 msgid ""
 "ManagementForm data is missing or has been tampered with. Missing fields: "
 "%(field_names)s. You may need to file a bug report if the issue persists."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/formsets.py:67
-#: venv/Lib/site-packages/django/forms/formsets.py:67
+#: .\legame_venv\Lib\site-packages\django\forms\formsets.py:67
+#: .\venv\Lib\site-packages\django\forms\formsets.py:67
 #, python-format
 msgid "Please submit at most %(num)d form."
 msgid_plural "Please submit at most %(num)d forms."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/forms/formsets.py:72
-#: venv/Lib/site-packages/django/forms/formsets.py:72
+#: .\legame_venv\Lib\site-packages\django\forms\formsets.py:72
+#: .\venv\Lib\site-packages\django\forms\formsets.py:72
 #, python-format
 msgid "Please submit at least %(num)d form."
 msgid_plural "Please submit at least %(num)d forms."
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/forms/formsets.py:484
-#: legame_venv/Lib/site-packages/django/forms/formsets.py:491
-#: venv/Lib/site-packages/django/forms/formsets.py:484
-#: venv/Lib/site-packages/django/forms/formsets.py:491
+#: .\legame_venv\Lib\site-packages\django\forms\formsets.py:484
+#: .\legame_venv\Lib\site-packages\django\forms\formsets.py:491
+#: .\venv\Lib\site-packages\django\forms\formsets.py:484
+#: .\venv\Lib\site-packages\django\forms\formsets.py:491
 msgid "Order"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/formsets.py:499
-#: venv/Lib/site-packages/django/forms/formsets.py:499
+#: .\legame_venv\Lib\site-packages\django\forms\formsets.py:499
+#: .\venv\Lib\site-packages\django\forms\formsets.py:499
 msgid "Delete"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/models.py:886
-#: venv/Lib/site-packages/django/forms/models.py:886
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:886
+#: .\venv\Lib\site-packages\django\forms\models.py:886
 #, python-format
 msgid "Please correct the duplicate data for %(field)s."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/models.py:891
-#: venv/Lib/site-packages/django/forms/models.py:891
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:891
+#: .\venv\Lib\site-packages\django\forms\models.py:891
 #, python-format
 msgid "Please correct the duplicate data for %(field)s, which must be unique."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/models.py:898
-#: venv/Lib/site-packages/django/forms/models.py:898
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:898
+#: .\venv\Lib\site-packages\django\forms\models.py:898
 #, python-format
 msgid ""
 "Please correct the duplicate data for %(field_name)s which must be unique "
 "for the %(lookup)s in %(date_field)s."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/models.py:907
-#: venv/Lib/site-packages/django/forms/models.py:907
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:907
+#: .\venv\Lib\site-packages\django\forms\models.py:907
 msgid "Please correct the duplicate values below."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/models.py:1338
-#: venv/Lib/site-packages/django/forms/models.py:1338
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:1338
+#: .\venv\Lib\site-packages\django\forms\models.py:1338
 msgid "The inline value did not match the parent instance."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/models.py:1429
-#: venv/Lib/site-packages/django/forms/models.py:1429
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:1429
+#: .\venv\Lib\site-packages\django\forms\models.py:1429
 msgid "Select a valid choice. That choice is not one of the available choices."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/models.py:1568
-#: venv/Lib/site-packages/django/forms/models.py:1568
+#: .\legame_venv\Lib\site-packages\django\forms\models.py:1568
+#: .\venv\Lib\site-packages\django\forms\models.py:1568
 #, python-format
 msgid "“%(pk)s” is not a valid value."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/utils.py:226
-#: venv/Lib/site-packages/django/forms/utils.py:226
+#: .\legame_venv\Lib\site-packages\django\forms\utils.py:226
+#: .\venv\Lib\site-packages\django\forms\utils.py:226
 #, python-format
 msgid ""
 "%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
 "may be ambiguous or it may not exist."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/widgets.py:463
-#: venv/Lib/site-packages/django/forms/widgets.py:463
+#: .\legame_venv\Lib\site-packages\django\forms\widgets.py:463
+#: .\venv\Lib\site-packages\django\forms\widgets.py:463
 msgid "Clear"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/widgets.py:464
-#: venv/Lib/site-packages/django/forms/widgets.py:464
+#: .\legame_venv\Lib\site-packages\django\forms\widgets.py:464
+#: .\venv\Lib\site-packages\django\forms\widgets.py:464
 msgid "Currently"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/widgets.py:465
-#: venv/Lib/site-packages/django/forms/widgets.py:465
+#: .\legame_venv\Lib\site-packages\django\forms\widgets.py:465
+#: .\venv\Lib\site-packages\django\forms\widgets.py:465
 msgid "Change"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/widgets.py:794
-#: venv/Lib/site-packages/django/forms/widgets.py:794
+#: .\legame_venv\Lib\site-packages\django\forms\widgets.py:794
+#: .\venv\Lib\site-packages\django\forms\widgets.py:794
 msgid "Unknown"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/widgets.py:795
-#: venv/Lib/site-packages/django/forms/widgets.py:795
+#: .\legame_venv\Lib\site-packages\django\forms\widgets.py:795
+#: .\venv\Lib\site-packages\django\forms\widgets.py:795
 msgid "Yes"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/forms/widgets.py:796
-#: venv/Lib/site-packages/django/forms/widgets.py:796
+#: .\legame_venv\Lib\site-packages\django\forms\widgets.py:796
+#: .\venv\Lib\site-packages\django\forms\widgets.py:796
 msgid "No"
 msgstr ""
 
 #. Translators: Please do not add spaces around commas.
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:861
-#: venv/Lib/site-packages/django/template/defaultfilters.py:861
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:861
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:861
 msgid "yes,no,maybe"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:891
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:908
-#: venv/Lib/site-packages/django/template/defaultfilters.py:891
-#: venv/Lib/site-packages/django/template/defaultfilters.py:908
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:891
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:908
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:891
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:908
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:910
-#: venv/Lib/site-packages/django/template/defaultfilters.py:910
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:910
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:910
 #, python-format
 msgid "%s KB"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:912
-#: venv/Lib/site-packages/django/template/defaultfilters.py:912
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:912
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:912
 #, python-format
 msgid "%s MB"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:914
-#: venv/Lib/site-packages/django/template/defaultfilters.py:914
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:914
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:914
 #, python-format
 msgid "%s GB"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:916
-#: venv/Lib/site-packages/django/template/defaultfilters.py:916
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:916
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:916
 #, python-format
 msgid "%s TB"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/template/defaultfilters.py:918
-#: venv/Lib/site-packages/django/template/defaultfilters.py:918
+#: .\legame_venv\Lib\site-packages\django\template\defaultfilters.py:918
+#: .\venv\Lib\site-packages\django\template\defaultfilters.py:918
 #, python-format
 msgid "%s PB"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dateformat.py:73
-#: venv/Lib/site-packages/django/utils/dateformat.py:73
+#: .\legame_venv\Lib\site-packages\django\utils\dateformat.py:73
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:73
 msgid "p.m."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dateformat.py:74
-#: venv/Lib/site-packages/django/utils/dateformat.py:74
+#: .\legame_venv\Lib\site-packages\django\utils\dateformat.py:74
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:74
 msgid "a.m."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dateformat.py:79
-#: venv/Lib/site-packages/django/utils/dateformat.py:79
+#: .\legame_venv\Lib\site-packages\django\utils\dateformat.py:79
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:79
 msgid "PM"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dateformat.py:80
-#: venv/Lib/site-packages/django/utils/dateformat.py:80
+#: .\legame_venv\Lib\site-packages\django\utils\dateformat.py:80
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:80
 msgid "AM"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dateformat.py:152
-#: venv/Lib/site-packages/django/utils/dateformat.py:152
+#: .\legame_venv\Lib\site-packages\django\utils\dateformat.py:152
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:152
 msgid "midnight"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dateformat.py:154
-#: venv/Lib/site-packages/django/utils/dateformat.py:154
+#: .\legame_venv\Lib\site-packages\django\utils\dateformat.py:154
+#: .\venv\Lib\site-packages\django\utils\dateformat.py:154
 msgid "noon"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:7
-#: venv/Lib/site-packages/django/utils/dates.py:7
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:7
+#: .\venv\Lib\site-packages\django\utils\dates.py:7
 msgid "Monday"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:8
-#: venv/Lib/site-packages/django/utils/dates.py:8
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:8
+#: .\venv\Lib\site-packages\django\utils\dates.py:8
 msgid "Tuesday"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:9
-#: venv/Lib/site-packages/django/utils/dates.py:9
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:9
+#: .\venv\Lib\site-packages\django\utils\dates.py:9
 msgid "Wednesday"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:10
-#: venv/Lib/site-packages/django/utils/dates.py:10
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:10
+#: .\venv\Lib\site-packages\django\utils\dates.py:10
 msgid "Thursday"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:11
-#: venv/Lib/site-packages/django/utils/dates.py:11
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:11
+#: .\venv\Lib\site-packages\django\utils\dates.py:11
 msgid "Friday"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:12
-#: venv/Lib/site-packages/django/utils/dates.py:12
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:12
+#: .\venv\Lib\site-packages\django\utils\dates.py:12
 msgid "Saturday"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:13
-#: venv/Lib/site-packages/django/utils/dates.py:13
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:13
+#: .\venv\Lib\site-packages\django\utils\dates.py:13
 msgid "Sunday"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:16
-#: venv/Lib/site-packages/django/utils/dates.py:16
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:16
+#: .\venv\Lib\site-packages\django\utils\dates.py:16
 msgid "Mon"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:17
-#: venv/Lib/site-packages/django/utils/dates.py:17
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:17
+#: .\venv\Lib\site-packages\django\utils\dates.py:17
 msgid "Tue"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:18
-#: venv/Lib/site-packages/django/utils/dates.py:18
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:18
+#: .\venv\Lib\site-packages\django\utils\dates.py:18
 msgid "Wed"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:19
-#: venv/Lib/site-packages/django/utils/dates.py:19
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:19
+#: .\venv\Lib\site-packages\django\utils\dates.py:19
 msgid "Thu"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:20
-#: venv/Lib/site-packages/django/utils/dates.py:20
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:20
+#: .\venv\Lib\site-packages\django\utils\dates.py:20
 msgid "Fri"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:21
-#: venv/Lib/site-packages/django/utils/dates.py:21
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:21
+#: .\venv\Lib\site-packages\django\utils\dates.py:21
 msgid "Sat"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:22
-#: venv/Lib/site-packages/django/utils/dates.py:22
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:22
+#: .\venv\Lib\site-packages\django\utils\dates.py:22
 msgid "Sun"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:25
-#: venv/Lib/site-packages/django/utils/dates.py:25
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:25
+#: .\venv\Lib\site-packages\django\utils\dates.py:25
 msgid "January"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:26
-#: venv/Lib/site-packages/django/utils/dates.py:26
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:26
+#: .\venv\Lib\site-packages\django\utils\dates.py:26
 msgid "February"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:27
-#: venv/Lib/site-packages/django/utils/dates.py:27
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:27
+#: .\venv\Lib\site-packages\django\utils\dates.py:27
 msgid "March"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:28
-#: venv/Lib/site-packages/django/utils/dates.py:28
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:28
+#: .\venv\Lib\site-packages\django\utils\dates.py:28
 msgid "April"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:29
-#: venv/Lib/site-packages/django/utils/dates.py:29
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:29
+#: .\venv\Lib\site-packages\django\utils\dates.py:29
 msgid "May"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:30
-#: venv/Lib/site-packages/django/utils/dates.py:30
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:30
+#: .\venv\Lib\site-packages\django\utils\dates.py:30
 msgid "June"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:31
-#: venv/Lib/site-packages/django/utils/dates.py:31
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:31
+#: .\venv\Lib\site-packages\django\utils\dates.py:31
 msgid "July"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:32
-#: venv/Lib/site-packages/django/utils/dates.py:32
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:32
+#: .\venv\Lib\site-packages\django\utils\dates.py:32
 msgid "August"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:33
-#: venv/Lib/site-packages/django/utils/dates.py:33
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:33
+#: .\venv\Lib\site-packages\django\utils\dates.py:33
 msgid "September"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:34
-#: venv/Lib/site-packages/django/utils/dates.py:34
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:34
+#: .\venv\Lib\site-packages\django\utils\dates.py:34
 msgid "October"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:35
-#: venv/Lib/site-packages/django/utils/dates.py:35
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:35
+#: .\venv\Lib\site-packages\django\utils\dates.py:35
 msgid "November"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:36
-#: venv/Lib/site-packages/django/utils/dates.py:36
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:36
+#: .\venv\Lib\site-packages\django\utils\dates.py:36
 msgid "December"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:39
-#: venv/Lib/site-packages/django/utils/dates.py:39
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:39
+#: .\venv\Lib\site-packages\django\utils\dates.py:39
 msgid "jan"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:40
-#: venv/Lib/site-packages/django/utils/dates.py:40
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:40
+#: .\venv\Lib\site-packages\django\utils\dates.py:40
 msgid "feb"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:41
-#: venv/Lib/site-packages/django/utils/dates.py:41
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:41
+#: .\venv\Lib\site-packages\django\utils\dates.py:41
 msgid "mar"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:42
-#: venv/Lib/site-packages/django/utils/dates.py:42
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:42
+#: .\venv\Lib\site-packages\django\utils\dates.py:42
 msgid "apr"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:43
-#: venv/Lib/site-packages/django/utils/dates.py:43
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:43
+#: .\venv\Lib\site-packages\django\utils\dates.py:43
 msgid "may"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:44
-#: venv/Lib/site-packages/django/utils/dates.py:44
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:44
+#: .\venv\Lib\site-packages\django\utils\dates.py:44
 msgid "jun"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:45
-#: venv/Lib/site-packages/django/utils/dates.py:45
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:45
+#: .\venv\Lib\site-packages\django\utils\dates.py:45
 msgid "jul"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:46
-#: venv/Lib/site-packages/django/utils/dates.py:46
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:46
+#: .\venv\Lib\site-packages\django\utils\dates.py:46
 msgid "aug"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:47
-#: venv/Lib/site-packages/django/utils/dates.py:47
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:47
+#: .\venv\Lib\site-packages\django\utils\dates.py:47
 msgid "sep"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:48
-#: venv/Lib/site-packages/django/utils/dates.py:48
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:48
+#: .\venv\Lib\site-packages\django\utils\dates.py:48
 msgid "oct"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:49
-#: venv/Lib/site-packages/django/utils/dates.py:49
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:49
+#: .\venv\Lib\site-packages\django\utils\dates.py:49
 msgid "nov"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:50
-#: venv/Lib/site-packages/django/utils/dates.py:50
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:50
+#: .\venv\Lib\site-packages\django\utils\dates.py:50
 msgid "dec"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:53
-#: venv/Lib/site-packages/django/utils/dates.py:53
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:53
+#: .\venv\Lib\site-packages\django\utils\dates.py:53
 msgctxt "abbrev. month"
 msgid "Jan."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:54
-#: venv/Lib/site-packages/django/utils/dates.py:54
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:54
+#: .\venv\Lib\site-packages\django\utils\dates.py:54
 msgctxt "abbrev. month"
 msgid "Feb."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:55
-#: venv/Lib/site-packages/django/utils/dates.py:55
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:55
+#: .\venv\Lib\site-packages\django\utils\dates.py:55
 msgctxt "abbrev. month"
 msgid "March"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:56
-#: venv/Lib/site-packages/django/utils/dates.py:56
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:56
+#: .\venv\Lib\site-packages\django\utils\dates.py:56
 msgctxt "abbrev. month"
 msgid "April"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:57
-#: venv/Lib/site-packages/django/utils/dates.py:57
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:57
+#: .\venv\Lib\site-packages\django\utils\dates.py:57
 msgctxt "abbrev. month"
 msgid "May"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:58
-#: venv/Lib/site-packages/django/utils/dates.py:58
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:58
+#: .\venv\Lib\site-packages\django\utils\dates.py:58
 msgctxt "abbrev. month"
 msgid "June"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:59
-#: venv/Lib/site-packages/django/utils/dates.py:59
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:59
+#: .\venv\Lib\site-packages\django\utils\dates.py:59
 msgctxt "abbrev. month"
 msgid "July"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:60
-#: venv/Lib/site-packages/django/utils/dates.py:60
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:60
+#: .\venv\Lib\site-packages\django\utils\dates.py:60
 msgctxt "abbrev. month"
 msgid "Aug."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:61
-#: venv/Lib/site-packages/django/utils/dates.py:61
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:61
+#: .\venv\Lib\site-packages\django\utils\dates.py:61
 msgctxt "abbrev. month"
 msgid "Sept."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:62
-#: venv/Lib/site-packages/django/utils/dates.py:62
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:62
+#: .\venv\Lib\site-packages\django\utils\dates.py:62
 msgctxt "abbrev. month"
 msgid "Oct."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:63
-#: venv/Lib/site-packages/django/utils/dates.py:63
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:63
+#: .\venv\Lib\site-packages\django\utils\dates.py:63
 msgctxt "abbrev. month"
 msgid "Nov."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:64
-#: venv/Lib/site-packages/django/utils/dates.py:64
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:64
+#: .\venv\Lib\site-packages\django\utils\dates.py:64
 msgctxt "abbrev. month"
 msgid "Dec."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:67
-#: venv/Lib/site-packages/django/utils/dates.py:67
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:67
+#: .\venv\Lib\site-packages\django\utils\dates.py:67
 msgctxt "alt. month"
 msgid "January"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:68
-#: venv/Lib/site-packages/django/utils/dates.py:68
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:68
+#: .\venv\Lib\site-packages\django\utils\dates.py:68
 msgctxt "alt. month"
 msgid "February"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:69
-#: venv/Lib/site-packages/django/utils/dates.py:69
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:69
+#: .\venv\Lib\site-packages\django\utils\dates.py:69
 msgctxt "alt. month"
 msgid "March"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:70
-#: venv/Lib/site-packages/django/utils/dates.py:70
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:70
+#: .\venv\Lib\site-packages\django\utils\dates.py:70
 msgctxt "alt. month"
 msgid "April"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:71
-#: venv/Lib/site-packages/django/utils/dates.py:71
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:71
+#: .\venv\Lib\site-packages\django\utils\dates.py:71
 msgctxt "alt. month"
 msgid "May"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:72
-#: venv/Lib/site-packages/django/utils/dates.py:72
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:72
+#: .\venv\Lib\site-packages\django\utils\dates.py:72
 msgctxt "alt. month"
 msgid "June"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:73
-#: venv/Lib/site-packages/django/utils/dates.py:73
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:73
+#: .\venv\Lib\site-packages\django\utils\dates.py:73
 msgctxt "alt. month"
 msgid "July"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:74
-#: venv/Lib/site-packages/django/utils/dates.py:74
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:74
+#: .\venv\Lib\site-packages\django\utils\dates.py:74
 msgctxt "alt. month"
 msgid "August"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:75
-#: venv/Lib/site-packages/django/utils/dates.py:75
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:75
+#: .\venv\Lib\site-packages\django\utils\dates.py:75
 msgctxt "alt. month"
 msgid "September"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:76
-#: venv/Lib/site-packages/django/utils/dates.py:76
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:76
+#: .\venv\Lib\site-packages\django\utils\dates.py:76
 msgctxt "alt. month"
 msgid "October"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:77
-#: venv/Lib/site-packages/django/utils/dates.py:77
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:77
+#: .\venv\Lib\site-packages\django\utils\dates.py:77
 msgctxt "alt. month"
 msgid "November"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/dates.py:78
-#: venv/Lib/site-packages/django/utils/dates.py:78
+#: .\legame_venv\Lib\site-packages\django\utils\dates.py:78
+#: .\venv\Lib\site-packages\django\utils\dates.py:78
 msgctxt "alt. month"
 msgid "December"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/ipv6.py:8
-#: venv/Lib/site-packages/django/utils/ipv6.py:8
+#: .\legame_venv\Lib\site-packages\django\utils\ipv6.py:8
+#: .\venv\Lib\site-packages\django\utils\ipv6.py:8
 msgid "This is not a valid IPv6 address."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/text.py:84
-#: venv/Lib/site-packages/django/utils/text.py:84
+#: .\legame_venv\Lib\site-packages\django\utils\text.py:84
+#: .\venv\Lib\site-packages\django\utils\text.py:84
 #, python-format
 msgctxt "String to return when truncating text"
 msgid "%(truncated_text)s…"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/text.py:269
-#: venv/Lib/site-packages/django/utils/text.py:269
+#: .\legame_venv\Lib\site-packages\django\utils\text.py:269
+#: .\venv\Lib\site-packages\django\utils\text.py:269
 msgid "or"
 msgstr ""
 
 #. Translators: This string is used as a separator between list elements
-#: legame_venv/Lib/site-packages/django/utils/text.py:288
-#: legame_venv/Lib/site-packages/django/utils/timesince.py:135
-#: venv/Lib/site-packages/django/utils/text.py:288
-#: venv/Lib/site-packages/django/utils/timesince.py:135
+#: .\legame_venv\Lib\site-packages\django\utils\text.py:288
+#: .\legame_venv\Lib\site-packages\django\utils\timesince.py:135
+#: .\venv\Lib\site-packages\django\utils\text.py:288
+#: .\venv\Lib\site-packages\django\utils\timesince.py:135
 msgid ", "
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/utils/timesince.py:8
-#: venv/Lib/site-packages/django/utils/timesince.py:8
+#: .\legame_venv\Lib\site-packages\django\utils\timesince.py:8
+#: .\venv\Lib\site-packages\django\utils\timesince.py:8
 #, python-format
 msgid "%(num)d year"
 msgid_plural "%(num)d years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/utils/timesince.py:9
-#: venv/Lib/site-packages/django/utils/timesince.py:9
+#: .\legame_venv\Lib\site-packages\django\utils\timesince.py:9
+#: .\venv\Lib\site-packages\django\utils\timesince.py:9
 #, python-format
 msgid "%(num)d month"
 msgid_plural "%(num)d months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/utils/timesince.py:10
-#: venv/Lib/site-packages/django/utils/timesince.py:10
+#: .\legame_venv\Lib\site-packages\django\utils\timesince.py:10
+#: .\venv\Lib\site-packages\django\utils\timesince.py:10
 #, python-format
 msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/utils/timesince.py:11
-#: venv/Lib/site-packages/django/utils/timesince.py:11
+#: .\legame_venv\Lib\site-packages\django\utils\timesince.py:11
+#: .\venv\Lib\site-packages\django\utils\timesince.py:11
 #, python-format
 msgid "%(num)d day"
 msgid_plural "%(num)d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/utils/timesince.py:12
-#: venv/Lib/site-packages/django/utils/timesince.py:12
+#: .\legame_venv\Lib\site-packages\django\utils\timesince.py:12
+#: .\venv\Lib\site-packages\django\utils\timesince.py:12
 #, python-format
 msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/utils/timesince.py:13
-#: venv/Lib/site-packages/django/utils/timesince.py:13
+#: .\legame_venv\Lib\site-packages\django\utils\timesince.py:13
+#: .\venv\Lib\site-packages\django\utils\timesince.py:13
 #, python-format
 msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:111
-#: venv/Lib/site-packages/django/views/csrf.py:111
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:111
+#: .\venv\Lib\site-packages\django\views\csrf.py:111
 msgid "Forbidden"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:112
-#: venv/Lib/site-packages/django/views/csrf.py:112
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:112
+#: .\venv\Lib\site-packages\django\views\csrf.py:112
 msgid "CSRF verification failed. Request aborted."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:116
-#: venv/Lib/site-packages/django/views/csrf.py:116
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:116
+#: .\venv\Lib\site-packages\django\views\csrf.py:116
 msgid ""
 "You are seeing this message because this HTTPS site requires a “Referer "
 "header” to be sent by your web browser, but none was sent. This header is "
@@ -1802,469 +1824,474 @@ msgid ""
 "hijacked by third parties."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:122
-#: venv/Lib/site-packages/django/views/csrf.py:122
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:122
+#: .\venv\Lib\site-packages\django\views\csrf.py:122
 msgid ""
 "If you have configured your browser to disable “Referer” headers, please re-"
 "enable them, at least for this site, or for HTTPS connections, or for “same-"
 "origin” requests."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:127
-#: venv/Lib/site-packages/django/views/csrf.py:127
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:127
+#: .\venv\Lib\site-packages\django\views\csrf.py:127
 msgid ""
 "If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
 "including the “Referrer-Policy: no-referrer” header, please remove them. The "
 "CSRF protection requires the “Referer” header to do strict referer checking. "
-"If you’re concerned about privacy, use alternatives like <a "
-"rel=\"noreferrer\" …> for links to third-party sites."
+"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
+"\" …> for links to third-party sites."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:136
-#: venv/Lib/site-packages/django/views/csrf.py:136
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:136
+#: .\venv\Lib\site-packages\django\views\csrf.py:136
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when "
 "submitting forms. This cookie is required for security reasons, to ensure "
 "that your browser is not being hijacked by third parties."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:142
-#: venv/Lib/site-packages/django/views/csrf.py:142
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:142
+#: .\venv\Lib\site-packages\django\views\csrf.py:142
 msgid ""
 "If you have configured your browser to disable cookies, please re-enable "
 "them, at least for this site, or for “same-origin” requests."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/csrf.py:148
-#: venv/Lib/site-packages/django/views/csrf.py:148
+#: .\legame_venv\Lib\site-packages\django\views\csrf.py:148
+#: .\venv\Lib\site-packages\django\views\csrf.py:148
 msgid "More information is available with DEBUG=True."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:44
-#: venv/Lib/site-packages/django/views/generic/dates.py:44
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:44
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:44
 msgid "No year specified"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:64
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:115
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:214
-#: venv/Lib/site-packages/django/views/generic/dates.py:64
-#: venv/Lib/site-packages/django/views/generic/dates.py:115
-#: venv/Lib/site-packages/django/views/generic/dates.py:214
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:64
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:115
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:214
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:64
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:115
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:214
 msgid "Date out of range"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:94
-#: venv/Lib/site-packages/django/views/generic/dates.py:94
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:94
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:94
 msgid "No month specified"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:147
-#: venv/Lib/site-packages/django/views/generic/dates.py:147
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:147
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:147
 msgid "No day specified"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:194
-#: venv/Lib/site-packages/django/views/generic/dates.py:194
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:194
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:194
 msgid "No week specified"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:349
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:380
-#: venv/Lib/site-packages/django/views/generic/dates.py:349
-#: venv/Lib/site-packages/django/views/generic/dates.py:380
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:349
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:380
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:349
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:380
 #, python-format
 msgid "No %(verbose_name_plural)s available"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:652
-#: venv/Lib/site-packages/django/views/generic/dates.py:652
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:652
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:652
 #, python-format
 msgid ""
 "Future %(verbose_name_plural)s not available because %(class_name)s."
 "allow_future is False."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/dates.py:692
-#: venv/Lib/site-packages/django/views/generic/dates.py:692
+#: .\legame_venv\Lib\site-packages\django\views\generic\dates.py:692
+#: .\venv\Lib\site-packages\django\views\generic\dates.py:692
 #, python-format
 msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/detail.py:56
-#: venv/Lib/site-packages/django/views/generic/detail.py:56
+#: .\legame_venv\Lib\site-packages\django\views\generic\detail.py:56
+#: .\venv\Lib\site-packages\django\views\generic\detail.py:56
 #, python-format
 msgid "No %(verbose_name)s found matching the query"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/list.py:70
-#: venv/Lib/site-packages/django/views/generic/list.py:70
+#: .\legame_venv\Lib\site-packages\django\views\generic\list.py:70
+#: .\venv\Lib\site-packages\django\views\generic\list.py:70
 msgid "Page is not “last”, nor can it be converted to an int."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/list.py:77
-#: venv/Lib/site-packages/django/views/generic/list.py:77
+#: .\legame_venv\Lib\site-packages\django\views\generic\list.py:77
+#: .\venv\Lib\site-packages\django\views\generic\list.py:77
 #, python-format
 msgid "Invalid page (%(page_number)s): %(message)s"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/generic/list.py:169
-#: venv/Lib/site-packages/django/views/generic/list.py:169
+#: .\legame_venv\Lib\site-packages\django\views\generic\list.py:169
+#: .\venv\Lib\site-packages\django\views\generic\list.py:169
 #, python-format
 msgid "Empty list and “%(class_name)s.allow_empty” is False."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/static.py:38
-#: venv/Lib/site-packages/django/views/static.py:38
+#: .\legame_venv\Lib\site-packages\django\views\static.py:38
+#: .\venv\Lib\site-packages\django\views\static.py:38
 msgid "Directory indexes are not allowed here."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/static.py:40
-#: venv/Lib/site-packages/django/views/static.py:40
+#: .\legame_venv\Lib\site-packages\django\views\static.py:40
+#: .\venv\Lib\site-packages\django\views\static.py:40
 #, python-format
 msgid "“%(path)s” does not exist"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/static.py:79
-#: venv/Lib/site-packages/django/views/static.py:79
+#: .\legame_venv\Lib\site-packages\django\views\static.py:79
+#: .\venv\Lib\site-packages\django\views\static.py:79
 #, python-format
 msgid "Index of %(directory)s"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:7
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:220
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:7
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:220
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:220
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:7
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:220
 msgid "The install worked successfully! Congratulations!"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:206
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:206
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:206
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:206
 #, python-format
 msgid ""
 "View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
 "target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:221
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:221
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:221
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:221
 #, python-format
 msgid ""
 "You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" "
-"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
-"configured any URLs."
+"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
+"\">DEBUG=True</a> is in your settings file and you have not configured any "
+"URLs."
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:229
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:229
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:229
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:229
 msgid "Django Documentation"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:230
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:230
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:230
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:230
 msgid "Topics, references, &amp; how-to’s"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:238
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:238
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:238
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:238
 msgid "Tutorial: A Polling App"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:239
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:239
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:239
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:239
 msgid "Get started with Django"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:247
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:247
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:247
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:247
 msgid "Django Community"
 msgstr ""
 
-#: legame_venv/Lib/site-packages/django/views/templates/default_urlconf.html:248
-#: venv/Lib/site-packages/django/views/templates/default_urlconf.html:248
+#: .\legame_venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
+#: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: venv/Lib/site-packages/click/_termui_impl.py:518
+#: .\venv\Lib\site-packages\click\_termui_impl.py:518
 #, python-brace-format
 msgid "{editor}: Editing failed"
 msgstr ""
 
-#: venv/Lib/site-packages/click/_termui_impl.py:522
+#: .\venv\Lib\site-packages\click\_termui_impl.py:522
 #, python-brace-format
 msgid "{editor}: Editing failed: {e}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1120
+#: .\venv\Lib\site-packages\click\core.py:1120
 msgid "Aborted!"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1309
-#: venv/Lib/site-packages/click/decorators.py:559
+#: .\venv\Lib\site-packages\click\core.py:1309
+#: .\venv\Lib\site-packages\click\decorators.py:559
 msgid "Show this message and exit."
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1340
-#: venv/Lib/site-packages/click/core.py:1370
+#: .\venv\Lib\site-packages\click\core.py:1340
+#: .\venv\Lib\site-packages\click\core.py:1370
 #, python-brace-format
 msgid "(Deprecated) {text}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1387
+#: .\venv\Lib\site-packages\click\core.py:1387
 msgid "Options"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1413
+#: .\venv\Lib\site-packages\click\core.py:1413
 #, python-brace-format
 msgid "Got unexpected extra argument ({args})"
 msgid_plural "Got unexpected extra arguments ({args})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: venv/Lib/site-packages/click/core.py:1429
+#: .\venv\Lib\site-packages\click\core.py:1429
 msgid "DeprecationWarning: The command {name!r} is deprecated."
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1636
+#: .\venv\Lib\site-packages\click\core.py:1636
 msgid "Commands"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1668
+#: .\venv\Lib\site-packages\click\core.py:1668
 msgid "Missing command."
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:1746
+#: .\venv\Lib\site-packages\click\core.py:1746
 msgid "No such command {name!r}."
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:2310
+#: .\venv\Lib\site-packages\click\core.py:2310
 msgid "Value must be an iterable."
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:2331
+#: .\venv\Lib\site-packages\click\core.py:2331
 #, python-brace-format
 msgid "Takes {nargs} values but 1 was given."
 msgid_plural "Takes {nargs} values but {len} were given."
 msgstr[0] ""
 msgstr[1] ""
 
-#: venv/Lib/site-packages/click/core.py:2778
+#: .\venv\Lib\site-packages\click\core.py:2778
 #, python-brace-format
 msgid "env var: {var}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:2808
+#: .\venv\Lib\site-packages\click\core.py:2808
 msgid "(dynamic)"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:2821
+#: .\venv\Lib\site-packages\click\core.py:2821
 #, python-brace-format
 msgid "default: {default}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/core.py:2834
+#: .\venv\Lib\site-packages\click\core.py:2834
 msgid "required"
 msgstr ""
 
-#: venv/Lib/site-packages/click/decorators.py:465
+#: .\venv\Lib\site-packages\click\decorators.py:465
 #, python-format
 msgid "%(prog)s, version %(version)s"
 msgstr ""
 
-#: venv/Lib/site-packages/click/decorators.py:528
+#: .\venv\Lib\site-packages\click\decorators.py:528
 msgid "Show the version and exit."
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:44
-#: venv/Lib/site-packages/click/exceptions.py:80
+#: .\venv\Lib\site-packages\click\exceptions.py:44
+#: .\venv\Lib\site-packages\click\exceptions.py:80
 #, python-brace-format
 msgid "Error: {message}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:72
+#: .\venv\Lib\site-packages\click\exceptions.py:72
 #, python-brace-format
 msgid "Try '{command} {option}' for help."
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:121
+#: .\venv\Lib\site-packages\click\exceptions.py:121
 #, python-brace-format
 msgid "Invalid value: {message}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:123
+#: .\venv\Lib\site-packages\click\exceptions.py:123
 #, python-brace-format
 msgid "Invalid value for {param_hint}: {message}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:179
+#: .\venv\Lib\site-packages\click\exceptions.py:179
 msgid "Missing argument"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:181
+#: .\venv\Lib\site-packages\click\exceptions.py:181
 msgid "Missing option"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:183
+#: .\venv\Lib\site-packages\click\exceptions.py:183
 msgid "Missing parameter"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:185
+#: .\venv\Lib\site-packages\click\exceptions.py:185
 #, python-brace-format
 msgid "Missing {param_type}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:192
+#: .\venv\Lib\site-packages\click\exceptions.py:192
 #, python-brace-format
 msgid "Missing parameter: {param_name}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:212
+#: .\venv\Lib\site-packages\click\exceptions.py:212
 #, python-brace-format
 msgid "No such option: {name}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:224
+#: .\venv\Lib\site-packages\click\exceptions.py:224
 #, python-brace-format
 msgid "Did you mean {possibility}?"
 msgid_plural "(Possible options: {possibilities})"
 msgstr[0] ""
 msgstr[1] ""
 
-#: venv/Lib/site-packages/click/exceptions.py:262
+#: .\venv\Lib\site-packages\click\exceptions.py:262
 msgid "unknown error"
 msgstr ""
 
-#: venv/Lib/site-packages/click/exceptions.py:269
+#: .\venv\Lib\site-packages\click\exceptions.py:269
 msgid "Could not open file {filename!r}: {message}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/parser.py:231
+#: .\venv\Lib\site-packages\click\parser.py:231
 msgid "Argument {name!r} takes {nargs} values."
 msgstr ""
 
-#: venv/Lib/site-packages/click/parser.py:413
+#: .\venv\Lib\site-packages\click\parser.py:413
 msgid "Option {name!r} does not take a value."
 msgstr ""
 
-#: venv/Lib/site-packages/click/parser.py:474
+#: .\venv\Lib\site-packages\click\parser.py:474
 msgid "Option {name!r} requires an argument."
 msgid_plural "Option {name!r} requires {nargs} arguments."
 msgstr[0] ""
 msgstr[1] ""
 
-#: venv/Lib/site-packages/click/shell_completion.py:319
+#: .\venv\Lib\site-packages\click\shell_completion.py:319
 msgid "Shell completion is not supported for Bash versions older than 4.4."
 msgstr ""
 
-#: venv/Lib/site-packages/click/shell_completion.py:326
+#: .\venv\Lib\site-packages\click\shell_completion.py:326
 msgid "Couldn't detect Bash version, shell completion is not supported."
 msgstr ""
 
-#: venv/Lib/site-packages/click/termui.py:158
+#: .\venv\Lib\site-packages\click\termui.py:158
 msgid "Repeat for confirmation"
 msgstr ""
 
-#: venv/Lib/site-packages/click/termui.py:174
+#: .\venv\Lib\site-packages\click\termui.py:174
 msgid "Error: The value you entered was invalid."
 msgstr ""
 
-#: venv/Lib/site-packages/click/termui.py:176
+#: .\venv\Lib\site-packages\click\termui.py:176
 #, python-brace-format
 msgid "Error: {e.message}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/termui.py:187
+#: .\venv\Lib\site-packages\click\termui.py:187
 msgid "Error: The two entered values do not match."
 msgstr ""
 
-#: venv/Lib/site-packages/click/termui.py:243
+#: .\venv\Lib\site-packages\click\termui.py:243
 msgid "Error: invalid input"
 msgstr ""
 
-#: venv/Lib/site-packages/click/termui.py:773
+#: .\venv\Lib\site-packages\click\termui.py:773
 msgid "Press any key to continue..."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:266
+#: .\venv\Lib\site-packages\click\types.py:266
 #, python-brace-format
 msgid ""
 "Choose from:\n"
 "\t{choices}"
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:298
+#: .\venv\Lib\site-packages\click\types.py:298
 msgid "{value!r} is not {choice}."
 msgid_plural "{value!r} is not one of {choices}."
 msgstr[0] ""
 msgstr[1] ""
 
-#: venv/Lib/site-packages/click/types.py:392
+#: .\venv\Lib\site-packages\click\types.py:392
 msgid "{value!r} does not match the format {format}."
 msgid_plural "{value!r} does not match the formats {formats}."
 msgstr[0] ""
 msgstr[1] ""
 
-#: venv/Lib/site-packages/click/types.py:414
+#: .\venv\Lib\site-packages\click\types.py:414
 msgid "{value!r} is not a valid {number_type}."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:470
+#: .\venv\Lib\site-packages\click\types.py:470
 #, python-brace-format
 msgid "{value} is not in the range {range}."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:611
+#: .\venv\Lib\site-packages\click\types.py:611
 msgid "{value!r} is not a valid boolean."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:635
+#: .\venv\Lib\site-packages\click\types.py:635
 msgid "{value!r} is not a valid UUID."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:822
+#: .\venv\Lib\site-packages\click\types.py:822
 msgid "file"
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:824
+#: .\venv\Lib\site-packages\click\types.py:824
 msgid "directory"
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:826
+#: .\venv\Lib\site-packages\click\types.py:826
 msgid "path"
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:877
+#: .\venv\Lib\site-packages\click\types.py:877
 msgid "{name} {filename!r} does not exist."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:886
+#: .\venv\Lib\site-packages\click\types.py:886
 msgid "{name} {filename!r} is a file."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:894
+#: .\venv\Lib\site-packages\click\types.py:894
 #, python-brace-format
 msgid "{name} '{filename}' is a directory."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:903
+#: .\venv\Lib\site-packages\click\types.py:903
 msgid "{name} {filename!r} is not readable."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:912
+#: .\venv\Lib\site-packages\click\types.py:912
 msgid "{name} {filename!r} is not writable."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:921
+#: .\venv\Lib\site-packages\click\types.py:921
 msgid "{name} {filename!r} is not executable."
 msgstr ""
 
-#: venv/Lib/site-packages/click/types.py:988
+#: .\venv\Lib\site-packages\click\types.py:988
 #, python-brace-format
 msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+#~| msgid "ACTIVAR"
+#~ msgid "INACTIVAR"
+#~ msgstr "Activar Empresa"
 
 #~ msgid "REGIS_USER"
 #~ msgstr "Registrese como usuario!"
@@ -2276,6 +2303,3 @@ msgstr[1] ""
 #~ msgstr ""
 #~ "Te hemos enviado un enlace a tu casilla de correo electrónico. Por favor, "
 #~ "activa tu cuenta para continuar con el registro."
-
-#~ msgid "DESACTIVAR"
-#~ msgstr "Inactivar Empresa"

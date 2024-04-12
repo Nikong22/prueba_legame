@@ -189,7 +189,7 @@ background-color: #5a6268;
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
             {% if user.is_authenticated %}
             <li><h6 class="dropdown-header">{{ user.username }}-{{user_type}}</h6></li>
-            <li><a class="dropdown-item" href="{% url 'my_profile' %}"><i class="bi bi-person"> Mi Perfil</i></a></li>
+            <li><a class="dropdown-item" href="{% url 'my_profile' %}"><i class="bi bi-person"> {% trans "MI_PERFIL" %}</i></a></li>
             {% if user_type == 'Usuario' %}
             <li><a class="dropdown-item" href="{% url 'my_applications' %}"><i class="fa fa-check" aria-hidden="true"></i> {% trans "POST" %}</a></li>
             {% endif %}
@@ -198,11 +198,11 @@ background-color: #5a6268;
             <li><a class="dropdown-item" href="{% url 'create_job_post' %}"><i class="bi bi-plus"> {% trans "CREATE_JOB" %}</i></a></li>
             {% endif %}
             {% if user.is_superuser or user.is_staff %}
-            <li><a class="dropdown-item" href="{% url 'manage_companies' %}"><i class="bi bi-card-checklist"> Ver listado de empresas</i></a></li>
+            <li><a class="dropdown-item" href="{% url 'manage_companies' %}"><i class="bi bi-card-checklist"> {% trans "LIST_COMP" %}</i></a></li>
             <li><a class="dropdown-item" href="{% url 'admin_blog' %}"><i class="fa fa-align-center" aria-hidden="true"></i> Blog informativo</a></li>
             {% endif %}
             <hr>
-            <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar sesión</a></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> {% trans "CLOSE_SESION" %}</a></li>
             {% else %}
             <li><a class="dropdown-item" href="{% url 'signin' %}"><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "LOGIN" %}</a></li>
             

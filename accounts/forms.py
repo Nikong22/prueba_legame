@@ -351,8 +351,8 @@ class QuestionForm(forms.ModelForm):
     short_answer_es = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Corta ESP")  
     complete_answer_es = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Completa ESP")  
     title_it = forms.CharField(max_length=200, required=False, label="Título IT")  
-    short_answer_it = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Corta IT")  
-    complete_answer_it = forms.CharField(widget=forms.Textarea, required=False, label="Respuesta Completa IT")  
+    short_answer_it = forms.CharField(widget=forms.Textarea, required=False, label="Risposta breve IT")  
+    complete_answer_it = forms.CharField(widget=forms.Textarea, required=False, label="Risposta completa IT")  
 
     class Meta:
         model = QuestionTranslation

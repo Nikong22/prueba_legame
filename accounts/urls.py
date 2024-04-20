@@ -63,8 +63,10 @@ urlpatterns = [
     path('terms_and_conditions/', views.terms_and_conditions_view, name='terms_and_conditions'),
     path('about_me/', views.about_me_view, name='about_me'),
     path('contact/', views.contact_view, name='contact'),
+    path('agendanos/', views.agendanos_view, name='agendanos'),
     path('team/', views.team_view, name='team'),
-    
+    path('contact/success/', views.contact_success, name='contact_success'),
+
 ]
 
 if settings.DEBUG:

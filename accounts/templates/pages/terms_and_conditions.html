@@ -9,81 +9,81 @@
     <div class="card shadow-lg rounded">
         <div class="card-body">
             <header class="text-center mb-4">
-                <h1 class="display-4">TÉRMINOS Y CONDICIONES</h1>
-                <p class="lead">PROGETTO LEGAME - Búsqueda de Empleo</p>
-                <small class="text-muted">Fecha de entrada en vigencia: Diciembre 2023</small>
+                <h1 class="display-4">{% trans "TERMS_CON" %}</h1>
+                <p class="lead">{% trans "TERMS_SUB" %}</p>
+                <small class="text-muted">{% trans "TERMS_SMALL" %}</small>
             </header>
 
             <section>
-                <h2 class="mt-4">1. Aceptación de Términos y Condiciones</h2>
-                <p>Al acceder y utilizar Progetto Legame (en adelante, "la Plataforma"), aceptas automáticamente estos términos y condiciones. Si no estás de acuerdo con alguna parte de estos términos, te recomendamos abstenerse de utilizar la Plataforma.</p>
+                <h2 class="mt-4">{% trans "TERMS_ONE" %}</h2>
+                <p>{% trans "TERMS_UNO" %}</p>
             </section>
 
             <!-- Agregado el diseño Bootstrap para las secciones restantes -->
             <section>
-                <h2 class="mt-4">2. Uso de la Plataforma:</h2>
+                <h2 class="mt-4">{% trans "TERMS_TWO" %}</h2>
                 <ul>
-                    <li>Debes tener al menos 18 años para utilizar la Plataforma.</li>
-                    <li>La información proporcionada al registrarte debe ser precisa y actualizada.</li>
+                    <li>{% trans "TERMS_DOS" %}</li>
+                    <li>{% trans "TERMS_SEGUNDO" %}</li>
                 </ul>
             </section>
 
             <section>
-                <h2 class="mt-4">3. Postulaciones y Perfiles:</h2>
-                <p>La creación de perfiles y la postulación a empleos se rigen por nuestras políticas específicas, que pueden variar según la categoría de trabajo.</p>
+                <h2 class="mt-4">{% trans "TERMS_THREE" %}</h2>
+                <p>{% trans "TERMS_TRES" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">4. Responsabilidades del Usuario:</h2>
+                <h2 class="mt-4">{% trans "TERMS_FOUR" %}</h2>
                 <ul>
-                    <li>Eres responsable de mantener la confidencialidad de tu cuenta.</li>
-                    <li>No debes permitir el acceso no autorizado a tu cuenta.</li>
+                    <li>{% trans "TERMS_CUATRO" %}</li>
+                    <li>{% trans "TERMS_CUARTA" %}</li>
                 </ul>
             </section>
 
             <section>
-                <h2 class="mt-4">5. Contenido del Usuario:</h2>
-                <p>Al publicar contenido en la Plataforma, garantizas que tienes el derecho de hacerlo y aceptas la responsabilidad por dicho contenido.</p>
+                <h2 class="mt-4">{% trans "TERMS_FIVE" %}</h2>
+                <p>{% trans "TERMS_CINCO" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">6. Propiedad Intelectual:</h2>
-                <p>Todo el contenido de la Plataforma está protegido por derechos de autor. No se permite la reproducción no autorizada.</p>
+                <h2 class="mt-4">{% trans "TERMS_SIX" %}</h2>
+                <p>{% trans "TERMS_SEIS" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">7. Responsabilidades de la Plataforma:</h2>
-                <p>La Plataforma se esfuerza por proporcionar información precisa, pero no garantiza la veracidad de la información publicada por terceros.</p>
+                <h2 class="mt-4">{% trans "TERMS_SEVEN" %}</h2>
+                <p>{% trans "TERMS_SIETE" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">8. Política de Privacidad:</h2>
-                <p>La recopilación y uso de información personal se rigen por nuestra Política de Privacidad [Enlace a la Política de Privacidad].</p>
+                <h2 class="mt-4">{% trans "TERMS_EIGHT" %}</h2>
+                <p>{% trans "TERMS_OCHO" %} <a href="{% url 'privacy_policy' %}">{% trans "POLIT_PRIV" %}</a>.</p>
             </section>
 
             <section>
-                <h2 class="mt-4">9. Limitaciones de Responsabilidad:</h2>
-                <p>La Plataforma no se hace responsable de pérdidas o daños causados por el uso de la Plataforma o la información proporcionada por terceros.</p>
+                <h2 class="mt-4">{% trans "TERMS_NINE" %}</h2>
+                <p>{% trans "TERMS_NUEVE" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">10. Cambios en los Términos y Condiciones:</h2>
-                <p>Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Los cambios entrarán en vigencia después de la publicación en la Plataforma.</p>
+                <h2 class="mt-4">{% trans "TERMS_TEN" %}</h2>
+                <p>{% trans "TERMS_DIEZ" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">11. Enlaces a Terceros:</h2>
-                <p>La Plataforma puede contener enlaces a sitios de terceros. No nos hacemos responsables del contenido o las políticas de privacidad de estos sitios.</p>
+                <h2 class="mt-4">{% trans "TERMS_ELEVEN" %}</h2>
+                <p>{% trans "TERMS_ONCE" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">12. Rescisión del Servicio:</h2>
-                <p>Nos reservamos el derecho de rescindir o suspender cuentas de usuario por violación de estos términos y condiciones.</p>
+                <h2 class="mt-4">{% trans "TERMS_TWELVE" %}</h2>
+                <p>{% trans "TERMS_DOCE" %}</p>
             </section>
 
             <section>
-                <h2 class="mt-4">13. Contacto:</h2>
-                <p>Para consultas sobre estos términos y condiciones, contáctanos en legame.it@gmail.com</p>
+                <h2 class="mt-4">{% trans "TERMS_THIRTEEN" %}</h2>
+                <p>{% trans "TERMS_TRECE" %} <a href="mailto:legame.it@gmail.com">legame.it@gmail.com</a></p>
             </section>
         </div>
     </div>

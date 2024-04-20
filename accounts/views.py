@@ -39,13 +39,54 @@ from django.utils.translation import gettext as _
 from django.core.exceptions import ValidationError
 from .models import Question, QuestionTranslation
 from .forms import QuestionForm
+from django.core.mail import send_mail
+from django.shortcuts import render
+
 
 
 def team_view(request):
     return render(request, 'pages/team.html')  
 
+
+
+from .forms import ContactForm
+
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
+from .forms import ContactForm
+
 def contact_view(request):
-    return render(request, 'pages/contact.html')  
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+
+            try:
+                message_body = f"Nombre: {name}\nCorreo: {email}\nAsunto: {subject}\nMensaje: {message}"
+                # Cambiar el remitente y el destinatario
+                send_mail(subject, message_body, 'info@progettolegame.com', ['legame.it@gmail.com'])
+            except Exception as e:
+                print(f"Error al enviar el correo electrónico: {e}")
+                return render(request, 'pages/contact.html', {'form': form, 'error_message': 'Error al enviar el correo electrónico'})
+
+            return redirect('contact_success')
+    else:
+        form = ContactForm()
+
+    return render(request, 'pages/contact.html', {'form': form})
+
+def contact_success(request):
+    return render(request, 'pages/contact_success.html')
+
+def contact_success(request):
+    return render(request, 'pages/contact_success.html')
+
+def agendanos_view(request):
+    return render(request, 'pages/agendanos.html')  
 
 def about_me_view(request):
     return render(request, 'pages/about_me.html')  
@@ -77,11 +118,23 @@ def index(request):
     sectors = JobPost.objects.values('sector').distinct()
     countries = JobPost.objects.values('country').distinct()
     latest_entry = BlogEntry.objects.order_by('-updated_at').first()
+# Cargar sectores dinámicamente según el idioma
+    sectors_json_path = finders.find('accounts/lista/sectores.json')
+    with open(sectors_json_path, 'r', encoding='utf-8') as sectors_file:
+        sectors_data = json.load(sectors_file)
+
+    current_language = get_language()
+    if current_language.startswith('es'):
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data['sectores']]
+    elif current_language.startswith('it'):
+        sector_choices = [(sector['it'], sector['it']) for sector in sectors_data['sectores']]
+    else:
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data['sectores']]
 
     context = {
         'page_obj': page_obj,  # Cambiado de 'jobs' a 'page_obj'
         'search_query': search_query,
-        'sectors': sectors,
+        'sector_choices': sector_choices,  # Agregado aquí
         'countries': countries,
         'latest_entry': latest_entry
 
@@ -144,15 +197,25 @@ def signup_comp(request):
     if request.user.is_authenticated:
         return redirect('/')
 
-    # Tus otros caminos para cargar archivos JSON...
+    # Cargar datos estáticos para sectores, provincias y ciudades
     sectors_json_path = finders.find('accounts/lista/sectores.json')
     provinces_json_path = finders.find('accounts/argentina/provincias.json')
     cities_json_path = finders.find('accounts/argentina/localidades.json')
 
-    # Tus métodos para cargar datos estáticos...
-    sector_choices, provinces, province_to_cities_map = load_static_data(
-        sectors_json_path, provinces_json_path, cities_json_path
-    )
+     # Cargar sectores dinámicamente según el idioma
+    current_language = get_language()
+    with open(sectors_json_path, 'r', encoding='utf-8') as sectors_file:
+        sectors_data = json.load(sectors_file)
+    if current_language.startswith('es'):
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data['sectores']]
+    elif current_language.startswith('it'):
+        sector_choices = [(sector['it'], sector['it']) for sector in sectors_data['sectores']]
+    else:
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data['sectores']]
+
+    # Llamada a load_static_data con la ruta del archivo JSON de sectores
+    provinces, province_to_cities_map = load_static_data(provinces_json_path, cities_json_path)
+
 
     if request.method == 'POST':
 
@@ -205,11 +268,7 @@ def signup_comp(request):
                             company.city = form.cleaned_data.get('city', '')
 
                     company.save()
-                   # try:
-                    #     send_verification_email(user, request)
-                    #     #logger.info("Correo de verificación enviado correctamente.")
-                    # except Exception as e:
-                    #     #logger.error(f"Error al enviar correo de verificación: {e}")
+                   
                     login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return render(request, 'email/registration_success.html')
             except IntegrityError as e:
@@ -226,15 +285,13 @@ def signup_comp(request):
     context = {
         'form': form,
         'provinces': provinces,
-        'province_to_cities_map': province_to_cities_map
+        'province_to_cities_map': province_to_cities_map,
+        'sector_choices': sector_choices  # Añadido aquí
+
     }
     return render(request, 'login/signup_comp.html', context)
 
-def load_static_data(sectors_path, provinces_path, cities_path):
-    # Carga de sectores
-    with open(sectors_path, 'r', encoding='utf-8') as sectors_file:
-        sectors_data = json.load(sectors_file)['sectores']
-    sector_choices = [(sector['es'], sector['it']) for sector in sectors_data]
+def load_static_data(provinces_path, cities_path):
 
     # Carga de provincias
     with open(provinces_path, 'r', encoding='utf-8') as provinces_file:
@@ -251,7 +308,8 @@ def load_static_data(sectors_path, provinces_path, cities_path):
                 province_to_cities_map[province_id] = []
             province_to_cities_map[province_id].append(city['nombre'])
 
-    return sector_choices, provinces, province_to_cities_map
+    return provinces, province_to_cities_map
+
 
 
 def load_sectors(request):
@@ -436,8 +494,13 @@ def create_job_post(request):
     json_path = finders.find('accounts/lista/sectores.json')
     with open(json_path, 'r', encoding='utf-8') as sectors_file:
         sectors_data = json.load(sectors_file)
-    sector_choices = [(sector['es'], sector['it']) for sector in sectors_data['sectores']]
-
+    current_language = get_language()
+    if current_language.startswith('es'):
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data['sectores']]
+    elif current_language.startswith('it'):
+        sector_choices = [(sector['it'], sector['it']) for sector in sectors_data['sectores']]
+    else:
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data['sectores']]
     # Carga de datos de provincias y ciudades
     provinces, province_to_cities_map = load_provinces_and_cities()
 
@@ -517,11 +580,27 @@ def my_job_list(request):
 
 @login_required
 def delete_job_post(request, job_id):
-    job = get_object_or_404(JobPost, id=job_id, company=request.user.company)
+    # Verificar si el usuario es superusuario o miembro del staff
+    if request.user.is_superuser or request.user.is_staff:
+        # Si es superusuario o miembro del staff, obtener la publicación de trabajo directamente
+        job = get_object_or_404(JobPost, id=job_id)
+    else:
+        # Si no es superusuario ni miembro del staff, verificar si tiene una empresa asignada
+        if not hasattr(request.user, 'company'):
+            messages.error(request, "Debe tener una empresa asignada para realizar esta acción.")
+            return redirect('my_job_list')
+        # Obtener la publicación de trabajo relacionada con la empresa del usuario
+        job = get_object_or_404(JobPost, id=job_id, company=request.user.company)
+
     if request.method == 'POST':
         job.delete()
         messages.success(request, "La publicación de trabajo ha sido eliminada.")
-        return redirect('my_job_list')
+        # Redirigir al administrador a la raíz y a los usuarios regulares a my_job_list
+        if request.user.is_superuser or request.user.is_staff:
+            return redirect('/')
+        else:
+            return redirect('my_job_list')
+
     return render(request, 'jobs/confirm_delete.html', {'job': job})
 
 @login_required
@@ -544,38 +623,39 @@ def my_profile(request):
         user_info = request.user.userprofile
     else:
         user_info = None  # O manejar como prefieras si no es ninguno de los dos
+# Cargar sectores desde el archivo JSON
+    sectors_json_path = finders.find('accounts/lista/sectores.json')
+    with open(sectors_json_path, 'r', encoding='utf-8') as sectors_file:
+        sectors_data = json.load(sectors_file)['sectores']
 
+    current_language = get_language()
+    if current_language.startswith('es'):
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data]
+    elif current_language.startswith('it'):
+        sector_choices = [(sector['it'], sector['it']) for sector in sectors_data]
+    else:
+        sector_choices = [(sector['es'], sector['es']) for sector in sectors_data]
     context = {
         'user': request.user,
         'user_info': user_info,
         'user_type': user_type,
+        'sector_choices': sector_choices,
+
     }
     return render(request, 'profile/my_profile.html', context)
 
 @login_required
 def upload_cv(request):
     if request.method == 'POST':
-        user_profile = request.user.userprofile
-        form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
-        if form.is_valid():
-            # Guarda el formulario, pero no hagas commit todavía para que puedas actualizar manualmente
-            # los campos phone_number y bio con los valores actuales si no se proporcionan nuevos.
-            user_profile_instance = form.save(commit=False)
-            user_profile_instance.phone_number = request.POST.get('phone_number', user_profile.phone_number)
-            user_profile_instance.bio = request.POST.get('bio', user_profile.bio)
-            user_profile_instance.save()
+        cv_file = request.FILES.get('cv_file')
+        if cv_file:
+            user_profile = request.user.userprofile
+            user_profile.cv = cv_file
+            user_profile.save()
             messages.success(request, 'CV subido con éxito.')
-            return redirect('my_profile')
         else:
-            # Si el formulario no es válido, puedes elegir manejar los errores aquí
-            pass
-    else:
-        form = UserProfileForm(instance=request.user.userprofile)
-
-    context = {
-        'cv_form': form,
-    }
-    return render(request, 'profile/my_profile.html', context)
+            messages.error(request, 'No se proporcionó ningún archivo.')
+    return redirect('my_profile')
 
 @login_required
 def upload_profile_picture(request):
@@ -806,14 +886,20 @@ def save_question_translation(question_entry, form, language_code):
 
 
 
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def delete_question(request, question_id):
-    question_translation = get_object_or_404(QuestionTranslation, question_id=question_id)
-    question_translation.delete()
+    question = get_object_or_404(Question, id=question_id)
+    translations = question.translations.all()
+    # Elimina las traducciones de la pregunta
+    for translation in translations:
+        translation.delete()
+    # Elimina la pregunta
+    question.delete()
+
     messages.success(request, 'La pregunta y sus traducciones han sido eliminadas.')
     return redirect('faqs')
-
 
 @csrf_exempt
 def update_user_data(request):
@@ -833,6 +919,12 @@ def update_user_data(request):
                 user_profile = user.userprofile
                 user_profile.phone_number = data.get('phone_number', user_profile.phone_number)
                 user_profile.bio = data.get('bio', user_profile.bio)
+                user_profile.website = data.get('website', user_profile.website)
+                user_profile.github = data.get('github', user_profile.github)
+                user_profile.twitter = data.get('twitter', user_profile.twitter)
+                user_profile.instagram = data.get('instagram', user_profile.instagram)
+                user_profile.facebook = data.get('facebook', user_profile.facebook)
+                user_profile.linkedin = data.get('linkedin', user_profile.linkedin)
                 user_profile.save()
 
             # Actualiza Company (incluido el campo address)
@@ -844,6 +936,12 @@ def update_user_data(request):
                 company_profile.sector = data.get('sector', company_profile.sector)
                 company_profile.cantidad_empleados = data.get('cantidad_empleados', company_profile.cantidad_empleados)
                 company_profile.razón_social = data.get('razón_social', company_profile.razón_social)
+                company_profile.website = data.get('website', company_profile.website)
+                company_profile.github = data.get('github', company_profile.github)
+                company_profile.twitter = data.get('twitter', company_profile.twitter)
+                company_profile.instagram = data.get('instagram', company_profile.instagram)
+                company_profile.facebook = data.get('facebook', company_profile.facebook)
+                company_profile.linkedin = data.get('linkedin', company_profile.linkedin)
                 company_profile.save()
 
             # Actualiza el nombre de usuario
@@ -1029,16 +1127,6 @@ def resend_activation_email(request, uidb64):
         user = None
 
     if user is not None:
-        # token = default_token_generator.make_token(user)
-        # activation_link = request.build_absolute_uri(
-        #     reverse('activate_account', args=[urlsafe_base64_encode(force_bytes(user.pk)), token])
-        # )
-        # subject = 'Activación de Cuenta'
-        # message = render_to_string('activation_email.txt', {
-        #     'user': user,
-        #     'url': activation_link,
-        # })
-        # send_mail(subject, message, 'nikongg22@gmail.com', [user.email], fail_silently=False)
         try:
             print("Antes de llamar a send_verification_email")
             send_verification_email(user, request)

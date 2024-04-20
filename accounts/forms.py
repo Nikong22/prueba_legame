@@ -51,65 +51,8 @@ CATEGORY_CHOICES = [
         ('Part-time', 'Part-time'),
     ]
 
-class CustomUserCreationForm(UserCreationForm):
-    name = forms.CharField(max_length=100, required=True)
-    lastname = forms.CharField(max_length=100, required=True)
-    email = forms.EmailField(required=True)
-    genero = forms.ChoiceField(choices=UserProfile.GENDER_CHOICES, required=False)
-    document_type = forms.ChoiceField(choices=UserProfile.DOCUMENT_TYPE_CHOICES, required=False)
-    document_number = forms.CharField(max_length=20, required=False)
-    phone_number = PhoneNumberField(widget=PhoneNumberPrefixWidget(), required=False)
-
     
-    class Meta(UserCreationForm.Meta):
-        model = User
-        fields = ['username', 'name', 'lastname', 'email', 'password1', 'password2', 'phone_number', 'genero', 'document_type', 'document_number']
-    
-    def clean_document_number(self):
-        document_type = self.cleaned_data.get("document_type")
-        document_number = self.cleaned_data.get("document_number")
 
-        if document_type == 'DNI':
-            if not re.fullmatch(r'\d{7,8}', document_number):
-                raise forms.ValidationError("El DNI debe tener entre 7 y 8 dígitos.")
-
-        elif document_type == 'CI':
-            # Ejemplo de validación para CI (ajustar según sea necesario)
-            if not document_number.isalnum() or len(document_number) > 10:
-                raise forms.ValidationError("Formato de CI no válido.")
-
-        elif document_type in ['LE', 'LC']:
-            # Ejemplo de validación para LE y LC
-            if not document_number.isdigit():
-                raise forms.ValidationError("La LE o LC debe contener solo números.")
-
-        elif document_type == 'PASSPORT':
-            if not re.fullmatch(r'[A-Z0-9]{6,9}', document_number):
-                raise forms.ValidationError("Formato de pasaporte no válido.")
-
-        return document_number
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if User.objects.filter(email=email).exists():
-            raise forms.ValidationError("Este email ya está en uso.")
-        return email
-
-    def clean_document_number(self):
-        document_number = self.cleaned_data.get('document_number')
-        if UserProfile.objects.filter(document_number=document_number).exists():
-            raise forms.ValidationError("Este número de documento ya está en uso.")
-        return document_number
-    
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        user.email = self.cleaned_data['email']
-        if commit:
-            user.save()
-            send_verification_email(user, self.request)  # Usando la función de utilidad
-        return user
 
 class BlogEntryForm(forms.ModelForm):
     title_es = forms.CharField(max_length=200, required=False)  # Agregar required=False si el campo puede estar vacío
@@ -170,6 +113,66 @@ class JobPostForm(forms.ModelForm):
             return [(sector['es'], sector['it']) for sector in sectors_data['sectores']]
         else:
             return []
+
+class CustomUserCreationForm(UserCreationForm):
+    name = forms.CharField(max_length=100, required=True)
+    lastname = forms.CharField(max_length=100, required=True)
+    email = forms.EmailField(required=True)
+    genero = forms.ChoiceField(choices=UserProfile.GENDER_CHOICES, required=False)
+    document_type = forms.ChoiceField(choices=UserProfile.DOCUMENT_TYPE_CHOICES, required=False)
+    document_number = forms.CharField(max_length=20, required=False)
+    phone_number = PhoneNumberField(widget=PhoneNumberPrefixWidget(), required=False)
+
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ['username', 'name', 'lastname', 'email', 'password1', 'password2', 'phone_number', 'genero', 'document_type', 'document_number']
+    
+    def clean_document_number(self):
+        document_type = self.cleaned_data.get("document_type")
+        document_number = self.cleaned_data.get("document_number")
+
+        if document_type == 'DNI':
+            if not re.fullmatch(r'\d{7,8}', document_number):
+                raise forms.ValidationError("El DNI debe tener entre 7 y 8 dígitos.")
+
+        elif document_type == 'CI':
+            # Ejemplo de validación para CI (ajustar según sea necesario)
+            if not document_number.isalnum() or len(document_number) > 10:
+                raise forms.ValidationError("Formato de CI no válido.")
+
+        elif document_type in ['LE', 'LC']:
+            # Ejemplo de validación para LE y LC
+            if not document_number.isdigit():
+                raise forms.ValidationError("La LE o LC debe contener solo números.")
+
+        elif document_type == 'PASSPORT':
+            if not re.fullmatch(r'[A-Z0-9]{6,9}', document_number):
+                raise forms.ValidationError("Formato de pasaporte no válido.")
+
+        return document_number
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("Este email ya está en uso.")
+        return email
+
+    def clean_document_number(self):
+        document_number = self.cleaned_data.get('document_number')
+        if UserProfile.objects.filter(document_number=document_number).exists():
+            raise forms.ValidationError("Este número de documento ya está en uso.")
+        return document_number
+    
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+            send_verification_email(user, self.request)  # Usando la función de utilidad
+        return user
 
 class AdminCreationForm(UserCreationForm):
     email = forms.EmailField(required=True, help_text="Requerido. Ingresa una dirección de email válida.")
@@ -390,3 +393,15 @@ class QuestionForm(forms.ModelForm):
 
         if short_answer_it and not complete_answer_it:
             raise forms.ValidationError({'complete_answer_it': 'La respuesta completa en italiano no puede estar vacía.'})
+        
+
+
+class ContactForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField(widget=forms.Textarea)
+
+    def send_email(self):
+        # Enviar correo electrónico aquí
+        pass

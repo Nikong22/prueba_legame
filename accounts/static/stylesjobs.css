@@ -165,6 +165,8 @@ padding: 10px 5px;
 font-size: 20px;
 position: relative;
 top: 1px;
+margin-left: 10px; /* Ajusta este valor según el espaciado deseado */
+
 }
 
 .mb-30 {

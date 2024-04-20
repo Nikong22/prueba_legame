@@ -2,11 +2,32 @@
 {% load static %}
 {% load widget_tweaks %}
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block content %}
 <link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
+<style>.team-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .imagen-container {
+  width: 100%; /* Ajusta el ancho al 80% del contenedor padre */
+  max-width: 1000px; /* Establece un ancho máximo de 500px para evitar que sea demasiado grande */
+  margin: 0 auto; /* Centra horizontalmente el contenedor */
+}
 
-<div style="text-align: center;">
-    <img src="{% static 'accounts/img/sobre_nosotros.png' %}" alt="" style="max-width: 100%; height: auto;">
+.imagen-container img {
+  width: 100%; /* La imagen ocupará el 100% del ancho del contenedor */
+  height: auto; /* Mantiene la proporción de aspecto de la imagen */
+  display: block; /* Evita espacios en blanco adicionales */
+}</style>
+<div class="imagen-container">
+    {% if LANGUAGE_CODE == 'es' %}
+        <img src="{% static 'accounts/img/sobre_nosotros.png' %}"  alt="" class="team-image">
+    {% elif LANGUAGE_CODE == 'it' %}
+        <img src="{% static 'accounts/img/sobre_nosotros-it.png' %}"  alt="" class="team-image">
+    {% endif %}
 </div>
-
 {% endblock content %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% load i18n %}  
+{% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block content %}
@@ -25,9 +25,9 @@
 }</style>
 <div class="imagen-container">
     {% if LANGUAGE_CODE == 'es' %}
-        <img src="{% static 'accounts/img/team.png' %}" alt="" class="team-image">
+        <img src="{% static 'accounts/img/contact.png' %}" alt="" class="team-image">
     {% elif LANGUAGE_CODE == 'it' %}
-        <img src="{% static 'accounts/img/team-it.png' %}" alt="" class="team-image">
+        <img src="{% static 'accounts/img/contact-it.png' %}" alt="" class="team-image">
     {% endif %}
 </div>
 

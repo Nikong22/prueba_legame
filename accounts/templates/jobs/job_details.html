@@ -25,13 +25,22 @@
             <p><strong>Ciudad: </strong>{{ job.city }}</p>
             <p><strong>Provincia: </strong>{{ job.province_name }}</p>
             {% elif job.country == 'IT' %}
-            <p><strong>Región: </strong>{{ job.region_it }}</p>
+            <p><strong>Regione: </strong>{{ job.region_it }}</p>
             <p><strong>Provincia: </strong>{{ job.provincia_it }}</p>
-            <p><strong>Comuna: </strong>{{ job.comuna_it }}</p>
+            <p><strong>Comune: </strong>{{ job.comuna_it }}</p>
             {% endif %}
             <p><strong>{% trans "FECHA_VENCIMIENTO" %}:</strong> {{ job.expiration_date }}</p>
             <p><strong>{% trans "ADRESS" %}:</strong> {{ job.address }}</p>
             <p><strong>{% trans "DESCRIP_JOB" %}:</strong> {{ job.descripcion }}</p>
+            {% if request.user.is_staff or request.user.is_superuser %}
+            <form action="{% url 'delete_job_post' job.id %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta publicación?');">
+                  <i class="bi bi-trash"></i>
+              </button>
+          </form>
+          {% endif %}
+
             {% if job.expiration_date|date:"Y-m-d" < today %}
             <!-- Si la fecha de vencimiento es anterior a la fecha actual, muestra el botón de vencido -->
             <button class="btn btn-danger">Publicación Vencida</button>
@@ -45,6 +54,7 @@
                         <button type="submit" class="btn btn-primary">{% trans "POSTULARSE" %}</button>
                     </form>
                 {% endif %}
+                   
             {% endif %}  <!-- Cierra el bloque if aquí -->
             {% endif %}  <!-- Cierra el bloque if aquí -->
           </div>

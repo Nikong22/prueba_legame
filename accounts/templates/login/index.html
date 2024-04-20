@@ -46,8 +46,9 @@
                             <div class="select-container">
                                 <select class="custom-select"  name="sector">
                                     <option value="">{% trans "SECTOR" %}</option>
-                                    {% for sector in sectors %}
-                                        <option value="{{ sector.sector }}">{{ sector.sector }}</option>
+                                    {% for sector_name, sector_value in sector_choices %}
+                                    <option value="{{ sector_value }}">{{ sector_name }}</option>
+                    
                                     {% endfor %}
                                 </select>
                             </div>
@@ -78,7 +79,7 @@
                                         <i class="zmdi zmdi-pin mr-2"></i> {{ job.city }}
                                     </li>
                                     <li class="mr-md-4">
-                                        <i class="zmdi zmdi-money mr-2"></i> {{ job.sector }}
+                                        <i class="zmdi zmdi-case  mr-2"></i> {{ job.sector }}
                                     </li>
                                     <li class="mr-md-4">
                                         <i class="zmdi zmdi-time mr-2"></i> {{ job.category }}
@@ -141,7 +142,7 @@
                 {% for translation in latest_entry.translations.all %}
                     {% if translation.language == LANGUAGE_CODE %}
                         <h2>{{ translation.title }}</h2>
-                        <p>{{ translation.content }}</p>
+                        <p style="color: #003399;">{{ translation.content|urlize|linebreaksbr  }}</p>
                     {% endif %}
                 {% endfor %}
             </div>

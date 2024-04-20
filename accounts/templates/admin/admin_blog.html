@@ -26,7 +26,7 @@
         </div>
         <div class="mb-3">
           <label for="id_es-content" class="form-label">Contenido ESP:</label>
-          <textarea name="es-content" class="form-control" id="id_es-content" rows="3" required>{{ entry_es.content }}</textarea>
+          <textarea name="es-content" class="form-control" id="id_es-content" rows="5" required>{{ entry_es.content }}</textarea>
         </div>
         <!-- Botón para guardar blog en español -->
         <div class="text-center">
@@ -67,11 +67,11 @@
         <!-- Campos para español -->
         <div class="mb-3">
           <label for="id_es-title-faq" class="form-label">Título ESP:</label>
-          <input type="text" name="title_es" class="form-control" id="id_es-title-faq" placeholder="Ingrese el título ESP" value="{{ form_es.title_es.value|default:'' }}" required>
+          <input type="text" name="title_es" class="form-control" id="id_es-title-faq" placeholder="Ingrese el título ESP" value="{{ blog_form_es.title|default:'' }}" required>
         </div>
         <div class="mb-3">
           <label for="id_es-content-faq" class="form-label">Contenido ESP:</label>
-          <textarea name="content_es" class="form-control" id="id_es-content-faq" rows="3" required>{{ form_es.content_es.value|default:'' }}</textarea>
+          <textarea name="content_es" class="form-control" id="id_es-content-faq" rows="3" required>{{  blog_form_es.content|default:'' }}</textarea>
         </div>
         <div class="text-center">
           <button type="submit" name="save_faq_es" class="btn btn-primary">Guardar FAQ ESP</button>

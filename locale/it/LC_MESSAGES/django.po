@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-12 15:42-0300\n"
+"POT-Creation-Date: 2024-04-20 14:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr "Torna a Gestione Aziendale"
 #: .\accounts\templates\admin\company_details.html:21
 #: .\accounts\templates\jobs\my_applications.html:22
 #: .\accounts\templates\login\signup_comp.html:88
-#: .\accounts\templates\profile\my_profile.html:148
+#: .\accounts\templates\profile\my_profile.html:158
 msgid "NAME_COMP"
 msgstr "Marchio d’impresa"
 
@@ -37,8 +37,8 @@ msgstr "Marchio d’impresa"
 #: .\accounts\templates\jobs\view_applicants.html:27
 #: .\accounts\templates\login\signup_comp.html:100
 #: .\accounts\templates\login\signup_user.html:102
-#: .\accounts\templates\profile\my_profile.html:118
-#: .\accounts\templates\profile\my_profile.html:213
+#: .\accounts\templates\profile\my_profile.html:128
+#: .\accounts\templates\profile\my_profile.html:225
 msgid "PHONE"
 msgstr "Telefono:"
 
@@ -56,26 +56,26 @@ msgstr "Paese"
 #: .\accounts\templates\jobs\job_details.html:21
 #: .\accounts\templates\login\index.html:48
 #: .\accounts\templates\login\signup_comp.html:183
-#: .\accounts\templates\profile\my_profile.html:183
+#: .\accounts\templates\profile\my_profile.html:193
 msgid "SECTOR"
 msgstr "Settore"
 
 #: .\accounts\templates\admin\company_details.html:34
 #: .\accounts\templates\login\signup_comp.html:213
-#: .\accounts\templates\profile\my_profile.html:159
+#: .\accounts\templates\profile\my_profile.html:169
 msgid "CANT_EMP"
 msgstr "Numero di dipendenti"
 
 #: .\accounts\templates\admin\company_details.html:35
 #: .\accounts\templates\login\signup_comp.html:195
-#: .\accounts\templates\profile\my_profile.html:172
+#: .\accounts\templates\profile\my_profile.html:182
 msgid "RAZON_SOCIAL"
 msgstr "Nome commerciale"
 
 #: .\accounts\templates\admin\company_details.html:36
 #: .\accounts\templates\admin\manage_companies.html:61
 #: .\accounts\templates\login\signup_comp.html:202
-#: .\accounts\templates\profile\my_profile.html:138
+#: .\accounts\templates\profile\my_profile.html:148
 msgid "CUIT"
 msgstr "Partita IVA"
 
@@ -93,17 +93,17 @@ msgstr "Attiva l'account"
 msgid "DESACTIVAR"
 msgstr "Disattiva l'account"
 
-#: .\accounts\templates\admin\faqs.html:9 .\accounts\templates\base.html:313
+#: .\accounts\templates\admin\faqs.html:12 .\accounts\templates\base.html:313
 msgid "PREG_FREC"
 msgstr "Domande frequenti"
 
-#: .\accounts\templates\admin\faqs.html:12
+#: .\accounts\templates\admin\faqs.html:15
 msgid "DESCR_FREC"
 msgstr "Di seguito sono riportate le risposte più frequenti:"
 
-#: .\accounts\templates\admin\faqs.html:36
+#: .\accounts\templates\admin\faqs.html:39
 #: .\accounts\templates\admin\manage_companies.html:88
-#: .\accounts\templates\login\index.html:90
+#: .\accounts\templates\login\index.html:91
 msgid "DETALLES_VER"
 msgstr "Vedi i dettagli"
 
@@ -130,7 +130,7 @@ msgstr "Cliente"
 #: .\accounts\templates\admin\manage_companies.html:59
 #: .\accounts\templates\jobs\view_applicants.html:24
 #: .\accounts\templates\login\signup_user.html:37
-#: .\accounts\templates\profile\my_profile.html:195
+#: .\accounts\templates\profile\my_profile.html:207
 msgid "NAME"
 msgstr "Nome:"
 
@@ -138,7 +138,7 @@ msgstr "Nome:"
 #: .\accounts\templates\jobs\create_job_post.html:122
 #: .\accounts\templates\jobs\job_details.html:33
 #: .\accounts\templates\login\signup_comp.html:112
-#: .\accounts\templates\profile\my_profile.html:128
+#: .\accounts\templates\profile\my_profile.html:138
 msgid "ADRESS"
 msgstr "Indirizzo"
 
@@ -204,6 +204,7 @@ msgid "TERM_COND"
 msgstr "Termini e Condizioni"
 
 #: .\accounts\templates\base.html:300
+#: .\accounts\templates\pages\terms_and_conditions.html:61
 msgid "POLIT_PRIV"
 msgstr "Politiche sulla privacy"
 
@@ -224,6 +225,7 @@ msgid "CONTACT"
 msgstr "Contatto"
 
 #: .\accounts\templates\base.html:328
+#: .\accounts\templates\pages\contact.html:64
 msgid "CONTACT_NOS"
 msgstr "Contattaci "
 
@@ -292,7 +294,7 @@ msgstr "Modifica post"
 msgid "JOB_UPDATE"
 msgstr "Aggiorna post"
 
-#: .\accounts\templates\jobs\job_details.html:45
+#: .\accounts\templates\jobs\job_details.html:54
 msgid "POSTULARSE"
 msgstr "Applica"
 
@@ -326,24 +328,24 @@ msgstr "Candidati postulati per"
 
 #: .\accounts\templates\jobs\view_applicants.html:25
 #: .\accounts\templates\login\signup_user.html:49
-#: .\accounts\templates\profile\my_profile.html:204
+#: .\accounts\templates\profile\my_profile.html:216
 msgid "LASTNAME"
 msgstr "Cognome:"
 
 #: .\accounts\templates\jobs\view_applicants.html:28
-#: .\accounts\templates\profile\my_profile.html:223
+#: .\accounts\templates\profile\my_profile.html:235
 msgid "DNI"
 msgstr "Carta d’identità"
 
 #: .\accounts\templates\jobs\view_applicants.html:29
 #: .\accounts\templates\login\signup_user.html:96
-#: .\accounts\templates\profile\my_profile.html:232
+#: .\accounts\templates\profile\my_profile.html:244
 msgid "GENERO"
 msgstr "Genere:"
 
 #: .\accounts\templates\jobs\view_applicants.html:31
 #: .\accounts\templates\login\signup_user.html:131
-#: .\accounts\templates\profile\my_profile.html:261
+#: .\accounts\templates\profile\my_profile.html:272
 msgid "BIO"
 msgstr "Biografie"
 
@@ -359,15 +361,15 @@ msgstr "Cerca o pubblica offerte di lavoro in Sardegna"
 msgid "SEARCH_PUESTO"
 msgstr "Posizione o parola chiave"
 
-#: .\accounts\templates\login\index.html:57
+#: .\accounts\templates\login\index.html:58
 msgid "BUSCAR"
 msgstr "Cerca"
 
-#: .\accounts\templates\login\index.html:66
+#: .\accounts\templates\login\index.html:67
 msgid "CANT_JOB"
 msgstr "Annunci di lavoro trovati: "
 
-#: .\accounts\templates\login\index.html:95
+#: .\accounts\templates\login\index.html:96
 msgid "TEXTO_NOJOB"
 msgstr "Non ci sono lavori attivi in questo momento."
 
@@ -422,7 +424,7 @@ msgstr "Registrazione dell'azienda"
 
 #: .\accounts\templates\login\signup_comp.html:40
 #: .\accounts\templates\login\signup_user.html:25
-#: .\accounts\templates\profile\my_profile.html:97
+#: .\accounts\templates\profile\my_profile.html:107
 msgid "USER"
 msgstr "User:"
 
@@ -443,6 +445,366 @@ msgstr "Tipo di documento:"
 msgid "NUM_DOC"
 msgstr "Numero di documento:"
 
+#: .\accounts\templates\pages\contact.html:14
+msgid "TIT_CONTACT"
+msgstr "Hai bisogno di un servizio personalizzato"
+
+#: .\accounts\templates\pages\contact.html:15
+msgid "SUB_CONTACT"
+msgstr ""
+"Compila il form sottostante per accedere ai nostri servizi personalizzati e "
+"alle promozioni speciali del Progetto LEGAME"
+
+#: .\accounts\templates\pages\contact.html:23
+msgid "NOM_APE"
+msgstr "Nome e Cognome"
+
+#: .\accounts\templates\pages\contact.html:30
+msgid "ASUNTO_EMAIL"
+msgstr "Servizio richiesto"
+
+#: .\accounts\templates\pages\contact.html:31
+msgid "ASUNTO_OPCION"
+msgstr "Consulenza Risorse Umane"
+
+#: .\accounts\templates\pages\contact.html:32
+msgid "ASUNTO_TRAMITE"
+msgstr "Consulenza sulle procedure di cittadinanza italiana"
+
+#: .\accounts\templates\pages\contact.html:33
+msgid "ASUNTO_CLASES"
+msgstr "Corsi di lingua italiana personalizzati"
+
+#: .\accounts\templates\pages\contact.html:34
+msgid "ASUNTO_INFO"
+msgstr "Richiedi maggiori informazioni sul Progetto Legame"
+
+#: .\accounts\templates\pages\contact.html:38
+msgid "AREA_TEXTO"
+msgstr "Lasciaci la tua domanda specifica in modo che possiamo aiutarti"
+
+#: .\accounts\templates\pages\contact.html:41
+msgid "SUBMIT_MSG"
+msgstr "Enviar Mensaje"
+
+#: .\accounts\templates\pages\privacy_policy.html:13
+msgid "POLITICA_PRIVACIDAD"
+msgstr "INFORMATIVA SULLA PRIVACY - PROGETTO LEGAME - Ricerca di lavoro"
+
+#: .\accounts\templates\pages\privacy_policy.html:14
+msgid "POLITICA_SUB"
+msgstr "Data di entrata in vigore: dicembre 2023"
+
+#: .\accounts\templates\pages\privacy_policy.html:15
+msgid "POLITICA_INFO"
+msgstr ""
+"Questa politica descrive come raccogliamo, utilizziamo e proteggiamo le "
+"informazioni personali che ci fornisci quando utilizzi i nostri servizi di "
+"ricerca e candidatura di lavoro."
+
+#: .\accounts\templates\pages\privacy_policy.html:19
+msgid "POLITICA_UNO"
+msgstr "1. Informazioni che raccogliamo:"
+
+#: .\accounts\templates\pages\privacy_policy.html:20
+msgid "POLITICA_ONE"
+msgstr ""
+"Dati di registrazione: raccogliamo informazioni personali come nomi, "
+"indirizzi e-mail e informazioni di contatto quando ti registri sulla nostra "
+"piattaforma."
+
+#: .\accounts\templates\pages\privacy_policy.html:21
+msgid "POLITICA_PRIMERO"
+msgstr ""
+"Curriculum Vitae (CV): consentiamo agli utenti di caricare i propri CV per "
+"facilitare il processo di candidatura per un lavoro."
+
+#: .\accounts\templates\pages\privacy_policy.html:25
+msgid "POLITICA_DOS"
+msgstr "2. Utilizzo delle informazioni:"
+
+#: .\accounts\templates\pages\privacy_policy.html:26
+msgid "POLITICA_TWO"
+msgstr ""
+"Utilizziamo le informazioni raccolte per gestire i profili utente, "
+"facilitare le domande di lavoro e migliorare i nostri servizi."
+
+#: .\accounts\templates\pages\privacy_policy.html:27
+msgid "POLITICA_SEGUNDO"
+msgstr ""
+"I CV vengono condivisi con i datori di lavoro interessati alla ricerca di "
+"candidati."
+
+#: .\accounts\templates\pages\privacy_policy.html:31
+msgid "POLITICA_TRES"
+msgstr "3. Condividere le informazioni:"
+
+#: .\accounts\templates\pages\privacy_policy.html:32
+msgid "POLITICA_THREE"
+msgstr ""
+"Il tuo CV e le informazioni del tuo profilo potrebbero essere condivisi con "
+"datori di lavoro che offrono opportunità di lavoro compatibili con la tua "
+"esperienza e capacità."
+
+#: .\accounts\templates\pages\privacy_policy.html:33
+msgid "POLITICA_TERCERO"
+msgstr ""
+"Non vendiamo, affittiamo o condividiamo le tue informazioni personali con "
+"terze parti per scopi pubblicitari."
+
+#: .\accounts\templates\pages\privacy_policy.html:37
+msgid "POLITICA_CUATRO"
+msgstr "4. Sicurezza delle informazioni:"
+
+#: .\accounts\templates\pages\privacy_policy.html:38
+msgid "POLITICA_FOUR"
+msgstr ""
+"Implementiamo misure di sicurezza per proteggere le informazioni dei nostri "
+"utenti."
+
+#: .\accounts\templates\pages\privacy_policy.html:39
+msgid "POLITICA_CUARTA"
+msgstr ""
+"I CV e i dati personali sono archiviati su server sicuri e l'accesso è "
+"controllato e limitato."
+
+#: .\accounts\templates\pages\privacy_policy.html:40
+msgid "POLITICA_DESCRIPCION"
+msgstr ""
+"Caricando le informazioni, riconosci e accetti i rischi associati sotto la "
+"responsabilità dell'utente."
+
+#: .\accounts\templates\pages\privacy_policy.html:41
+msgid "POLITICA_RESPONSABLE"
+msgstr ""
+"Non siamo responsabili per la sicurezza delle informazioni condivise con "
+"terze parti."
+
+#: .\accounts\templates\pages\privacy_policy.html:45
+msgid "POLITICA_CINCO"
+msgstr "5. Accesso e controllo:"
+
+#: .\accounts\templates\pages\privacy_policy.html:46
+msgid "POLITICA_FIVE"
+msgstr ""
+"Puoi accedere e aggiornare le tue informazioni personali nel tuo profilo in "
+"qualsiasi momento."
+
+#: .\accounts\templates\pages\privacy_policy.html:47
+msgid "POLITICA_QUINTA"
+msgstr ""
+"Se desideri eliminare il tuo account, contattaci e procederemo a eliminare "
+"in modo sicuro i tuoi dati."
+
+#: .\accounts\templates\pages\privacy_policy.html:51
+msgid "POLITICA_SEIS"
+msgstr "6. Cookie e tecnologie simili:"
+
+#: .\accounts\templates\pages\privacy_policy.html:52
+msgid "POLITICA_SIX"
+msgstr ""
+"Utilizziamo cookie e tecnologie simili per migliorare l'esperienza "
+"dell'utente ed eseguire analisi."
+
+#: .\accounts\templates\pages\privacy_policy.html:53
+msgid "POLITICA_SEXTA"
+msgstr ""
+"Puoi gestire le preferenze sui cookie attraverso le impostazioni del tuo "
+"browser."
+
+#: .\accounts\templates\pages\privacy_policy.html:57
+msgid "POLITICA_SIETE"
+msgstr "7. Modifiche all'Informativa sulla Privacy:"
+
+#: .\accounts\templates\pages\privacy_policy.html:58
+msgid "POLITICA_SEVEN"
+msgstr ""
+"Ci riserviamo il diritto di modificare questa politica. Ti informeremo dei "
+"cambiamenti significativi e della data di entrata in vigore."
+
+#: .\accounts\templates\pages\privacy_policy.html:62
+msgid "POLITICA_OCHO"
+msgstr "8. Consenso:"
+
+#: .\accounts\templates\pages\privacy_policy.html:63
+msgid "POLITICA_EIGHT"
+msgstr ""
+"Utilizzando i nostri servizi, accetti questa informativa sulla privacy e "
+"acconsenti al trattamento delle tue informazioni personali come qui "
+"descritto e comprendi i rischi associati al caricamento delle informazioni "
+"personali."
+
+#: .\accounts\templates\pages\privacy_policy.html:64
+msgid "POLITICA_OCTAVO"
+msgstr ""
+"Progetto Legame declina ogni responsabilità relativa a problemi di sicurezza "
+"che potrebbero verificarsi."
+
+#: .\accounts\templates\pages\privacy_policy.html:67
+msgid "FOOTER_UNO"
+msgstr ""
+"Se hai domande o dubbi sulla nostra politica sulla privacy, non esitare a "
+"contattarci all'indirizzo"
+
+#: .\accounts\templates\pages\privacy_policy.html:67
+msgid "FOOTER_FIN"
+msgstr ""
+"Apprezziamo la vostra fiducia nella scelta di Progetto Legame per la tua "
+"ricerca di lavoro. Grazie per essere parte della nostra comunità. Progetto "
+"Legame - Team Privacy"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:12
+msgid "TERMS_CON"
+msgstr "TERMINI E CONDIZIONI "
+
+#: .\accounts\templates\pages\terms_and_conditions.html:13
+msgid "TERMS_SUB"
+msgstr "PROGETTO LEGAME - Ricerca Lavoro"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:14
+msgid "TERMS_SMALL"
+msgstr "Data di entrata in vigore: dicembre 2023"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:18
+msgid "TERMS_ONE"
+msgstr "1.\tAccettazione Termini e Condizioni:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:19
+msgid "TERMS_UNO"
+msgstr ""
+"Accedendo e utilizzando Progetto Legame (di seguito 'la Piattaforma'), "
+"accetti automaticamente i presenti termini e condizioni. Se non sei "
+"d'accordo con qualsiasi parte di questi termini, ti consigliamo di astenerti "
+"dall'utilizzare la Piattaforma."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:24
+msgid "TERMS_TWO"
+msgstr "2.\tUtilizzo della Piattaforma:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:26
+msgid "TERMS_DOS"
+msgstr "Devi avere almeno 18 anni per utilizzare la Piattaforma."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:27
+msgid "TERMS_SEGUNDO"
+msgstr ""
+"Le informazioni fornite al momento della registrazione devono essere "
+"accurate e aggiornate."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:32
+msgid "TERMS_THREE"
+msgstr "3.\tApplicazioni e profili:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:33
+msgid "TERMS_TRES"
+msgstr ""
+"La creazione di profili e la candidatura per posti di lavoro sono regolate "
+"dalle nostre politiche specifiche, che possono variare in base alla "
+"categoria lavorativa."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:37
+msgid "TERMS_FOUR"
+msgstr "4.\tResponsabilità dell'utente:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:39
+msgid "TERMS_CUATRO"
+msgstr "Sei responsabile del mantenimento della riservatezza del tuo account."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:40
+msgid "TERMS_CUARTA"
+msgstr "Non devi consentire l'accesso non autorizzato al tuo account."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:45
+msgid "TERMS_FIVE"
+msgstr "5.\tContenuti utente:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:46
+msgid "TERMS_CINCO"
+msgstr ""
+"Pubblicando contenuti sulla Piattaforma, garantisci di avere il diritto di "
+"farlo e di accettare la responsabilità per tali contenuti."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:50
+msgid "TERMS_SIX"
+msgstr "6.\tProprietà intellettuale:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:51
+msgid "TERMS_SEIS"
+msgstr ""
+"Tutti i contenuti della Piattaforma sono protetti da copyright. La "
+"riproduzione non autorizzata non è permessa."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:55
+msgid "TERMS_SEVEN"
+msgstr "7.\tResponsabilità della piattaforma:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:56
+msgid "TERMS_SIETE"
+msgstr ""
+"La Piattaforma si impegna a fornire informazioni accurate, ma non garantisce "
+"la veridicità delle informazioni pubblicate da terzi."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:60
+msgid "TERMS_EIGHT"
+msgstr "8.\tPolitica sulla riservatezza:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:61
+msgid "TERMS_OCHO"
+msgstr ""
+"La raccolta e l'utilizzo dei dati personali sono regolati dalla nostra "
+"Informativa sulla privacy: "
+
+#: .\accounts\templates\pages\terms_and_conditions.html:65
+msgid "TERMS_NINE"
+msgstr "9.\tLimitazioni di responsabilità:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:66
+msgid "TERMS_NUEVE"
+msgstr ""
+"La Piattaforma non è responsabile per eventuali perdite o danni causati "
+"dall'uso della Piattaforma o delle informazioni fornite da terzi."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:70
+msgid "TERMS_TEN"
+msgstr "10.\tModifiche ai Termini e Condizioni:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:71
+msgid "TERMS_DIEZ"
+msgstr ""
+"Ci riserviamo il diritto di modificare questi termini e condizioni in "
+"qualsiasi momento. Le modifiche entreranno in vigore dopo la pubblicazione "
+"sulla Piattaforma."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:75
+msgid "TERMS_ELEVEN"
+msgstr "11.\tCollegamenti a terze parti:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:76
+msgid "TERMS_ONCE"
+msgstr ""
+"La Piattaforma potrebbe contenere collegamenti a siti di terzi. Non siamo "
+"responsabili per il contenuto o le politiche sulla privacy di questi siti."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:80
+msgid "TERMS_TWELVE"
+msgstr "12.\tCessazione del servizio:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:81
+msgid "TERMS_DOCE"
+msgstr ""
+"Ci riserviamo il diritto di chiudere o sospendere gli account utente in caso "
+"di violazione di questi termini e condizioni."
+
+#: .\accounts\templates\pages\terms_and_conditions.html:85
+msgid "TERMS_THIRTEEN"
+msgstr "13.\tContatto:"
+
+#: .\accounts\templates\pages\terms_and_conditions.html:86
+msgid "TERMS_TRECE"
+msgstr ""
+"Per domande relative a questi termini e condizioni, vi preghiamo di "
+"contattarci all'indirizzo"
+
 #: .\accounts\templates\profile\my_profile.html:20
 msgid "PROFILE_EDIT"
 msgstr "Modifica"
@@ -451,11 +813,11 @@ msgstr "Modifica"
 msgid "PROFILE_SAVE"
 msgstr "Salva"
 
-#: .\accounts\templates\profile\my_profile.html:249
+#: .\accounts\templates\profile\my_profile.html:260
 msgid "SUBIR_CV"
 msgstr "Carica CV"
 
-#: .\accounts\templates\profile\my_profile.html:254
+#: .\accounts\templates\profile\my_profile.html:265
 msgid "NOT_CV"
 msgstr "Nessun CV caricato"
 
@@ -523,13 +885,13 @@ msgstr ""
 "Per motivi di sicurezza, non memorizziamo la tua password. La tua password "
 "verrà reimpostata e ne riceverai una nuova"
 
-#: .\accounts\views.py:325
+#: .\accounts\views.py:347
 msgid "ERROR_LOGIN"
-msgstr "Siamo fuori della Copa"
+msgstr "Accesso limitato o nome utente/password errati"
 
-#: .\accounts\views.py:348
+#: .\accounts\views.py:370
 msgid "ACTIVATE_ACCOUNT"
-msgstr "italiannn"
+msgstr "Attiva il tuo account dal link inviato alla tua email."
 
 #: .\legame_venv\Lib\site-packages\django\contrib\messages\apps.py:15
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15

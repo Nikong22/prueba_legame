@@ -6,7 +6,8 @@ from django.dispatch import receiver
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-
+from django.core.exceptions import ValidationError
+from django.core.validators import URLValidator
 
 
 CANTIDAD_EMPLEADOS_CHOICES = [
@@ -34,7 +35,21 @@ class UserProfile(models.Model):
     cv = models.FileField(upload_to='cvs/', null=True, blank=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
     email_confirmed = models.BooleanField(default=False)
+# Nuevos campos para enlaces de redes sociales
+    website = models.URLField(blank=True, null=True)
+    def validate_social_url(value):
+        validator = URLValidator()
+        try:
+            validator(value)
+        except ValidationError:
+            raise ValidationError("La URL no es válida")
 
+    github = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    twitter = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    instagram = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    facebook = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    linkedin = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    
     GENDER_CHOICES = [
         ('Masculino', 'Masculino'),
         ('Femenino', 'Femenino'),
@@ -80,7 +95,20 @@ class Company(models.Model):
     comuna_it = models.CharField("Comuna (Italia)", max_length=100, blank=True, null=True)
     country = models.CharField(max_length=2, choices=[('AR', 'Argentina'), ('IT', 'Italia')], default='AR')
     email_confirmed = models.BooleanField(default=False)
+# Nuevos campos para enlaces de redes sociales
+    website = models.URLField(blank=True, null=True)
+    def validate_social_url(value):
+        validator = URLValidator()
+        try:
+            validator(value)
+        except ValidationError:
+            raise ValidationError("La URL no es válida")
 
+    github = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    twitter = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    instagram = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    facebook = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    linkedin = models.URLField(blank=True, null=True, validators=[validate_social_url])
 
     def __str__(self):
         return self.company_name
@@ -91,7 +119,21 @@ class AdminUser(models.Model):
     # Campos adicionales específicos para administradores, si son necesarios
     email = models.EmailField(unique=True)  # Asegura que el email sea único
     email_confirmed = models.BooleanField(default=False)
+# Nuevos campos para enlaces de redes sociales
+    website = models.URLField(blank=True, null=True)
+    def validate_social_url(value):
+        validator = URLValidator()
+        try:
+            validator(value)
+        except ValidationError:
+            raise ValidationError("La URL no es válida")
 
+    github = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    twitter = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    instagram = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    facebook = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    linkedin = models.URLField(blank=True, null=True, validators=[validate_social_url])
+    
     def __str__(self):
         return self.user.username
 

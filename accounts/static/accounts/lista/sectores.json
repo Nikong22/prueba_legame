@@ -1,58 +1,72 @@
 {
   "sectores": [
     {
+      "id": 1,
       "es": "Salud y atención médica",
       "it":"Salute e assistenza medica"
     },
     {
+      "id": 2,
       "es": "Tecnología de la información y la comunicación (TIC)",
       "it":"Tecnologia dell'informazione e della comunicazione (TIC)"
     },
     {
+      "id": 3,
       "es": "Educación y formación",
       "it":"Educazione e formazione"
     },
     {
+      "id": 4,
       "es": "Gobierno y administración pública",
       "it":"Governo e amministrazione pubblica"
     },
     {
+      "id": 5,
       "es": "Ingeniería y construcción",
       "it":"Ingegneria e costruzione"
     },
     {
+      "id": 6,
       "es": "Medios de comunicación y entretenimiento",
       "it":"Media e intrattenimento"
     },
     {
+      "id": 7,
       "es": "Investigación y desarrollo",
       "it":"Ricerca e sviluppo"
     },
     {
+      "id": 8,
       "es": "Servicios profesionales (consultoría, legal, contabilidad, etc.)",
       "it":"Servizi professionali (consulenza, legale, contabilità, ecc.)"
     },
     {
+      "id": 9,
       "es": "Comercio minorista y mayorista",
       "it":"Commercio al dettaglio e all'ingrosso"
     },
     {
+      "id": 10,
       "es": "Finanzas y Banca",
       "it":"Finanza e banca"
     },
     {
+      "id": 11,
       "es": "Turismo y hostelería",
       "it":"Turismo e ospitalità"
     },
     {
+      "id": 12,
       "es": "Agricultura y alimentación",
       "it":"Agricoltura e alimentazione"
     },
     {
+      "id": 13,
       "es": "Transporte y logística",
       "it":"Trasporto e logistica"
     },
     {
+      "id": 14,
       "es": "Energía y medio ambiente",
       "it":"Energia e ambiente"
     },
@@ -61,22 +75,27 @@
       "it":"Manifattura e produzione industriale"
     },
     {
+      "id": 15,
       "es": "Arte y diseño",
       "it":"Arte e design"
     },
     {
+      "id": 16,
       "es": "Recursos humanos y gestión de personal",
       "it":"Risorse umane e gestione del personale"
     },
     {
+      "id": 17,
       "es": "Marketing y publicidad",
       "it":"Marketing e pubblicità"
     },
     {
+      "id": 18,
       "es": "Seguridad y defensa",
       "it":"Sicurezza e difesa"
     },
     {
+      "id": 19,
       "es": "Sector sin ánimo de lucro y organizaciones sociales",
       "it":"Settore senza scopo di lucro e organizzazioni sociali"
     }

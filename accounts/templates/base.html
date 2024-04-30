@@ -7,6 +7,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
   <link href="{% static 'stylesfooter.css' %}" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'accounts/images/logo.png' %}">
 
@@ -142,6 +145,7 @@ background-color: #5a6268;
       width: 80%;
     }
   }
+  /* Si usaste un id */
     </style>
 </head>
 
@@ -269,10 +273,12 @@ background-color: #5a6268;
             <div class="single-footer-widget section_padding_0_130">
               <!-- Footer Logo-->
               <div class="footer-logo mb-3"></div>
-              <p>© 2024 <a href="">Nikong</a>. Todos los derechos reservados.</p>
+              <p>
+                © 2024 <a href="https://nikong22.github.io/CV_Nicolas-Cammarota/Nicolás-Alejandro-Cammarota.pdf" target="_blank" id="enlace-con-nueva-fuente" onclick="window.open('https://nikong22.github.io/CV_Nicolas-Cammarota/Nicolás-Alejandro-Cammarota.pdf')">NiKong</a>. Todos los derechos reservados.
+              </p>
               <!-- Copywrite Text-->
               <div class="copywrite-text mb-5">
-                <p>Desarrollado por Nicolás Cammarota</p>
+                <p>Desarrollado por <a href="https://www.linkedin.com/in/nicolas-alejandro22/" target="_blank" onclick="window.open('https://www.linkedin.com/in/nicolas-alejandro22/')">Nicolás Cammarota</a>.</p>
               </div>
               <!-- Footer Social Area-->
               <div class="footer_social_area">
@@ -311,8 +317,8 @@ background-color: #5a6268;
               <div class="footer_menu">
                 <ul>
                   <li><a href="{% url 'faqs' %}">{% trans "PREG_FREC" %}</a></li>
-                  <li><a href="#">{% trans "SUP_CAND" %}</a></li>
-                  <li><a href="#">{% trans "SUP_COMP" %}</a></li>
+                  <li><a href="{% url 'contact' %}">{% trans "SUP_CAND" %}</a></li>
+                  <li><a href="{% url 'contact' %}">{% trans "SUP_COMP" %}</a></li>
                 </ul>
               </div>
             </div>
@@ -337,24 +343,24 @@ background-color: #5a6268;
         <div class="row">
           <div class="col d-flex justify-content-center">
             <!-- Aumenta el margen horizontal con 'mx-3' o más si es necesario -->
-            <div class="col">
+            <div class="col imagen-container">
 
             <img src="{% static 'accounts/images/CasaSardegna_Logo_sfondobianco.jpg' %}" alt="Casa Sardegna" class="img-fluid mx-3" style="max-height: 90px; margin-right: 30px;">
           </div>
-            <div class="col">
+            <div class="col imagen-container">
 
             
             <img src="{% static 'accounts/images/ACLICagliari.png' %}" alt="ACI Cagliari" class="img-fluid mx-3" style="max-height: 90px; margin-right: 30px;">
           </div>
-            <div class="col">
+            <div class="col imagen-container">
 
             <img src="{% static 'accounts/images/LOGOCREI-ACLI-300x217.jpg' %}" alt="Logo Regione Sardegna" class="img-fluid mx-3" style="max-height: 90px; margin-right: 30px;">
           </div>
-            <div class="col">
+            <div class="col imagen-container">
 
             <img src="{% static 'accounts/images/ACLISardegna.png' %}" alt="ACI Sardegna" class="img-fluid mx-3" style="max-height: 90px; margin-right: 30px;">
           </div>
-            <div class="col">
+            <div class="col imagen-container">
 
             <img src="{% static 'accounts/images/LogoRegioneSardegnaAssessoratoLavoro_definitivo.png' %}" alt="Logo Regione Sardegna" class="img-fluid mx-3" style="max-height: 90px; margin-right: 30px;">
           </div>

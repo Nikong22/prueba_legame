@@ -20,12 +20,54 @@ body {
 }
 
 /* Media queries para tablets */
-@media (max-width: 768px) {
-    .footer_area {
-        padding: 35px 0; /* Padding más pequeño para tabletas */
+@media (max-width: 767px) {
+    .footer_area .container:last-child .row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en dispositivos móviles */
     }
-}
+  
+    .footer_area .container:last-child .row .col {
+      flex: 0 0 auto;
+      margin-bottom: 0;
+    }
+  }
+  @media (max-width: 767px) {
+    .footer_area .container:last-child .row .col {
+      padding-right: 10px; /* Ajusta este valor según sea necesario */
+    }
+  }
 
+  @media (max-width: 767px) {
+    .imagen-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 -5px; /* Reducir el margen horizontal */
+    }
+    
+    .col {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: none;
+      padding: 5px; /* Agregar un pequeño relleno entre las imágenes */
+    }
+    
+    .imagen-container img {
+      max-width: 100%; /* Asegúrate de que las imágenes se ajusten al ancho del contenedor */
+      height: auto;
+      margin: 0; /* Elimina los márgenes de las imágenes */
+    }
+  }
+  
+
+  @media (max-width: 767px) {
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
 /* Media queries para dispositivos móviles */
 @media (max-width: 576px) {
     .footer_area {
@@ -139,6 +181,26 @@ ul {
 
 #logo-especial{
     padding-left: -1100px; /* Ajusta este valor según sea necesario */
+}
+
+@font-face {
+    font-family: 'Caveat Variable';
+    src: url('fonts/Caveat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400 700; /* Rango de pesos disponibles */
+    font-style: normal;
+}
+#enlace-con-nueva-fuente {
+    font-family: 'Caveat Variable', cursive;
+    text-decoration: none; /* Elimina el subrayado */
+    font-size: 1.5rem; /* Aumenta el tamaño de la fuente */
+    color: #000000; /* Color inicial del enlace */
+    transition: color 0.3s ease, text-shadow 0.3s ease;/* Transición suave al cambiar de color */
+}
+
+#enlace-con-nueva-fuente:hover {
+    color: #484acf; /* Color del enlace al pasar el cursor */
+    text-shadow: 0 0 5px rgba(9, 11, 108, 0.5); /* Sombra de texto */
+
 }
 
 @media (max-width: 768px) {

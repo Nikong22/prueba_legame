@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-20 14:03-0300\n"
+"POT-Creation-Date: 2024-04-30 17:22-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,7 +225,7 @@ msgid "CONTACT"
 msgstr "Contatto"
 
 #: .\accounts\templates\base.html:328
-#: .\accounts\templates\pages\contact.html:64
+#: .\accounts\templates\pages\contact.html:63
 msgid "CONTACT_NOS"
 msgstr "Contattaci "
 
@@ -445,45 +445,47 @@ msgstr "Tipo di documento:"
 msgid "NUM_DOC"
 msgstr "Numero di documento:"
 
-#: .\accounts\templates\pages\contact.html:14
-msgid "TIT_CONTACT"
-msgstr "Hai bisogno di un servizio personalizzato"
-
 #: .\accounts\templates\pages\contact.html:15
+msgid "TIT_CONTACT"
+msgstr ""
+"Hai bisogno di un servizio personalizzato? Hai una domanda e non sei "
+"riuscito a risponderla con le nostre 'domande frequenti'?"
+
+#: .\accounts\templates\pages\contact.html:16
 msgid "SUB_CONTACT"
 msgstr ""
 "Compila il form sottostante per accedere ai nostri servizi personalizzati e "
 "alle promozioni speciali del Progetto LEGAME"
 
-#: .\accounts\templates\pages\contact.html:23
+#: .\accounts\templates\pages\contact.html:26
 msgid "NOM_APE"
 msgstr "Nome e Cognome"
 
-#: .\accounts\templates\pages\contact.html:30
+#: .\accounts\templates\pages\contact.html:33
 msgid "ASUNTO_EMAIL"
 msgstr "Servizio richiesto"
 
-#: .\accounts\templates\pages\contact.html:31
+#: .\accounts\templates\pages\contact.html:34
 msgid "ASUNTO_OPCION"
 msgstr "Consulenza Risorse Umane"
 
-#: .\accounts\templates\pages\contact.html:32
+#: .\accounts\templates\pages\contact.html:35
 msgid "ASUNTO_TRAMITE"
 msgstr "Consulenza sulle procedure di cittadinanza italiana"
 
-#: .\accounts\templates\pages\contact.html:33
+#: .\accounts\templates\pages\contact.html:36
 msgid "ASUNTO_CLASES"
 msgstr "Corsi di lingua italiana personalizzati"
 
-#: .\accounts\templates\pages\contact.html:34
+#: .\accounts\templates\pages\contact.html:37
 msgid "ASUNTO_INFO"
 msgstr "Richiedi maggiori informazioni sul Progetto Legame"
 
-#: .\accounts\templates\pages\contact.html:38
+#: .\accounts\templates\pages\contact.html:41
 msgid "AREA_TEXTO"
 msgstr "Lasciaci la tua domanda specifica in modo che possiamo aiutarti"
 
-#: .\accounts\templates\pages\contact.html:41
+#: .\accounts\templates\pages\contact.html:44
 msgid "SUBMIT_MSG"
 msgstr "Enviar Mensaje"
 
@@ -885,11 +887,11 @@ msgstr ""
 "Per motivi di sicurezza, non memorizziamo la tua password. La tua password "
 "verrà reimpostata e ne riceverai una nuova"
 
-#: .\accounts\views.py:347
+#: .\accounts\views.py:383
 msgid "ERROR_LOGIN"
 msgstr "Accesso limitato o nome utente/password errati"
 
-#: .\accounts\views.py:370
+#: .\accounts\views.py:406
 msgid "ACTIVATE_ACCOUNT"
 msgstr "Attiva il tuo account dal link inviato alla tua email."
 

@@ -12,7 +12,7 @@
 <div id="contact" class="contact-area section-padding">
 	<div class="container">										
 		<div class="section-title text-center">
-			<h1>{% trans "TIT_CONTACT" %}?</h1>
+			<h1>{% trans "TIT_CONTACT" %}</h1>
 			<p>{% trans "SUB_CONTACT" %}</p>
 		</div>					
 		<div class="row">
@@ -49,29 +49,21 @@
 			</div><!--- END COL --> 
 			<div class="col-lg-5">
 				<div class="single_address">
-					<i class="fa fa-map-marker"></i>
-					<h4>Our Address</h4>
-					<p>3481 Melrose Place, Beverly Hills</p>
-				</div>
-				<div class="single_address">
 					<a href="{% url 'contact' %}">
                         <i class="fa fa-envelope"></i>
                     </a>
 					<h4>Envia tu mensaje</h4>
 					<p>legame.it@gmail.com</p>
 				</div>
+				
 				<div class="single_address">
                     <a href="#" id="openModal" data-toggle="tooltip" data-placement="top" title="Whatsapp">
                         <i class="fa fa-phone"></i>
                     </a>
 					<h4>{% trans "CONTACT_NOS" %}</h4>
-					<p>(+1) 517 397 7100</p>
+					<p>+39 351-0393839</p>
 				</div>
-				<div class="single_address">
-					<i class="fa fa-clock-o"></i>
-					<h4>Work Time</h4>
-					<p>Mon - Fri: 08.00 - 16.00. <br>Sat: 10.00 - 14.00</p>
-				</div>					
+							
 			</div><!--- END COL --> 
 		</div><!--- END ROW -->
 	</div><!--- END CONTAINER -->	
